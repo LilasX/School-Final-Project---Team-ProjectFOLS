@@ -598,7 +598,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 3.048764, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1605,7 +1605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2609460955011063259, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.449232
+      value: 16.9
       objectReference: {fileID: 0}
     - target: {fileID: 2609460955011063259, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1613,7 +1613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2609460955011063259, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.78929
+      value: 19.02
       objectReference: {fileID: 0}
     - target: {fileID: 2609460955011063259, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1650,6 +1650,14 @@ PrefabInstance:
     - target: {fileID: 6618517765601605601, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678268900714568773, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
+      propertyPath: hp
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678268900714568773, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
+      propertyPath: hpMax
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8213722746421327921, guid: d79c1622db444db419a4975b2cc8ca2b, type: 3}
       propertyPath: m_Name
@@ -1832,6 +1840,14 @@ PrefabInstance:
     - target: {fileID: 4701285566611582536, guid: 319ba7d6797d43b439687767d2163290, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881062463486375538, guid: 319ba7d6797d43b439687767d2163290, type: 3}
+      propertyPath: hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881062463486375538, guid: 319ba7d6797d43b439687767d2163290, type: 3}
+      propertyPath: hpMax
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7358881726798754450, guid: 319ba7d6797d43b439687767d2163290, type: 3}
       propertyPath: m_Name

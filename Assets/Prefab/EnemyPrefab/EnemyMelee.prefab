@@ -393,6 +393,8 @@ GameObject:
   - component: {fileID: 5143667605228730815}
   - component: {fileID: 7303528573626257895}
   - component: {fileID: 4881062463486375538}
+  - component: {fileID: 777710012713393932}
+  - component: {fileID: 7948994436109537851}
   m_Layer: 0
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -492,3 +494,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bae6c59681d3248923675ba1701d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  hpMax: 0
+  dmg: 0
+  slider: {fileID: 7067872109950529185}
+  drop: {fileID: 4227461106753351263, guid: 9e8ae706d10b0564cb5c0e54d2b5726a, type: 3}
+  canAttack: 0
+  melee: {fileID: 5134230547953760298, guid: 9773f6d612c4c0f429604dd5072fe045, type: 3}
+  typeMelee: 1
+--- !u!114 &777710012713393932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358881726798754450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ca358e5404bab4ba80ee99134a2e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialState: 0
+  boundBox:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
+--- !u!195 &7948994436109537851
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358881726798754450}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
