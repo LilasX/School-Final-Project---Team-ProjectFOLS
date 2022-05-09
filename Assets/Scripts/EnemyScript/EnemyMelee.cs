@@ -8,8 +8,10 @@ public class EnemyMelee : EnemyMain
 {
     public bool canAttack;
     public GameObject melee;
+    public Animator meleeAnim;
     public MeleeWeapon typeMelee;
     private float timer;
+
 
     public bool attack; //Testing Attack Purpose
 
@@ -20,7 +22,7 @@ public class EnemyMelee : EnemyMain
         Hp = HpMax;
         canAttack = true;
         timer = 0;
-        melee.SetActive(false);
+        //melee.SetActive(false);
         typeMelee = MeleeWeapon.Sword;
     }
 
@@ -28,9 +30,10 @@ public class EnemyMelee : EnemyMain
     {
         if (canAttack)
         {
-            melee.SetActive(true);
+            //melee.SetActive(true);
             //Need Confirmation for Anim
-            //Need public Animator for Anim.SetTrigger("Attack");
+            //Need public Animator for 
+            if (meleeAnim) meleeAnim.SetTrigger("Attack");
             canAttack = false;
         }
     }
@@ -44,7 +47,7 @@ public class EnemyMelee : EnemyMain
             {
                 canAttack = true;
                 timer = 0;
-                melee.SetActive(false);//Testing Attack
+                //melee.SetActive(false);//Testing Attack
             }
         }
     }
@@ -65,6 +68,11 @@ public class EnemyMelee : EnemyMain
         drop.transform.position = transform.position;
     }
 
+    public override void DisplayHealthBar()
+    {
+        slider.value = Hp * 100 / HpMax;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +82,9 @@ public class EnemyMelee : EnemyMain
     // Update is called once per frame
     void Update()
     {
-        IsAttacking();
+        IsAttacking(); //Need to see if there is an effective way than this
+        DisplayHealthBar();
+        VerifyDeath();
 
         if (attack) //Testing Attack Purpose
         {
@@ -82,5 +92,4 @@ public class EnemyMelee : EnemyMain
             attack = false;
         }
     }
-
 }

@@ -2,32 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateWander : IEnemyState
+public class StateWander : EnemyState
 {
-    private static StateWander instance;
+    public StatePursue statePursue;
+    public StateEscape stateEscape;
+    public Vector3 wanderPos;
+    public Vector3 wanderPosOrigin;
+    public float wanderDistance = 0;
 
-    public StateWander() { }
-
-    public static StateWander GetInstance()
+    public override EnemyState RunState(EnemyBehaviour enemyBehaviour) //Need to Rethink how to do it after StateEscape goes to StateWander, since enemy stops after a time
     {
-        if (instance == null)
-            instance = new StateWander();
-        return instance;
-    }
+        float randomX = Random.Range(-enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius, enemyBehaviour.boundBox.extents.x - enemyBehaviour.agent.radius);
+        float randomZ = Random.Range(-enemyBehaviour.boundBox.extents.z + enemyBehaviour.agent.radius, enemyBehaviour.boundBox.extents.z - enemyBehaviour.agent.radius);
+        wanderPos = new Vector3(randomX, transform.position.y, randomZ);
 
-    public bool Attacking()
-    {
-        return false;
-    }
+        if (wanderDistance <= enemyBehaviour.agent.stoppingDistance)
+        {
+            enemyBehaviour.agent.SetDestination(wanderPos);
+            wanderPosOrigin = wanderPos;
+            enemyBehaviour.agent.isStopped = false;
+        }
 
-    public bool Wandering()
-    {
-        return true;
-    }
+        wanderDistance = Vector3.Distance(wanderPosOrigin, transform.position);
 
-    public bool Escaping()
-    {
-        return false;
-    }
+        if (enemyBehaviour.GetComponent<EnemyMain>().Hp <= 30)
+            return stateEscape;
 
+        if (enemyBehaviour.canSeePlayer)
+		{
+			return statePursue;
+		}
+		return this;
+	}
 }

@@ -7,6 +7,7 @@ public enum RangeWeapon { Sphere, Wall, Arrow }
 public class EnemyRange : EnemyMain
 {
     public bool canAttack;
+    public GameObject projectileSpawn;
     public GameObject range;
     public RangeWeapon typeRange;
     private float timer;
@@ -19,7 +20,7 @@ public class EnemyRange : EnemyMain
         Hp = HpMax;
         canAttack = true;
         timer = 0;
-        range.SetActive(false);
+        //range.SetActive(false);
         typeRange = RangeWeapon.Arrow;
     }
 
@@ -28,9 +29,10 @@ public class EnemyRange : EnemyMain
         
         if (canAttack)
         {
-            range.transform.position = new Vector3(transform.position.x + 2, transform.position.y, transform.position.z); //À Reconfigurer
-            range.SetActive(true);
-            range.GetComponent<Rigidbody>().AddForce(transform.forward * 80, ForceMode.Impulse); //À Reconfigurer
+            range.transform.position = projectileSpawn.transform.position;
+            range.transform.rotation = projectileSpawn.transform.rotation;
+            //range.SetActive(true);
+            range.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse);
             canAttack = false;
         }
     }
@@ -42,7 +44,7 @@ public class EnemyRange : EnemyMain
             timer += Time.deltaTime;
             if (timer >= 2f)
             {
-                range.SetActive(false);
+                //range.SetActive(false);
                 canAttack = true;
                 timer = 0;
             }
@@ -63,6 +65,11 @@ public class EnemyRange : EnemyMain
         drop.transform.position = transform.position;
     }
 
+    public override void DisplayHealthBar()
+    {
+        slider.value = Hp * 100 / HpMax;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +80,8 @@ public class EnemyRange : EnemyMain
     void Update()
     {
         IsAttacking();
-
+        DisplayHealthBar();
+        VerifyDeath();
         if (attack) //Testing Attack Purpose
         {
             AttackPlayer();

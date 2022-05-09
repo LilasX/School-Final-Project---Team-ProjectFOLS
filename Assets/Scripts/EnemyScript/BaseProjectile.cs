@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Shooter { player, enemy }
+
 public class BaseProjectile : MonoBehaviour
 {
 
+    public Shooter shooter;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<PlayerMovements>())
+        if(shooter == Shooter.enemy && collision.gameObject.GetComponent<PlayerMovements>())
         {
             //collision.gameObject.GetComponent<Player>().Hp -= 10;
             Invoke("SetInactiveRange", 2f);
+        }
+        if(shooter == Shooter.player && collision.gameObject.GetComponent<EnemyMain>())
+        {
+            collision.gameObject.GetComponent<EnemyMain>().Hp -= 20;
         }
     }
 

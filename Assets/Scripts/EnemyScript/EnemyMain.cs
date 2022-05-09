@@ -25,4 +25,5 @@ public abstract class EnemyMain : MonoBehaviour
     public abstract void IsAttacking();
     public abstract void VerifyDeath();
     public abstract void DropItem();
+    public abstract void DisplayHealthBar();
 }

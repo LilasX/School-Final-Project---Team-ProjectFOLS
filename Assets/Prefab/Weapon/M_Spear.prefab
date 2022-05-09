@@ -205,6 +205,8 @@ GameObject:
   m_Component:
   - component: {fileID: 698304618860423919}
   - component: {fileID: 8555188117644215828}
+  - component: {fileID: 6880087706622172149}
+  - component: {fileID: 7103251299517134217}
   m_Layer: 0
   m_Name: M_Spear
   m_TagString: Untagged
@@ -249,3 +251,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6880087706622172149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7060406736892069669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870b86f979bd94f409a4d41436e0afd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  striker: 1
+--- !u!65 &7103251299517134217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7060406736892069669}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1, y: 1.5, z: 1}
+  m_Center: {x: 6, y: 0, z: 0}

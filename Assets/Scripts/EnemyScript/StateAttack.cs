@@ -2,32 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateAttack : IEnemyState
+public class StateAttack : EnemyState
 {
-    private static StateAttack instance;
-
-    public StateAttack() { }
-
-    public static StateAttack GetInstance()
+    public StateEscape stateEscape;
+    public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
-        if (instance == null)
-            instance = new StateAttack();
-        return instance;
-    }
+        enemyBehaviour.GetComponent<EnemyMain>().AttackPlayer();
 
-    public bool Attacking()
-    {
-        return true;
-    }
+        if (enemyBehaviour.GetComponent<EnemyMain>().Hp <= 30)
+            return stateEscape;
 
-    public bool Wandering()
-    {
-        return false;
+        return this;
     }
-
-    public bool Escaping()
-    {
-        return false;
-    }
-
 }

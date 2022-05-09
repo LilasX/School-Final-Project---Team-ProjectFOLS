@@ -7,15 +7,19 @@ public enum BehaviourState { none, wander, pursue, attack, escape }
 public class EnemyBehaviour : MonoBehaviour
 {
     public BehaviourState initialState;
-    private BehaviourState currentState = BehaviourState.none;
+    public BehaviourState currentState = BehaviourState.none;
     public Bounds boundBox;
-    private UnityEngine.AI.NavMeshAgent agent;
+    public UnityEngine.AI.NavMeshAgent agent;
     private Vector3 wanderPos;
     float wanderDistance;
     public GameObject player;
     float playerDistance;
 
     public bool attack; //Testing Attack Purpose
+    public bool escape; //Testing Escape Purpose
+
+    public EnemyState currState;//Testing State Machine
+    public bool canSeePlayer;
 
     //Temporary since will create State Machine later on
     //----- ----- ----- ----- State Management ----- ----- ----- -----
@@ -92,8 +96,8 @@ public class EnemyBehaviour : MonoBehaviour
         {
             SetState(BehaviourState.escape);
             FindWanderPosition();
-            agent.speed += 20;
-            agent.acceleration += 8;
+            agent.speed = 7;
+            agent.acceleration = 12;
         }
     }
 
@@ -104,6 +108,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             SetState(BehaviourState.pursue);
             player = other.gameObject;
+            canSeePlayer = true;
         }
     }
 
@@ -126,6 +131,11 @@ public class EnemyBehaviour : MonoBehaviour
             AttackPlayer();
             attack = false;
         }
+        if(escape) //Testing Escape Purpose
+        {
+            EscapePlayer();
+            escape = false;
+        }
 
         switch (currentState)
         {
@@ -142,13 +152,31 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
             case BehaviourState.escape:
                 playerDistance = Vector3.Distance(transform.position, player.transform.position);
-                if (playerDistance >= 20)
+                if (playerDistance >= 10)
                 {
                     SetState(BehaviourState.wander);
-                    agent.speed -= 20;
-                    agent.acceleration -= 8;
+                    agent.speed = 3.5f;
+                    agent.acceleration = 8;
                 }
                 break;
         }
+
+        RunStateMachine(); //Testing StateMachine
+    }
+
+    //Testing StateMachine
+    private void RunStateMachine()
+    {
+        EnemyState nextState = currState?.RunState(this);
+
+        if(nextState != null)
+        {
+            SwitchNextState(nextState);
+        }
+    }
+
+    private void SwitchNextState(EnemyState nextState)
+    {
+        currState = nextState;
     }
 }
