@@ -8,6 +8,8 @@ public class EnemyStats : MonoBehaviour
 
     [SerializeField] private int health;
     [SerializeField] private Slider slider;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,5 +34,17 @@ public class EnemyStats : MonoBehaviour
     void Update()
     {
         slider.value = health;
+
+        timer += Time.deltaTime;
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            if (timer >= 0.5f)
+            {
+                GameObject gameObj = Instantiate(bullet, transform.position + transform.forward * 5, Quaternion.identity); //Instantiation du projectile
+                gameObj.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse); //Application de la physique sur le projectile
+                timer = 0f;
+                Destroy(gameObj, 5f); //Destruction du projectile
+            }
+        }
     }
 }
