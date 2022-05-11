@@ -55,7 +55,7 @@ public class EnemyRange : EnemyMain
         {
             gameObject.SetActive(false); //Set this gameObject to Inactive, thus will not show in Scene
             transform.position = posOrigin.position; //Set this gameObject's position to posOrigin's position. For Pooling System
-            GetComponent<EnemyBehaviour>().SetState(BehaviourState.none); //Set this gameObject's BehaviourState to None. In EnemyBehaviour
+            //GetComponent<EnemyBehaviour>().SetState(BehaviourState.none); //Set this gameObject's BehaviourState to None. In EnemyBehaviour
             DropItem(); //Call DropItem Method
         }
     }
