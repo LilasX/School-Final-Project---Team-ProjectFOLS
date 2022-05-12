@@ -46,6 +46,8 @@ public class PlayerMovements : MonoBehaviour
     //Variables pour arme courte portée
     [SerializeField] private GameObject stick;
     private bool isUsingStick = false;
+    [SerializeField] private GameObject shield;
+    private bool isUsingShield = false;
 
     [SerializeField] private GameObject pickableText;
     [SerializeField] private GameObject coolDownExample;
@@ -55,6 +57,8 @@ public class PlayerMovements : MonoBehaviour
 
     #endregion
 
+    private bool canReturnAttack = false;
+    private bool isReturningAttack = false;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +100,11 @@ public class PlayerMovements : MonoBehaviour
         isUsingStick = context.performed;
     }
 
+    public void OnShield(InputAction.CallbackContext context)
+    {
+        isUsingShield = context.performed;
+    }
+
     #endregion
 
 
@@ -117,6 +126,8 @@ public class PlayerMovements : MonoBehaviour
         RangedAttack();
 
         MeleeAttack();
+
+        UseShield();
 
 
         coolDownBar.value = powertimer;
@@ -141,7 +152,11 @@ public class PlayerMovements : MonoBehaviour
             }
         }
 
-
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            isReturningAttack = true;
+            Debug.Log(isReturningAttack);
+        }
 
     }
 
@@ -157,7 +172,7 @@ public class PlayerMovements : MonoBehaviour
 
         if (move != Vector3.zero) //Quand j'utilise mon input
         {
-            Debug.Log(move);
+            //Debug.Log(move);
             myCharacter.transform.forward = move * Time.deltaTime; //Oriente le joueur vers la direction du mouvement
         }
         myCharacter.Move(move * speed * Time.deltaTime); //Déplace le joueur
@@ -230,6 +245,11 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
+    private void UseShield()
+    {
+        if(isUsingShield) { shield.SetActive(true); } else { shield.SetActive(false); }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<Drops>())
@@ -238,6 +258,79 @@ public class PlayerMovements : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
+
+    #region ReturnAttack
+
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.GetComponent<BaseProjectile>())
+    //    {
+    //        if (!canReturnAttack)
+    //        {
+    //            collision.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
+    //            collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+    //            collision.gameObject.SetActive(false);
+    //            //canReturnAttack = true;
+    //            Debug.Log("Colliding");
+    //        }
+
+
+    //        if (isReturningAttack)
+    //        {
+    //            //Debug.Log("Input");
+    //            //if(canReturnAttack)
+    //            //{
+    //                collision.gameObject.SetActive(true);
+    //                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+    //                collision.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bulletVelocity;
+    //            //}
+    //        }
+
+    //    }
+    //}
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<BaseProjectile>())
+        {
+            if (!canReturnAttack)
+            {
+                collision.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
+                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                collision.gameObject.SetActive(false);
+                //canReturnAttack = true;
+                Debug.Log("Colliding");
+            }
+
+
+            if (isReturningAttack)
+            {
+                StartCoroutine(OnCollidingWithProjectile(collision));
+            }
+
+        }
+    }
+
+    private IEnumerator OnCollidingWithProjectile(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<BaseProjectile>())
+        {
+            if (isReturningAttack)
+            {
+                //Debug.Log("Input");
+                //if(canReturnAttack)
+                //{
+                collision.gameObject.SetActive(true);
+                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                collision.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bulletVelocity;
+                //}
+            }
+            yield return null;
+        }
+    }
+
+    #endregion
+
 
     #endregion
 
