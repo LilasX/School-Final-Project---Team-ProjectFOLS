@@ -58,7 +58,7 @@ public class EnemyMelee : EnemyMain
         {
             gameObject.SetActive(false); //this gameObject is set to inactive, so it stop showing itself
             transform.position = posOrigin.position; //return the position of this gameObject to the position of posOrigin. For Pooling System
-            GetComponent<EnemyBehaviour>().SetState(BehaviourState.none); //Set Behaviour State to None. For System in EnemyBehaviour
+            //GetComponent<EnemyBehaviour>().SetState(BehaviourState.none); //Set Behaviour State to None. For System in EnemyBehaviour
             DropItem(); //Call DropItem Method
         }
     }

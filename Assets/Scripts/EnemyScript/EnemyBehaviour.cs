@@ -8,24 +8,24 @@ public enum BehaviourState { none, wander, pursue, attack, escape } //Enum posse
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public BehaviourState initialState; //Enum possessing a State, change in the Inspector, that will be used at the beginning of the Scene
-    public BehaviourState currentState = BehaviourState.none; //Enum used for the Current State this gameObject is on. System #1
+   // public BehaviourState initialState; //Enum possessing a State, change in the Inspector, that will be used at the beginning of the Scene
+    //public BehaviourState currentState = BehaviourState.none; //Enum used for the Current State this gameObject is on. System #1
     public Bounds boundBox; //Used for Wander State. A Box Boundary.
     public UnityEngine.AI.NavMeshAgent agent; //NavMeshAgent to use the agent of this gameObject in this script
-    private Vector3 wanderPos; //Vector3 to place the target position for the enemy to move towards to
-    private float wanderDistance; //float variable to keep the distance between enemy and the wanderPos
+    //private Vector3 wanderPos; //Vector3 to place the target position for the enemy to move towards to
+    //private float wanderDistance; //float variable to keep the distance between enemy and the wanderPos
     public GameObject player; //The Player so that it can be used in this scripts
-    private float playerDistance; //float variable to keep the distance between player and the enemy
+    //private float playerDistance; //float variable to keep the distance between player and the enemy
 
-    public bool attack; //Testing Attack Purpose
-    public bool escape; //Testing Escape Purpose
+    //public bool attack; //Testing Attack Purpose
+    //public bool escape; //Testing Escape Purpose
 
     public EnemyState currState;//Testing State Machine. currentState of this enemy. System #2
     public bool canSeePlayer; //Bool to see if Enemy can see Player
 
     //Temporary since will create State Machine later on
     //----- ----- ----- ----- State Management ----- ----- ----- -----
-    public void SetState(BehaviourState s) //Method to set this gameObject's current state. System #1
+    /*public void SetState(BehaviourState s) //Method to set this gameObject's current state. System #1
     {
         if (currentState != s) //if currentState isn't the same as the state given (s)
         {
@@ -45,10 +45,10 @@ public class EnemyBehaviour : MonoBehaviour
                     break;
             }
         }
-    }
+    }*/
 
     //----- ----- ----- ----- Wandering State Methods ----- ----- ----- -----
-    private void FindWanderPosition() //Method to Set a new wanderPos. System #1
+    /*private void FindWanderPosition() //Method to Set a new wanderPos. System #1
     {
         wanderPos = GetRandomPoint(); //Set wanderPos to return of GetRandomPoint Method
         agent.SetDestination(wanderPos); //set agent's destination to wanderPos
@@ -61,17 +61,10 @@ public class EnemyBehaviour : MonoBehaviour
         float randomZ = Random.Range(-boundBox.extents.z + agent.radius, boundBox.extents.z - agent.radius); //Retrieve a Random Z from a range
         return new Vector3(randomX, transform.position.y, randomZ); //return a Vector3 with the random X and Z Coordinates.
     }
-
-    private void OnDrawGizmos() //Method to Draw the BoundBox and the wanderPos in the Scene. Will Delete when not Necessary. System #1
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(boundBox.center, boundBox.size);
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(wanderPos, 0.2f);
-    }
+    */
 
     //----- ----- ----- ----- Pursuing State Methods ----- ----- ----- -----
-    private void MoveToPlayer() //Method to Move the Enemy to the Player. System #1
+    /*private void MoveToPlayer() //Method to Move the Enemy to the Player. System #1
     {
         agent.SetDestination(player.transform.position); //set agent's destination to player's position
     }
@@ -82,16 +75,16 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (playerDistance <= 5) //if playerDistance is equal or inferior to 5
             SetState(BehaviourState.attack); //Set this gameObject's state to Attack
-    }
+    }*/
 
     //----- ----- ----- ----- Attacking State Methods ----- ----- ----- -----
-    private void AttackPlayer() //Method to Attack the Player. System #1
+    /*private void AttackPlayer() //Method to Attack the Player. System #1
     {
         GetComponent<EnemyMain>().AttackPlayer(); //Call AttackPlayer Method from the script EnemyMain of this gameObject
-    }
+    }*/
 
     //----- ----- ----- ----- Escaping State Methods ----- ----- ----- -----
-    private void EscapePlayer() //Method to Escape from Player when Health is Low. System #1
+    /*private void EscapePlayer() //Method to Escape from Player when Health is Low. System #1
     {
         if (GetComponent<EnemyMain>().Hp <= 30) //If Hp of this gameObject is equal or inferior to 30
         {
@@ -100,17 +93,23 @@ public class EnemyBehaviour : MonoBehaviour
             agent.speed = 7; //Increase agent's speed to 7
             agent.acceleration = 12; //Increase agent's acceleration to 12
         }
-    }
+    }*/
 
     //----- ----- ----- ----- On Scene Methods ----- ----- ----- -----
     private void OnTriggerEnter(Collider other) //OnTriggerEnter Method
     {
         if (other.GetComponent<PlayerMovements>()) //if collider other is a gameObject possessing the script PlayerMovements
         {
-            SetState(BehaviourState.pursue); //Set this gameObject's state to pursue. System #1
+            //SetState(BehaviourState.pursue); //Set this gameObject's state to pursue. System #1
             player = other.gameObject; //Set player to the gameObject of the collider
             canSeePlayer = true; //Set canSeePlayer to True; System #2
         }
+    }
+
+    private void OnDrawGizmos() //Method to Draw the BoundBox and the wanderPos in the Scene. Will Delete when not Necessary. System #1
+    {
+        Gizmos.color = Color.yellow; 
+        Gizmos.DrawWireCube(boundBox.center, boundBox.size);
     }
 
     void Awake()
@@ -121,24 +120,24 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetState(initialState); //Set Current State to Initial State set in Inspector. System #1
+        //SetState(initialState); //Set Current State to Initial State set in Inspector. System #1
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(attack) //Testing Attack Purpose
+        /*if(attack) //Testing Attack Purpose
         {
             AttackPlayer(); //Call AttackPlayer Method
             attack = false; //Set bool attack to false
-        }
-        if(escape) //Testing Escape Purpose
+        }*/
+        /*if(escape) //Testing Escape Purpose
         {
             EscapePlayer(); //Call EscapePlayer Method
             escape = false; //Set bool escape to false
-        }
+        }*/
 
-        switch (currentState) //Switch Case using CurrentState. System #1
+        /*switch (currentState) //Switch Case using CurrentState. System #1
         {
             case BehaviourState.wander: //If CurrentState is wander
                 wanderDistance = Vector3.Distance(wanderPos, transform.position); //Get Distance between wanderPos and this gameObject's position
@@ -161,7 +160,7 @@ public class EnemyBehaviour : MonoBehaviour
                     GetComponent<EnemyMain>().Hp = 50; //Heal this gameObject to 50
                 }
                 break;
-        }
+        }*/
 
         RunStateMachine(); //Testing StateMachine. Call RunStateMachine Method. System #2
     }
