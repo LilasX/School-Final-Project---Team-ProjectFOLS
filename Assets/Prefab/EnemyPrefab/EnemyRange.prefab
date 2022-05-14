@@ -801,15 +801,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ca358e5404bab4ba80ee99134a2e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: 0
-  currentState: 0
   boundBox:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   player: {fileID: 0}
-  attack: 0
-  escape: 0
   currState: {fileID: 0}
   canSeePlayer: 0
 --- !u!195 &8250266234859338927

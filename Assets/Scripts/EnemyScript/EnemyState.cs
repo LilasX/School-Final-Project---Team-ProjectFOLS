@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class EnemyState : MonoBehaviour
 {
     //State Machine Exemple from Sebastian Graves and his Video "A.I State Machine Made Easy (Unity)".
-    public abstract EnemyState RunState(EnemyBehaviour enemyBehaviour); //Abstract Method to Run the Current State
+    public abstract EnemyState RunState(EnemyBehaviour enemyBehaviour); 
 }

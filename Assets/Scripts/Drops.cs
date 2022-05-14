@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Drops : MonoBehaviour
 {
-    private Transform posOrigin; //Transform to keep the starting transform of this drops. for Pooling System
+    private Transform posOrigin; 
 
-    public void PickUpDrop() //Method to make Drop Disappear and return to his original position
+    public void PickUpDrop() 
     {
-        gameObject.SetActive(false); //Set this gameObject to Inactive
-        gameObject.transform.position = posOrigin.position; //Set this gameObject's position to the posOrigin's position. for Pooling System.
+        gameObject.SetActive(false); 
+        gameObject.transform.position = posOrigin.position; 
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        posOrigin = transform; //set posOrigin to this current transform. For Pooling System
+        posOrigin = transform; 
     }
 
     // Update is called once per frame
