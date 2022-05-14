@@ -13,15 +13,15 @@ public class PlayerMovements : MonoBehaviour
     //  Variables pour le déplacement
     [SerializeField] private CharacterController myCharacter; //Référence au character controller
     [SerializeField] private CinemachineVirtualCamera cam; // Référence à la caméra
-    private Vector3 move;
-    private float xAxis;
-    private float zAxis;
+    public Vector3 move;
+    public float xAxis;
+    public float zAxis;
 
     [Header("Movement Attributes")]
     [SerializeField] private float speed = 5f;
-    [SerializeField] private bool isRunning;
+    public bool isRunning;
     [SerializeField] private float runningSpeed = 10f;
-    [SerializeField] private bool isDashing;
+    public bool isDashing;
     private float dashTime = 0f;
     [SerializeField] private float dashSpeed = 20f;
 
@@ -33,7 +33,7 @@ public class PlayerMovements : MonoBehaviour
     private Vector3 velocity;
     [SerializeField] private float gravityForce;
     [SerializeField] private float jumpForce;
-    private bool isJumping = false;
+    public bool isJumping = false;
 
     // Variables pour tirer
     [Header("Attack Attributes")]
@@ -45,9 +45,9 @@ public class PlayerMovements : MonoBehaviour
 
     //Variables pour arme courte portée
     [SerializeField] private GameObject stick;
-    private bool isUsingStick = false;
+    public bool isUsingStick = false;
     [SerializeField] private GameObject shield;
-    private bool isUsingShield = false;
+    public bool isUsingShield = false;
 
     [SerializeField] private GameObject pickableText;
     [SerializeField] private GameObject coolDownExample;
@@ -60,61 +60,70 @@ public class PlayerMovements : MonoBehaviour
     private bool canReturnAttack = false;
     private bool isReturningAttack = false;
 
+    private GameObject attackToReturn;
+
+    private Animator animator;
+    public bool canDash = true;
+    private bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
         myCharacter = GetComponent<CharacterController>(); //Récupère le component character controller dans le gameobject
+        animator = GetComponent<Animator>();
     }
 
-    #region Inputs
+    //#region Inputs
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        move = context.ReadValue<Vector2>();
-        xAxis = move.x;
-        zAxis = move.y;
-    }
+    //public void OnMove(InputAction.CallbackContext context)
+    //{
+    //    move = context.ReadValue<Vector2>();
+    //    xAxis = move.x;
+    //    zAxis = move.y;
+    //}
 
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        isJumping = context.performed;
-    }
+    //public void OnJump(InputAction.CallbackContext context)
+    //{
+    //    isJumping = context.performed;
+    //}
 
-    public void OnRun(InputAction.CallbackContext context)
-    {
-        isRunning = context.performed;
-    }
+    //public void OnRun(InputAction.CallbackContext context)
+    //{
+    //    isRunning = context.performed;
+    //}
 
-    public void OnDash(InputAction.CallbackContext context)
-    {
-        isDashing = context.performed;
-    }
+    //public void OnDash(InputAction.CallbackContext context)
+    //{
+    //    isDashing = context.performed;
+    //}
 
-    public void OnFire(InputAction.CallbackContext context)
-    {
-        isFiring = context.performed;
-    }
+    //public void OnFire(InputAction.CallbackContext context)
+    //{
+    //    isFiring = context.performed;
+    //}
 
-    public void OnShortRange(InputAction.CallbackContext context)
-    {
-        isUsingStick = context.performed;
-    }
+    //public void OnShortRange(InputAction.CallbackContext context)
+    //{
+    //    isUsingStick = context.performed;
+    //}
 
-    public void OnShield(InputAction.CallbackContext context)
-    {
-        isUsingShield = context.performed;
-    }
+    //public void OnShield(InputAction.CallbackContext context)
+    //{
+    //    isUsingShield = context.performed;
+    //}
 
-    #endregion
+    //#endregion
 
 
     // Update is called once per frame
+
+
     void Update()
     {
         // Gravité
         velocity.y -= gravityForce; //Application de la force de gravité
         myCharacter.Move(velocity * Time.deltaTime);
-        
+
         Move();
 
         Run();
@@ -132,7 +141,7 @@ public class PlayerMovements : MonoBehaviour
 
         coolDownBar.value = powertimer;
         //Cooldown example
-        if(Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             if (!isUsingPower)
             {
@@ -152,12 +161,25 @@ public class PlayerMovements : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.M))
+
+
+        if (Input.GetKeyDown(KeyCode.M))
         {
             isReturningAttack = true;
-            Debug.Log(isReturningAttack);
+            //Debug.Log(isReturningAttack);
+            OnReturningProjectile(attackToReturn);
+
         }
 
+        StaminaBar();
+
+    }
+
+    private void StaminaBar()
+    {
+        //Barre d'endurance
+        staminaBar.value = stamina;
+        if(stamina >= 100) { stamina = 100; } else if(stamina <= 0) { stamina = 0; }
     }
 
     #region Behaviors
@@ -166,6 +188,8 @@ public class PlayerMovements : MonoBehaviour
     {
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), -transform.up, Color.red, 1);
 
+        animator.SetFloat("Speed", 0f);
+
         //  Mouvement du joueur
         move = new Vector3(xAxis, 0, zAxis); //Update des coordonnées d'emplacement du vecteur
         move = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * move; //Décale le vecteur de déplacement en fonction de la l'axe y de la caméra 
@@ -173,19 +197,22 @@ public class PlayerMovements : MonoBehaviour
         if (move != Vector3.zero) //Quand j'utilise mon input
         {
             //Debug.Log(move);
+            isMoving = true;
             myCharacter.transform.forward = move * Time.deltaTime; //Oriente le joueur vers la direction du mouvement
+            animator.SetFloat("Speed", 0.5f);
         }
+        else { isMoving = false; }
         myCharacter.Move(move * speed * Time.deltaTime); //Déplace le joueur
     }
     private void Run()
     {
-        staminaBar.value = stamina;
 
         //  Vitesse du joueur en course
-        if (isRunning)
+        if (isRunning && isMoving)
         {
             speed = runningSpeed; //Valeur de la vitesse en mode course
             stamina = Mathf.MoveTowards(stamina, 1f, 10f * Time.deltaTime); //Vide la barre d'endurance
+            animator.SetFloat("Speed", 1f);
             if(stamina == 1)
             {
                 isRunning = false;
@@ -201,17 +228,44 @@ public class PlayerMovements : MonoBehaviour
     private void Dash()
     {
         //  Vitesse du joueur en esquive
-        if (isDashing) 
-        { 
+        if (isDashing)
+        {
+            animator.SetTrigger("Dive");
             speed = dashSpeed;  //Valeur de la vitesse en mode dash
+            stamina -= 10f;
             dashTime += Time.deltaTime;
-            if(dashTime >= 0.2f)
+            if (dashTime >= 0.2f)
             {
                 isDashing = false;
                 dashTime = 0;
             }
-        } 
+        }
     }
+
+    //private void Dash()
+    //{
+    //    //  Vitesse du joueur en esquive
+    //    if (canDash)  
+    //    {
+    //        if (isDashing)
+    //        {
+    //            canDash = false;
+    //            animator.SetBool("Dive", true);
+    //            speed = dashSpeed;  //Valeur de la vitesse en mode dash
+    //            dashTime += Time.deltaTime;
+    //            if (dashTime >= 0.2f)
+    //            {
+    //                isDashing = false;
+    //                dashTime = 0;
+    //            }
+    //        }
+    //    } 
+    //    else
+    //    {
+    //        animator.SetBool("Dive", false);
+    //        canDash = true;
+    //    }
+    //}
 
     private void Jump()
     {
@@ -226,7 +280,17 @@ public class PlayerMovements : MonoBehaviour
     private void MeleeAttack()
     {
         // Using Stick
-        if (isUsingStick) { stick.SetActive(true); } else { stick.SetActive(false); } //Activation/Désactivation de l'arme
+        if (isUsingStick) 
+        { 
+            stick.SetActive(true);
+            animator.SetTrigger("Attack");
+            stamina -= 5f;
+        } 
+        else 
+        { 
+            stick.SetActive(false);
+        } 
+
     }
 
     private void RangedAttack()
@@ -247,7 +311,13 @@ public class PlayerMovements : MonoBehaviour
 
     private void UseShield()
     {
-        if(isUsingShield) { shield.SetActive(true); } else { shield.SetActive(false); }
+        if(isUsingShield) 
+        {   
+            shield.SetActive(true); 
+            animator.SetTrigger("Block");
+            speed = 0f;
+        } 
+        else { shield.SetActive(false); speed = 5f; }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -297,37 +367,53 @@ public class PlayerMovements : MonoBehaviour
             {
                 collision.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
                 collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                attackToReturn =  OnDetectProjectile(collision.gameObject);
                 collision.gameObject.SetActive(false);
-                //canReturnAttack = true;
+                canReturnAttack = true;
                 Debug.Log("Colliding");
             }
-
-
-            if (isReturningAttack)
-            {
-                StartCoroutine(OnCollidingWithProjectile(collision));
-            }
-
         }
     }
 
-    private IEnumerator OnCollidingWithProjectile(Collision collision)
+    private GameObject OnDetectProjectile(GameObject projectile)
     {
-        if (collision.gameObject.GetComponent<BaseProjectile>())
+        return projectile;
+    }
+
+    private void OnReturningProjectile(GameObject projectile)
+    {
+        if (projectile.gameObject.GetComponent<ProjectileManager>().projectileType == ProjectileType.sphere)
         {
             if (isReturningAttack)
             {
-                //Debug.Log("Input");
-                //if(canReturnAttack)
-                //{
-                collision.gameObject.SetActive(true);
-                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                collision.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bulletVelocity;
-                //}
+                if(canReturnAttack)
+                {
+                    Debug.Log(projectile.gameObject.GetComponent<ProjectileManager>().projectileType);
+                    GameObject gameObj = Instantiate(projectile, transform.position + transform.forward, Quaternion.identity); //Instantiation du projectile
+                    gameObj.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
+                }   
             }
-            yield return null;
         }
     }
+
+
+    //private IEnumerator OnCollidingWithProjectile(Collision collision)
+    //{
+    //    if (collision.gameObject.GetComponent<BaseProjectile>())
+    //    {
+    //        if (isReturningAttack)
+    //        {
+    //            //Debug.Log("Input");
+    //            //if(canReturnAttack)
+    //            //{
+    //            collision.gameObject.SetActive(true);
+    //            collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+    //            collision.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bulletVelocity;
+    //            //}
+    //        }
+    //        yield return null;
+    //    }
+    //}
 
     #endregion
 
