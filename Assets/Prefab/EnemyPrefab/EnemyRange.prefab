@@ -300,6 +300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateEscape: {fileID: 3212742377771983363}
+  statePursue: {fileID: 7088747924582030372}
+  playerDistance: 0
 --- !u!1 &6138824458831319637
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +810,7 @@ MonoBehaviour:
   player: {fileID: 0}
   currState: {fileID: 0}
   canSeePlayer: 0
+  enemyAnim: {fileID: 0}
 --- !u!195 &8250266234859338927
 NavMeshAgent:
   m_ObjectHideFlags: 0

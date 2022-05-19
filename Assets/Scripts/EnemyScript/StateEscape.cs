@@ -12,14 +12,16 @@ public class StateEscape : EnemyState
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour) 
     {
+        if (!once)
+        {
+            enemyBehaviour.agent.speed = 7f;
+            enemyBehaviour.agent.acceleration = 12;
+            enemyBehaviour.enemyAnim.SetBool("IsRunning", true);
+            once = true;
+        }
+
         if (escapeDistance <= enemyBehaviour.agent.stoppingDistance) 
         {
-            if(!once)
-            {
-                enemyBehaviour.agent.speed = 7f; 
-                enemyBehaviour.agent.acceleration = 12; 
-                once = true; 
-            }
             float randomX = Random.Range(-enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius, enemyBehaviour.boundBox.extents.x - enemyBehaviour.agent.radius);
             float randomZ = Random.Range(-enemyBehaviour.boundBox.extents.z + enemyBehaviour.agent.radius, enemyBehaviour.boundBox.extents.z - enemyBehaviour.agent.radius); 
             escapePos = new Vector3(randomX, transform.position.y, randomZ);
@@ -36,6 +38,7 @@ public class StateEscape : EnemyState
         {
             enemyBehaviour.agent.speed = 3.5f; 
             enemyBehaviour.agent.acceleration = 8;
+            enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
             enemyBehaviour.GetComponent<EnemyMain>().Hp = 50; 
             playerDistance = 0;
             escapeDistance = 0; 
@@ -44,5 +47,11 @@ public class StateEscape : EnemyState
         }
 
         return this; 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(escapePos, 0.3f);
     }
 }
