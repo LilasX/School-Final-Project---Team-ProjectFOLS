@@ -45,79 +45,55 @@ public class PlayerMovements : MonoBehaviour
 
     //Variables pour arme courte portée
     [SerializeField] private GameObject stick;
+    [SerializeField] private GameObject sword;
     public bool isUsingStick = false;
+    public bool canAttack = false;
     [SerializeField] private GameObject shield;
     public bool isUsingShield = false;
+    //public bool hasUsedShield = false;
 
     [SerializeField] private GameObject pickableText;
     [SerializeField] private GameObject coolDownExample;
     [SerializeField] private Slider coolDownBar;
     [SerializeField] private bool isUsingPower = false;
-    private float powertimer = 0f;
+    private float powertimer = 10f;
 
     #endregion
 
-    private bool canReturnAttack = false;
-    private bool isReturningAttack = false;
+    [SerializeField] private bool canReturnAttack = false;
+    [SerializeField] private bool isReturningAttack = false;
 
     private GameObject attackToReturn;
+    private CapsuleCollider capsuleCollider; // to steal attack
+    [SerializeField] private float timercapsule = 0f;
 
     private Animator animator;
     public bool canDash = true;
     private bool isMoving = false;
+
+    //pick
+    public bool isPicking = false;
+    private bool hasPickedItem = false;
+    private float timeToWait = 0f;
+
+    //hp test
+    [SerializeField] private Slider hpbar;
+    [SerializeField] private float hp;
+
+    public bool meleePerformed = false;
 
     // Start is called before the first frame update
     void Start()
     {
         myCharacter = GetComponent<CharacterController>(); //Récupère le component character controller dans le gameobject
         animator = GetComponent<Animator>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        capsuleCollider.enabled = false;
     }
 
-    //#region Inputs
-
-    //public void OnMove(InputAction.CallbackContext context)
-    //{
-    //    move = context.ReadValue<Vector2>();
-    //    xAxis = move.x;
-    //    zAxis = move.y;
-    //}
-
-    //public void OnJump(InputAction.CallbackContext context)
-    //{
-    //    isJumping = context.performed;
-    //}
-
-    //public void OnRun(InputAction.CallbackContext context)
-    //{
-    //    isRunning = context.performed;
-    //}
-
-    //public void OnDash(InputAction.CallbackContext context)
-    //{
-    //    isDashing = context.performed;
-    //}
-
-    //public void OnFire(InputAction.CallbackContext context)
-    //{
-    //    isFiring = context.performed;
-    //}
-
-    //public void OnShortRange(InputAction.CallbackContext context)
-    //{
-    //    isUsingStick = context.performed;
-    //}
-
-    //public void OnShield(InputAction.CallbackContext context)
-    //{
-    //    isUsingShield = context.performed;
-    //}
-
-    //#endregion
 
 
     // Update is called once per frame
-
-
     void Update()
     {
         // Gravité
@@ -134,9 +110,13 @@ public class PlayerMovements : MonoBehaviour
 
         RangedAttack();
 
-        MeleeAttack();
+        //MeleeAttack();
 
         UseShield();
+
+        Stamina();
+
+        PickingItem();
 
 
         coolDownBar.value = powertimer;
@@ -152,30 +132,37 @@ public class PlayerMovements : MonoBehaviour
 
         if (isUsingPower)
         {
-            powertimer += Time.deltaTime;
-            if (powertimer >= 10f)
+            powertimer -= Time.deltaTime;
+            if (powertimer <= 0f)
             {
                 isUsingPower = false;
-                powertimer = 0f;
+                powertimer = 10f;
                 coolDownExample.GetComponent<TMPro.TextMeshProUGUI>().text = "power : false";
             }
         }
 
 
+        if(Input.GetKeyDown(KeyCode.N)) { capsuleCollider.enabled = true; } else { timercapsule += Time.deltaTime; if (timercapsule >= 2f) { capsuleCollider.enabled = false; timercapsule = 0f; } }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
             isReturningAttack = true;
             //Debug.Log(isReturningAttack);
-            OnReturningProjectile(attackToReturn);
+            OnReturningProjectile();
+        } else { isReturningAttack = false; }
 
+
+        hpbar.value = hp;
+        if(Input.GetKeyDown(KeyCode.Y))
+        {
+            hp -= 10;
         }
 
-        StaminaBar();
 
+        Debug.Log(isUsingStick);
     }
 
-    private void StaminaBar()
+    private void Stamina()
     {
         //Barre d'endurance
         staminaBar.value = stamina;
@@ -186,7 +173,7 @@ public class PlayerMovements : MonoBehaviour
 
     private void Move()
     {
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), -transform.up, Color.red, 1);
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), -transform.up, Color.red, 1);
 
         animator.SetFloat("Speed", 0f);
 
@@ -204,6 +191,7 @@ public class PlayerMovements : MonoBehaviour
         else { isMoving = false; }
         myCharacter.Move(move * speed * Time.deltaTime); //Déplace le joueur
     }
+
     private void Run()
     {
 
@@ -230,7 +218,7 @@ public class PlayerMovements : MonoBehaviour
         //  Vitesse du joueur en esquive
         if (isDashing)
         {
-            animator.SetTrigger("Dive");
+            animator.SetBool("Dive", true);
             speed = dashSpeed;  //Valeur de la vitesse en mode dash
             stamina -= 10f;
             dashTime += Time.deltaTime;
@@ -239,33 +227,8 @@ public class PlayerMovements : MonoBehaviour
                 isDashing = false;
                 dashTime = 0;
             }
-        }
+        } else { animator.SetBool("Dive", false); }
     }
-
-    //private void Dash()
-    //{
-    //    //  Vitesse du joueur en esquive
-    //    if (canDash)  
-    //    {
-    //        if (isDashing)
-    //        {
-    //            canDash = false;
-    //            animator.SetBool("Dive", true);
-    //            speed = dashSpeed;  //Valeur de la vitesse en mode dash
-    //            dashTime += Time.deltaTime;
-    //            if (dashTime >= 0.2f)
-    //            {
-    //                isDashing = false;
-    //                dashTime = 0;
-    //            }
-    //        }
-    //    } 
-    //    else
-    //    {
-    //        animator.SetBool("Dive", false);
-    //        canDash = true;
-    //    }
-    //}
 
     private void Jump()
     {
@@ -277,20 +240,25 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-    private void MeleeAttack()
+    public void MeleeAttack() //changed to public
     {
         // Using Stick
-        if (isUsingStick) 
-        { 
-            stick.SetActive(true);
-            animator.SetTrigger("Attack");
-            stamina -= 5f;
-        } 
-        else 
-        { 
+        if (isUsingStick)
+        {
+            if(stamina >= 5)
+            {
+                stick.SetActive(true);
+                animator.SetBool("Attack", true);
+                Debug.Log("Attack");
+                stamina -= 5f;
+            }
+        }
+        else
+        {
             stick.SetActive(false);
-        } 
-
+            animator.SetBool("Attack", false);
+            meleePerformed = false;
+        }
     }
 
     private void RangedAttack()
@@ -314,50 +282,66 @@ public class PlayerMovements : MonoBehaviour
         if(isUsingShield) 
         {   
             shield.SetActive(true); 
-            animator.SetTrigger("Block");
+            animator.SetBool("Block", true);
             speed = 0f;
-        } 
-        else { shield.SetActive(false); speed = 5f; }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.GetComponent<Drops>())
+        }
+        else
         {
-            pickableText.GetComponent<TMPro.TextMeshProUGUI>().text = "Picked";
-            other.gameObject.SetActive(false);
+            shield.SetActive(false);
+            speed = 5f;
+            animator.SetBool("Block", false);
         }
     }
 
+    #region Pick
+    //Picking up
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject != null)
+        {
+            if (other.gameObject.GetComponent<Drops>())
+            {
+                //isCollingWithItem = true;
+                if (isPicking)
+                {
+                    Debug.Log("IsPicking");
+                    //speed = 0f;
+                    //animator.SetBool("Pick", true);
+                    hasPickedItem = true;
+                    pickableText.GetComponent<TMPro.TextMeshProUGUI>().text = "Picked";
+                    //other.gameObject.SetActive(false);
+                    Destroy(other.gameObject);
+                }
+            }
+        }
+    }
+
+    private void PickingItem()
+    {
+        if(hasPickedItem)
+        {
+            speed = 0f;
+            animator.SetBool("Pick", true);
+            sword.SetActive(false);
+            timeToWait += Time.deltaTime;
+            Debug.Log(timeToWait);
+            if (timeToWait >= 2.2f)
+            {
+                animator.SetBool("Pick", false);
+                sword.SetActive(true);
+                speed = 5f;
+                timeToWait = 0f;
+                hasPickedItem = false;
+            }
+        }
+    }
+
+
+    #endregion
+
     #region ReturnAttack
 
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.GetComponent<BaseProjectile>())
-    //    {
-    //        if (!canReturnAttack)
-    //        {
-    //            collision.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
-    //            collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-    //            collision.gameObject.SetActive(false);
-    //            //canReturnAttack = true;
-    //            Debug.Log("Colliding");
-    //        }
 
-
-    //        if (isReturningAttack)
-    //        {
-    //            //Debug.Log("Input");
-    //            //if(canReturnAttack)
-    //            //{
-    //                collision.gameObject.SetActive(true);
-    //                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-    //                collision.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bulletVelocity;
-    //            //}
-    //        }
-
-    //    }
-    //}
 
     private void OnCollisionStay(Collision collision)
     {
@@ -365,55 +349,33 @@ public class PlayerMovements : MonoBehaviour
         {
             if (!canReturnAttack)
             {
-                collision.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
-                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                attackToReturn =  OnDetectProjectile(collision.gameObject);
                 collision.gameObject.SetActive(false);
+                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                attackToReturn = collision.gameObject;
                 canReturnAttack = true;
                 Debug.Log("Colliding");
             }
         }
     }
 
-    private GameObject OnDetectProjectile(GameObject projectile)
+    private void OnReturningProjectile()
     {
-        return projectile;
-    }
-
-    private void OnReturningProjectile(GameObject projectile)
-    {
-        if (projectile.gameObject.GetComponent<ProjectileManager>().projectileType == ProjectileType.sphere)
+        if (attackToReturn != null)
         {
-            if (isReturningAttack)
+            if (attackToReturn.gameObject.GetComponent<ProjectileManager>().projectileType == ProjectileType.sphere)
             {
-                if(canReturnAttack)
+                if (canReturnAttack)
                 {
-                    Debug.Log(projectile.gameObject.GetComponent<ProjectileManager>().projectileType);
-                    GameObject gameObj = Instantiate(projectile, transform.position + transform.forward, Quaternion.identity); //Instantiation du projectile
-                    gameObj.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
-                }   
+                    if (isReturningAttack)
+                    {
+                        canReturnAttack = false;
+                        GameObject gameObj = Instantiate(bullet, transform.position + transform.forward * 2f, Quaternion.identity); //Instantiation du projectile
+                        gameObj.GetComponent<Rigidbody>().AddForce((transform.forward * 2f) * bulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
+                    }
+                }
             }
         }
     }
-
-
-    //private IEnumerator OnCollidingWithProjectile(Collision collision)
-    //{
-    //    if (collision.gameObject.GetComponent<BaseProjectile>())
-    //    {
-    //        if (isReturningAttack)
-    //        {
-    //            //Debug.Log("Input");
-    //            //if(canReturnAttack)
-    //            //{
-    //            collision.gameObject.SetActive(true);
-    //            collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-    //            collision.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bulletVelocity;
-    //            //}
-    //        }
-    //        yield return null;
-    //    }
-    //}
 
     #endregion
 

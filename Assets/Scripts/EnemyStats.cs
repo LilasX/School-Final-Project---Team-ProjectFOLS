@@ -36,8 +36,8 @@ public class EnemyStats : MonoBehaviour
         slider.value = health;
 
         timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.J))
-        {
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
             if (timer >= 0.5f)
             {
                 GameObject gameObj = Instantiate(bullet, transform.position + transform.forward * 5, Quaternion.identity); //Instantiation du projectile
@@ -45,6 +45,6 @@ public class EnemyStats : MonoBehaviour
                 timer = 0f;
                 Destroy(gameObj, 5f); //Destruction du projectile         
             }
-        }
+        //}
     }
 }

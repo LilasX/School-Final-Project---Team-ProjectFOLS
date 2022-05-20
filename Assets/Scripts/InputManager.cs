@@ -9,6 +9,9 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] private GameObject player; //Référence au joueur pour accéder à ses variables
 
+    private MyInputAction myInputAction;
+    private InputAction meleeAction;
+
     public static InputManager Instance { get => instance; set => instance = value; }
 
     // Start is called before the first frame update
@@ -22,8 +25,26 @@ public class InputManager : MonoBehaviour
         {
             Destroy(Instance);
         }
+
+        myInputAction = new MyInputAction();
+        meleeAction = myInputAction.Player.Melee;
+
     }
 
+    private void OnEnable()
+    {
+   
+        meleeAction.Enable();
+        meleeAction.performed += OnMelee;
+        //meleeAction.performed += OnMeleePressed;
+        //meleeAction.canceled += OnMeleeReleased;
+    }
+
+    private void OnDisable()
+    {
+        //meleeAction.performed += OnMelee;
+        meleeAction.Disable();
+    }
 
     #region Inputs
 
@@ -56,12 +77,35 @@ public class InputManager : MonoBehaviour
 
     public void OnMelee(InputAction.CallbackContext context)
     {
+        //player.GetComponent<PlayerMovements>().isUsingStick = context.performed;
         player.GetComponent<PlayerMovements>().isUsingStick = context.performed;
+
+        //Debug.Log("use melee");
+    }
+
+    public void OnMeleePressed(InputAction.CallbackContext context)
+    {
+        //player.GetComponent<PlayerMovements>().isUsingStick = context.performed;
+        player.GetComponent<PlayerMovements>().isUsingStick = true;  
+
+        //Debug.Log("use melee");
+    }
+
+    public void OnMeleeReleased(InputAction.CallbackContext context)
+    {
+        //player.GetComponent<PlayerMovements>().isUsingStick = context.performed;
+        player.GetComponent<PlayerMovements>().isUsingStick = false;
+        //Debug.Log("use melee");
     }
 
     public void OnShield(InputAction.CallbackContext context)
     {
         player.GetComponent<PlayerMovements>().isUsingShield = context.performed;
+    }
+
+    public void OnPick(InputAction.CallbackContext context)
+    {
+        player.GetComponent<PlayerMovements>().isPicking = context.performed;
     }
 
     #endregion
