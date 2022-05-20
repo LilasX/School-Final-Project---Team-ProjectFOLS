@@ -14,14 +14,17 @@ public class EnemyBehaviour : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent; 
     //private Vector3 wanderPos; 
     //private float wanderDistance; 
-    public GameObject player; 
+    public GameObject player;
     //private float playerDistance;
 
     //public bool attack; //Testing Attack Purpose
     //public bool escape; //Testing Escape Purpose
 
+    public Animator enemyAnim;
     public EnemyState currState;
-    public bool canSeePlayer; 
+    public StateWander stateWander;
+    public bool canSeePlayer;
+
 
     //Temporary since will create State Machine later on
     //----- ----- ----- ----- State Management ----- ----- ----- -----
@@ -120,6 +123,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currState = stateWander;
         //SetState(initialState); 
     }
 

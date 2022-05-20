@@ -7,11 +7,11 @@ public enum MeleeWeapon { Knife, Sword, Spear, Hammer }
 public class EnemyMelee : EnemyMain
 {
     public bool canAttack; 
-    public GameObject melee;
+    public GameObject[] melee = new GameObject[2];
     public Animator meleeAnim; 
     public MeleeWeapon typeMelee;
-    private float timer; 
-
+    private float timer;
+    private int randNum;
 
     public bool attack; //Testing Attack Purpose in Inspector
 
@@ -21,9 +21,26 @@ public class EnemyMelee : EnemyMain
         HpMax = 100; 
         Hp = HpMax;
         canAttack = true; 
-        timer = 0; 
+        timer = 0;
         //melee.SetActive(false);
-        typeMelee = MeleeWeapon.Sword; 
+        RandomWeapon();
+        //typeMelee = MeleeWeapon.Sword; 
+    }
+
+    public override void RandomWeapon()
+    {
+        randNum = Random.Range(0, 2);
+        switch (randNum)
+        {
+            case 0:
+                melee[0].SetActive(true);
+                melee[1].SetActive(false);
+                break;
+            default:
+                melee[0].SetActive(false);
+                melee[1].SetActive(true);
+                break;
+        }
     }
 
     public override void AttackPlayer()
@@ -33,7 +50,10 @@ public class EnemyMelee : EnemyMain
             //melee.SetActive(true);
             //Need Confirmation for Anim
             //Need public Animator for 
-            if (meleeAnim) meleeAnim.SetTrigger("Attack"); 
+            //if (meleeAnim) meleeAnim.SetTrigger("Attack"); //For Capsule
+
+            //enemyBehaviour.enemyAnim.SetTrigger("IsAttacking");
+            GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking"); //For Goblin
             canAttack = false; 
         }
     }
@@ -56,10 +76,9 @@ public class EnemyMelee : EnemyMain
     {
         if (Hp <= 0)
         {
-            gameObject.SetActive(false); 
             transform.position = posOrigin.position;
-            //GetComponent<EnemyBehaviour>().SetState(BehaviourState.none); //Set Behaviour State to None. For System in EnemyBehaviour
-            DropItem(); 
+            DropItem();
+            gameObject.SetActive(false);
         }
     }
 

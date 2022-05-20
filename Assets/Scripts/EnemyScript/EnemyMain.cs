@@ -21,7 +21,8 @@ public abstract class EnemyMain : MonoBehaviour
     public int HpMax { get => hpMax; set => hpMax = value; }
     public int Dmg { get => dmg; set => dmg = value; }
 
-    public abstract void InitializeEnemy(); 
+    public abstract void InitializeEnemy();
+    public abstract void RandomWeapon();
     public abstract void AttackPlayer();
     public abstract void IsAttacking(); 
     public abstract void VerifyDeath(); 
