@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-        public enum SpawnState { Spawning, Waiting, Counting}
-
+        public enum SpawnState { Spawning, Waiting, Counting, Reward}
+        
         [System.Serializable]
         public class Wave
         {
             public string name;
-            public Transform enemy;
-            public int count; //number of enemies
+            public Transform[] enemies;
+           // public int count; //number of enemies
             public float delay; //rate in which enemies spawn
         }
 
@@ -18,12 +18,18 @@ public class WaveSpawner : MonoBehaviour
         private int nextWave = 0;
         private int enemyNumber = 0;
 
+        public Transform[] spawnPoints;
+        
+        public Transform[] rewardsList;
+        public Transform[] rewardSpawnPoints;
+
         public float timeBetweenWaves = 5f;
         public float waveCountdown;
 
         private SpawnState state = SpawnState.Counting;
 
         private bool isAlive = true;
+        private bool beginWaves = false;
 
         void Start()
         {
@@ -32,28 +38,35 @@ public class WaveSpawner : MonoBehaviour
 
         void Update()
         {
-            if (state == SpawnState.Waiting)
+        if (beginWaves == true)
             {
-                if (isAlive == false)
+                if (state == SpawnState.Waiting)
                 {
-                    BeginNewWave();
+                    if (isAlive == false)
+                    {
+                        BeginNewWave();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                if (waveCountdown <= 0)
+                {
+                    if (state == SpawnState.Reward)
+                    {
+                        return;
+                    }
+                    else if (state != SpawnState.Spawning)
+                    {
+                        StartCoroutine(SpawnWave(waves[nextWave]));
+                    }
                 }
                 else
                 {
-                    return;
+                    waveCountdown -= Time.deltaTime;
                 }
-            }
-
-            if (waveCountdown <= 0)
-            {
-                if (state != SpawnState.Spawning)
-                {
-                    StartCoroutine(SpawnWave(waves[nextWave]));
-                }
-            }
-            else
-            {
-                waveCountdown -= Time.deltaTime;
             }
         }
         public void EnemyCount(int count)
@@ -81,9 +94,11 @@ public class WaveSpawner : MonoBehaviour
 
             if(nextWave + 1 > waves.Length - 1)
             {
-                nextWave = 0;
-
-                Debug.Log("All waves complete! Looping");
+                state = SpawnState.Reward;
+                Debug.Log("All waves complete! Collect your rewards!");
+                
+                SpawnRewards();
+ 
             }
             else
             {
@@ -96,9 +111,9 @@ public class WaveSpawner : MonoBehaviour
             Debug.Log("Spawning Wave: " + _wave.name);
             state = SpawnState.Spawning;
 
-            for (int i = 0; i < _wave.count; i++) 
+            for (int i = 0; i < _wave.enemies.Length; i++) 
             {
-                SpawnEnemy(_wave.enemy);
+                SpawnEnemy(_wave.enemies[i]);
                 EnemyCount(1);
                 yield return new WaitForSeconds(_wave.delay);
             }
@@ -110,9 +125,38 @@ public class WaveSpawner : MonoBehaviour
 
         void SpawnEnemy (Transform _enemy)
         {
-            Debug.Log("Spawning Enemy: " + _enemy.name);
-            Instantiate(_enemy, transform.position, transform.rotation); 
-        }
-    
 
+            Debug.Log("Spawning Enemy: " + _enemy.name);
+            
+            if(spawnPoints.Length == 0)
+            {
+                Debug.LogError("No spawn points referenced");
+            }
+            
+            Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Instantiate(_enemy, _sp.position, _sp.rotation); 
+        }
+
+        void SpawnRewards ()
+        {
+
+            if (rewardSpawnPoints.Length == 0)
+            {
+                Debug.LogError("No spawn points referenced");
+            }
+            else
+            {
+                for (int i = 0; i < rewardsList.Length; i++)
+                {
+                    Transform _sp = rewardSpawnPoints[i];
+                    Instantiate(rewardsList[i], _sp.position, _sp.rotation);
+                }
+                
+            }
+        }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        beginWaves = true;
+    }
 }

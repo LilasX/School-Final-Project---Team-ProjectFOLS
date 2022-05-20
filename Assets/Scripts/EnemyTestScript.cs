@@ -22,4 +22,13 @@ public class EnemyTestScript : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "Stick")
+        {
+            waveSpawnerScript.EnemyCount(-1);
+            gameObject.SetActive(false);
+        }
+    }
 }
