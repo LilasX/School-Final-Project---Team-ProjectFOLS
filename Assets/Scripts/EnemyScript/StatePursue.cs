@@ -23,7 +23,7 @@ public class StatePursue : EnemyState
 		playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
 
 		//----- ----- Condition To Go To Script StateEscape ----- -----
-		if (enemyBehaviour.GetComponent<EnemyMain>().Hp <= 30)
+		if (enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP <= 30)
 		{
 			once = false;
 			return stateEscape;

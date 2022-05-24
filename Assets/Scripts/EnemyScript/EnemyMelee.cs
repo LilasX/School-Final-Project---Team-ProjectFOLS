@@ -20,8 +20,8 @@ public class EnemyMelee : EnemyMain
         posOrigin = transform;
         GetMaxHP = 100;
         GetCurrentHP = GetMaxHP;
-        HpMax = 100; 
-        Hp = HpMax;
+        /*HpMax = 100; 
+        Hp = HpMax;*/
         canAttack = true; 
         timer = 0;
         //melee.SetActive(false);
@@ -113,7 +113,7 @@ public class EnemyMelee : EnemyMain
 
     public override void DisplayHealthBar() 
     {
-        slider.value = Hp * 100 / HpMax; 
+        slider.value = GetCurrentHP * 100 / GetMaxHP; 
     }
 
     // Start is called before the first frame update

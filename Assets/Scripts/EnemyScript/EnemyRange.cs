@@ -22,8 +22,8 @@ public class EnemyRange : EnemyMain
         posOrigin = transform;
         GetMaxHP = 60;
         GetCurrentHP = GetMaxHP;
-        HpMax = 60; 
-        Hp = HpMax; 
+       /* HpMax = 60; 
+        Hp = HpMax; */
         canAttack = true; 
         timer = 0;
         HideRangedWeapon();
@@ -206,7 +206,7 @@ public class EnemyRange : EnemyMain
 
     public override void DisplayHealthBar() 
     {
-        slider.value = Hp * 100 / HpMax;
+        slider.value = GetCurrentHP * 100 / GetMaxHP;
     }
 
     // Start is called before the first frame update

@@ -33,7 +33,7 @@ public class StateWander : EnemyState
         wanderDistance = Vector3.Distance(wanderPos, transform.position);
 
         //----- ----- Condition To Go To Script StateEscape ----- -----
-        if (enemyBehaviour.GetComponent<EnemyMain>().Hp <= 30)
+        if (enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP <= 30)
         {
             wanderDistance = 0;
             once = false;

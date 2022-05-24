@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public abstract class EnemyMain : EnemyEntity
 {
     //There is currentHP and MaxHP in BaseEntity
-    public int hp;
+    //public int hp;
     //public int GetCurrentHP;
-    public int hpMax; 
-    public int dmg;
+    //public int hpMax; 
+    //public int dmg;
 
     protected Transform posOrigin; 
 
@@ -19,9 +19,9 @@ public abstract class EnemyMain : EnemyEntity
     public GameObject drop; 
 
     //Don't know if I need those
-    public int Hp { get => hp; set => hp = value; }
+    /*public int Hp { get => hp; set => hp = value; }
     public int HpMax { get => hpMax; set => hpMax = value; }
-    public int Dmg { get => dmg; set => dmg = value; }
+    public int Dmg { get => dmg; set => dmg = value; }*/
 
     public abstract void InitializeEnemy();
     public abstract void RandomWeapon();

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class BaseEntity : MonoBehaviour, IDamageable
 {
-    private int currentHP;
-    private int maxHP;
+    [SerializeField] private int currentHP;
+    [SerializeField] private int maxHP;
     private enum EntityType { Player, Enemy, NPC, Other }
 
     public int GetCurrentHP { get => currentHP; set => currentHP = value; }

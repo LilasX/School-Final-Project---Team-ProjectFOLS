@@ -39,7 +39,7 @@ public class StateEscape : EnemyState
             enemyBehaviour.agent.speed = 3.5f; 
             enemyBehaviour.agent.acceleration = 8;
             enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
-            enemyBehaviour.GetComponent<EnemyMain>().Hp = 50; 
+            enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP = 50; 
             playerDistance = 0;
             escapeDistance = 0; 
             once = false; 
