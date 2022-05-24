@@ -19,7 +19,9 @@ public class EnemyRange : EnemyMain
     public bool attack;//Testing Attack Purpose
     public override void InitializeEnemy() 
     {
-        posOrigin = transform; 
+        posOrigin = transform;
+        GetMaxHP = 60;
+        GetCurrentHP = GetMaxHP;
         HpMax = 60; 
         Hp = HpMax; 
         canAttack = true; 
@@ -62,7 +64,7 @@ public class EnemyRange : EnemyMain
         }
     }
 
-    public override void AttackPlayer()
+    public override void OnAttack()
     {
         if (canAttack)
         {
@@ -103,9 +105,54 @@ public class EnemyRange : EnemyMain
                     range[randNum].SetActive(true);
                     break;
             }
-            canAttack = false; 
+            canAttack = false;
         }
     }
+
+    /*public override void AttackPlayer()
+    {
+        if (canAttack)
+        {
+            switch (typeRange)
+            {
+                case RangeWeapon.Sphere:
+                    range[randNum].transform.position = projectileSpawn.transform.position;
+                    range[randNum].transform.rotation = projectileSpawn.transform.rotation;
+                    range[randNum].SetActive(true);
+                    range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                    break;
+                case RangeWeapon.Arrow:
+                    range[randNum].transform.position = projectileSpawn.transform.position;
+                    range[randNum].transform.rotation = projectileSpawn.transform.rotation;
+                    range[randNum].SetActive(true);
+                    range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
+                    break;
+                /*case RangeWeapon.Lance:
+                    range[randNum].transform.position = projectileSpawn.transform.position;
+                    range[randNum].transform.rotation = projectileSpawn.transform.rotation;
+                    range[randNum].SetActive(true);
+                    range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
+                    break;*/
+                /*case RangeWeapon.Wave:
+                    range[randNum].transform.position = waveSpawn.transform.position;
+                    range[randNum].transform.rotation = waveSpawn.transform.rotation;
+                    range[randNum].SetActive(true);
+                    range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
+                    break;
+                case RangeWeapon.Wall:
+                    range[randNum].transform.position = wallSpawn.transform.position;
+                    range[randNum].transform.rotation = wallSpawn.transform.rotation;
+                    range[randNum].SetActive(true);
+                    break;
+                case RangeWeapon.Floor:
+                    range[randNum].transform.position = floorSpawn.transform.position;
+                    range[randNum].transform.rotation = floorSpawn.transform.rotation;
+                    range[randNum].SetActive(true);
+                    break;
+            }
+            canAttack = false; 
+        }
+    }*/
 
     public override void IsAttacking() 
     {
@@ -135,7 +182,15 @@ public class EnemyRange : EnemyMain
             }
         }
     }
-    public override void VerifyDeath() 
+
+    public override void OnDeath()
+    {
+        transform.position = posOrigin.position;
+        DropItem();
+        gameObject.SetActive(false);
+    }
+
+    /*public override void VerifyDeath() 
     {
         if(Hp <= 0) 
         {
@@ -143,7 +198,7 @@ public class EnemyRange : EnemyMain
             DropItem();
             gameObject.SetActive(false);
         }
-    }
+    }*/
     public override void DropItem() 
     {
         drop.transform.position = transform.position;
@@ -155,21 +210,25 @@ public class EnemyRange : EnemyMain
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         InitializeEnemy();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         IsAttacking(); 
         DisplayHealthBar();
-        VerifyDeath(); 
+        //VerifyDeath();
+
+        if (GetCurrentHP <= 0)
+            OnDeath();
 
         if (attack)
         {
-            AttackPlayer(); 
+            //AttackPlayer(); 
+            OnAttack();
             attack = false; 
         }
     }

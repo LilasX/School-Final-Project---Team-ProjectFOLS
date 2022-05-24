@@ -18,6 +18,8 @@ public class EnemyMelee : EnemyMain
     public override void InitializeEnemy() 
     {
         posOrigin = transform;
+        GetMaxHP = 100;
+        GetCurrentHP = GetMaxHP;
         HpMax = 100; 
         Hp = HpMax;
         canAttack = true; 
@@ -43,7 +45,22 @@ public class EnemyMelee : EnemyMain
         }
     }
 
-    public override void AttackPlayer()
+    public override void OnAttack()
+    {
+        if (canAttack)
+        {
+            //melee.SetActive(true);
+            //Need Confirmation for Anim
+            //Need public Animator for 
+            //if (meleeAnim) meleeAnim.SetTrigger("Attack"); //For Capsule
+
+            //enemyBehaviour.enemyAnim.SetTrigger("IsAttacking");
+            GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking"); //For Goblin
+            canAttack = false;
+        }
+    }
+
+    /*public override void AttackPlayer()
     {
         if (canAttack) 
         {
@@ -56,7 +73,7 @@ public class EnemyMelee : EnemyMain
             GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking"); //For Goblin
             canAttack = false; 
         }
-    }
+    }*/
 
     public override void IsAttacking() 
     {
@@ -72,7 +89,14 @@ public class EnemyMelee : EnemyMain
         }
     }
 
-    public override void VerifyDeath()
+    public override void OnDeath()
+    {
+        transform.position = posOrigin.position;
+        DropItem();
+        gameObject.SetActive(false);
+    }
+
+    /*public override void VerifyDeath()
     {
         if (Hp <= 0)
         {
@@ -80,7 +104,7 @@ public class EnemyMelee : EnemyMain
             DropItem();
             gameObject.SetActive(false);
         }
-    }
+    }*/
 
     public override void DropItem() 
     {
@@ -93,21 +117,25 @@ public class EnemyMelee : EnemyMain
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         InitializeEnemy(); 
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         IsAttacking(); 
         DisplayHealthBar(); 
-        VerifyDeath(); 
+        //VerifyDeath(); 
+
+        if (GetCurrentHP <= 0)
+            OnDeath();
 
         if (attack) 
         {
-            AttackPlayer(); 
+            //AttackPlayer(); 
+            OnAttack();
             attack = false; 
         }
     }

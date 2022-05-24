@@ -14,7 +14,7 @@ public class StatePursue : EnemyState
 		if (!once)
 		{
 			enemyBehaviour.agent.speed = 3.5f;
-			enemyBehaviour.agent.acceleration = 8;
+			enemyBehaviour.agent.acceleration = 8f;
 			once = true;
 		}
 
@@ -32,17 +32,23 @@ public class StatePursue : EnemyState
 		//----- ----- Condition To Go To Script StateAttack ----- -----
 		if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
 		{
-			if (playerDistance <= 6)
+			if (playerDistance <= 5)
 			{
-				once = false;
+				once = false; 
+				enemyBehaviour.agent.speed = 1f;
+				enemyBehaviour.agent.acceleration = 2f;
 				return stateAttack;
 			}
 		} 
 		else if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
         {
-			if (playerDistance <= 11)
+			if (playerDistance <= 10)
 			{
 				once = false;
+				//enemyBehaviour.agent.stoppingDistance = 6f;
+				enemyBehaviour.agent.speed = 1f;
+				enemyBehaviour.agent.acceleration = 2f;
+				//enemyBehaviour.agent.enabled = false;
 				return stateAttack;
 			}
 		}

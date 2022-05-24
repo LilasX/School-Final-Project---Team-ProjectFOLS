@@ -2065,9 +2065,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateEscape: {fileID: 1481591108411382268}
-  statePursue: {fileID: 0}
+  statePursue: {fileID: 1481591108705789489}
   playerDistance: 0
-  once: 0
 --- !u!1 &1481591107935333275
 GameObject:
   m_ObjectHideFlags: 0
@@ -3200,6 +3199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b216036fc3e57c5499986dab986ab909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
   hp: 0
   hpMax: 0
   dmg: 0

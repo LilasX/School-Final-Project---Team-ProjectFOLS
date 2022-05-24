@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class EnemyMain : MonoBehaviour
+public abstract class EnemyMain : EnemyEntity
 {
-    public int hp; 
+    //There is currentHP and MaxHP in BaseEntity
+    public int hp;
+    //public int GetCurrentHP;
     public int hpMax; 
     public int dmg;
 
@@ -23,9 +25,11 @@ public abstract class EnemyMain : MonoBehaviour
 
     public abstract void InitializeEnemy();
     public abstract void RandomWeapon();
-    public abstract void AttackPlayer();
-    public abstract void IsAttacking(); 
-    public abstract void VerifyDeath(); 
+    //public abstract void AttackPlayer();
+    //public abstract void OnAttack();
+    public abstract void IsAttacking();
+    //public abstract void VerifyDeath(); 
+    //public abstract void OnDeath();
     public abstract void DropItem(); 
     public abstract void DisplayHealthBar();
 }

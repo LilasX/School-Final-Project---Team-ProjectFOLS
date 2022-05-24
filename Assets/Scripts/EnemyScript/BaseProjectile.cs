@@ -13,7 +13,7 @@ public class BaseProjectile : MonoBehaviour
     {
         if(shooter == Shooter.player && collision.gameObject.GetComponent<EnemyMain>()) 
         {
-            collision.gameObject.GetComponent<EnemyMain>().Hp -= 20; 
+            collision.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 20; 
         }
 
         if (shooter == Shooter.enemy)

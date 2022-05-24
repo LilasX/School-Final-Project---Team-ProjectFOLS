@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.AI;
 
 public enum BehaviourState { none, wander, pursue, attack, escape } 
 
@@ -11,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
    // public BehaviourState initialState; 
     //public BehaviourState currentState = BehaviourState.none; 
     public Bounds boundBox; 
-    public UnityEngine.AI.NavMeshAgent agent; 
+    public NavMeshAgent agent; 
     //private Vector3 wanderPos; 
     //private float wanderDistance; 
     public GameObject player;

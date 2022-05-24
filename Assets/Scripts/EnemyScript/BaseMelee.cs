@@ -16,7 +16,7 @@ public class BaseMelee : MonoBehaviour
         }
         if (striker == Striker.player && collision.gameObject.GetComponent<EnemyMain>())
         {
-            collision.gameObject.GetComponent<EnemyMain>().Hp -= 20;
+            collision.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 20;
         }
     }
 

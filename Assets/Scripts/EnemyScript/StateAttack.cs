@@ -9,7 +9,7 @@ public class StateAttack : EnemyState
     public float playerDistance;
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
-        enemyBehaviour.GetComponent<EnemyMain>().AttackPlayer();
+        enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
         playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
 
@@ -24,6 +24,7 @@ public class StateAttack : EnemyState
         {
             if (playerDistance >= 5)
             {
+                //enemyBehaviour.agent.isStopped = false;
                 return statePursue;
             }
         }
@@ -31,6 +32,8 @@ public class StateAttack : EnemyState
         {
             if (playerDistance >= 10)
             {
+                //enemyBehaviour.agent.enabled = true;
+                //enemyBehaviour.agent.isStopped = false;
                 return statePursue;
             }
         }
