@@ -6,6 +6,9 @@ public enum MeleeWeapon { Knife, Sword, Spear, Hammer }
 
 public class EnemyMelee : EnemyMain
 {
+    WaveSpawner waveSpawnerScript;
+
+
     public bool canAttack; 
     public GameObject[] melee = new GameObject[2];
     public Animator meleeAnim; 
@@ -92,7 +95,8 @@ public class EnemyMelee : EnemyMain
     public override void OnDeath()
     {
         transform.position = posOrigin.position;
-        DropItem();
+        //DropItem();
+        waveSpawnerScript.EnemyCount(-1);
         gameObject.SetActive(false);
     }
 
@@ -119,7 +123,9 @@ public class EnemyMelee : EnemyMain
     // Start is called before the first frame update
     protected override void Start()
     {
-        InitializeEnemy(); 
+        InitializeEnemy();
+        waveSpawnerScript = FindObjectOfType<WaveSpawner>();
+
     }
 
     // Update is called once per frame

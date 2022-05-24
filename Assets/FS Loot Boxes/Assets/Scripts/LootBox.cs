@@ -188,7 +188,7 @@ public class LootBox : MonoBehaviour
     /// When something hits our treasure box.
     /// </summary>
     /// <param name="collision">Collision.</param>
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         // OnCollisionMethod is not for OpenOnTouch method
         if (openingMethod == OpeningMethods.OpenOnTouch) return;
@@ -208,7 +208,7 @@ public class LootBox : MonoBehaviour
     /// When player goes away from box.
     /// </summary>
     /// <param name="collision">Collision.</param>
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         // flag the player as away.
         isPlayerAround = false;

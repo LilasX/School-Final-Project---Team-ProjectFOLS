@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 3165254492795457942}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1404,6 +1404,7 @@ MonoBehaviour:
   isFiring: 0
   bulletVelocity: 15
   stick: {fileID: 0}
+  sword: {fileID: 0}
   isUsingStick: 0
   canAttack: 0
   shield: {fileID: 0}
@@ -1417,6 +1418,9 @@ MonoBehaviour:
   timercapsule: 0
   canDash: 1
   isPicking: 0
+  hpbar: {fileID: 0}
+  hp: 0
+  meleePerformed: 0
 --- !u!1 &3165254492154243371
 GameObject:
   m_ObjectHideFlags: 0
