@@ -10,7 +10,7 @@ public class BaseMelee : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) 
     {
-        if (striker == Striker.enemy && collision.gameObject.GetComponent<PlayerMovements>()) 
+        if (striker == Striker.enemy && collision.gameObject.GetComponent<PlayerEntity>()) 
         {
             //collision.gameObject.GetComponent<Player>().Hp -= 10; 
         }

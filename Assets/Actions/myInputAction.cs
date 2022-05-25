@@ -55,7 +55,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""478cd886-778d-41ce-a370-571dfa6bad85"",
                     ""expectedControlType"": ""Button"",
@@ -94,6 +94,15 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""Pick"",
                     ""type"": ""Button"",
                     ""id"": ""495a3418-0fa1-4745-af01-825e0f6d6bc2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReturnAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""1942692f-2c69-4f2e-bb82-047862230637"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -262,7 +271,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -273,7 +282,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -318,6 +327,28 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Pick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d869725f-2a4f-4434-9d90-423bcc9aa4d1"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ReturnAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a602266e-95f4-48fa-be72-dbcd391766c2"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ReturnAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -908,11 +939,12 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
         m_Player_Pick = m_Player.FindAction("Pick", throwIfNotFound: true);
+        m_Player_ReturnAttack = m_Player.FindAction("ReturnAttack", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -987,11 +1019,12 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Run;
-    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Melee;
     private readonly InputAction m_Player_Shield;
     private readonly InputAction m_Player_Pick;
+    private readonly InputAction m_Player_ReturnAttack;
     public struct PlayerActions
     {
         private @MyInputAction m_Wrapper;
@@ -999,11 +1032,12 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Run => m_Wrapper.m_Player_Run;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputAction @Shield => m_Wrapper.m_Player_Shield;
         public InputAction @Pick => m_Wrapper.m_Player_Pick;
+        public InputAction @ReturnAttack => m_Wrapper.m_Player_ReturnAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1022,9 +1056,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
@@ -1037,6 +1071,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Pick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
                 @Pick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
                 @Pick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
+                @ReturnAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
+                @ReturnAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
+                @ReturnAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1050,9 +1087,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
@@ -1065,6 +1102,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Pick.started += instance.OnPick;
                 @Pick.performed += instance.OnPick;
                 @Pick.canceled += instance.OnPick;
+                @ReturnAttack.started += instance.OnReturnAttack;
+                @ReturnAttack.performed += instance.OnReturnAttack;
+                @ReturnAttack.canceled += instance.OnReturnAttack;
             }
         }
     }
@@ -1224,11 +1264,12 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
         void OnPick(InputAction.CallbackContext context);
+        void OnReturnAttack(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

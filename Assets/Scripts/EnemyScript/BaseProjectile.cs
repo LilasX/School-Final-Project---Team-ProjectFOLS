@@ -21,7 +21,7 @@ public class BaseProjectile : MonoBehaviour
             switch (typeRange)
             {
                 case RangeWeapon.Sphere:
-                    if (collision.gameObject.GetComponent<PlayerMovements>())
+                    if (collision.gameObject.GetComponent<PlayerEntity>())
                     {
                         //Direct Damage
                         //collision.gameObject.GetComponent<Player>().Hp -= 20;
@@ -31,33 +31,33 @@ public class BaseProjectile : MonoBehaviour
                     Invoke("SetInactiveRange", 1f);
                     break;
                 case RangeWeapon.Arrow:
-                    if (collision.gameObject.GetComponent<PlayerMovements>())
+                    if (collision.gameObject.GetComponent<PlayerEntity>())
                     {
                         //collision.gameObject.GetComponent<Player>().Hp -= 30;
                     }
                     Invoke("SetInactiveRange", 1f);
                     break;
                 case RangeWeapon.Lance:
-                    if (collision.gameObject.GetComponent<PlayerMovements>())
+                    if (collision.gameObject.GetComponent<PlayerEntity>())
                     {
                         //collision.gameObject.GetComponent<Player>().Hp -= 40;
                     }
                     Invoke("SetInactiveRange", 1f);
                     break;
                 case RangeWeapon.Wall:
-                    if (collision.gameObject.GetComponent<PlayerMovements>())
+                    if (collision.gameObject.GetComponent<PlayerEntity>())
                     {
                         //collision.gameObject.GetComponent<Player>().Hp -= 30;
                     }
                     break;
                 case RangeWeapon.Floor:
-                    if (collision.gameObject.GetComponent<PlayerMovements>())
+                    if (collision.gameObject.GetComponent<PlayerEntity>())
                     {
                         //collision.gameObject.GetComponent<Player>().Hp -= 10;
                     }
                     break;
                 case RangeWeapon.Wave:
-                    if (collision.gameObject.GetComponent<PlayerMovements>())
+                    if (collision.gameObject.GetComponent<PlayerEntity>())
                     {
                         //collision.gameObject.GetComponent<Player>().Hp -= 20;
                     }

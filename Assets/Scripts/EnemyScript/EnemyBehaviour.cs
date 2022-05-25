@@ -100,7 +100,7 @@ public class EnemyBehaviour : MonoBehaviour
     //----- ----- ----- ----- On Scene Methods ----- ----- ----- -----
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerMovements>())
+        if (other.GetComponent<PlayerEntity>())
         {
             //SetState(BehaviourState.pursue);
             player = other.gameObject; 
