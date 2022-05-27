@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpState : IPlayerBaseState
 {
-    //private GameManager gameManager;
+    private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
 
@@ -15,7 +15,8 @@ public class PlayerJumpState : IPlayerBaseState
 
     private void Awake()
     {
-        //playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        gameManager = GameManager.Instance;
+        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
     }
 
     private void Jump()
@@ -24,9 +25,10 @@ public class PlayerJumpState : IPlayerBaseState
         playerEntityInstance.velocity.y -= playerEntityInstance.GravityForce; //Application de la force de gravité
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.velocity * Time.deltaTime);
 
+
         playerEntityInstance.velocity.y = playerEntityInstance.jumpForce; //Application de la force du saut
+        playerEntityInstance.Animator.SetBool("Jump", true);
         playerEntityInstance.IsJumping = false;
-        playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         //Debug.Log("IsJumping");
     }
 
@@ -37,7 +39,21 @@ public class PlayerJumpState : IPlayerBaseState
 
     public void OnUpdate()
     {
-        Jump();
+        if(playerEntityInstance.IsJumping)
+        {
+            Jump();
+        }
+        else
+        {
+            playerEntityInstance.Animator.SetBool("Jump", false);
+            playerEntityInstance.Animator.SetBool("Fall", true);
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+        }
+
+        if(playerEntityInstance.MyCharacter.isGrounded)
+        {
+            playerEntityInstance.Animator.SetBool("Fall", false);
+        }
     }
 
     public void ExitState()

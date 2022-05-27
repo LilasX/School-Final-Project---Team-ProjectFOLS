@@ -80,24 +80,24 @@ public class InputManager : MonoBehaviour
 
     public void OnMelee(InputAction.CallbackContext context)
     {
-        //player.GetComponent<PlayerMovements>().isUsingStick = context.performed;
-        gameManager.player.GetComponent<PlayerEntity>().IsUsingStick = context.performed;
+        //player.GetComponent<PlayerMovements>().isUsingMelee = context.performed;
+        gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = context.performed;
 
         //Debug.Log("use melee");
     }
 
     public void OnMeleePressed(InputAction.CallbackContext context)
     {
-        //player.GetComponent<PlayerMovements>().isUsingStick = context.performed;
-        gameManager.player.GetComponent<PlayerEntity>().IsUsingStick = true;
+        //player.GetComponent<PlayerMovements>().isUsingMelee = context.performed;
+        gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = true;
 
         //Debug.Log("use melee");
     }
 
     public void OnMeleeReleased(InputAction.CallbackContext context)
     {
-        //player.GetComponent<PlayerMovements>().isUsingStick = context.performed;
-        gameManager.player.GetComponent<PlayerEntity>().IsUsingStick = false;
+        //player.GetComponent<PlayerMovements>().isUsingMelee = context.performed;
+        gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = false;
         //Debug.Log("use melee");
     }
 

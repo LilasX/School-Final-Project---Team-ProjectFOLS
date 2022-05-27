@@ -28,7 +28,7 @@ public class PlayerEntity : PhysicalEntity
     //  Variables pour l'endurance
     [SerializeField] private Slider staminaBar;
     private float currentStamina = 100f;
-    private float maxStamina;
+    private float maxStamina = 100f;
 
     //  Variables pour la gravité
     public Vector3 velocity;
@@ -50,8 +50,9 @@ public class PlayerEntity : PhysicalEntity
     //Variables pour arme courte portée
     [SerializeField] private GameObject stick;
     [SerializeField] private GameObject sword;
-    private bool isUsingStick = false;
-    private bool canAttack = false;
+    private bool isUsingMelee = false;
+    private bool hasUsedMelee = false;
+    //private bool canAttack = false;
     [SerializeField] private GameObject shield;
     private bool isUsingShield = false;
     //public bool hasUsedShield = false;
@@ -62,7 +63,6 @@ public class PlayerEntity : PhysicalEntity
     [SerializeField] private bool isUsingPower = false;
     private float powertimer = 10f;
 
-    #endregion
 
     [SerializeField] private bool canReturnAttack = false;
     [SerializeField] private bool isReturningAttack = false;
@@ -89,6 +89,8 @@ public class PlayerEntity : PhysicalEntity
 
     private PlayerEntity playerEntityInstance;
 
+    #endregion
+
 
     #region Encapsulation
     public CharacterController MyCharacter { get => myCharacter; set => myCharacter = value; }
@@ -112,8 +114,10 @@ public class PlayerEntity : PhysicalEntity
     public int BulletVelocity { get => bulletVelocity; set => bulletVelocity = value; }
     public GameObject Stick { get => stick; set => stick = value; }
     public GameObject Sword { get => sword; set => sword = value; }
-    public bool IsUsingStick { get => isUsingStick; set => isUsingStick = value; }
-    public bool CanAttack { get => canAttack; set => canAttack = value; }
+    public bool IsUsingMelee { get => isUsingMelee; set => isUsingMelee = value; }
+    public bool HasUsedMelee { get => hasUsedMelee; set => hasUsedMelee = value; }
+
+    //public bool CanAttack { get => canAttack; set => canAttack = value; }
     public GameObject Shield { get => shield; set => shield = value; }
     public bool IsUsingShield { get => isUsingShield; set => isUsingShield = value; }
     public GameObject PickableText { get => pickableText; set => pickableText = value; }
@@ -139,11 +143,12 @@ public class PlayerEntity : PhysicalEntity
     public int GetMaxMana { get => maxMana; set => maxMana = value; }
     public float GetCurrentStamina { get => currentStamina; set => currentStamina = value; }
     public float GetMaxStamina { get => maxStamina; set => maxStamina = value; }
-    public int ReturnFireIndex { get => returnFireIndex; set => returnFireIndex = value; }
+    public int ReturnFireIndex { get => returnFireIndex; set => returnFireIndex = value; }  
     public PlayerEntity PlayerEntityInstance { get => playerEntityInstance; set => playerEntityInstance = value; }
 
 
     #endregion
+
 
     #region StateMachineReferences
 
@@ -166,6 +171,7 @@ public class PlayerEntity : PhysicalEntity
     public PlayerMeleeState MeleeState { get => meleeState; }
     public PlayerStealAttackState StealAttackState { get => stealAttackState; set => stealAttackState = value; }
     #endregion
+
 
     private void Awake()
     {
@@ -223,8 +229,9 @@ public class PlayerEntity : PhysicalEntity
             playerState.ChangeState(RangedAttackState);
         } //else { playerState.ChangeState(DefaultState); }
 
-        if (IsUsingStick && MyCharacter.isGrounded)
+        if (IsUsingMelee && MyCharacter.isGrounded)
         {
+            //Debug.Log("IS ATTACKING");
             playerState.ChangeState(MeleeState);
         }
         //else { playerState.ChangeState(DefaultState); }
@@ -234,6 +241,7 @@ public class PlayerEntity : PhysicalEntity
             playerState.ChangeState(StealAttackState);
         }
         //else { playerState.ChangeState(DefaultState); }
+
     }
 
     public override void OnDeath()

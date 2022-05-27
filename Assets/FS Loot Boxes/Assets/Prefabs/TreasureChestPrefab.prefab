@@ -609,7 +609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingMethod: 1
   playerTag: Player
-  keyCode: 32
+  keyCode: 13
   bouncingBox: 1
   closeOnExit: 0
   boxContents: []

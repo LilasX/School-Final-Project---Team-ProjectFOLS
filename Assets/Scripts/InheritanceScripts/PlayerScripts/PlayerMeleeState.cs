@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMeleeState : IPlayerBaseState
 {
-    //private GameManager gameManager;
+    private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
 
@@ -15,27 +15,30 @@ public class PlayerMeleeState : IPlayerBaseState
 
     private void Awake()
     {
-        //playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        gameManager = GameManager.Instance;
+        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
     }
 
     public void MeleeAttack() //changed to public
     {
         // Using Stick
-        if (playerEntityInstance.IsUsingStick)
+        if (playerEntityInstance.IsUsingMelee)
         {
-            if (playerEntityInstance.GetCurrentStamina >= 5)
-            {
+            //if (playerEntityInstance.GetCurrentStamina >= 5)
+            //{
+                playerEntityInstance.HasUsedMelee = true;
                 playerEntityInstance.Stick.SetActive(true);
                 playerEntityInstance.Animator.SetBool("Attack", true);
                 Debug.Log("Attack");
-                playerEntityInstance.GetCurrentStamina -= 5f;
-            }
+            //    playerEntityInstance.GetCurrentStamina -= 5f;
+            //}
         }
         else
         {
             playerEntityInstance.Stick.SetActive(false);
             playerEntityInstance.Animator.SetBool("Attack", false);
-            playerEntityInstance.MeleePerformed = false;
+            playerEntityInstance.HasUsedMelee = false;
+            //playerEntityInstance.MeleePerformed = false;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

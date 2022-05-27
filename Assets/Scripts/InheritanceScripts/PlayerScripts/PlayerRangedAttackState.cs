@@ -15,7 +15,8 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
 
     private void Awake()
     {
-        //playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        gameManager = GameManager.Instance;
+        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
     }
 
     private void RangedAttack()

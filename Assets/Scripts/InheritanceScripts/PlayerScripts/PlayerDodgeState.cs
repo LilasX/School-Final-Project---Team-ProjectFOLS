@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerDodgeState : IPlayerBaseState
 {
+    private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
 
@@ -16,7 +17,8 @@ public class PlayerDodgeState : IPlayerBaseState
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameManager.Instance;
+        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>(); 
     }
 
     private void Dodge()

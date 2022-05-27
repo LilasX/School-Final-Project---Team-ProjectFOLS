@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDefaultState : IPlayerBaseState
 {
 
-    //private GameManager gameManager;
+    private GameManager gameManager;
     private PlayerEntity playerEntityInstance;
 
     private PlayerStateMachine playerState;
@@ -17,14 +17,15 @@ public class PlayerDefaultState : IPlayerBaseState
 
     private void Awake()
     {
-       // playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        gameManager = GameManager.Instance;
+        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
     }
 
     private void Move()
     {
         //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), -transform.up, Color.red, 1);
 
-        playerEntityInstance.Animator.SetFloat("Speed", 0f);
+        playerEntityInstance.Animator.SetFloat("Speed", 0f, 150f, Time.time);
 
         //  Mouvement du joueur
         playerEntityInstance.Move = new Vector3(playerEntityInstance.XAxis, 0, playerEntityInstance.ZAxis); //Update des coordonnées d'emplacement du vecteur
@@ -35,9 +36,13 @@ public class PlayerDefaultState : IPlayerBaseState
             //Debug.Log(move);
             playerEntityInstance.IsMoving = true;
             playerEntityInstance.MyCharacter.transform.forward = playerEntityInstance.Move * Time.deltaTime; //Oriente le joueur vers la direction du mouvement
-            playerEntityInstance.Animator.SetFloat("Speed", 0.5f);
+            playerEntityInstance.Animator.SetFloat("Speed", 0.5f, 20f, Time.time);
         }
-        else { playerEntityInstance.IsMoving = false; }
+        else 
+        { 
+            playerEntityInstance.IsMoving = false; 
+        }
+
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.Move * playerEntityInstance.Speed * Time.deltaTime); //Déplace le joueur
     }
 
@@ -50,7 +55,7 @@ public class PlayerDefaultState : IPlayerBaseState
         {
             playerEntityInstance.Speed = playerEntityInstance.RunningSpeed; //Valeur de la vitesse en mode course
             playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 1f, 10f * Time.deltaTime); //Vide la barre d'endurance
-            playerEntityInstance.Animator.SetFloat("Speed", 1f);
+            playerEntityInstance.Animator.SetFloat("Speed", 1f, 25f, Time.time);
             if (playerEntityInstance.GetCurrentStamina == 1)
             {
                 playerEntityInstance.IsRunning = false;

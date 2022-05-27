@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
 {
-    //private GameManager gameManager;
+    private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
 
@@ -15,7 +15,8 @@ public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
 
     private void Awake()
     {
-        //playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        gameManager = GameManager.Instance;
+        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
     }
 
     #region ReturnAttack
