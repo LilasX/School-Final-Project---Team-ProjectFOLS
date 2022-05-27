@@ -46,9 +46,9 @@ public class EnemyRange : EnemyMain
             case 1:
                 typeRange = RangeWeapon.Arrow;
                 break;
-            /*case 2:
+            case 2:
                 typeRange = RangeWeapon.Lance;
-                break;*/
+                break;
             case 3:
                 typeRange = RangeWeapon.Wall;
                 break;
@@ -82,12 +82,12 @@ public class EnemyRange : EnemyMain
                     range[randNum].SetActive(true);
                     range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
                     break;
-                /*case RangeWeapon.Lance:
+                case RangeWeapon.Lance:
                     range[randNum].transform.position = projectileSpawn.transform.position;
                     range[randNum].transform.rotation = projectileSpawn.transform.rotation;
                     range[randNum].SetActive(true);
                     range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
-                    break;*/
+                    break;
                 case RangeWeapon.Wave:
                     range[randNum].transform.position = waveSpawn.transform.position;
                     range[randNum].transform.rotation = waveSpawn.transform.rotation;
@@ -163,7 +163,7 @@ public class EnemyRange : EnemyMain
             {
                 case RangeWeapon.Sphere:
                 case RangeWeapon.Arrow:
-                /*case RangeWeapon.Lance:*/
+                case RangeWeapon.Lance:
                 case RangeWeapon.Wave:
                     if (timer >= 4f)
                     {

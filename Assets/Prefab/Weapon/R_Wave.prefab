@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 34835973063543323}
   - component: {fileID: -7692097099520944877}
   - component: {fileID: -2975760997723454287}
+  - component: {fileID: 6212397403610488113}
   m_Layer: 0
   m_Name: R_Wave
   m_TagString: Untagged
@@ -64,6 +65,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: 1
   typeRange: 5
+  canDmgSphere: 0
+  canDmgArrow: 0
+  canDmgLance: 0
+  canDmgWall: 0
+  canDmgFloor: 0
+  canDmgWave: 0
+  timerWall: 0
+  timerFloor: 0
+  timerWave: 0
+--- !u!136 &6212397403610488113
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320551840851162393}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 4.1
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6527646185164373858
 GameObject:
   m_ObjectHideFlags: 0

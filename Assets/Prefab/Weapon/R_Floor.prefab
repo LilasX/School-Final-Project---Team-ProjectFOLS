@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4842026108821869314}
   - component: {fileID: 2346455222531638497}
   - component: {fileID: -7663121586676305451}
+  - component: {fileID: 783133355538108785}
   m_Layer: 0
   m_Name: R_Floor
   m_TagString: Untagged
@@ -64,6 +65,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: 1
   typeRange: 4
+  canDmgSphere: 0
+  canDmgArrow: 0
+  canDmgLance: 0
+  canDmgWall: 0
+  canDmgFloor: 0
+  canDmgWave: 0
+  timerWall: 0
+  timerFloor: 0
+  timerWave: 0
+--- !u!65 &783133355538108785
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207785506237025862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.4, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2853109356834215853
 GameObject:
   m_ObjectHideFlags: 0
