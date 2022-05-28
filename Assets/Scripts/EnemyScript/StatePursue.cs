@@ -46,8 +46,8 @@ public class StatePursue : EnemyState
 			{
 				once = false;
 				//enemyBehaviour.agent.stoppingDistance = 6f;
-				enemyBehaviour.agent.speed = 1f;
-				enemyBehaviour.agent.acceleration = 2f;
+				enemyBehaviour.agent.speed = 0.5f;
+				enemyBehaviour.agent.acceleration = 1f;
 				//enemyBehaviour.agent.enabled = false;
 				return stateAttack;
 			}

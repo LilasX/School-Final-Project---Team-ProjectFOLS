@@ -23,6 +23,6 @@ public class MockTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DisplayHealthBar();
     }
 }

@@ -3199,10 +3199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b216036fc3e57c5499986dab986ab909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHP: 0
+  maxHP: 0
   distance: 0
-  hp: 0
-  hpMax: 0
-  dmg: 0
   slider: {fileID: 1481591107643497193}
   drop: {fileID: 0}
   canAttack: 0
@@ -3835,7 +3834,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8348268580688750004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 1}
+  m_LocalPosition: {x: 0, y: 1.3, z: 1.5}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []

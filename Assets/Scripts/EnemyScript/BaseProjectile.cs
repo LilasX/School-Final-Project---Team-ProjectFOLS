@@ -19,11 +19,12 @@ public class BaseProjectile : MonoBehaviour
     public float timerFloor;
     public float timerWave;
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(shooter == Shooter.player && collision.gameObject.GetComponent<EnemyMain>()) 
+        if(shooter == Shooter.player && other.gameObject.GetComponent<EnemyMain>()) 
         {
-            collision.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 20; 
+            other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 20; 
         }
 
         if (shooter == Shooter.enemy)
@@ -31,80 +32,80 @@ public class BaseProjectile : MonoBehaviour
             switch (typeRange)
             {
                 case RangeWeapon.Sphere:
-                    if (collision.gameObject.GetComponent<MockTest>() && canDmgSphere) //ForTestingGrounds
+                    if (other.gameObject.GetComponent<MockTest>() && canDmgSphere) //ForTestingGrounds
                     {
-                        collision.gameObject.GetComponent<MockTest>().hp -= 20;
+                        other.gameObject.GetComponent<MockTest>().hp -= 20;
                         canDmgSphere = false;
                     }
-                    if (collision.gameObject.GetComponent<PlayerEntity>() && canDmgSphere)
+                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgSphere)
                     {
                         //Direct Damage
-                        //collision.gameObject.GetComponent<Player>().Hp -= 20;
+                        //other.gameObject.GetComponent<Player>().Hp -= 20;
                         //Indirect Damage - Player near Explosion from Sphere
-                        //collision.gameObject.GetComponent<Player>().Hp -= 10;
+                        //other.gameObject.GetComponent<Player>().Hp -= 10;
                         canDmgSphere = false;
                     }
                     Invoke("SetInactiveRange", 1f);
                     break;
                 case RangeWeapon.Arrow:
-                    if (collision.gameObject.GetComponent<MockTest>() && canDmgArrow) //ForTestingGrounds
+                    if (other.gameObject.GetComponent<MockTest>() && canDmgArrow) //ForTestingGrounds
                     {
-                        collision.gameObject.GetComponent<MockTest>().hp -= 20;
+                        other.gameObject.GetComponent<MockTest>().hp -= 20;
                         canDmgArrow = false;
                     }
-                    if (collision.gameObject.GetComponent<PlayerEntity>() && canDmgArrow)
+                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgArrow)
                     {
-                        //collision.gameObject.GetComponent<Player>().Hp -= 30;
+                        //other.gameObject.GetComponent<Player>().Hp -= 30;
                         canDmgArrow = false;
                     }
                     Invoke("SetInactiveRange", 1f);
                     break;
                 case RangeWeapon.Lance:
-                    if (collision.gameObject.GetComponent<MockTest>() && canDmgLance) //ForTestingGrounds
+                    if (other.gameObject.GetComponent<MockTest>() && canDmgLance) //ForTestingGrounds
                     {
-                        collision.gameObject.GetComponent<MockTest>().hp -= 40;
+                        other.gameObject.GetComponent<MockTest>().hp -= 40;
                         canDmgLance = false;
                     }
-                    if (collision.gameObject.GetComponent<PlayerEntity>() && canDmgLance)
+                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgLance)
                     {
-                        //collision.gameObject.GetComponent<Player>().Hp -= 40;
+                        //other.gameObject.GetComponent<Player>().Hp -= 40;
                         canDmgLance = false;
                     }
                     Invoke("SetInactiveRange", 1f);
                     break;
                 case RangeWeapon.Wall:
-                    if (collision.gameObject.GetComponent<MockTest>() && canDmgWall) //ForTestingGrounds
+                    if (other.gameObject.GetComponent<MockTest>() && canDmgWall) //ForTestingGrounds
                     {
-                        collision.gameObject.GetComponent<MockTest>().hp -= 30;
+                        other.gameObject.GetComponent<MockTest>().hp -= 30;
                         canDmgWall = false;
                     }
-                    if (collision.gameObject.GetComponent<PlayerEntity>() && canDmgWall)
+                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgWall)
                     {
-                        //collision.gameObject.GetComponent<Player>().Hp -= 30;
+                        //other.gameObject.GetComponent<Player>().Hp -= 30;
                         canDmgWall = false;
                     }
                     break;
                 case RangeWeapon.Floor:
-                    if (collision.gameObject.GetComponent<MockTest>() && canDmgFloor) //ForTestingGrounds
+                    if (other.gameObject.GetComponent<MockTest>() && canDmgFloor) //ForTestingGrounds
                     {
-                        collision.gameObject.GetComponent<MockTest>().hp -= 10;
+                        other.gameObject.GetComponent<MockTest>().hp -= 10;
                         canDmgFloor = false;
                     }
-                    if (collision.gameObject.GetComponent<PlayerEntity>() && canDmgFloor)
+                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgFloor)
                     {
-                        //collision.gameObject.GetComponent<Player>().Hp -= 10;
+                        //other.gameObject.GetComponent<Player>().Hp -= 10;
                         canDmgFloor = false;
                     }
                     break;
                 case RangeWeapon.Wave:
-                    if (collision.gameObject.GetComponent<MockTest>() && canDmgWave) //ForTestingGrounds
+                    if (other.gameObject.GetComponent<MockTest>() && canDmgWave) //ForTestingGrounds
                     {
-                        collision.gameObject.GetComponent<MockTest>().hp -= 20;
+                        other.gameObject.GetComponent<MockTest>().hp -= 20;
                         canDmgWave = false;
                     }
-                    if (collision.gameObject.GetComponent<PlayerEntity>() && canDmgWave)
+                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgWave)
                     {
-                        //collision.gameObject.GetComponent<Player>().Hp -= 20;
+                        //other.gameObject.GetComponent<Player>().Hp -= 20;
                         canDmgWave = false;
                     }
                     break;

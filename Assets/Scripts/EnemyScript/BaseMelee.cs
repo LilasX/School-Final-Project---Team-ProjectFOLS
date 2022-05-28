@@ -10,16 +10,16 @@ public class BaseMelee : MonoBehaviour
     public Striker striker; 
 
 
-    private void OnCollisionEnter(Collision collision) 
+    private void OnTriggerEnter(Collider other) 
     {
-        if (striker == Striker.enemy && collision.gameObject.GetComponent<PlayerEntity>()) 
+        if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>()) 
         {
             //collision.gameObject.GetComponent<Player>().Hp -= 10; 
         }
-        if (striker == Striker.player && collision.gameObject.GetComponent<EnemyMain>())
+        if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         {
-            if(gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
-            collision.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
+            if (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
+            other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
             //Debug.Log("Touched");
         }
     }
