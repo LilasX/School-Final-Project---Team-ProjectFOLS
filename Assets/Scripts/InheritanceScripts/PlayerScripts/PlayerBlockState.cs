@@ -7,16 +7,13 @@ public class PlayerBlockState : IPlayerBaseState
     private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
+    private PlayerStateMachine playerState;
 
-    public PlayerBlockState(PlayerEntity playerEntity)
+    public PlayerBlockState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
+        gameManager = GameManager.instance;
         this.playerEntityInstance = playerEntity;
-    }
-
-    private void Awake()
-    {
-        gameManager = GameManager.Instance;
-        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        this.playerState = stateMachine;
     }
 
     private void UseShield()

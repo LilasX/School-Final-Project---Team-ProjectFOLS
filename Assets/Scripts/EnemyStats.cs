@@ -38,9 +38,9 @@ public class EnemyStats : MonoBehaviour
         timer += Time.deltaTime;
         //if (Input.GetKeyDown(KeyCode.J))
         //{
-            if (timer >= 0.5f)
+            if (timer >= 2f)
             {
-                GameObject gameObj = Instantiate(bullet, transform.position + transform.forward * 5, Quaternion.identity); //Instantiation du projectile
+                GameObject gameObj = Instantiate(bullet, transform.position + transform.forward * 2, Quaternion.identity); //Instantiation du projectile
                 gameObj.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse); //Application de la physique sur le projectile
                 timer = 0f;
                 Destroy(gameObj, 5f); //Destruction du projectile         

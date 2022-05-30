@@ -7,16 +7,13 @@ public class PlayerMeleeState : IPlayerBaseState
     private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
+    private PlayerStateMachine playerState;
 
-    public PlayerMeleeState(PlayerEntity playerEntity)
+    public PlayerMeleeState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
+        gameManager = GameManager.instance;
         this.playerEntityInstance = playerEntity;
-    }
-
-    private void Awake()
-    {
-        gameManager = GameManager.Instance;
-        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        this.playerState = stateMachine;
     }
 
     public void MeleeAttack() //changed to public
@@ -30,6 +27,15 @@ public class PlayerMeleeState : IPlayerBaseState
                 playerEntityInstance.Stick.SetActive(true);
                 playerEntityInstance.Animator.SetBool("Attack", true);
                 Debug.Log("Attack");
+                //float timer = 0;
+                //timer += Time.deltaTime;
+                //if (timer > 1f)
+                //{
+                //    playerEntityInstance.Stick.SetActive(false);
+                //    playerEntityInstance.Animator.SetBool("Attack", false);
+                //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+                //    timer = 0f;
+                //}
             //    playerEntityInstance.GetCurrentStamina -= 5f;
             //}
         }
@@ -38,7 +44,6 @@ public class PlayerMeleeState : IPlayerBaseState
             playerEntityInstance.Stick.SetActive(false);
             playerEntityInstance.Animator.SetBool("Attack", false);
             playerEntityInstance.HasUsedMelee = false;
-            //playerEntityInstance.MeleePerformed = false;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

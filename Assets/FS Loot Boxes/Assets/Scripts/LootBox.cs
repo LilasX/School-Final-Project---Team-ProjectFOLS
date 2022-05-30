@@ -188,7 +188,7 @@ public class LootBox : MonoBehaviour
     /// When something hits our treasure box.
     /// </summary>
     /// <param name="collision">Collision.</param>
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         // OnCollisionMethod is not for OpenOnTouch method
         if (openingMethod == OpeningMethods.OpenOnTouch) return;

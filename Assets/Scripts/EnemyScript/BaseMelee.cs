@@ -14,12 +14,14 @@ public class BaseMelee : MonoBehaviour
     {
         if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>()) 
         {
-            //collision.gameObject.GetComponent<Player>().Hp -= 10; 
+            other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 10; 
         }
         if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         {
             if (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
-            other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
+            {
+                other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
+            }
             //Debug.Log("Touched");
         }
     }
@@ -28,7 +30,7 @@ public class BaseMelee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.Instance;
+        gameManager = GameManager.instance;
     }
 
     // Update is called once per frame

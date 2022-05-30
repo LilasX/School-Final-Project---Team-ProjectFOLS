@@ -2,23 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDefaultState : IPlayerBaseState
+public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 {
 
     private GameManager gameManager;
     private PlayerEntity playerEntityInstance;
-
     private PlayerStateMachine playerState;
 
-    public PlayerDefaultState(PlayerEntity playerEntity)
+    public PlayerDefaultState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
+        gameManager = GameManager.instance;
         this.playerEntityInstance = playerEntity;
-    }
-
-    private void Awake()
-    {
-        gameManager = GameManager.Instance;
-        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        this.playerState = stateMachine;
     }
 
     private void Move()
@@ -80,12 +75,71 @@ public class PlayerDefaultState : IPlayerBaseState
 
     public void OnUpdate()
     {
-        // Gravité
-        playerEntityInstance.velocity.y -= playerEntityInstance.GravityForce; //Application de la force de gravité
-        playerEntityInstance.MyCharacter.Move(playerEntityInstance.velocity * Time.deltaTime);
 
         Move();
 
         Run();
+
+        if (playerEntityInstance.IsJumping && playerEntityInstance.IsGrounded) //DONE
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.JumpState);
+        }
+
+        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded) //DONE
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.DodgeState);
+        }
+
+        if (playerEntityInstance.IsPicking && playerEntityInstance.IsGrounded && playerEntityInstance.IsCollidingWithItem) //DONE
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.PickState);
+        }
+
+        if (playerEntityInstance.IsUsingShield && playerEntityInstance.IsGrounded) //DONE
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.BlockState);
+        }
+
+        if (playerEntityInstance.IsFiring && playerEntityInstance.IsGrounded) //DONE
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.RangedAttackState);
+        }
+
+        if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded) //A REVOIR
+        {
+            //Debug.Log("IS ATTACKING"); //MAKE A TIMER ?
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.MeleeState);
+        }
+
+        if (playerEntityInstance.IsReturningAttack && playerEntityInstance.IsGrounded) // A REVOIR
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.StealAttackState);
+        }
+
+        if (playerEntityInstance.hasReturnedAttack)
+        {
+            playerEntityInstance.Animator.SetBool("Spell", false);
+            //playerEntityInstance.hasReturnedAttack = false;
+            playerEntityInstance.changeStateDelay += Time.deltaTime;
+            if (playerEntityInstance.changeStateDelay >= 1f)
+            {
+                playerEntityInstance.ReturnFireIndex = 0;
+                playerEntityInstance.changeStateDelay = 0f;
+                playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+            }
+        }
+
+        if (playerEntityInstance.hasFired)
+        {
+            playerEntityInstance.Animator.SetBool("Spell", false);
+        }
     }
+
+    //public IEnumerator ResetFireIndex()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    playerEntityInstance.ReturnFireIndex = 0;
+    //    playerEntityInstance.hasReturnedAttack = false;
+    //}
+
 }

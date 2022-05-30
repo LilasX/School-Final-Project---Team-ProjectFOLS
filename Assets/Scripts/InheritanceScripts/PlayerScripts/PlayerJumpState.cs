@@ -7,23 +7,20 @@ public class PlayerJumpState : IPlayerBaseState
     private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
+    private PlayerStateMachine playerState;
 
-    public PlayerJumpState(PlayerEntity playerEntity)
+    public PlayerJumpState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
+        gameManager = GameManager.instance;
         this.playerEntityInstance = playerEntity;
-    }
-
-    private void Awake()
-    {
-        gameManager = GameManager.Instance;
-        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        this.playerState = stateMachine;
     }
 
     private void Jump()
     {
-        // Gravité
-        playerEntityInstance.velocity.y -= playerEntityInstance.GravityForce; //Application de la force de gravité
-        playerEntityInstance.MyCharacter.Move(playerEntityInstance.velocity * Time.deltaTime);
+        //// Gravité
+        //playerEntityInstance.velocity.y -= playerEntityInstance.GravityForce; //Application de la force de gravité
+        //playerEntityInstance.MyCharacter.Move(playerEntityInstance.velocity * Time.deltaTime);
 
 
         playerEntityInstance.velocity.y = playerEntityInstance.jumpForce; //Application de la force du saut

@@ -7,18 +7,13 @@ public class PlayerDodgeState : IPlayerBaseState
     private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
+    private PlayerStateMachine playerState;
 
-    public PlayerDodgeState(PlayerEntity playerEntity)
+    public PlayerDodgeState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
+        gameManager = GameManager.instance;
         this.playerEntityInstance = playerEntity;
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = GameManager.Instance;
-        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>(); 
+        this.playerState = stateMachine;
     }
 
     private void Dodge()

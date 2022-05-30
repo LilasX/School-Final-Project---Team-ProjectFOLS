@@ -7,37 +7,13 @@ public class PlayerPickState : MonoBehaviour, IPlayerBaseState
     private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
+    private PlayerStateMachine playerState;
 
-    public PlayerPickState(PlayerEntity playerEntity)
+    public PlayerPickState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
+        gameManager = GameManager.instance;
         this.playerEntityInstance = playerEntity;
-    }
-
-    private void Awake()
-    {
-        gameManager = GameManager.Instance;
-        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
-    }
-
-    #region Pick
-    //Picking up
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject != null)
-        {
-            if (other.gameObject.GetComponent<Drops>())
-            {
-                //isCollingWithItem = true;
-                if (playerEntityInstance.IsPicking)
-                {
-                    Debug.Log("IsPicking");
-                    playerEntityInstance.HasPickedItem = true;
-                    playerEntityInstance.PickableText.GetComponent<TMPro.TextMeshProUGUI>().text = "Picked";
-                    //other.gameObject.SetActive(false);
-                    Destroy(other.gameObject);
-                }
-            }
-        }
+        this.playerState = stateMachine;
     }
 
     private void PickingItem()
@@ -48,7 +24,6 @@ public class PlayerPickState : MonoBehaviour, IPlayerBaseState
             playerEntityInstance.Animator.SetBool("Pick", true);
             playerEntityInstance.Sword.SetActive(false);
             playerEntityInstance.TimeToWait += Time.deltaTime;
-            //Debug.Log(timeToWait);
             if (playerEntityInstance.TimeToWait >= 2.2f)
             {
                 playerEntityInstance.Animator.SetBool("Pick", false);
@@ -60,7 +35,6 @@ public class PlayerPickState : MonoBehaviour, IPlayerBaseState
             }
         }
     }
-    #endregion
 
     public void EnterState()
     {

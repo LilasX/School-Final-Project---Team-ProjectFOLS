@@ -28,15 +28,19 @@ public class InputManager : MonoBehaviour
             Destroy(Instance);
         }
 
+
         myInputAction = new MyInputAction();
         meleeAction = myInputAction.Player.Melee;
-        gameManager = GameManager.Instance;
+    }
+
+    private void Start()
+    {
+        gameManager = GameManager.instance;
 
     }
 
     private void OnEnable()
     {
-
         meleeAction.Enable();
         meleeAction.performed += OnMelee;
         //meleeAction.performed += OnMeleePressed;
@@ -114,7 +118,7 @@ public class InputManager : MonoBehaviour
     public void OnReturningAttack(InputAction.CallbackContext context)
     {
         gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = context.performed;
-        gameManager.player.GetComponent<PlayerEntity>().ReturnFireIndex++;
+        //gameManager.player.GetComponent<PlayerEntity>().ReturnFireIndex++;
     }
     #endregion
 

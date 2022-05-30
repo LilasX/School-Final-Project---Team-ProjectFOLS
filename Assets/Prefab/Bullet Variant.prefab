@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2085139779573361204, guid: a0a430a799aa2cc4cac591e92013318c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2704633649693420891, guid: a0a430a799aa2cc4cac591e92013318c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -55,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8523532116881529884, guid: a0a430a799aa2cc4cac591e92013318c, type: 3}
+      propertyPath: shooter
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0a430a799aa2cc4cac591e92013318c, type: 3}
 --- !u!1 &6630236338828245609 stripped
@@ -69,9 +77,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6630236338828245609}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3013deec78e1d743832c77bbe1d0041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  projectileType: 0

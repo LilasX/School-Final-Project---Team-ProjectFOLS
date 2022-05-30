@@ -40,9 +40,9 @@ public class PlayerEntity : PhysicalEntity
     [Header("Attack Attributes")]
     [SerializeField] private GameObject bullet; //Référence au projectile
     private bool isFiring = false;
-    private bool hasFired = false;
+    public bool hasFired = false;
     private float timer;
-    private float fireRate = 0.5f;
+    private float fireRate = 1f;
     [SerializeField] private int bulletVelocity = 15;
     private int currentMana;
     private int maxMana;
@@ -66,6 +66,7 @@ public class PlayerEntity : PhysicalEntity
 
     [SerializeField] private bool canReturnAttack = false;
     [SerializeField] private bool isReturningAttack = false;
+    //public bool hasRequestedAttackReturn = false;
     [SerializeField] private int returnFireIndex = 0;
 
     private GameObject attackToReturn;
@@ -88,6 +89,18 @@ public class PlayerEntity : PhysicalEntity
     private bool meleePerformed = false;
 
     private PlayerEntity playerEntityInstance;
+
+
+    [SerializeField] private bool isGrounded = false;
+    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private float checkGroundDistance = 0.1f;
+
+    [SerializeField] private bool isCollidingWithItem = false;
+
+    public bool hasReturnedAttack = false;
+    public float changeStateDelay = 0;
+
+    public bool isStealingAttack = false;
 
     #endregion
 
@@ -143,7 +156,9 @@ public class PlayerEntity : PhysicalEntity
     public int GetMaxMana { get => maxMana; set => maxMana = value; }
     public float GetCurrentStamina { get => currentStamina; set => currentStamina = value; }
     public float GetMaxStamina { get => maxStamina; set => maxStamina = value; }
-    public int ReturnFireIndex { get => returnFireIndex; set => returnFireIndex = value; }  
+    public int ReturnFireIndex { get => returnFireIndex; set => returnFireIndex = value; }
+    public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
+    public bool IsCollidingWithItem { get => isCollidingWithItem; set => isCollidingWithItem = value; }
     public PlayerEntity PlayerEntityInstance { get => playerEntityInstance; set => playerEntityInstance = value; }
 
 
@@ -173,19 +188,19 @@ public class PlayerEntity : PhysicalEntity
     #endregion
 
 
-    private void Awake()
-    {
-        defaultState = new PlayerDefaultState(this);
-        jumpState = new PlayerJumpState(this);
-        dodgeState = new PlayerDodgeState(this);
-        pickState = new PlayerPickState(this);
-        blockState = new PlayerBlockState(this);
-        rangedAttackState = new PlayerRangedAttackState(this);
-        meleeState = new PlayerMeleeState(this);
-        stealAttackState = new PlayerStealAttackState(this);
+    //private void Awake()
+    //{
+    //    //defaultState = new PlayerDefaultState(this, playerState);
+    //    //jumpState = new PlayerJumpState(this, playerState);
+    //    //dodgeState = new PlayerDodgeState(this, playerState);
+    //    //pickState = new PlayerPickState(this, playerState);
+    //    //blockState = new PlayerBlockState(this, playerState);
+    //    //rangedAttackState = new PlayerRangedAttackState(this, playerState);
+    //    //meleeState = new PlayerMeleeState(this, playerState);
+    //    //stealAttackState = new PlayerStealAttackState(this, playerState);
 
-        playerState = new PlayerStateMachine(DefaultState);
-    }
+    //    //playerState = new PlayerStateMachine(DefaultState);
+    //}
 
     // Start is called before the first frame update
     protected override void Start()
@@ -195,6 +210,17 @@ public class PlayerEntity : PhysicalEntity
         Animator = GetComponent<Animator>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
         CapsuleCollider.enabled = false;
+
+        defaultState = new PlayerDefaultState(this, playerState);
+        jumpState = new PlayerJumpState(this, playerState);
+        dodgeState = new PlayerDodgeState(this, playerState);
+        pickState = new PlayerPickState(this, playerState);
+        blockState = new PlayerBlockState(this, playerState);
+        rangedAttackState = new PlayerRangedAttackState(this, playerState);
+        meleeState = new PlayerMeleeState(this, playerState);
+        stealAttackState = new PlayerStealAttackState(this, playerState);
+
+        playerState = new PlayerStateMachine(DefaultState);
     }
 
     // Update is called once per frame
@@ -202,46 +228,13 @@ public class PlayerEntity : PhysicalEntity
     {
         OnManagingStamina(); // Manage the stamina bar
 
+        OnManagingHealth();
+
+        OnApplyingGravity();
+
+        IsPlayerGrounded();
+
         playerState.Update(); // Excute the running state update
-
-        if (IsJumping && MyCharacter.isGrounded)
-        {
-            playerState.ChangeState(JumpState);
-        } //else { playerState.ChangeState(DefaultState); }
-
-        if (IsDodging && MyCharacter.isGrounded)
-        {
-            playerState.ChangeState(DodgeState);
-        } 
-
-        if (isPicking && MyCharacter.isGrounded)
-        {
-            playerState.ChangeState(PickState);
-        } //else { playerState.ChangeState(DefaultState); }
-
-        if (IsUsingShield && MyCharacter.isGrounded)
-        {
-            playerState.ChangeState(BlockState);
-        } //else { playerState.ChangeState(DefaultState); }
-
-        if (IsFiring && MyCharacter.isGrounded)
-        {
-            playerState.ChangeState(RangedAttackState);
-        } //else { playerState.ChangeState(DefaultState); }
-
-        if (IsUsingMelee && MyCharacter.isGrounded)
-        {
-            //Debug.Log("IS ATTACKING");
-            playerState.ChangeState(MeleeState);
-        }
-        //else { playerState.ChangeState(DefaultState); }
-
-        if (IsReturningAttack && MyCharacter.isGrounded)
-        {
-            playerState.ChangeState(StealAttackState);
-        }
-        //else { playerState.ChangeState(DefaultState); }
-
     }
 
     public override void OnDeath()
@@ -275,6 +268,28 @@ public class PlayerEntity : PhysicalEntity
         if (currentStamina >= 100) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
     }
 
+    private void OnManagingHealth()
+    {
+        Hpbar.value = GetCurrentHP;
+        if(GetCurrentHP >= GetMaxHP) { GetCurrentHP = GetMaxHP; } else if (GetCurrentHP <= 0) { GetCurrentHP = 0; }
+    }
+
+    private void OnApplyingGravity()
+    {         
+        // Gravité
+        velocity.y -= GravityForce; //Application de la force de gravité
+        MyCharacter.Move(velocity * Time.deltaTime);
+    }
+
+    private bool IsPlayerGrounded()
+    {
+        RaycastHit hit;
+
+        IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, checkGroundDistance, groundLayerMask);
+
+        return IsGrounded || MyCharacter.isGrounded;
+    }
+
     //Not sure if it's the player that should manage the following methods below...
     public void OnInteract()
     {
@@ -290,5 +305,51 @@ public class PlayerEntity : PhysicalEntity
     {
         //If the player can sell items, Define how and what happens when player sells an item (equipment if implementing the concept for example to the shop)
     }
+
+    private void OnCollisionStay(Collision collision) //OnStealingAttack
+    {
+        if (collision.gameObject.GetComponent<BaseProjectile>())
+        {
+            if (!CanReturnAttack)
+            {
+                collision.gameObject.SetActive(false);
+                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                AttackToReturn = collision.gameObject;
+                CanReturnAttack = true;
+                Debug.Log("Colliding");
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other) //OnPickingItem
+    {
+        if (other.gameObject != null)
+        {
+            if (other.gameObject.GetComponent<Drops>())
+            {
+                IsCollidingWithItem = true;
+                if (IsPicking)
+                {
+                    HasPickedItem = true;
+                    //playerEntityInstance.PickableText.GetComponent<TMPro.TextMeshProUGUI>().text = "Picked";
+                    //other.gameObject.SetActive(false);
+                    Destroy(other.gameObject);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject != null)
+        {
+            if (other.gameObject.GetComponent<Drops>())
+            {
+                IsCollidingWithItem = false;
+            }
+        }
+    }
+
+
 
 }

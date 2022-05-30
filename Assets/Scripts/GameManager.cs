@@ -6,8 +6,8 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
 
-    private static GameManager instance = null;
-    public static GameManager Instance { get => instance; set => instance = value; }
+    public static GameManager instance = null;
+    public static GameManager Instance { get { return instance; } }
 
     public GameObject player;
     public CharacterController myCharacter;
@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
-            Destroy(Instance);
+            Destroy(instance);
         }
     }
 

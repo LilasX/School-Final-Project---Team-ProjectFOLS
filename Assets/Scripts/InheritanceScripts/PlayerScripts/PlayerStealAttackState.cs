@@ -7,34 +7,17 @@ public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
     private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
+    private PlayerStateMachine playerState;
 
-    public PlayerStealAttackState(PlayerEntity playerEntity)
+    public PlayerStealAttackState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
+        gameManager = GameManager.instance;
+        Debug.Log(gameManager);
         this.playerEntityInstance = playerEntity;
-    }
-
-    private void Awake()
-    {
-        gameManager = GameManager.Instance;
-        playerEntityInstance = gameManager.player.GetComponent<PlayerEntity>();
+        this.playerState = stateMachine;
     }
 
     #region ReturnAttack
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<BaseProjectile>())
-        {
-            if (!playerEntityInstance.CanReturnAttack)
-            {
-                collision.gameObject.SetActive(false);
-                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                playerEntityInstance.AttackToReturn = collision.gameObject;
-                playerEntityInstance.CanReturnAttack = true;
-                Debug.Log("Colliding");
-            }
-        }
-    }
 
     private void OnReturningAttack()
     {
@@ -44,14 +27,39 @@ public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
             {
                 if (playerEntityInstance.CanReturnAttack)
                 {
-                    if (playerEntityInstance.IsReturningAttack)
-                    {
+                    //if (playerEntityInstance.IsReturningAttack)
+                    //{
                         playerEntityInstance.CanReturnAttack = false;
-                        GameObject gameObj = Instantiate(playerEntityInstance.Bullet, transform.position + transform.forward * 2f, Quaternion.identity); //Instantiation du projectile
-                        gameObj.GetComponent<Rigidbody>().AddForce((transform.forward * 2f) * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
-                        playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-                    }
+                        playerEntityInstance.Animator.SetBool("Spell", true);
+                        GameObject gameObj = Instantiate(gameManager.bullet, playerEntityInstance.transform.position + playerEntityInstance.transform.forward * 2f, Quaternion.identity); //Instantiation du projectile
+                        gameObj.GetComponent<Rigidbody>().AddForce((playerEntityInstance.transform.forward * 2f) * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
+                        //playerEntityInstance.ReturnFireIndex = 0;
+                        //playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+                    //}
                 }
+            }
+        }
+    }
+
+    private void OnStealingAttack()
+    {
+        playerEntityInstance.isStealingAttack = true;
+        playerEntityInstance.CapsuleCollider.enabled = true;
+        if (playerEntityInstance.CapsuleCollider.enabled == true)
+        {
+            playerEntityInstance.Animator.SetBool("Spell", true);
+            playerEntityInstance.Timercapsule += Time.deltaTime;
+            if (playerEntityInstance.Timercapsule >= 1.4f)
+            {
+                playerEntityInstance.Animator.SetBool("Spell", false);
+                playerEntityInstance.CapsuleCollider.enabled = false;
+                playerEntityInstance.Timercapsule = 0f;
+                playerEntityInstance.isStealingAttack = false;
+                if(playerEntityInstance.CanReturnAttack)
+                {
+                    playerEntityInstance.ReturnFireIndex = 2;
+                }
+                playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
             }
         }
     }
@@ -70,40 +78,31 @@ public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
 
     public void OnUpdate()
     {
-
-        switch(playerEntityInstance.ReturnFireIndex)
+        //Stealing Attack
+        if (playerEntityInstance.IsReturningAttack && playerEntityInstance.ReturnFireIndex == 0 && !playerEntityInstance.CanReturnAttack)
         {
-            case 0:
-
-                if (playerEntityInstance.IsReturningAttack)
-                {
-                    playerEntityInstance.CapsuleCollider.enabled = true;
-                    if (playerEntityInstance.CapsuleCollider.enabled == true)
-                    {
-                        playerEntityInstance.Timercapsule += Time.deltaTime;
-                        if (playerEntityInstance.Timercapsule >= 2f)
-                        {
-                            playerEntityInstance.CapsuleCollider.enabled = false;
-                            playerEntityInstance.Timercapsule = 0f;
-                            playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-                        }
-                    }
-                }
-
-                break;
-
-            case 1:
-
-                if (playerEntityInstance.IsReturningAttack)
-                {
-                    OnReturningAttack();
-                    playerEntityInstance.ReturnFireIndex = 0;
-                    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-
-                }
-
-                break;
+            playerEntityInstance.ReturnFireIndex = 1;
         }
+
+        if (playerEntityInstance.ReturnFireIndex == 1)
+        {
+            OnStealingAttack();
+        }
+
+
+        //Returning Attack
+        if (playerEntityInstance.IsReturningAttack && playerEntityInstance.ReturnFireIndex == 2)
+        {
+            //StartCoroutine(ResetFireIndex());
+            Debug.Log("IS RETURNING ATTACK");
+            playerEntityInstance.hasReturnedAttack = true;
+            OnReturningAttack();
+            //playerEntityInstance.Animator.SetBool("Spell", false);
+            //playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+
+        }
+
+
 
     }
 }
