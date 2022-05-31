@@ -14,7 +14,9 @@ public class StatePursue : EnemyState
 		if (!once)
 		{
 			enemyBehaviour.agent.speed = 3.5f;
-			enemyBehaviour.agent.acceleration = 8f;
+			enemyBehaviour.agent.acceleration = 8f; 
+			enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
+			enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
 			once = true;
 		}
 
@@ -32,22 +34,25 @@ public class StatePursue : EnemyState
 		//----- ----- Condition To Go To Script StateAttack ----- -----
 		if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
 		{
-			if (playerDistance <= 5)
+			if (playerDistance <= 2)
 			{
-				once = false; 
-				enemyBehaviour.agent.speed = 1f;
-				enemyBehaviour.agent.acceleration = 2f;
+				once = false;
+				//enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
+				//enemyBehaviour.agent.speed = 1f;
+				//enemyBehaviour.agent.acceleration = 2f;
 				return stateAttack;
 			}
 		} 
 		else if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
         {
-			if (playerDistance <= 10)
+			if (playerDistance <= 7)
 			{
 				once = false;
 				//enemyBehaviour.agent.stoppingDistance = 6f;
-				enemyBehaviour.agent.speed = 0.5f;
-				enemyBehaviour.agent.acceleration = 1f;
+				//enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
+				//enemyBehaviour.agent.stoppingDistance = 3f; //Maybe does something. Need to check later
+				//enemyBehaviour.agent.speed = 0.5f;
+				//enemyBehaviour.agent.acceleration = 1f;
 				//enemyBehaviour.agent.enabled = false;
 				return stateAttack;
 			}

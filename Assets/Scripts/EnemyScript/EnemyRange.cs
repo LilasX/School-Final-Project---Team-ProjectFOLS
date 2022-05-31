@@ -71,24 +71,28 @@ public class EnemyRange : EnemyMain
             switch (typeRange)
             {
                 case RangeWeapon.Sphere:
+                    range[randNum].GetComponent<Rigidbody>().velocity = Vector3.zero;
                     range[randNum].transform.position = projectileSpawn.transform.position;
                     range[randNum].transform.rotation = projectileSpawn.transform.rotation;
                     range[randNum].SetActive(true);
                     range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
                     break;
                 case RangeWeapon.Arrow:
+                    range[randNum].GetComponent<Rigidbody>().velocity = Vector3.zero;
                     range[randNum].transform.position = projectileSpawn.transform.position;
                     range[randNum].transform.rotation = projectileSpawn.transform.rotation;
                     range[randNum].SetActive(true);
                     range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
                     break;
                 case RangeWeapon.Lance:
+                    range[randNum].GetComponent<Rigidbody>().velocity = Vector3.zero;
                     range[randNum].transform.position = projectileSpawn.transform.position;
                     range[randNum].transform.rotation = projectileSpawn.transform.rotation;
                     range[randNum].SetActive(true);
                     range[randNum].GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
                     break;
                 case RangeWeapon.Wave:
+                    range[randNum].GetComponent<Rigidbody>().velocity = Vector3.zero;
                     range[randNum].transform.position = waveSpawn.transform.position;
                     range[randNum].transform.rotation = waveSpawn.transform.rotation;
                     range[randNum].SetActive(true);

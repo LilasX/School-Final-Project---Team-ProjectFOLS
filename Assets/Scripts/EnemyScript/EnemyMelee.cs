@@ -59,6 +59,7 @@ public class EnemyMelee : EnemyMain
 
             //enemyBehaviour.enemyAnim.SetTrigger("IsAttacking");
             GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking"); //For Goblin
+            melee[randNum].GetComponent<BaseMelee>().canDmg = true;
             canAttack = false;
         }
     }

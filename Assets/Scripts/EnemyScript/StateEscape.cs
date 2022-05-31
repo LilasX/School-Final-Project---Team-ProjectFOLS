@@ -17,6 +17,7 @@ public class StateEscape : EnemyState
             enemyBehaviour.agent.speed = 7f;
             enemyBehaviour.agent.acceleration = 12;
             enemyBehaviour.enemyAnim.SetBool("IsRunning", true);
+            enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once = true;
         }
 

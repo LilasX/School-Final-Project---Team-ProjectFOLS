@@ -7,14 +7,15 @@ public enum Striker { player, enemy }
 public class BaseMelee : MonoBehaviour
 {
     private GameManager gameManager;
-    public Striker striker; 
-
+    public Striker striker;
+    public bool canDmg = false;
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>()) 
+        if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>() && canDmg) 
         {
-            other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 10; 
+            other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 10;
+            canDmg = false;
         }
         if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         {
@@ -24,6 +25,11 @@ public class BaseMelee : MonoBehaviour
             }
             //Debug.Log("Touched");
         }
+        if (other.gameObject.GetComponent<MockTest>() && canDmg)
+        {
+            other.gameObject.GetComponent<MockTest>().hp -= 5;
+            canDmg = false;
+        }
     }
 
 
@@ -31,6 +37,7 @@ public class BaseMelee : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.instance;
+        canDmg = false;
     }
 
     // Update is called once per frame
