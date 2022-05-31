@@ -27,19 +27,11 @@ public class ProjectileManager : MonoBehaviour
             { 
                 other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 5; 
             }
-            else if (other.gameObject.GetComponent<PlayerEntity>().isStealingAttack && other.gameObject.GetComponent<PlayerEntity>().CanReturnAttack)
+            
+            if (other.gameObject.GetComponent<PlayerEntity>().isStealingAttack && !other.gameObject.GetComponent<PlayerEntity>().hasReturnedAttack) // A REVOIR
             {
                 other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 5;
             }
-            //else
-            //{
-            //    other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP = other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP;
-            //}
-
-            //if (other.gameObject.GetComponent<PlayerEntity>().isStealingAttack && other.gameObject.GetComponent<PlayerEntity>().ReturnFireIndex == 1)
-            //{
-            //    other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP = other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP;
-            //}
         }
     }
 

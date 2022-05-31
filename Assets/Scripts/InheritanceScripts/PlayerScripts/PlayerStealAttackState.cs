@@ -21,23 +21,23 @@ public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
 
     private void OnReturningAttack()
     {
-        if (playerEntityInstance.AttackToReturn != null)
+        if (playerEntityInstance.CanReturnAttack)
         {
-            if (playerEntityInstance.AttackToReturn.gameObject.GetComponent<ProjectileManager>().projectileType == ProjectileType.sphere)
-            {
-                if (playerEntityInstance.CanReturnAttack)
+
+                playerEntityInstance.CanReturnAttack = false;
+                playerEntityInstance.Animator.SetBool("Spell", true);
+                GameObject gameObj = Instantiate(gameManager.bullet, playerEntityInstance.transform.position + playerEntityInstance.transform.forward * 2f, Quaternion.identity); //Instantiation du projectile
+                gameObj.GetComponent<Rigidbody>().AddForce((playerEntityInstance.transform.forward * 2f) * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
+
+                playerEntityInstance.hasReturnedAttack = true;
+                Debug.Log(playerEntityInstance.hasReturnedAttack);
+
+                if (playerEntityInstance.hasReturnedAttack)
                 {
-                    //if (playerEntityInstance.IsReturningAttack)
-                    //{
-                        playerEntityInstance.CanReturnAttack = false;
-                        playerEntityInstance.Animator.SetBool("Spell", true);
-                        GameObject gameObj = Instantiate(gameManager.bullet, playerEntityInstance.transform.position + playerEntityInstance.transform.forward * 2f, Quaternion.identity); //Instantiation du projectile
-                        gameObj.GetComponent<Rigidbody>().AddForce((playerEntityInstance.transform.forward * 2f) * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
-                        //playerEntityInstance.ReturnFireIndex = 0;
-                        //playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-                    //}
+                    playerEntityInstance.ReturnFireIndex = 0;
+                    playerEntityInstance.hasReturnedAttack = false;
+                    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
                 }
-            }
         }
     }
 
@@ -79,10 +79,11 @@ public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
     public void OnUpdate()
     {
         //Stealing Attack
-        if (playerEntityInstance.IsReturningAttack && playerEntityInstance.ReturnFireIndex == 0 && !playerEntityInstance.CanReturnAttack)
+        if (playerEntityInstance.IsReturningAttack && playerEntityInstance.ReturnFireIndex == 0) //&& !playerEntityInstance.CanReturnAttack)
         {
             playerEntityInstance.ReturnFireIndex = 1;
         }
+
 
         if (playerEntityInstance.ReturnFireIndex == 1)
         {
@@ -93,14 +94,10 @@ public class PlayerStealAttackState : MonoBehaviour, IPlayerBaseState
         //Returning Attack
         if (playerEntityInstance.IsReturningAttack && playerEntityInstance.ReturnFireIndex == 2)
         {
-            //StartCoroutine(ResetFireIndex());
             Debug.Log("IS RETURNING ATTACK");
-            playerEntityInstance.hasReturnedAttack = true;
             OnReturningAttack();
-            //playerEntityInstance.Animator.SetBool("Spell", false);
-            //playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-
         }
+
 
 
 

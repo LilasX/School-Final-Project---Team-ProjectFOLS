@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public CharacterController myCharacter;
     public CinemachineVirtualCamera cam;
     public GameObject bullet;
+    public GameObject fireSpell;
     public GameObject fireBurstVfx;
 
     private void Awake()
