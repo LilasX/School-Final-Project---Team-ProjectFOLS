@@ -18,7 +18,8 @@ public class PlayerEntity : PhysicalEntity
     private float zAxis;
 
     [Header("Movement Attributes")]
-    private float speed = 5f;
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float resetSpeedValue = 3f;
     private bool isRunning;
     [SerializeField] private float runningSpeed = 10f;
     private bool isDodging;
@@ -110,7 +111,7 @@ public class PlayerEntity : PhysicalEntity
     #region Encapsulation
     public CharacterController MyCharacter { get => myCharacter; set => myCharacter = value; }
     public CinemachineVirtualCamera Cam { get => cam; set => cam = value; }
-    public Vector3 Move { get => move; set => move = value; }
+    public new Vector3 Move { get => move; set => move = value; }
     public float XAxis { get => xAxis; set => xAxis = value; }
     public float ZAxis { get => zAxis; set => zAxis = value; }
     public float Speed { get => speed; set => speed = value; }
@@ -177,6 +178,7 @@ public class PlayerEntity : PhysicalEntity
     private PlayerRangedAttackState rangedAttackState;
     private PlayerMeleeState meleeState;
     private PlayerStealAttackState stealAttackState;
+    private PlayerDeathState deathState;
 
     public PlayerDefaultState DefaultState { get => defaultState; }
     public PlayerJumpState JumpState { get => jumpState; }
@@ -186,6 +188,8 @@ public class PlayerEntity : PhysicalEntity
     public PlayerRangedAttackState RangedAttackState { get => rangedAttackState; }
     public PlayerMeleeState MeleeState { get => meleeState; }
     public PlayerStealAttackState StealAttackState { get => stealAttackState; set => stealAttackState = value; }
+    public PlayerDeathState DeathState { get => deathState; set => deathState = value; }
+    public float ResetSpeedValue { get => resetSpeedValue; set => resetSpeedValue = value; }
     #endregion
 
 
@@ -207,6 +211,7 @@ public class PlayerEntity : PhysicalEntity
         rangedAttackState = new PlayerRangedAttackState(this, playerState);
         meleeState = new PlayerMeleeState(this, playerState);
         stealAttackState = new PlayerStealAttackState(this, playerState);
+        deathState = new PlayerDeathState(this, playerState);
 
         playerState = new PlayerStateMachine(DefaultState);
     }
@@ -226,6 +231,13 @@ public class PlayerEntity : PhysicalEntity
     public override void OnDeath()
     {
         //Death animation maybe then Respawn to Hub, maybe get health, mana and stamina to full by default?
+        animator.SetBool("Dead", true);
+        float waitTime = 0f;
+        waitTime += Time.deltaTime;
+        if (waitTime >= 2.5f)
+        {
+            animator.SetBool("Dead", false);
+        }
     }
 
     public override void OnHurt(int damage)
@@ -289,13 +301,13 @@ public class PlayerEntity : PhysicalEntity
         else if (GetCurrentHP <= 0)
         {
             GetCurrentHP = 0;
-            animator.SetBool("Dead", true);
-            float waitTime = 0f;
-            waitTime += Time.deltaTime;
-            if (waitTime >= 2.5f)
-            {
-                animator.SetBool("Dead", false);
-            }
+            //animator.SetBool("Dead", true);
+            //float waitTime = 0f;
+            //waitTime += Time.deltaTime;
+            //if (waitTime >= 2.5f)
+            //{
+            //    animator.SetBool("Dead", false);
+            //}
         }
     }
 

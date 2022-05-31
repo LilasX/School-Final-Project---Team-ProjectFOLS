@@ -58,7 +58,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         }
         else
         {
-            playerEntityInstance.Speed = 5f; //Valeur de la vitesse en mode Walk
+            playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue; //Valeur de la vitesse en mode Walk
             playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 100f, 10f * Time.deltaTime); //Remplit la barre d'endurance
         }
     }
@@ -133,6 +133,11 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         {
             playerEntityInstance.Animator.SetBool("Spell", false);
             playerEntityInstance.hasFired = false;
+        }
+
+        if(playerEntityInstance.GetCurrentHP <= 0)
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.DeathState);
         }
     }
 

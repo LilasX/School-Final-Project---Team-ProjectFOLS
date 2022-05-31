@@ -13,8 +13,15 @@ public class InputManager : MonoBehaviour
 
     private MyInputAction myInputAction;
     private InputAction meleeAction;
+    private InputAction jumpAction;
+    private InputAction returnAttackAction;
+    private InputAction dodgeAction;
+    private InputAction fireAction;
+    private InputAction shieldAction;
+    private InputAction pickAction;
 
     public static InputManager Instance { get => instance; set => instance = value; }
+
 
     // Start is called before the first frame update
     void Awake()
@@ -31,6 +38,13 @@ public class InputManager : MonoBehaviour
 
         myInputAction = new MyInputAction();
         meleeAction = myInputAction.Player.Melee;
+        returnAttackAction = myInputAction.Player.ReturnAttack;
+        jumpAction = myInputAction.Player.Jump;
+        dodgeAction = myInputAction.Player.Dodge;
+        fireAction = myInputAction.Player.Fire;
+        shieldAction = myInputAction.Player.Shield;
+        pickAction = myInputAction.Player.Pick;
+
     }
 
     private void Start()
@@ -41,16 +55,12 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        meleeAction.Enable();
-        meleeAction.performed += OnMelee;
-        //meleeAction.performed += OnMeleePressed;
-        //meleeAction.canceled += OnMeleeReleased;
+        myInputAction.Enable();
     }
 
     private void OnDisable()
     {
-        //meleeAction.performed += OnMelee;
-        meleeAction.Disable();
+        myInputAction.Disable();
     }
 
     #region Inputs
@@ -62,9 +72,21 @@ public class InputManager : MonoBehaviour
         gameManager.player.GetComponent<PlayerEntity>().ZAxis = gameManager.player.GetComponent<PlayerEntity>().Move.y;
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    //public void OnJump(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsJumping = context.performed;
+    //}
+
+    private void Jump()
     {
-        gameManager.player.GetComponent<PlayerEntity>().IsJumping = context.performed;
+        if (jumpAction.triggered)
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsJumping = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsJumping = false;
+        }
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -72,42 +94,72 @@ public class InputManager : MonoBehaviour
         gameManager.player.GetComponent<PlayerEntity>().IsRunning = context.performed;
     }
 
-    public void OnDodge(InputAction.CallbackContext context)
+    //public void OnDodge(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsDodging = context.performed;
+    //}
+
+    private void Dodge()
     {
-        gameManager.player.GetComponent<PlayerEntity>().IsDodging = context.performed;
+        if(dodgeAction.triggered)
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsDodging = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsDodging = false;
+        }
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    //public void OnFire(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsFiring = context.performed;
+    //}
+
+    private void Fire()
     {
-        gameManager.player.GetComponent<PlayerEntity>().IsFiring = context.performed;
+        if (fireAction.IsPressed())
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsFiring = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsFiring = false;
+        }
     }
 
-    public void OnMelee(InputAction.CallbackContext context)
-    {
-        //player.GetComponent<PlayerMovements>().isUsingMelee = context.performed;
-        gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = context.performed;
+    //public void OnMelee(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = context.performed;
+    //}
 
-        //Debug.Log("use melee");
+    private void Melee()
+    {
+        if (meleeAction.triggered)
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = false;
+        }
     }
 
-    public void OnMeleePressed(InputAction.CallbackContext context)
-    {
-        //player.GetComponent<PlayerMovements>().isUsingMelee = context.performed;
-        gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = true;
+    //public void OnShield(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsUsingShield = context.performed;
+    //}
 
-        //Debug.Log("use melee");
-    }
-
-    public void OnMeleeReleased(InputAction.CallbackContext context)
+    private void Shield()
     {
-        //player.GetComponent<PlayerMovements>().isUsingMelee = context.performed;
-        gameManager.player.GetComponent<PlayerEntity>().IsUsingMelee = false;
-        //Debug.Log("use melee");
-    }
-
-    public void OnShield(InputAction.CallbackContext context)
-    {
-        gameManager.player.GetComponent<PlayerEntity>().IsUsingShield = context.performed;
+        if(shieldAction.IsPressed())
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsUsingShield = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsUsingShield = false;
+        }
     }
 
     public void OnPick(InputAction.CallbackContext context)
@@ -115,16 +167,46 @@ public class InputManager : MonoBehaviour
         gameManager.player.GetComponent<PlayerEntity>().IsPicking = context.performed;
     }
 
-    public void OnReturningAttack(InputAction.CallbackContext context)
+    //private void Pick()
+    //{
+    //    if(pickAction.triggered)
+    //    {
+    //        gameManager.player.GetComponent<PlayerEntity>().IsPicking = true;
+    //    }
+    //    else
+    //    {
+    //        gameManager.player.GetComponent<PlayerEntity>().IsPicking = false;
+    //    }
+    //}
+
+    //public void OnReturningAttack(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = context.performed;
+    //}
+
+    private void ReturningAttack()
     {
-        gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = context.performed;
-        //gameManager.player.GetComponent<PlayerEntity>().ReturnFireIndex++;
+        if(returnAttackAction.triggered)
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = false;
+        }
     }
+
     #endregion
 
     // Update is called once per frame
     void Update()
     {
-
+        Jump();
+        Melee();
+        ReturningAttack();
+        Dodge();
+        Fire();
+        Shield();
+        //Pick();
     }
 }

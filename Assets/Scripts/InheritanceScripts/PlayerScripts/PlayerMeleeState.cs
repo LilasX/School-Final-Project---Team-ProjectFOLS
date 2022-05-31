@@ -21,23 +21,10 @@ public class PlayerMeleeState : IPlayerBaseState
         // Using Stick
         if (playerEntityInstance.IsUsingMelee)
         {
-            //if (playerEntityInstance.GetCurrentStamina >= 5)
-            //{
-                playerEntityInstance.HasUsedMelee = true;
-                playerEntityInstance.Stick.SetActive(true);
-                playerEntityInstance.Animator.SetBool("Attack", true);
-                Debug.Log("Attack");
-                //float timer = 0;
-                //timer += Time.deltaTime;
-                //if (timer > 1f)
-                //{
-                //    playerEntityInstance.Stick.SetActive(false);
-                //    playerEntityInstance.Animator.SetBool("Attack", false);
-                //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-                //    timer = 0f;
-                //}
-            //    playerEntityInstance.GetCurrentStamina -= 5f;
-            //}
+            playerEntityInstance.HasUsedMelee = true;
+            playerEntityInstance.Stick.SetActive(true);
+            playerEntityInstance.Animator.SetBool("Attack", true);
+            Debug.Log("Attack");
         }
         else
         {

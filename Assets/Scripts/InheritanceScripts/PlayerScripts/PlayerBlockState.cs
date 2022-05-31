@@ -26,7 +26,7 @@ public class PlayerBlockState : IPlayerBaseState
         if (!playerEntityInstance.IsUsingShield)
         {
             //playerEntityInstance.Shield.SetActive(false);
-            playerEntityInstance.Speed = 5f;
+            playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue;
             playerEntityInstance.Animator.SetBool("Block", false);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }

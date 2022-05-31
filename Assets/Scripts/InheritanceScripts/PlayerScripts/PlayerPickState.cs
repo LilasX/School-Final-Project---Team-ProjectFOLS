@@ -28,7 +28,7 @@ public class PlayerPickState : MonoBehaviour, IPlayerBaseState
             {
                 playerEntityInstance.Animator.SetBool("Pick", false);
                 playerEntityInstance.Sword.SetActive(true);
-                playerEntityInstance.Speed = 5f;
+                playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue;
                 playerEntityInstance.TimeToWait = 0f;
                 playerEntityInstance.HasPickedItem = false;
                 playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
