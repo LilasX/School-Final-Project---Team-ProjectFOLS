@@ -25,10 +25,14 @@ public class PlayerEntity : PhysicalEntity
     private float dodgeTime = 0f;
     [SerializeField] private float dodgeSpeed = 20f;
 
-    //  Variables pour l'endurance
+    //  Variables pour l'endurance, points de magie et point de vie
     [SerializeField] private Slider staminaBar;
-    private float currentStamina = 100f;
-    private float maxStamina = 100f;
+    [SerializeField] private float currentStamina = 100f;
+    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private Slider manaBar;
+    [SerializeField] private float currentMana = 100f;
+    [SerializeField] private float maxMana = 100f;
+    [SerializeField] private Slider hpBar;
 
     //  Variables pour la gravité
     public Vector3 velocity;
@@ -42,10 +46,9 @@ public class PlayerEntity : PhysicalEntity
     private bool isFiring = false;
     public bool hasFired = false;
     private float timer;
-    private float fireRate = 1f;
+    private float fireRate = 0.5f;
     [SerializeField] private int bulletVelocity = 15;
-    private int currentMana;
-    private int maxMana;
+
 
     //Variables pour arme courte portée
     [SerializeField] private GameObject stick;
@@ -82,9 +85,6 @@ public class PlayerEntity : PhysicalEntity
     private bool hasPickedItem = false;
     private float timeToWait = 0f;
 
-    //hp test
-    [SerializeField] private Slider hpbar;
-    [SerializeField] private float hp;
 
     private bool meleePerformed = false;
 
@@ -101,6 +101,8 @@ public class PlayerEntity : PhysicalEntity
     public float changeStateDelay = 0;
 
     public bool isStealingAttack = false;
+    public bool hasStolenAttack = false;
+
 
     #endregion
 
@@ -149,11 +151,10 @@ public class PlayerEntity : PhysicalEntity
     public bool IsPicking { get => isPicking; set => isPicking = value; }
     public bool HasPickedItem { get => hasPickedItem; set => hasPickedItem = value; }
     public float TimeToWait { get => timeToWait; set => timeToWait = value; }
-    public Slider Hpbar { get => hpbar; set => hpbar = value; }
-    public float Hp { get => hp; set => hp = value; }
+    public Slider HpBar { get => hpBar; set => hpBar = value; }
     public bool MeleePerformed { get => meleePerformed; set => meleePerformed = value; }
-    public int GetCurrentMana { get => currentMana; set => currentMana = value; }
-    public int GetMaxMana { get => maxMana; set => maxMana = value; }
+    public float GetCurrentMana { get => currentMana; set => currentMana = value; }
+    public float GetMaxMana { get => maxMana; set => maxMana = value; }
     public float GetCurrentStamina { get => currentStamina; set => currentStamina = value; }
     public float GetMaxStamina { get => maxStamina; set => maxStamina = value; }
     public int ReturnFireIndex { get => returnFireIndex; set => returnFireIndex = value; }
@@ -188,19 +189,6 @@ public class PlayerEntity : PhysicalEntity
     #endregion
 
 
-    //private void Awake()
-    //{
-    //    //defaultState = new PlayerDefaultState(this, playerState);
-    //    //jumpState = new PlayerJumpState(this, playerState);
-    //    //dodgeState = new PlayerDodgeState(this, playerState);
-    //    //pickState = new PlayerPickState(this, playerState);
-    //    //blockState = new PlayerBlockState(this, playerState);
-    //    //rangedAttackState = new PlayerRangedAttackState(this, playerState);
-    //    //meleeState = new PlayerMeleeState(this, playerState);
-    //    //stealAttackState = new PlayerStealAttackState(this, playerState);
-
-    //    //playerState = new PlayerStateMachine(DefaultState);
-    //}
 
     // Start is called before the first frame update
     protected override void Start()
@@ -226,17 +214,15 @@ public class PlayerEntity : PhysicalEntity
     // Update is called once per frame
     protected override void Update()
     {
-        OnManagingStamina(); // Manage the stamina bar
+        OnManagingSliders();
 
-        OnManagingHealth();
-
-        OnApplyingGravity();
-
-        IsPlayerGrounded();
+        OnManagingGravity();
 
         playerState.Update(); // Excute the running state update
     }
 
+
+    #region Actions
     public override void OnDeath()
     {
         //Death animation maybe then Respawn to Hub, maybe get health, mana and stamina to full by default?
@@ -261,35 +247,6 @@ public class PlayerEntity : PhysicalEntity
         }
     }
 
-    private void OnManagingStamina()
-    {
-        //Barre d'endurance
-        staminaBar.value = currentStamina;
-        if (currentStamina >= 100) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
-    }
-
-    private void OnManagingHealth()
-    {
-        Hpbar.value = GetCurrentHP;
-        if(GetCurrentHP >= GetMaxHP) { GetCurrentHP = GetMaxHP; } else if (GetCurrentHP <= 0) { GetCurrentHP = 0; }
-    }
-
-    private void OnApplyingGravity()
-    {         
-        // Gravité
-        velocity.y -= GravityForce; //Application de la force de gravité
-        MyCharacter.Move(velocity * Time.deltaTime);
-    }
-
-    private bool IsPlayerGrounded()
-    {
-        RaycastHit hit;
-
-        IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, checkGroundDistance, groundLayerMask);
-
-        return IsGrounded || MyCharacter.isGrounded;
-    }
-
     //Not sure if it's the player that should manage the following methods below...
     public void OnInteract()
     {
@@ -306,19 +263,103 @@ public class PlayerEntity : PhysicalEntity
         //If the player can sell items, Define how and what happens when player sells an item (equipment if implementing the concept for example to the shop)
     }
 
-    private void OnCollisionStay(Collision collision) //OnStealingAttack
+    #endregion
+
+    #region Sliders
+
+    private void OnManagingSliders()
     {
-        if (collision.gameObject.GetComponent<BaseProjectile>())
+        OnManagingStamina(); // Manage the stamina bar
+
+        OnManagingHealth();
+
+        OnManagingMana();
+    }
+    private void OnManagingStamina()
+    {
+        //Barre d'endurance
+        staminaBar.value = currentStamina;
+        if (currentStamina >= 100) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
+    }
+
+    private void OnManagingHealth()
+    {
+        HpBar.value = GetCurrentHP;
+        if (GetCurrentHP >= GetMaxHP) { GetCurrentHP = GetMaxHP; }
+        else if (GetCurrentHP <= 0)
         {
-            if (!CanReturnAttack)
+            GetCurrentHP = 0;
+            animator.SetBool("Dead", true);
+            float waitTime = 0f;
+            waitTime += Time.deltaTime;
+            if (waitTime >= 2.5f)
             {
-                collision.gameObject.SetActive(false);
-                collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                AttackToReturn = collision.gameObject;
-                CanReturnAttack = true;
-                Debug.Log("Colliding");
+                animator.SetBool("Dead", false);
             }
         }
+    }
+
+    private void OnManagingMana()
+    {
+        //Barre d'endurance
+        manaBar.value = GetCurrentMana;
+        if (GetCurrentMana >= 100) { GetCurrentMana = GetMaxMana; } else if (GetCurrentMana <= 0) { GetCurrentMana = 0; }
+    }
+    #endregion
+
+    #region Gravity + Gounded
+
+    private void OnManagingGravity()
+    {
+        OnApplyingGravity();
+        IsPlayerGrounded();
+    }
+
+    private void OnApplyingGravity()
+    {
+        // Gravité
+        velocity.y -= GravityForce; //Application de la force de gravité
+        MyCharacter.Move(velocity * Time.deltaTime);
+    }
+
+    private bool IsPlayerGrounded()
+    {
+        RaycastHit hit;
+
+        IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, checkGroundDistance, groundLayerMask);
+
+        return IsGrounded || MyCharacter.isGrounded;
+    }
+
+    #endregion
+
+    #region Collisions and Triggers
+
+    private void OnCollisionStay(Collision collision) //OnStealingAttack
+    {
+        //if (collision.gameObject.GetComponent<ProjectileManager>())
+        //{
+        //    if (!CanReturnAttack)
+        //    {
+        //        collision.gameObject.SetActive(false);
+        //        collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        //        AttackToReturn = collision.gameObject;
+        //        CanReturnAttack = true;
+        //        Debug.Log("Colliding");
+        //    }
+        //}
+
+        //if (collision.gameObject.GetComponent<BaseProjectile>())
+        //{
+        //    if (!CanReturnAttack)
+        //    {
+        //        collision.gameObject.SetActive(false);
+        //        collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        //        AttackToReturn = collision.gameObject;
+        //        CanReturnAttack = true;
+        //        Debug.Log("Colliding");
+        //    }
+        //}
     }
 
     private void OnTriggerStay(Collider other) //OnPickingItem
@@ -336,6 +377,18 @@ public class PlayerEntity : PhysicalEntity
                     Destroy(other.gameObject);
                 }
             }
+
+            if (other.gameObject.GetComponent<ProjectileManager>())
+            {
+                if (!CanReturnAttack)
+                {
+                    other.gameObject.SetActive(false);
+                    other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                    AttackToReturn = other.gameObject;
+                    CanReturnAttack = true;
+                    Debug.Log("Colliding");
+                }
+            }
         }
     }
 
@@ -349,6 +402,8 @@ public class PlayerEntity : PhysicalEntity
             }
         }
     }
+
+    #endregion
 
 
 

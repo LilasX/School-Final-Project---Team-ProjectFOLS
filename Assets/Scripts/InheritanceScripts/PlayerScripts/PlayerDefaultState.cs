@@ -132,6 +132,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         if (playerEntityInstance.hasFired)
         {
             playerEntityInstance.Animator.SetBool("Spell", false);
+            playerEntityInstance.hasFired = false;
         }
     }
 
