@@ -89,14 +89,19 @@ public class LootBox : MonoBehaviour
     /// </summary>
     public event Action <GameObject[]> OnBoxOpen;
 
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.instance;
         // gets the animator
         animator = GetComponent<Animator>();
 
         // set the animation to bounce or not
         BounceBox(bouncingBox);
+
+        inventoryScript = gameManager.inventoryscript;
     }
 
     /// <summary>

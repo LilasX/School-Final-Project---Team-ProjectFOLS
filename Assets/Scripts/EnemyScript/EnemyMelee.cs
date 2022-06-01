@@ -15,6 +15,7 @@ public class EnemyMelee : EnemyMain
     public MeleeWeapon typeMelee;
     private float timer;
     private int randNum;
+    public GameObject coin;
 
     public bool attack; //Testing Attack Purpose in Inspector
 
@@ -96,6 +97,7 @@ public class EnemyMelee : EnemyMain
     public override void OnDeath()
     {
         transform.position = posOrigin.position;
+        CoinDrop();
         //DropItem();
         waveSpawnerScript.EnemyCount(-1);
         gameObject.SetActive(false);
@@ -114,6 +116,16 @@ public class EnemyMelee : EnemyMain
     public override void DropItem() 
     {
         drop.transform.position = transform.position; 
+    }
+
+    public void CoinDrop()
+    {
+        int ranNum = Random.Range(0, 100);
+
+        if (ranNum <= 24)
+        {
+            Instantiate(coin, this.transform.position, this.transform.rotation);
+        }
     }
 
     public override void DisplayHealthBar() 

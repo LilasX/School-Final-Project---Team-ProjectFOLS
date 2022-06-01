@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject bullet;
     public GameObject fireSpell;
     public GameObject fireBurstVfx;
+    public Inventory inventoryscript;
 
     private void Awake()
     {

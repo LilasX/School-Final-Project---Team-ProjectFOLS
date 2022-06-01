@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         coinsText.text = coins.ToString();
-        gemsText.text = coins.ToString();
+        gemsText.text = gems.ToString();
     }
 
     public void CoinPickup()

@@ -15,6 +15,7 @@ public class EnemyBehaviour : MonoBehaviour
     //private Vector3 wanderPos; 
     //private float wanderDistance; 
     public GameObject player;
+    public GameManager manager;
     //private float playerDistance;
 
     //public bool attack; //Testing Attack Purpose
@@ -104,7 +105,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (other.GetComponent<PlayerEntity>())
         {
             //SetState(BehaviourState.pursue);
-            player = other.gameObject; 
+            //player = other.gameObject; 
             canSeePlayer = true; 
         }
     }
@@ -130,12 +131,14 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameManager.instance;
         currState = stateWander;
         if (!spawningBox)
         {
             //boundBox.center = gameObject.transform.position;
             //boundBox.extents = new Vector3(); //for BoundBox of Enemy in the arena //Have WaveSpawner Keep Vector3 for extents
         }
+        player = manager.player;
         //SetState(initialState); 
     }
 
