@@ -9,7 +9,8 @@ public class EnemyBehaviour : MonoBehaviour
 {
    // public BehaviourState initialState; 
     //public BehaviourState currentState = BehaviourState.none; 
-    public Bounds boundBox; 
+    public Bounds boundBox;
+    public bool spawningBox = false;
     public NavMeshAgent agent; 
     //private Vector3 wanderPos; 
     //private float wanderDistance; 
@@ -108,6 +109,13 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    public void SetBoundBox (Bounds spawnBoundBox)
+    {
+        boundBox.center = spawnBoundBox.center;
+        boundBox.extents = spawnBoundBox.extents;
+        spawningBox = true;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow; 
@@ -123,6 +131,11 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         currState = stateWander;
+        if (!spawningBox)
+        {
+            //boundBox.center = gameObject.transform.position;
+            //boundBox.extents = new Vector3(); //for BoundBox of Enemy in the arena //Have WaveSpawner Keep Vector3 for extents
+        }
         //SetState(initialState); 
     }
 

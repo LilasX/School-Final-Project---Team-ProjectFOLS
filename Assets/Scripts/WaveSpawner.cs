@@ -19,9 +19,13 @@ public class WaveSpawner : MonoBehaviour
         private int enemyNumber = 0;
 
         public Transform[] spawnPoints;
+
+        public Bounds boundBox; //Added. For BoundBox for WanderState and EscapeState to be Precise. Seng
         
         public Transform[] rewardsList;
+    
         public Transform[] rewardSpawnPoints;
+        public int randNum; 
 
         public float timeBetweenWaves = 5f;
         public float waveCountdown;
@@ -132,8 +136,10 @@ public class WaveSpawner : MonoBehaviour
             {
                 Debug.LogError("No spawn points referenced");
             }
-            
-            Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+            randNum = Random.Range(0, spawnPoints.Length);
+            Transform _sp = spawnPoints[randNum];
+            _enemy.GetComponent<EnemyBehaviour>().SetBoundBox(boundBox); //Added. To send BoundBox of Spawner to Enemy. Seng
             Instantiate(_enemy, _sp.position, _sp.rotation); 
         }
 
