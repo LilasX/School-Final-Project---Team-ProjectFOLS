@@ -179,6 +179,7 @@ public class PlayerEntity : PhysicalEntity
     private PlayerMeleeState meleeState;
     private PlayerStealAttackState stealAttackState;
     private PlayerDeathState deathState;
+    private PlayerKnockedState knockedState;
 
     public PlayerDefaultState DefaultState { get => defaultState; }
     public PlayerJumpState JumpState { get => jumpState; }
@@ -189,6 +190,7 @@ public class PlayerEntity : PhysicalEntity
     public PlayerMeleeState MeleeState { get => meleeState; }
     public PlayerStealAttackState StealAttackState { get => stealAttackState; set => stealAttackState = value; }
     public PlayerDeathState DeathState { get => deathState; set => deathState = value; }
+    public PlayerKnockedState KnockedState { get => knockedState; set => knockedState = value; }
     public float ResetSpeedValue { get => resetSpeedValue; set => resetSpeedValue = value; }
     #endregion
 
@@ -212,6 +214,7 @@ public class PlayerEntity : PhysicalEntity
         meleeState = new PlayerMeleeState(this, playerState);
         stealAttackState = new PlayerStealAttackState(this, playerState);
         deathState = new PlayerDeathState(this, playerState);
+        knockedState = new PlayerKnockedState(this, playerState);
 
         playerState = new PlayerStateMachine(DefaultState);
     }

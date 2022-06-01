@@ -10,6 +10,7 @@ public class BaseMelee : MonoBehaviour
     public Striker striker;
     public bool canDmg = false;
 
+
     private void OnTriggerEnter(Collider other) 
     {
         if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>() && canDmg) 
