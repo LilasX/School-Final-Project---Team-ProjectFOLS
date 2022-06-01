@@ -27,11 +27,15 @@ public class Loot
 /// </summary>
 public enum OpeningMethods { OpenOnCollision, OpenOnKeyPress, OpenOnTouch }
 
+
 /// <summary>
 /// Loot Box class.
 /// </summary>
 public class LootBox : MonoBehaviour
 {
+
+    Inventory inventoryScript;
+
     /// <summary>
     /// How should the player open the box?
     /// </summary>
@@ -153,6 +157,8 @@ public class LootBox : MonoBehaviour
 
         // empty the box
         boxContents.Clear();
+
+        inventoryScript.CommonChest();
 
         // calls the OnBoxOpen event and deliver the
         // earned GameObjects on temp list
