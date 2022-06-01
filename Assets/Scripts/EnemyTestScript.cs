@@ -7,6 +7,8 @@ public class EnemyTestScript : MonoBehaviour
     WaveSpawner waveSpawnerScript;
     public bool Alive = true;
 
+    public GameObject coin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,9 @@ public class EnemyTestScript : MonoBehaviour
         if (Alive == false)
         {
             waveSpawnerScript.EnemyCount(-1);
+            CoinDrop();
             gameObject.SetActive(false);
+
         }
     }
 
@@ -29,6 +33,16 @@ public class EnemyTestScript : MonoBehaviour
         {
             waveSpawnerScript.EnemyCount(-1);
             gameObject.SetActive(false);
+        }
+    }
+
+    public void CoinDrop()
+    {
+        int ranNum = Random.Range(0,99);
+
+        if (ranNum <= 24)
+        {
+            Instantiate(coin, this.transform.position, this.transform.rotation);
         }
     }
 }

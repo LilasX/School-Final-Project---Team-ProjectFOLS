@@ -42,4 +42,13 @@ public class SwingingAxe : MonoBehaviour
             motionCountDown = delay;
         }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerEntity>())
+        {
+            //Play knockback animation
+            other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 20;
+        }
+    }
 }
