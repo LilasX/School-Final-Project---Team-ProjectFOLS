@@ -399,6 +399,7 @@ MonoBehaviour:
   stateEscape: {fileID: 1752756849571098719}
   statePursue: {fileID: 1752756847888944543}
   playerDistance: 0
+  once: 0
 --- !u!1 &1752756848856197117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,7 +2586,7 @@ Transform:
   m_GameObject: {fileID: 8063936023394381340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.27, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8063936023394117240}
@@ -2680,8 +2681,10 @@ MonoBehaviour:
   boundBox:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  spawningBox: 0
   agent: {fileID: 8063936023394082163}
   player: {fileID: 0}
+  manager: {fileID: 0}
   enemyAnim: {fileID: 8063936023387003820}
   currState: {fileID: 1752756848856197116}
   stateWander: {fileID: 1752756848856197116}

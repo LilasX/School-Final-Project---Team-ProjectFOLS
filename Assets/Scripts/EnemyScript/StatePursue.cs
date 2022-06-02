@@ -13,8 +13,8 @@ public class StatePursue : EnemyState
 	{
 		if (!once)
 		{
-			enemyBehaviour.agent.speed = 3.5f;
-			enemyBehaviour.agent.acceleration = 8f; 
+			enemyBehaviour.agent.speed = 2f;
+			enemyBehaviour.agent.acceleration = 4f; 
 			enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
 			enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
 			once = true;

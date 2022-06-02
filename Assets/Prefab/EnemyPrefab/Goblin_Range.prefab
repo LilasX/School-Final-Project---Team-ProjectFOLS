@@ -3087,7 +3087,7 @@ Transform:
   m_GameObject: {fileID: 1481591108628897001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1481591107202898758}
@@ -3182,8 +3182,10 @@ MonoBehaviour:
   boundBox:
     m_Center: {x: 0, y: 2, z: 0}
     m_Extent: {x: 20, y: 1, z: 20}
+  spawningBox: 0
   agent: {fileID: 1481591108628897002}
   player: {fileID: 0}
+  manager: {fileID: 0}
   enemyAnim: {fileID: 1481591108628897015}
   currState: {fileID: 1481591108803555755}
   stateWander: {fileID: 1481591108803555755}

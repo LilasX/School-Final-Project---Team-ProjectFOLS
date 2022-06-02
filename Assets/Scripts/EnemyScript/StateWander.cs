@@ -15,8 +15,8 @@ public class StateWander : EnemyState
     {
         if (!once)
         {
-            enemyBehaviour.agent.speed = 2f;
-            enemyBehaviour.agent.acceleration = 4;
+            enemyBehaviour.agent.speed = 1f;
+            enemyBehaviour.agent.acceleration = 2f;
             enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
             once = true;

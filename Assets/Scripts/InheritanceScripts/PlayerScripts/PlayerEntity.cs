@@ -229,7 +229,6 @@ public class PlayerEntity : PhysicalEntity
         playerState.Update(); // Excute the running state update
     }
 
-
     #region Actions
     public override void OnDeath()
     {

@@ -9,6 +9,8 @@ public class PlayerMeleeState : IPlayerBaseState
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
+    private float timerDmg;
+
     public PlayerMeleeState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
         gameManager = GameManager.instance;
@@ -30,7 +32,7 @@ public class PlayerMeleeState : IPlayerBaseState
         {
             playerEntityInstance.Stick.SetActive(false);
             playerEntityInstance.Animator.SetBool("Attack", false);
-            playerEntityInstance.HasUsedMelee = false;
+            //playerEntityInstance.HasUsedMelee = false;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
+  canDmg: 0
 --- !u!54 &8677266001250683193
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 3579076600052681954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.64, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3579076600052542974}
@@ -254,8 +255,10 @@ MonoBehaviour:
   boundBox:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  spawningBox: 0
   agent: {fileID: 3579076600062096023}
   player: {fileID: 0}
+  manager: {fileID: 0}
   enemyAnim: {fileID: 3579076600062096018}
   currState: {fileID: 7251639271291498042}
   stateWander: {fileID: 7251639271291498042}
@@ -283,6 +286,7 @@ MonoBehaviour:
   - {fileID: 3205221632402484855}
   meleeAnim: {fileID: 0}
   typeMelee: 0
+  coin: {fileID: 0}
   attack: 0
 --- !u!1 &3579076600052684012
 GameObject:
@@ -3108,6 +3112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
+  canDmg: 0
 --- !u!54 &4955844075275769792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3171,6 +3176,7 @@ MonoBehaviour:
   stateEscape: {fileID: 7251639272535500794}
   statePursue: {fileID: 7251639271889053193}
   playerDistance: 0
+  once: 0
 --- !u!1 &7251639271291498043
 GameObject:
   m_ObjectHideFlags: 0

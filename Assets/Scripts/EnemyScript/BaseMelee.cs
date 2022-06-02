@@ -23,8 +23,8 @@ public class BaseMelee : MonoBehaviour
             if (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
             {
                 other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
+                gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
             }
-            //Debug.Log("Touched");
         }
         if (other.gameObject.GetComponent<MockTest>() && canDmg)
         {

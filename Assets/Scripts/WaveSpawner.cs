@@ -165,4 +165,10 @@ public class WaveSpawner : MonoBehaviour
     {
         beginWaves = true;
     }
+
+    /*private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(boundBox.center, boundBox.size);
+    }*/
 }

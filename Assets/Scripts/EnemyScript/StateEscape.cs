@@ -14,8 +14,8 @@ public class StateEscape : EnemyState
     {
         if (!once)
         {
-            enemyBehaviour.agent.speed = 7f;
-            enemyBehaviour.agent.acceleration = 12;
+            enemyBehaviour.agent.speed = 3f;
+            enemyBehaviour.agent.acceleration = 6f;
             enemyBehaviour.enemyAnim.SetBool("IsRunning", true);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once = true;
