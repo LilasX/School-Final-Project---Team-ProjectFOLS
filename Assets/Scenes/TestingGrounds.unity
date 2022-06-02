@@ -2051,6 +2051,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1800698955}
+    - target: {fileID: 1481591108628897003, guid: abad618d49a26d34e9bfcbdb26d71538, type: 3}
+      propertyPath: boundBox.m_Center.x
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481591108628897003, guid: abad618d49a26d34e9bfcbdb26d71538, type: 3}
+      propertyPath: boundBox.m_Center.z
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 1481591108628897014, guid: abad618d49a26d34e9bfcbdb26d71538, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -2269,6 +2277,26 @@ PrefabInstance:
       propertyPath: currState
       value: 
       objectReference: {fileID: 37380193}
+    - target: {fileID: 6881588284876657019, guid: bbfdb81d4f04d0349a188cb72f92ba51, type: 3}
+      propertyPath: boundBox.m_Center.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881588284876657019, guid: bbfdb81d4f04d0349a188cb72f92ba51, type: 3}
+      propertyPath: boundBox.m_Center.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881588284876657019, guid: bbfdb81d4f04d0349a188cb72f92ba51, type: 3}
+      propertyPath: boundBox.m_Center.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881588284876657019, guid: bbfdb81d4f04d0349a188cb72f92ba51, type: 3}
+      propertyPath: boundBox.m_Extent.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881588284876657019, guid: bbfdb81d4f04d0349a188cb72f92ba51, type: 3}
+      propertyPath: boundBox.m_Extent.z
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6881588284877145548, guid: bbfdb81d4f04d0349a188cb72f92ba51, type: 3}
       propertyPath: m_Name
       value: Goblin_Melee

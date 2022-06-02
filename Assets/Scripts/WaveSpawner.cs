@@ -20,6 +20,7 @@ public class WaveSpawner : MonoBehaviour
 
         public Transform[] spawnPoints;
 
+    public Transform enemySpawned;
         public Bounds boundBox; //Added. For BoundBox for WanderState and EscapeState to be Precise. Seng
         
         public Transform[] rewardsList;
@@ -139,9 +140,10 @@ public class WaveSpawner : MonoBehaviour
 
             randNum = Random.Range(0, spawnPoints.Length);
             Transform _sp = spawnPoints[randNum];
-            _enemy.GetComponent<EnemyBehaviour>().SetBoundBox(boundBox); //Added. To send BoundBox of Spawner to Enemy. Seng
-            Instantiate(_enemy, _sp.position, _sp.rotation); 
-        }
+            enemySpawned = Instantiate(_enemy, _sp.position, _sp.rotation); 
+            enemySpawned.gameObject.GetComponent<EnemyBehaviour>().SetBoundBox(boundBox); //Added. To send BoundBox of Spawner to Enemy. Seng
+            Debug.Log("Sent BoundBox");
+    }
 
         void SpawnRewards ()
         {
@@ -166,9 +168,9 @@ public class WaveSpawner : MonoBehaviour
         beginWaves = true;
     }
 
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireCube(boundBox.center, boundBox.size);
-    }*/
+    }
 }
