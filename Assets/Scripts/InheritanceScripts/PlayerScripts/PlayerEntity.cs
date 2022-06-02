@@ -28,11 +28,11 @@ public class PlayerEntity : PhysicalEntity
 
     //  Variables pour l'endurance, points de magie et point de vie
     [SerializeField] private Slider staminaBar;
-    [SerializeField] private float currentStamina = 100f;
-    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private float currentStamina;
+    [SerializeField] private float maxStamina;
     [SerializeField] private Slider manaBar;
-    [SerializeField] private float currentMana = 100f;
-    [SerializeField] private float maxMana = 100f;
+    [SerializeField] private float currentMana;
+    [SerializeField] private float maxMana;
     [SerializeField] private Slider hpBar;
 
     //  Variables pour la gravité
@@ -294,7 +294,7 @@ public class PlayerEntity : PhysicalEntity
     {
         //Barre d'endurance
         staminaBar.value = currentStamina;
-        if (currentStamina >= 100) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
+        if (currentStamina >= GetMaxStamina) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
     }
 
     private void OnManagingHealth()
@@ -318,7 +318,7 @@ public class PlayerEntity : PhysicalEntity
     {
         //Barre d'endurance
         manaBar.value = GetCurrentMana;
-        if (GetCurrentMana >= 100) { GetCurrentMana = GetMaxMana; } else if (GetCurrentMana <= 0) { GetCurrentMana = 0; }
+        if (GetCurrentMana >= GetMaxMana) { GetCurrentMana = GetMaxMana; } else if (GetCurrentMana <= 0) { GetCurrentMana = 0; }
     }
     #endregion
 

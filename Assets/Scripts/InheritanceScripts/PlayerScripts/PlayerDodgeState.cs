@@ -27,7 +27,7 @@ public class PlayerDodgeState : IPlayerBaseState
 
         playerEntityInstance.Animator.SetBool("Dive", true);
         playerEntityInstance.Speed = playerEntityInstance.DodgeSpeed;  //Valeur de la vitesse en mode esquive
-        playerEntityInstance.GetCurrentStamina -= 10f;
+        playerEntityInstance.GetCurrentStamina -= 5f;
         playerEntityInstance.DodgeTime += Time.deltaTime;
         if (playerEntityInstance.DodgeTime >= 0.2f)
         {

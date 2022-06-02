@@ -59,7 +59,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         else
         {
             playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue; //Valeur de la vitesse en mode Walk
-            playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 100f, 10f * Time.deltaTime); //Remplit la barre d'endurance
+            playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, playerEntityInstance.GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
         }
     }
 
