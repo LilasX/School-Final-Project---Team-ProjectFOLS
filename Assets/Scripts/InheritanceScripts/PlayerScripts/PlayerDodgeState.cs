@@ -9,7 +9,6 @@ public class PlayerDodgeState : IPlayerBaseState
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
-
     //private Vector3 playerVelocity;
     //private Quaternion playerRotation;
 
