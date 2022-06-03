@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBlockState : IPlayerBaseState
+public class PlayerBlockState : MonoBehaviour, IPlayerBaseState
 {
     private GameManager gameManager;
 
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
+
+
 
     public PlayerBlockState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
@@ -22,8 +24,15 @@ public class PlayerBlockState : IPlayerBaseState
         playerEntityInstance.Animator.SetBool("Block", true);
         playerEntityInstance.Speed = 0f;
 
+        playerEntityInstance.shieldTimer -= Time.deltaTime;
+        if(playerEntityInstance.shieldTimer < 0)
+        {
+            playerEntityInstance.IsUsingShield = false;
+        }
+
         if (!playerEntityInstance.IsUsingShield)
         {
+            playerEntityInstance.hasBlockedAttack = true;
             playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue;
             playerEntityInstance.Animator.SetBool("Block", false);
             playerEntityInstance.vfxCube.SetActive(false);

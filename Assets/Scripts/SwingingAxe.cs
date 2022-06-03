@@ -48,8 +48,13 @@ public class SwingingAxe : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
             //Play knockback animation
-            other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
-            other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 20;
+            
+            if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
+            {
+                other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
+                other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 20;
+            }
+            
         }
     }
 }

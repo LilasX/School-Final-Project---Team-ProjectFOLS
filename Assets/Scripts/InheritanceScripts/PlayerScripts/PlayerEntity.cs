@@ -65,7 +65,7 @@ public class PlayerEntity : PhysicalEntity
     [SerializeField] private GameObject coolDownExample;
     [SerializeField] private Slider coolDownBar;
     [SerializeField] private bool isUsingPower = false;
-    private float powertimer = 10f;
+    private float blockCoolDown = 10f;
 
 
     [SerializeField] private bool canReturnAttack = false;
@@ -114,6 +114,11 @@ public class PlayerEntity : PhysicalEntity
     public GameObject staminaText;
 
 
+    public float shieldTimer = 5f;
+    public bool hasBlockedAttack = false;
+    public GameObject shieldImage;
+
+
     #endregion
 
 
@@ -149,7 +154,7 @@ public class PlayerEntity : PhysicalEntity
     public GameObject CoolDownExample { get => coolDownExample; set => coolDownExample = value; }
     public Slider CoolDownBar { get => coolDownBar; set => coolDownBar = value; }
     public bool IsUsingPower { get => isUsingPower; set => isUsingPower = value; }
-    public float Powertimer { get => powertimer; set => powertimer = value; }
+    public float BlockCoolDown { get => blockCoolDown; set => blockCoolDown = value; }
     public bool CanReturnAttack { get => canReturnAttack; set => canReturnAttack = value; }
     public bool IsReturningAttack { get => isReturningAttack; set => isReturningAttack = value; }
     public GameObject AttackToReturn { get => attackToReturn; set => attackToReturn = value; }

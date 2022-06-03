@@ -87,9 +87,9 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.JumpState);
         }
 
-        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded) //DONE
+        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina > 20f) //DONE
         {
-            playerEntityInstance.GetCurrentStamina -= 5f;
+            playerEntityInstance.GetCurrentStamina -= 20f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DodgeState);
         }
 
@@ -98,11 +98,12 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.PickState);
         }
 
-        if (playerEntityInstance.IsUsingShield && playerEntityInstance.IsGrounded) //DONE
+        if (playerEntityInstance.IsUsingShield && playerEntityInstance.IsGrounded && playerEntityInstance.shieldTimer >= 5) //DONE
         {
             if(playerEntityInstance.GetCurrentMana >= 10)
             {
                 playerEntityInstance.GetCurrentMana -= 10;
+                playerEntityInstance.shieldImage.SetActive(false);
                 playerEntityInstance.playerState.ChangeState(playerEntityInstance.BlockState);
             }
         }
@@ -144,21 +145,28 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             playerEntityInstance.hasFired = false;
         }
 
-        if(playerEntityInstance.GetCurrentHP <= 0)
+        if(playerEntityInstance.hasBlockedAttack)
+        {
+            playerEntityInstance.BlockCoolDown -= Time.deltaTime;
+            if (playerEntityInstance.BlockCoolDown <= 0f)
+            {
+                playerEntityInstance.hasBlockedAttack = false;
+                playerEntityInstance.BlockCoolDown = 10f;
+                playerEntityInstance.shieldTimer = 5f;
+
+                if (playerEntityInstance.BlockCoolDown == 10)
+                {
+                    playerEntityInstance.shieldImage.SetActive(true);
+                }
+            }
+        }
+
+
+
+        if (playerEntityInstance.GetCurrentHP <= 0)
         {
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DeathState);
         }
-
-        //if (playerEntityInstance.IsSlashing && playerEntityInstance.IsGrounded)
-        //{
-        //    slashTimer += Time.deltaTime;
-        //    Slash();
-        //    if(slashTimer >= 1.5f)
-        //    {
-        //        playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 0f);
-        //        slashTimer = 0f;
-        //    }
-        //}
 
         if (playerEntityInstance.IsSlashing && playerEntityInstance.IsGrounded)
         {
