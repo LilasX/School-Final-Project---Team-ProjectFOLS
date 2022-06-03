@@ -69,12 +69,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick",
+                    "name": "Slash",
                     "type": "Button",
                     "id": "495a3418-0fa1-4745-af01-825e0f6d6bc2",
                     "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
+                    "processors": "Normalize(max=0.1)",
+                    "interactions": "Press(pressPoint=0.1)",
                     "initialStateCheck": false
                 },
                 {
@@ -293,7 +293,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Pick",
+                    "action": "Slash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -304,7 +304,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Pick",
+                    "action": "Slash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

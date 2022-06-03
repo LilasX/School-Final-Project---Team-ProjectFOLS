@@ -91,12 +91,12 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pick"",
+                    ""name"": ""Slash"",
                     ""type"": ""Button"",
                     ""id"": ""495a3418-0fa1-4745-af01-825e0f6d6bc2"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
+                    ""processors"": ""Normalize(max=0.1)"",
+                    ""interactions"": ""Press(pressPoint=0.1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -315,7 +315,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Pick"",
+                    ""action"": ""Slash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -326,7 +326,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Pick"",
+                    ""action"": ""Slash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -943,7 +943,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
-        m_Player_Pick = m_Player.FindAction("Pick", throwIfNotFound: true);
+        m_Player_Slash = m_Player.FindAction("Slash", throwIfNotFound: true);
         m_Player_ReturnAttack = m_Player.FindAction("ReturnAttack", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1023,7 +1023,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Melee;
     private readonly InputAction m_Player_Shield;
-    private readonly InputAction m_Player_Pick;
+    private readonly InputAction m_Player_Slash;
     private readonly InputAction m_Player_ReturnAttack;
     public struct PlayerActions
     {
@@ -1036,7 +1036,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputAction @Shield => m_Wrapper.m_Player_Shield;
-        public InputAction @Pick => m_Wrapper.m_Player_Pick;
+        public InputAction @Slash => m_Wrapper.m_Player_Slash;
         public InputAction @ReturnAttack => m_Wrapper.m_Player_ReturnAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1068,9 +1068,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Shield.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
                 @Shield.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
                 @Shield.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
-                @Pick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
-                @Pick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
-                @Pick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
+                @Slash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlash;
+                @Slash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlash;
+                @Slash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlash;
                 @ReturnAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
                 @ReturnAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
                 @ReturnAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
@@ -1099,9 +1099,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Shield.started += instance.OnShield;
                 @Shield.performed += instance.OnShield;
                 @Shield.canceled += instance.OnShield;
-                @Pick.started += instance.OnPick;
-                @Pick.performed += instance.OnPick;
-                @Pick.canceled += instance.OnPick;
+                @Slash.started += instance.OnSlash;
+                @Slash.performed += instance.OnSlash;
+                @Slash.canceled += instance.OnSlash;
                 @ReturnAttack.started += instance.OnReturnAttack;
                 @ReturnAttack.performed += instance.OnReturnAttack;
                 @ReturnAttack.canceled += instance.OnReturnAttack;
@@ -1268,7 +1268,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
-        void OnPick(InputAction.CallbackContext context);
+        void OnSlash(InputAction.CallbackContext context);
         void OnReturnAttack(InputAction.CallbackContext context);
     }
     public interface IUIActions

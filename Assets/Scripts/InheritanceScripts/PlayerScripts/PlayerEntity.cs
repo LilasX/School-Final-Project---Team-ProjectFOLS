@@ -104,6 +104,15 @@ public class PlayerEntity : PhysicalEntity
     public bool isStealingAttack = false;
     public bool hasStolenAttack = false;
 
+    private bool isSlashing = false;
+    public bool hasRequestedSlash = false;
+
+    public GameObject vfxCube;
+
+    public GameObject hpText;
+    public GameObject manaText;
+    public GameObject staminaText;
+
 
     #endregion
 
@@ -161,6 +170,8 @@ public class PlayerEntity : PhysicalEntity
     public int ReturnFireIndex { get => returnFireIndex; set => returnFireIndex = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
     public bool IsCollidingWithItem { get => isCollidingWithItem; set => isCollidingWithItem = value; }
+    public bool IsSlashing { get => isSlashing; set => isSlashing = value; }
+    public float ResetSpeedValue { get => resetSpeedValue; set => resetSpeedValue = value; }
     public PlayerEntity PlayerEntityInstance { get => playerEntityInstance; set => playerEntityInstance = value; }
 
 
@@ -180,6 +191,7 @@ public class PlayerEntity : PhysicalEntity
     private PlayerStealAttackState stealAttackState;
     private PlayerDeathState deathState;
     private PlayerKnockedState knockedState;
+    private PlayerSlashState slashState;
 
     public PlayerDefaultState DefaultState { get => defaultState; }
     public PlayerJumpState JumpState { get => jumpState; }
@@ -191,7 +203,8 @@ public class PlayerEntity : PhysicalEntity
     public PlayerStealAttackState StealAttackState { get => stealAttackState; set => stealAttackState = value; }
     public PlayerDeathState DeathState { get => deathState; set => deathState = value; }
     public PlayerKnockedState KnockedState { get => knockedState; set => knockedState = value; }
-    public float ResetSpeedValue { get => resetSpeedValue; set => resetSpeedValue = value; }
+    public PlayerSlashState SlashState { get => slashState; set => slashState = value; }
+
     #endregion
 
 
@@ -215,6 +228,7 @@ public class PlayerEntity : PhysicalEntity
         stealAttackState = new PlayerStealAttackState(this, playerState);
         deathState = new PlayerDeathState(this, playerState);
         knockedState = new PlayerKnockedState(this, playerState);
+        slashState = new PlayerSlashState(this, playerState);
 
         playerState = new PlayerStateMachine(DefaultState);
     }
@@ -227,6 +241,7 @@ public class PlayerEntity : PhysicalEntity
         OnManagingGravity();
 
         playerState.Update(); // Excute the running state update
+
     }
 
     #region Actions
@@ -244,12 +259,12 @@ public class PlayerEntity : PhysicalEntity
 
     public override void OnHurt(int damage)
     {
-        //Player taking damage
-        GetCurrentHP -= damage;
-        if (GetCurrentHP <= 0)
-        {
-            OnDeath();
-        }
+        ////Player taking damage
+        //GetCurrentHP -= damage;
+        //if (GetCurrentHP <= 0)
+        //{
+        //    OnDeath();
+        //}
     }
 
     public override void OnHeal(int hp)
@@ -292,12 +307,14 @@ public class PlayerEntity : PhysicalEntity
     private void OnManagingStamina()
     {
         //Barre d'endurance
+        staminaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentStamina.ToString("0") + " / " + GetMaxStamina.ToString();
         staminaBar.value = currentStamina;
         if (currentStamina >= GetMaxStamina) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
     }
 
     private void OnManagingHealth()
     {
+        hpText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentHP.ToString("0") + " / " + GetMaxHP.ToString();
         HpBar.value = GetCurrentHP;
         if (GetCurrentHP >= GetMaxHP) { GetCurrentHP = GetMaxHP; }
         else if (GetCurrentHP <= 0)
@@ -316,6 +333,7 @@ public class PlayerEntity : PhysicalEntity
     private void OnManagingMana()
     {
         //Barre d'endurance
+        manaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentMana.ToString("0") + " / " + GetMaxMana.ToString();
         manaBar.value = GetCurrentMana;
         if (GetCurrentMana >= GetMaxMana) { GetCurrentMana = GetMaxMana; } else if (GetCurrentMana <= 0) { GetCurrentMana = 0; }
     }

@@ -18,16 +18,15 @@ public class PlayerBlockState : IPlayerBaseState
 
     private void UseShield()
     {
-   
-            //playerEntityInstance.Shield.SetActive(true);
-            playerEntityInstance.Animator.SetBool("Block", true);
-            playerEntityInstance.Speed = 0f;
+        playerEntityInstance.vfxCube.SetActive(true);
+        playerEntityInstance.Animator.SetBool("Block", true);
+        playerEntityInstance.Speed = 0f;
 
         if (!playerEntityInstance.IsUsingShield)
         {
-            //playerEntityInstance.Shield.SetActive(false);
             playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue;
             playerEntityInstance.Animator.SetBool("Block", false);
+            playerEntityInstance.vfxCube.SetActive(false);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

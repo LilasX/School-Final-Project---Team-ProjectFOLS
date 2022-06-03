@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     private InputAction fireAction;
     private InputAction shieldAction;
     private InputAction pickAction;
+    private InputAction slashAction;
 
     public static InputManager Instance { get => instance; set => instance = value; }
 
@@ -43,7 +44,8 @@ public class InputManager : MonoBehaviour
         dodgeAction = myInputAction.Player.Dodge;
         fireAction = myInputAction.Player.Fire;
         shieldAction = myInputAction.Player.Shield;
-        pickAction = myInputAction.Player.Pick;
+        //pickAction = myInputAction.Player.Pick;
+        slashAction = myInputAction.Player.Slash;
 
     }
 
@@ -196,6 +198,23 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    //public void OnSlash(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsSlashing = context.performed;
+    //}
+
+    private void Slash()
+    {
+        if (slashAction.triggered)
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsSlashing = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().IsSlashing = false;
+        }
+    }
+
     #endregion
 
     // Update is called once per frame
@@ -208,5 +227,6 @@ public class InputManager : MonoBehaviour
         Fire();
         Shield();
         //Pick();
+        Slash();
     }
 }

@@ -15,8 +15,15 @@ public class BaseMelee : MonoBehaviour
     {
         if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>() && canDmg) 
         {
-            other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 10;
-            canDmg = false;
+            if(other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
+            {
+                other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP = other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP;
+            }
+            else
+            {
+                other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 10;
+                canDmg = false;
+            }
         }
         if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         {
@@ -24,6 +31,12 @@ public class BaseMelee : MonoBehaviour
             {
                 other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
                 gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
+            }
+
+            if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
+            {
+                other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 10;
+                //gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
             }
         }
         if (other.gameObject.GetComponent<MockTest>() && canDmg)

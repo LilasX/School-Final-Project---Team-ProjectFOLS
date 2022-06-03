@@ -9,6 +9,8 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
+    float slashTimer = 0f;
+
     public PlayerDefaultState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
         gameManager = GameManager.instance;
@@ -87,6 +89,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
         if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded) //DONE
         {
+            playerEntityInstance.GetCurrentStamina -= 5f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DodgeState);
         }
 
@@ -97,7 +100,11 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
         if (playerEntityInstance.IsUsingShield && playerEntityInstance.IsGrounded) //DONE
         {
-            playerEntityInstance.playerState.ChangeState(playerEntityInstance.BlockState);
+            if(playerEntityInstance.GetCurrentMana >= 10)
+            {
+                playerEntityInstance.GetCurrentMana -= 10;
+                playerEntityInstance.playerState.ChangeState(playerEntityInstance.BlockState);
+            }
         }
 
         if (playerEntityInstance.IsFiring && playerEntityInstance.IsGrounded) //DONE
@@ -115,6 +122,8 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         {
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.StealAttackState);
         }
+
+
 
         if (playerEntityInstance.hasReturnedAttack)
         {
@@ -139,13 +148,39 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         {
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DeathState);
         }
+
+        //if (playerEntityInstance.IsSlashing && playerEntityInstance.IsGrounded)
+        //{
+        //    slashTimer += Time.deltaTime;
+        //    Slash();
+        //    if(slashTimer >= 1.5f)
+        //    {
+        //        playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 0f);
+        //        slashTimer = 0f;
+        //    }
+        //}
+
+        if (playerEntityInstance.IsSlashing && playerEntityInstance.IsGrounded)
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.SlashState);
+        }
+
+        if (playerEntityInstance.hasRequestedSlash)
+        {
+            slashTimer += Time.deltaTime;
+            if (slashTimer >= 1.5f)
+            {
+                playerEntityInstance.hasRequestedSlash = false;
+                playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 0f);
+                slashTimer = 0f;
+            }   
+        }
     }
 
-    //public IEnumerator ResetFireIndex()
+    //private void Slash()
     //{
-    //    yield return new WaitForSeconds(1f);
-    //    playerEntityInstance.ReturnFireIndex = 0;
-    //    playerEntityInstance.hasReturnedAttack = false;
+    //    playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 1f);
+    //    playerEntityInstance.Animator.SetTrigger("Slash");
     //}
 
 }
