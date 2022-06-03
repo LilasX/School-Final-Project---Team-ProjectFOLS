@@ -87,9 +87,9 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.JumpState);
         }
 
-        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded) //DONE
+        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina > 20f) //DONE
         {
-            playerEntityInstance.GetCurrentStamina -= 5f;
+            playerEntityInstance.GetCurrentStamina -= 20f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DodgeState);
         }
 
