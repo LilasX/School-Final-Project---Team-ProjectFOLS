@@ -9,6 +9,7 @@ public class StateAttack : EnemyState
     public float playerDistance;
     private Vector3 target;
     public bool once = false;
+    private float timerAtk;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -20,7 +21,12 @@ public class StateAttack : EnemyState
             once = true;
         }
 
-        enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
+        if (timerAtk >= 3f)
+        {
+            enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
+            timerAtk = 0f;
+        }
+        timerAtk += Time.deltaTime;
 
         //Look At Player
         target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);

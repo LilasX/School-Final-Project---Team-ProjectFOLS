@@ -6,8 +6,7 @@ public enum MeleeWeapon { Knife, Sword, Spear, Hammer }
 
 public class EnemyMelee : EnemyMain
 {
-    WaveSpawner waveSpawnerScript;
-
+    public GameObject waveSpawnerObject;
 
     public bool canAttack; 
     public GameObject[] melee = new GameObject[2];
@@ -99,7 +98,7 @@ public class EnemyMelee : EnemyMain
         transform.position = posOrigin.position;
         CoinDrop();
         //DropItem();
-        waveSpawnerScript.EnemyCount(-1);
+        waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
         gameObject.SetActive(false);
     }
 
@@ -137,7 +136,7 @@ public class EnemyMelee : EnemyMain
     protected override void Start()
     {
         InitializeEnemy();
-        waveSpawnerScript = FindObjectOfType<WaveSpawner>();
+        //waveSpawnerScript = FindObjectOfType<WaveSpawner>();
 
     }
 

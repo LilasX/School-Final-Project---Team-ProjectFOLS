@@ -2701,8 +2701,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b216036fc3e57c5499986dab986ab909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  maxHP: 0
+  currentHP: 60
+  maxHP: 60
   distance: 0
   slider: {fileID: 1752756847930241974}
   drop: {fileID: 0}

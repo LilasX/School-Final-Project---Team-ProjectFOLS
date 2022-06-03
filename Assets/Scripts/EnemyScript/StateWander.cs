@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StateWander : EnemyState
 {
@@ -9,7 +10,9 @@ public class StateWander : EnemyState
     public Vector3 wanderPos;
     public float wanderDistance = 0;
     public bool once = false;
-
+    public bool found = false;
+    public float randomX;
+    public float randomZ;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -24,9 +27,25 @@ public class StateWander : EnemyState
 
         if (wanderDistance <= enemyBehaviour.agent.stoppingDistance) 
         {
-            float randomX = Random.Range(enemyBehaviour.boundBox.center.x - enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius, 
+            /*do //To Prevent WanderPos being Outside of NavMesh
+            {
+                randomX = Random.Range(enemyBehaviour.boundBox.center.x - enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius,
+                    enemyBehaviour.boundBox.center.x + enemyBehaviour.boundBox.extents.x - enemyBehaviour.agent.radius);
+                randomZ = Random.Range(enemyBehaviour.boundBox.center.z - enemyBehaviour.boundBox.extents.z + enemyBehaviour.agent.radius,
+                    enemyBehaviour.boundBox.center.z + enemyBehaviour.boundBox.extents.z - enemyBehaviour.agent.radius);
+                wanderPos = new Vector3(randomX, transform.position.y, randomZ);
+
+                NavMeshHit hit;
+                if (NavMesh.SamplePosition(wanderPos, out hit, 1f, NavMesh.AllAreas))
+                {
+                    wanderPos = hit.position;
+                    found = true;
+                }
+            } while (!found);*/
+
+            randomX = Random.Range(enemyBehaviour.boundBox.center.x - enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius, 
                 enemyBehaviour.boundBox.center.x + enemyBehaviour.boundBox.extents.x - enemyBehaviour.agent.radius); 
-            float randomZ = Random.Range(enemyBehaviour.boundBox.center.z - enemyBehaviour.boundBox.extents.z + enemyBehaviour.agent.radius, 
+            randomZ = Random.Range(enemyBehaviour.boundBox.center.z - enemyBehaviour.boundBox.extents.z + enemyBehaviour.agent.radius, 
                 enemyBehaviour.boundBox.center.z + enemyBehaviour.boundBox.extents.z - enemyBehaviour.agent.radius); 
             wanderPos = new Vector3(randomX, transform.position.y, randomZ);
 
