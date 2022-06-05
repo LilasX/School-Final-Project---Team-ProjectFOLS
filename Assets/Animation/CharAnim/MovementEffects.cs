@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DustMovement : MonoBehaviour
+public class MovementEffects : MonoBehaviour
 {
     public GameObject leftFoot;
     public GameObject rightFoot;
     public GameObject dustObject;
     private ParticleSystem dust;
+
+    public AudioClip footstepLeft;
+    public AudioClip footstepRight;
+    public AudioSource audioMove;
 
     private Vector3 old_pos;
     private bool isMoving = false;
@@ -33,24 +37,26 @@ public class DustMovement : MonoBehaviour
         old_pos = transform.position;
     }
 
-    public void DustMoveLeft()
+    public void MoveLeft()
     {
         if(isMoving)
         {
             dustObject.transform.position = leftFoot.transform.position;
             dust.Play();
-            Debug.Log("Left");
+            audioMove.PlayOneShot(footstepLeft);
+            //Debug.Log("Left");
         }
         
     }
 
-    public void DustMoveRight()
+    public void MoveRight()
     {
         if (isMoving)
         {
             dustObject.transform.position = rightFoot.transform.position;
             dust.Play();
-            Debug.Log("Right");
+            audioMove.PlayOneShot(footstepRight);
+            //Debug.Log("Right");
         }
         
     }
