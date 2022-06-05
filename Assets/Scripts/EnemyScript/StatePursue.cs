@@ -5,7 +5,6 @@ using UnityEngine;
 public class StatePursue : EnemyState
 {
 	public StateAttack stateAttack; 
-	public StateEscape stateEscape; 
 	public float playerDistance;
 	public bool once = false;
 
@@ -23,13 +22,6 @@ public class StatePursue : EnemyState
 		enemyBehaviour.agent.SetDestination(enemyBehaviour.player.transform.position); 
 
 		playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
-
-		//----- ----- Condition To Go To Script StateEscape ----- -----
-		if (enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP <= 30)
-		{
-			once = false;
-			return stateEscape;
-		}
 
 		//----- ----- Condition To Go To Script StateAttack ----- -----
 		if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())

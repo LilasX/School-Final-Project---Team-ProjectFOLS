@@ -63,7 +63,6 @@ Transform:
   - {fileID: 1481591108803555754}
   - {fileID: 1481591108705789494}
   - {fileID: 1481591107790501381}
-  - {fileID: 1481591108411382271}
   m_Father: {fileID: 1481591108628897014}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2064,7 +2063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f8cfcdd886d0a42aedcb8932a65733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateEscape: {fileID: 1481591108411382268}
   statePursue: {fileID: 1481591108705789489}
   playerDistance: 0
   once: 0
@@ -2648,55 +2646,6 @@ Transform:
   m_Father: {fileID: 1481591107783240040}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1481591108411382269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1481591108411382271}
-  - component: {fileID: 1481591108411382268}
-  m_Layer: 0
-  m_Name: StateEscape
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1481591108411382271
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481591108411382269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1481591106686762042}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1481591108411382268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481591108411382269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a43f67a197d0d14ba1b4a6689ab5a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateWander: {fileID: 1481591108803555755}
-  escapePos: {x: 0, y: 0, z: 0}
-  playerDistance: 0
-  escapeDistance: 0
-  once: 0
 --- !u!1 &1481591108416675182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,7 +3349,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateAttack: {fileID: 1481591107790501380}
-  stateEscape: {fileID: 1481591108411382268}
   playerDistance: 0
   once: 0
 --- !u!1 &1481591108747254685
@@ -3480,10 +3428,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 1481591108705789489}
-  stateEscape: {fileID: 1481591108411382268}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
   once: 0
+  found: 0
+  randomX: 0
+  randomZ: 0
 --- !u!1 &2253444556119512534
 GameObject:
   m_ObjectHideFlags: 0

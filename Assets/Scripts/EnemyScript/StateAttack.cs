@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class StateAttack : EnemyState
 {
-    public StateEscape stateEscape;
     public StatePursue statePursue;
     public float playerDistance;
     private Vector3 target;
     public bool once = false;
-    private float timerAtk;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -21,24 +19,13 @@ public class StateAttack : EnemyState
             once = true;
         }
 
-        if (timerAtk >= 3f)
-        {
-            enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
-            timerAtk = 0f;
-        }
-        timerAtk += Time.deltaTime;
+        enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
         //Look At Player
         target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
         enemyBehaviour.gameObject.transform.LookAt(target);
 
         playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
-
-        //----- ----- Condition To Go To Script StateEscape ----- -----
-        if (enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP <= 30)
-        {
-            return stateEscape;
-        }
 
         //----- ----- Condition To Go To Script StatePursue ----- -----
         if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())

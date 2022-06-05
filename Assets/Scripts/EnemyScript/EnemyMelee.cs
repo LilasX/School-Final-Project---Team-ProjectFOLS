@@ -119,12 +119,12 @@ public class EnemyMelee : EnemyMain
 
     public void CoinDrop()
     {
-        int ranNum = Random.Range(0, 100);
+        //int ranNum = Random.Range(0, 100);
 
-        if (ranNum <= 24)
-        {
+        //if (ranNum <= 24)
+        //{
             Instantiate(coin, this.transform.position, this.transform.rotation);
-        }
+        //}
     }
 
     public override void DisplayHealthBar() 

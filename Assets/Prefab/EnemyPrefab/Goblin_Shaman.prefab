@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateAttack: {fileID: 1752756848810434024}
-  stateEscape: {fileID: 1752756849571098719}
   playerDistance: 0
   once: 0
 --- !u!1 &1752756847930241975
@@ -396,7 +395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f8cfcdd886d0a42aedcb8932a65733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateEscape: {fileID: 1752756849571098719}
   statePursue: {fileID: 1752756847888944543}
   playerDistance: 0
   once: 0
@@ -445,10 +443,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 1752756847888944543}
-  stateEscape: {fileID: 1752756849571098719}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
   once: 0
+  found: 0
+  randomX: 0
+  randomZ: 0
 --- !u!1 &1752756849275480306
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +480,6 @@ Transform:
   - {fileID: 1752756848856197115}
   - {fileID: 1752756847888944542}
   - {fileID: 1752756848810434039}
-  - {fileID: 1752756849571098704}
   m_Father: {fileID: 8063936023394082166}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -560,55 +559,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &1752756849571098705
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1752756849571098704}
-  - component: {fileID: 1752756849571098719}
-  m_Layer: 0
-  m_Name: StateEscape
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1752756849571098704
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752756849571098705}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1752756849571098719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752756849571098705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a43f67a197d0d14ba1b4a6689ab5a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateWander: {fileID: 1752756848856197116}
-  escapePos: {x: 0, y: 0, z: 0}
-  playerDistance: 0
-  escapeDistance: 0
-  once: 0
 --- !u!1 &3277730593341248704
 GameObject:
   m_ObjectHideFlags: 0

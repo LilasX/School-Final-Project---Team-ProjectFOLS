@@ -31,7 +31,6 @@ Transform:
   - {fileID: 2712045195272759271}
   - {fileID: 2734180394175066740}
   - {fileID: 6794019572593166131}
-  - {fileID: 4076869592850850883}
   m_Father: {fileID: 500487511603423121}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80,8 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateAttack: {fileID: 2772201454869958442}
-  stateEscape: {fileID: 6635034764710062454}
   playerDistance: 0
+  once: 0
 --- !u!1 &1750002836168517169
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,9 +315,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3285063209951688636}
-  stateEscape: {fileID: 6635034764710062454}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
+  once: 0
+  found: 0
+  randomX: 0
+  randomZ: 0
 --- !u!1 &6275673500270333067
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,15 +631,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bae6c59681d3248923675ba1701d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  hpMax: 0
-  dmg: 0
+  currentHP: 0
+  maxHP: 0
+  distance: 0
   slider: {fileID: 7067872109950529185}
   drop: {fileID: 4227461106753351263, guid: 9e8ae706d10b0564cb5c0e54d2b5726a, type: 3}
+  waveSpawnerObject: {fileID: 0}
   canAttack: 0
-  melee: {fileID: 2056310473384956435}
+  melee:
+  - {fileID: 0}
   meleeAnim: {fileID: 8597424824692020808}
   typeMelee: 1
+  coin: {fileID: 0}
   attack: 0
 --- !u!114 &777710012713393932
 MonoBehaviour:
@@ -654,11 +659,14 @@ MonoBehaviour:
   boundBox:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  spawningBox: 0
   agent: {fileID: 0}
   player: {fileID: 0}
-  currState: {fileID: 0}
-  canSeePlayer: 0
+  manager: {fileID: 0}
   enemyAnim: {fileID: 0}
+  currState: {fileID: 0}
+  stateWander: {fileID: 0}
+  canSeePlayer: 0
 --- !u!195 &7948994436109537851
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -725,57 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f8cfcdd886d0a42aedcb8932a65733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateEscape: {fileID: 6635034764710062454}
   statePursue: {fileID: 3285063209951688636}
   playerDistance: 0
---- !u!1 &8395811335274615479
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4076869592850850883}
-  - component: {fileID: 6635034764710062454}
-  m_Layer: 0
-  m_Name: StateEscape
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4076869592850850883
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395811335274615479}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7130453519294516377}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6635034764710062454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395811335274615479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a43f67a197d0d14ba1b4a6689ab5a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateWander: {fileID: 3174013369791595090}
-  escapePos: {x: 0, y: 0, z: 0}
-  playerDistance: 0
-  escapeDistance: 0
   once: 0
 --- !u!1001 &253469375523337461
 PrefabInstance:
@@ -970,11 +929,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9773f6d612c4c0f429604dd5072fe045, type: 3}
---- !u!1 &2056310473384956435 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5134230547953760298, guid: 9773f6d612c4c0f429604dd5072fe045, type: 3}
-  m_PrefabInstance: {fileID: 6613826324798155321}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5583432508073471453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1636317705377073124, guid: 9773f6d612c4c0f429604dd5072fe045, type: 3}

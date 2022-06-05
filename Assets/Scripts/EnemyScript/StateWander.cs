@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class StateWander : EnemyState
 {
     public StatePursue statePursue; 
-    public StateEscape stateEscape;
     public Vector3 wanderPos;
     public float wanderDistance = 0;
     public bool once = false;
@@ -54,14 +53,6 @@ public class StateWander : EnemyState
         }
 
         wanderDistance = Vector3.Distance(wanderPos, transform.position);
-
-        //----- ----- Condition To Go To Script StateEscape ----- -----
-        if (enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP <= 30)
-        {
-            wanderDistance = 0;
-            once = false;
-            return stateEscape; 
-        }
 
         //----- ----- Condition To Go To Script StatePursue ----- -----
         if (enemyBehaviour.canSeePlayer) 

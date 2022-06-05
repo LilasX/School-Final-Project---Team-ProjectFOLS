@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// ----- ----- ----- ----- ----- Script StateEscape No Longer Used ----- ----- ----- ----- -----
 public class StateEscape : EnemyState
 {
     public StateWander stateWander; 
