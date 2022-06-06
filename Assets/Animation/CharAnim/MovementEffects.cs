@@ -11,6 +11,7 @@ public class MovementEffects : MonoBehaviour
 
     public AudioClip footstepLeft;
     public AudioClip footstepRight;
+    public AudioClip diving;
     public AudioSource audioMove;
 
     public AudioClip swordMelee;
@@ -20,6 +21,9 @@ public class MovementEffects : MonoBehaviour
     public GameObject fireTrail;
     public AudioClip fireExploding;
     public AudioSource audioSpell;
+
+    public AudioClip shield;
+    public AudioSource audioShield;
 
     private Vector3 old_pos;
     private bool isMoving = false;
@@ -43,6 +47,7 @@ public class MovementEffects : MonoBehaviour
         }
 
         old_pos = transform.position;
+        
     }
 
     public void MoveLeft()
@@ -85,5 +90,15 @@ public class MovementEffects : MonoBehaviour
         GameObject gameObj = Instantiate(fireTrail, new Vector3(transform.position.x, transform.position.y + 1.25f, transform.position.z) + transform.forward * 1.5f, Quaternion.identity); //Instantiation du projectile
         gameObj.GetComponent<Rigidbody>().AddForce(transform.forward * 15, ForceMode.Impulse); //Application de la physique sur le projectile
         Destroy(gameObj, 5f);
+    }
+
+    public void Dive()
+    {
+        audioMove.PlayOneShot(diving);
+    }
+
+    public void Shield()
+    {
+        audioShield.PlayOneShot(shield);
     }
 }
