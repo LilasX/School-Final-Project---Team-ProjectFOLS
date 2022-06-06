@@ -13,6 +13,9 @@ public class MovementEffects : MonoBehaviour
     public AudioClip footstepRight;
     public AudioSource audioMove;
 
+    public AudioClip swordMelee;
+    public AudioSource audioSword;
+
     private Vector3 old_pos;
     private bool isMoving = false;
 
@@ -59,5 +62,10 @@ public class MovementEffects : MonoBehaviour
             //Debug.Log("Right");
         }
         
+    }
+
+    public void SwordMelee()
+    {
+        audioSword.PlayOneShot(swordMelee);
     }
 }
