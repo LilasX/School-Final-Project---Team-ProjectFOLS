@@ -62,10 +62,12 @@ public class PlayerEntity : PhysicalEntity
     private Vector3 meleeVelocity;
     public float meleeTime = 0f;
     public float meleeSpeed;
-    //private bool canAttack = false;
     [SerializeField] private GameObject shield;
     private bool isUsingShield = false;
-    //public bool hasUsedShield = false;
+    private Vector3 slashVelocity;
+    public float slashSpeed;
+    public float slashTimer = 0f;
+
 
     [SerializeField] private GameObject pickableText;
     [SerializeField] private GameObject coolDownExample;
@@ -222,6 +224,7 @@ public class PlayerEntity : PhysicalEntity
     public PlayerDeathState DeathState { get => deathState; set => deathState = value; }
     public PlayerKnockedState KnockedState { get => knockedState; set => knockedState = value; }
     public PlayerSlashState SlashState { get => slashState; set => slashState = value; }
+    public Vector3 SlashVelocity { get => slashVelocity; set => slashVelocity = value; }
 
     #endregion
 

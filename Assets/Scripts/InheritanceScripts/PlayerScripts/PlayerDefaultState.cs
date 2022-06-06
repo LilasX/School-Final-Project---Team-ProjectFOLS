@@ -10,9 +10,9 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
-    float slashTimer = 0f;
     float resetDodgeInputTimer = 0f;
     float resetMeleeInputTimer = 0f;
+    float resetSlashInputTimer = 0f;
 
 
     public PlayerDefaultState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
@@ -211,17 +211,20 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         //SLASH
         if (playerEntityInstance.IsSlashing && playerEntityInstance.IsGrounded)
         {
+            playerEntityInstance.SlashVelocity = playerEntityInstance.Move;
+            gameManager.inputManager.OnDisable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.SlashState);
         }
 
         if (playerEntityInstance.hasRequestedSlash)
         {
-            slashTimer += Time.deltaTime;
-            if (slashTimer >= 1.5f)
+            resetSlashInputTimer += Time.deltaTime;
+            if (resetSlashInputTimer >= 0.75f)
             {
                 playerEntityInstance.hasRequestedSlash = false;
-                playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 0f);
-                slashTimer = 0f;
+                //playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 0f);
+                resetSlashInputTimer = 0f;
+                gameManager.inputManager.OnEnable();
             }   
         }
     }
