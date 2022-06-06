@@ -69,7 +69,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""id"": ""acf7cf3d-40b0-48d0-bafb-635750e826f1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.5)"",
+                    ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
@@ -170,7 +170,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""id"": ""fba9882b-f840-4e88-b241-f54e4a1388cc"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.5)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,

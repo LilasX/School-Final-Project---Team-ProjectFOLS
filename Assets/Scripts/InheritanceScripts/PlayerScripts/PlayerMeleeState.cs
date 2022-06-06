@@ -28,7 +28,7 @@ public class PlayerMeleeState : IPlayerBaseState
         playerEntityInstance.Animator.SetBool("Attack", true);
         playerEntityInstance.meleeTime += Time.deltaTime;
         //}
-        if (playerEntityInstance.meleeTime >= 1f)
+        if (playerEntityInstance.meleeTime >= 0.633f)
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
             playerEntityInstance.meleeTime = 0f;

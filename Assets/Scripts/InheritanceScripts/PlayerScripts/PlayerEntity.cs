@@ -129,7 +129,7 @@ public class PlayerEntity : PhysicalEntity
 
     public bool hasExecutedDodge = false;
 
-    public List<GameObject> damagedEnemiesList;
+    public HashSet<GameObject> damagedEnemiesList;
 
     #endregion
 
@@ -239,7 +239,7 @@ public class PlayerEntity : PhysicalEntity
         CapsuleCollider = GetComponent<CapsuleCollider>();
         CapsuleCollider.enabled = false;
         gameManager = GameManager.Instance;
-        damagedEnemiesList = new List<GameObject>();
+        damagedEnemiesList = new HashSet<GameObject>();
 
         defaultState = new PlayerDefaultState(this, playerState);
         //jumpState = new PlayerJumpState(this, playerState);

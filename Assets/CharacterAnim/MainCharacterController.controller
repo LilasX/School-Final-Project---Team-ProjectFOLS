@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 98cb8a3b34d27b24baac5f08c5a24ed3, type: 3}
+  m_Motion: {fileID: 7400000, guid: 08f51443a85caac4d928df07e6911c02, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -174,7 +174,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 075210dc73b3f074eb9392c3b4828efa, type: 3}
+  m_Motion: {fileID: 7400000, guid: b24109f28e966934caa0abb49b9f7c4e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -288,7 +288,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Spell
-  m_Speed: 1.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5779959835165196712}
@@ -301,7 +301,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: b4bedd4ca289dd5419ce48ed9f25f66b, type: 3}
+  m_Motion: {fileID: 7400000, guid: 41bc8bd6726e0ab4ab17612bf4cb5e1f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -324,7 +324,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: b2e1651d0d4c4954e8a5a26e63c98729, type: 3}
+    m_Motion: {fileID: 7400000, guid: ef10f91d471be2e42bee4ee2ba8cff39, type: 2}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0.2}
     m_TimeScale: 1
@@ -332,7 +332,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: b51b1651083a8bd42ab320340585523e, type: 3}
+    m_Motion: {fileID: 7400000, guid: 04a451983f7844e448965fdd5d96bbc9, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -354,7 +354,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MeleeAttack
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -159495763397809776}
@@ -367,7 +367,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 5e3f262b148d6804d8782a9bcfc8bab1, type: 3}
+  m_Motion: {fileID: 7400000, guid: 7c23458ef5ae7ee4892407d72922e17e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -483,7 +483,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: bf80bfc37ceea0e4b80c38e483f02378, type: 3}
+  m_Motion: {fileID: 7400000, guid: 76a64e6e8aa0b4f4e93ecce072198bb9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
