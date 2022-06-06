@@ -135,7 +135,8 @@ public class InputManager : MonoBehaviour
 
     private void Fire()
     {
-        if (fireAction.IsPressed())
+        //if (fireAction.IsPressed())
+        if(fireAction.triggered)
         {
             gameManager.player.GetComponent<PlayerEntity>().IsFiring = true;
         }

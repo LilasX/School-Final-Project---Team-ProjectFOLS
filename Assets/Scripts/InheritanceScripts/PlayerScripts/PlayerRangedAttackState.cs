@@ -20,8 +20,8 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
     {
         playerEntityInstance.Animator.SetBool("Spell", true);
         // Fire
-        if (playerEntityInstance.IsFiring)
-        {
+        //if (playerEntityInstance.IsFiring)
+        //{
             if (!playerEntityInstance.hasFired)
             {
                 playerEntityInstance.Timer += Time.deltaTime; //lance le chrono
@@ -36,13 +36,14 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
                         Destroy(gameObj, 5f); //Destruction du projectile
                     }
                     playerEntityInstance.Timer = 0; //reset du chrono
-                }
+                    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
             }
         }
-        else
-        {
-            playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-        }
+        //}
+        //else
+        //{
+        //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+        //}
 
 
     }

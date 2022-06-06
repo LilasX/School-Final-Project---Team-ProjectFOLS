@@ -48,7 +48,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold(duration=0.5)",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Melee",
