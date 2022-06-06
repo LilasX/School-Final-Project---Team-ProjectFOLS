@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public CharacterController myCharacter;
     public CinemachineVirtualCamera cam;
+    public GameObject cameraMain;
     public GameObject bullet;
     public GameObject fireSpell;
     public GameObject fireBurstVfx;

@@ -2287,7 +2287,10 @@ MonoBehaviour:
   currentHP: 100
   maxHP: 100
   distance: 0
+  gameManager: {fileID: 0}
+  canvas: {fileID: 6881588284374531153}
   slider: {fileID: 6881588285620541924}
+  cameraMain: {fileID: 0}
   drop: {fileID: 4227461106753351263, guid: 9e8ae706d10b0564cb5c0e54d2b5726a, type: 3}
   waveSpawnerObject: {fileID: 0}
   canAttack: 0

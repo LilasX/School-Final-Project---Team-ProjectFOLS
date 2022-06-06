@@ -11,11 +11,13 @@ public abstract class EnemyMain : EnemyEntity
     //public int hpMax; 
     //public int dmg;
 
-    protected Transform posOrigin; 
+    protected Transform posOrigin;
 
     //Need ATK, DEF & SPD?
-
-    public Slider slider; 
+    public GameManager gameManager;
+    public Canvas canvas;
+    public Slider slider;
+    public GameObject cameraMain;
     public GameObject drop; 
 
     //Don't know if I need those

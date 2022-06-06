@@ -2270,7 +2270,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2038462, y: 1}
+    m_SensorSize: {x: 2.367252, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3020,7 +3020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 29.99878, y: 50}
+  m_AnchoredPosition: {x: 29.998718, y: 50}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &942521265
@@ -8136,6 +8136,7 @@ MonoBehaviour:
   player: {fileID: 59918}
   myCharacter: {fileID: 59926}
   cam: {fileID: 779685948}
+  cameraMain: {fileID: 256266648}
   bullet: {fileID: 6630236338828245609, guid: d9671e5f537104d49889c890c45d6e9b, type: 3}
   fireSpell: {fileID: 545954287311120432, guid: 7cd50cdf1045068408135de165560e8f, type: 3}
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}

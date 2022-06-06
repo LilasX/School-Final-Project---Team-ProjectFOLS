@@ -34,7 +34,7 @@ public class BaseMelee : MonoBehaviour
                 if (!gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
                 {
                     gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
-                    other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
+                    other.gameObject.GetComponent<EnemyMain>().OnHurt(30);
                     gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
                 }
 
@@ -49,7 +49,7 @@ public class BaseMelee : MonoBehaviour
 
             if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
             {
-                other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 10;
+                other.gameObject.GetComponent<EnemyMain>().OnHurt(10);
                 //gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
             }
         }

@@ -20,6 +20,7 @@ public class EnemyMelee : EnemyMain
 
     public override void InitializeEnemy() 
     {
+        gameManager = GameManager.instance;
         posOrigin = transform;
         GetMaxHP = 100;
         GetCurrentHP = GetMaxHP;
@@ -27,6 +28,7 @@ public class EnemyMelee : EnemyMain
         Hp = HpMax;*/
         canAttack = true; 
         timer = 0;
+        cameraMain = gameManager.cameraMain;
         //melee.SetActive(false);
         RandomWeapon();
         //typeMelee = MeleeWeapon.Sword; 
@@ -93,6 +95,11 @@ public class EnemyMelee : EnemyMain
         }
     }
 
+    public override void OnHurt(int damage)
+    {
+        GetCurrentHP -= damage;
+    }
+
     public override void OnDeath()
     {
         transform.position = posOrigin.position;
@@ -129,6 +136,7 @@ public class EnemyMelee : EnemyMain
 
     public override void DisplayHealthBar() 
     {
+        canvas.transform.LookAt(cameraMain.transform);
         slider.value = GetCurrentHP * 100 / GetMaxHP; 
     }
 
@@ -141,7 +149,7 @@ public class EnemyMelee : EnemyMain
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void Update()
     {
         IsAttacking(); 
         DisplayHealthBar(); 

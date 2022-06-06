@@ -11,7 +11,7 @@ public class Follow : MonoBehaviour
     public float maxModifier;
 
     public float distance = 5;
-
+    public float timer;
     public GameManager manager;
 
     Vector3 velocity = Vector3.zero;
@@ -21,6 +21,7 @@ public class Follow : MonoBehaviour
         manager = GameManager.instance;
         target = manager.player.transform;
         inventoryScript = manager.inventoryscript;
+        timer = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +31,7 @@ public class Follow : MonoBehaviour
         {
             Debug.Log("Pickup");
             inventoryScript.CoinPickup(); //À Revoir.
+            //PlaySound PickUp
             Destroy(gameObject);
         }
     }
@@ -37,10 +39,14 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target.position.x - transform.position.x <= distance )
+        if (timer >= 3f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(target.position.x, target.position.y + 1, target.position.z), ref velocity, Time.deltaTime * Random.Range(minModifier, maxModifier));
-        } 
+            if (target.position.x - transform.position.x <= distance)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(target.position.x, target.position.y + 1, target.position.z), ref velocity, Time.deltaTime * Random.Range(minModifier, maxModifier));
+            }
+        }
+        timer += Time.deltaTime;
         /*
         if (transform.position == target.position)
         {

@@ -6,6 +6,8 @@ public enum RangeWeapon { Sphere, Arrow, Lance, Wall, Floor, Wave }
 
 public class EnemyRange : EnemyMain
 {
+    public GameObject waveSpawnerObject;
+
     public bool canAttack;
     public GameObject projectileSpawn;
     public GameObject floorSpawn;
@@ -15,10 +17,12 @@ public class EnemyRange : EnemyMain
     public RangeWeapon typeRange; 
     private float timer;
     public int randNum;
+    public GameObject coin;
 
     public bool attack;//Testing Attack Purpose
     public override void InitializeEnemy() 
     {
+        gameManager = GameManager.instance;
         posOrigin = transform;
         GetMaxHP = 60;
         GetCurrentHP = GetMaxHP;
@@ -26,6 +30,7 @@ public class EnemyRange : EnemyMain
         Hp = HpMax; */
         canAttack = true; 
         timer = 0;
+        cameraMain = gameManager.cameraMain;
         HideRangedWeapon();
         RandomWeapon();
     }
@@ -187,10 +192,16 @@ public class EnemyRange : EnemyMain
         }
     }
 
+    public override void OnHurt(int damage)
+    {
+        GetCurrentHP -= damage;
+    }
     public override void OnDeath()
     {
         transform.position = posOrigin.position;
-        DropItem();
+        CoinDrop();
+        //DropItem();
+        waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
         gameObject.SetActive(false);
     }
 
@@ -208,8 +219,14 @@ public class EnemyRange : EnemyMain
         drop.transform.position = transform.position;
     }
 
+    public void CoinDrop()
+    {
+        Instantiate(coin, this.transform.position, this.transform.rotation);
+    }
+
     public override void DisplayHealthBar() 
     {
+        canvas.transform.LookAt(cameraMain.transform);
         slider.value = GetCurrentHP * 100 / GetMaxHP;
     }
 
