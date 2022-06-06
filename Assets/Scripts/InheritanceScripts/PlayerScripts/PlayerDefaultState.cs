@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 {
@@ -10,6 +11,9 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
     private PlayerStateMachine playerState;
 
     float slashTimer = 0f;
+    float resetDodgeInputTimer = 0f;
+    float resetMeleeInputTimer = 0f;
+
 
     public PlayerDefaultState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
@@ -20,8 +24,6 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
     private void Move()
     {
-        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), -transform.up, Color.red, 1);
-
         playerEntityInstance.Animator.SetFloat("Speed", 0f, 150f, Time.time);
 
         //  Mouvement du joueur
@@ -33,7 +35,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             //Debug.Log(move);
             playerEntityInstance.IsMoving = true;
             playerEntityInstance.MyCharacter.transform.forward = playerEntityInstance.Move * Time.deltaTime; //Oriente le joueur vers la direction du mouvement
-            playerEntityInstance.Animator.SetFloat("Speed", 0.5f, 20f, Time.time);
+            playerEntityInstance.Animator.SetFloat("Speed", 1f, 20f, Time.time);
         }
         else 
         { 
@@ -52,7 +54,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         {
             playerEntityInstance.Speed = playerEntityInstance.RunningSpeed; //Valeur de la vitesse en mode course
             playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 1f, 10f * Time.deltaTime); //Vide la barre d'endurance
-            playerEntityInstance.Animator.SetFloat("Speed", 1f, 25f, Time.time);
+            playerEntityInstance.Animator.SetFloat("Speed", 1.2f, 25f, Time.time);
             if (playerEntityInstance.GetCurrentStamina == 1)
             {
                 playerEntityInstance.IsRunning = false;
@@ -68,12 +70,14 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
     public void EnterState()
     {
         Debug.Log(GetType().Name);
+        playerEntityInstance.hasExecutedDodge = false;
     }
 
     public void ExitState()
     {
         return;
     }
+
 
     public void OnUpdate()
     {
@@ -82,22 +86,39 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
         Run();
 
-        if (playerEntityInstance.IsJumping && playerEntityInstance.IsGrounded) //DONE
-        {
-            playerEntityInstance.playerState.ChangeState(playerEntityInstance.JumpState);
-        }
 
-        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina > 20f) //DONE
+        //DODGE
+        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina > 20f && playerEntityInstance.Move != Vector3.zero) //DONE
         {
             playerEntityInstance.GetCurrentStamina -= 20f;
+            playerEntityInstance.DodgeVelocity = playerEntityInstance.Move;
+            gameManager.inputManager.OnDisable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DodgeState);
         }
 
-        if (playerEntityInstance.IsPicking && playerEntityInstance.IsGrounded && playerEntityInstance.IsCollidingWithItem) //DONE
+
+        if (playerEntityInstance.hasExecutedDodge)
         {
-            playerEntityInstance.playerState.ChangeState(playerEntityInstance.PickState);
+            resetDodgeInputTimer += Time.deltaTime;
+            if (resetDodgeInputTimer >= 0.6f)
+            {
+                gameManager.inputManager.OnEnable();
+                resetDodgeInputTimer = 0f;
+                playerEntityInstance.hasExecutedDodge = false;
+            }
         }
 
+        if (!playerEntityInstance.hasExecutedDodge)
+        {
+            resetDodgeInputTimer += Time.deltaTime;
+            if(resetDodgeInputTimer >= 0.35f)
+            {
+                gameManager.inputManager.OnEnable();
+                resetDodgeInputTimer = 0f;
+            }
+        }
+
+        //SHIELD
         if (playerEntityInstance.IsUsingShield && playerEntityInstance.IsGrounded && playerEntityInstance.shieldTimer >= 5) //DONE
         {
             if(playerEntityInstance.GetCurrentMana >= 10)
@@ -108,19 +129,38 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             }
         }
 
+        //FIRE
         if (playerEntityInstance.IsFiring && playerEntityInstance.IsGrounded) //DONE
         {
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.RangedAttackState);
         }
 
-        if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded) //A REVOIR
+        //MELEE
+        if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded && playerEntityInstance.Move != Vector3.zero) //A REVOIR
         {
             //Debug.Log("IS ATTACKING"); //MAKE A TIMER ?
+            playerEntityInstance.MeleeVelocity = playerEntityInstance.Move;
+            gameManager.inputManager.OnDisable();
+            //playerEntityInstance.meleeSpeed = 10f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.MeleeState);
         }
 
+        if(playerEntityInstance.HasUsedMelee)
+        {
+            resetMeleeInputTimer += Time.deltaTime;
+            if(resetMeleeInputTimer >= 1.2f)
+            {
+                gameManager.inputManager.OnEnable();
+                playerEntityInstance.HasUsedMelee = false;
+                resetMeleeInputTimer = 0f;
+                playerEntityInstance.swordImage.SetActive(true);
+            }
+        }
+
+        //RETURN ATTACK
         if (playerEntityInstance.IsReturningAttack && playerEntityInstance.IsGrounded) // A REVOIR
         {
+            gameManager.inputManager.OnDisable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.StealAttackState);
         }
 
@@ -168,6 +208,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DeathState);
         }
 
+        //SLASH
         if (playerEntityInstance.IsSlashing && playerEntityInstance.IsGrounded)
         {
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.SlashState);
@@ -185,10 +226,16 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         }
     }
 
-    //private void Slash()
+    ////PICK
+    //if (playerEntityInstance.IsPicking && playerEntityInstance.IsGrounded && playerEntityInstance.IsCollidingWithItem) //DONE
     //{
-    //    playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 1f);
-    //    playerEntityInstance.Animator.SetTrigger("Slash");
+    //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.PickState);
+    //}
+
+    ////JUMP
+    //if (playerEntityInstance.IsJumping && playerEntityInstance.IsGrounded) 
+    //{
+    //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.JumpState);
     //}
 
 }

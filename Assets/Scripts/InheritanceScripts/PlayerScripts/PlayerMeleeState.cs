@@ -9,7 +9,6 @@ public class PlayerMeleeState : IPlayerBaseState
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
-    private float timerDmg;
 
     public PlayerMeleeState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
@@ -21,20 +20,26 @@ public class PlayerMeleeState : IPlayerBaseState
     public void MeleeAttack() //changed to public
     {
         // Using Stick
-        if (playerEntityInstance.IsUsingMelee)
+        //if (playerEntityInstance.IsUsingMelee)
+        //{
+        playerEntityInstance.swordImage.SetActive(false);
+        playerEntityInstance.MyCharacter.Move(playerEntityInstance.MeleeVelocity * playerEntityInstance.meleeSpeed * Time.deltaTime);
+        playerEntityInstance.HasUsedMelee = true;
+        playerEntityInstance.Animator.SetBool("Attack", true);
+        playerEntityInstance.meleeTime += Time.deltaTime;
+        //}
+        if (playerEntityInstance.meleeTime >= 1f)
         {
-            playerEntityInstance.HasUsedMelee = true;
-            playerEntityInstance.Stick.SetActive(true);
-            playerEntityInstance.Animator.SetBool("Attack", true);
-            Debug.Log("Attack");
-        }
-        else
-        {
-            playerEntityInstance.Stick.SetActive(false);
             playerEntityInstance.Animator.SetBool("Attack", false);
-            //playerEntityInstance.HasUsedMelee = false;
+            playerEntityInstance.meleeTime = 0f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
+        //else
+        //{
+        //    playerEntityInstance.Stick.SetActive(false);
+        //    playerEntityInstance.Animator.SetBool("Attack", false);
+        //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+        //}
     }
 
     public void EnterState()

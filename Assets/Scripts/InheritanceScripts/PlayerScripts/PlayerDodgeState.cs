@@ -18,23 +18,22 @@ public class PlayerDodgeState : IPlayerBaseState
         gameManager = GameManager.instance;
         this.playerEntityInstance = playerEntity;
         this.playerState = stateMachine;
-        //playerVelocity = playerEntityInstance.Move.normalized;
+
     }
 
     private void Dodge()
     {
-        //playerEntityInstance.MyCharacter.Move(new Vector3 (playerVelocity.x, 0, playerVelocity.z) * Time.deltaTime);
-        //playerEntityInstance.transform.rotation = Quaternion.Euler(Vector3.right);
-
-        playerEntityInstance.Animator.SetBool("Dive", true);
+        playerEntityInstance.hasExecutedDodge = true;
         playerEntityInstance.Speed = playerEntityInstance.DodgeSpeed;  //Valeur de la vitesse en mode esquive
-        //playerEntityInstance.GetCurrentStamina -= 5f;
+        playerEntityInstance.Animator.SetBool("Dive", true);
+        playerEntityInstance.MyCharacter.Move(playerEntityInstance.DodgeVelocity * playerEntityInstance.Speed * Time.deltaTime);
         playerEntityInstance.DodgeTime += Time.deltaTime;
-        if (playerEntityInstance.DodgeTime >= 0.2f)
+        if (playerEntityInstance.DodgeTime >= 0.3f)
         {
             playerEntityInstance.IsDodging = false;
             playerEntityInstance.DodgeTime = 0;
             playerEntityInstance.Animator.SetBool("Dive", false);
+            //gameManager.inputManager.OnEnable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

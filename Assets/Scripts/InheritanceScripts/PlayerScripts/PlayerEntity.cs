@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using Cinemachine;
 
 public class PlayerEntity : PhysicalEntity
@@ -9,6 +10,7 @@ public class PlayerEntity : PhysicalEntity
 
     #region Variables
 
+    private GameManager gameManager;
 
     //  Variables pour le déplacement
     private CharacterController myCharacter; //Référence au character controller
@@ -18,13 +20,14 @@ public class PlayerEntity : PhysicalEntity
     private float zAxis;
 
     [Header("Movement Attributes")]
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private float resetSpeedValue = 3f;
+    [SerializeField] private float speed = 6f;
+    [SerializeField] private float resetSpeedValue = 6f;
     private bool isRunning;
-    [SerializeField] private float runningSpeed = 10f;
+    [SerializeField] private float runningSpeed;
     private bool isDodging;
-    private float dodgeTime = 0f;
-    [SerializeField] private float dodgeSpeed = 20f;
+    [SerializeField] private float dodgeTime = 0f;
+    [SerializeField] private float dodgeSpeed;
+    private Vector3 dodgeVelocity;
 
     //  Variables pour l'endurance, points de magie et point de vie
     [SerializeField] private Slider staminaBar;
@@ -55,7 +58,10 @@ public class PlayerEntity : PhysicalEntity
     [SerializeField] private GameObject stick;
     [SerializeField] private GameObject sword;
     private bool isUsingMelee = false;
-    private bool hasUsedMelee = false;
+    [SerializeField] private bool hasUsedMelee = false;
+    private Vector3 meleeVelocity;
+    public float meleeTime = 0f;
+    public float meleeSpeed;
     //private bool canAttack = false;
     [SerializeField] private GameObject shield;
     private bool isUsingShield = false;
@@ -117,7 +123,11 @@ public class PlayerEntity : PhysicalEntity
     public float shieldTimer = 5f;
     public bool hasBlockedAttack = false;
     public GameObject shieldImage;
+    public GameObject swordImage;
 
+    public bool hasExecutedDodge = false;
+
+    public List<GameObject> damagedEnemiesList;
 
     #endregion
 
@@ -177,6 +187,9 @@ public class PlayerEntity : PhysicalEntity
     public bool IsCollidingWithItem { get => isCollidingWithItem; set => isCollidingWithItem = value; }
     public bool IsSlashing { get => isSlashing; set => isSlashing = value; }
     public float ResetSpeedValue { get => resetSpeedValue; set => resetSpeedValue = value; }
+    public Vector3 DodgeVelocity { get => dodgeVelocity; set => dodgeVelocity = value; }
+    public Vector3 MeleeVelocity { get => meleeVelocity; set => meleeVelocity = value; }
+
     public PlayerEntity PlayerEntityInstance { get => playerEntityInstance; set => playerEntityInstance = value; }
 
 
@@ -187,9 +200,9 @@ public class PlayerEntity : PhysicalEntity
 
     public PlayerStateMachine playerState;
     private PlayerDefaultState defaultState;
-    private PlayerJumpState jumpState;
+    //private PlayerJumpState jumpState;
     private PlayerDodgeState dodgeState;
-    private PlayerPickState pickState;
+    //private PlayerPickState pickState;
     private PlayerBlockState blockState;
     private PlayerRangedAttackState rangedAttackState;
     private PlayerMeleeState meleeState;
@@ -199,9 +212,9 @@ public class PlayerEntity : PhysicalEntity
     private PlayerSlashState slashState;
 
     public PlayerDefaultState DefaultState { get => defaultState; }
-    public PlayerJumpState JumpState { get => jumpState; }
+    //public PlayerJumpState JumpState { get => jumpState; }
     public PlayerDodgeState DodgeState { get => dodgeState; }
-    public PlayerPickState PickState { get => pickState; }
+    //public PlayerPickState PickState { get => pickState; }
     public PlayerBlockState BlockState { get => blockState; }
     public PlayerRangedAttackState RangedAttackState { get => rangedAttackState; }
     public PlayerMeleeState MeleeState { get => meleeState; }
@@ -222,11 +235,13 @@ public class PlayerEntity : PhysicalEntity
         Animator = GetComponent<Animator>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
         CapsuleCollider.enabled = false;
+        gameManager = GameManager.Instance;
+        damagedEnemiesList = new List<GameObject>();
 
         defaultState = new PlayerDefaultState(this, playerState);
-        jumpState = new PlayerJumpState(this, playerState);
+        //jumpState = new PlayerJumpState(this, playerState);
         dodgeState = new PlayerDodgeState(this, playerState);
-        pickState = new PlayerPickState(this, playerState);
+        //pickState = new PlayerPickState(this, playerState);
         blockState = new PlayerBlockState(this, playerState);
         rangedAttackState = new PlayerRangedAttackState(this, playerState);
         meleeState = new PlayerMeleeState(this, playerState);
@@ -253,6 +268,7 @@ public class PlayerEntity : PhysicalEntity
     public override void OnDeath()
     {
         //Death animation maybe then Respawn to Hub, maybe get health, mana and stamina to full by default?
+        animator.runtimeAnimatorController = gameManager.deathController;
         animator.SetBool("Dead", true);
         float waitTime = 0f;
         waitTime += Time.deltaTime;
@@ -313,6 +329,7 @@ public class PlayerEntity : PhysicalEntity
     {
         //Barre d'endurance
         staminaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentStamina.ToString("0") + " / " + GetMaxStamina.ToString();
+        staminaBar.maxValue = GetMaxStamina;
         staminaBar.value = currentStamina;
         if (currentStamina >= GetMaxStamina) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
     }
@@ -320,6 +337,7 @@ public class PlayerEntity : PhysicalEntity
     private void OnManagingHealth()
     {
         hpText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentHP.ToString("0") + " / " + GetMaxHP.ToString();
+        hpBar.maxValue = GetMaxHP;
         HpBar.value = GetCurrentHP;
         if (GetCurrentHP >= GetMaxHP) { GetCurrentHP = GetMaxHP; }
         else if (GetCurrentHP <= 0)
@@ -339,6 +357,7 @@ public class PlayerEntity : PhysicalEntity
     {
         //Barre d'endurance
         manaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentMana.ToString("0") + " / " + GetMaxMana.ToString();
+        manaBar.maxValue = GetMaxMana;
         manaBar.value = GetCurrentMana;
         if (GetCurrentMana >= GetMaxMana) { GetCurrentMana = GetMaxMana; } else if (GetCurrentMana <= 0) { GetCurrentMana = 0; }
     }
@@ -357,6 +376,15 @@ public class PlayerEntity : PhysicalEntity
         // Gravité
         velocity.y -= GravityForce; //Application de la force de gravité
         MyCharacter.Move(velocity * Time.deltaTime);
+
+        if(!IsGrounded)
+        {
+            animator.SetBool("Grounded", true);
+        }
+        else
+        {
+            animator.SetBool("Grounded", false);
+        }
     }
 
     private bool IsPlayerGrounded()

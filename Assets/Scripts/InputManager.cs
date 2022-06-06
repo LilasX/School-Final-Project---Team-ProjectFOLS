@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     private GameManager gameManager;
 
     private MyInputAction myInputAction;
+    private InputAction moveAction;
     private InputAction meleeAction;
     private InputAction jumpAction;
     private InputAction returnAttackAction;
@@ -20,6 +21,7 @@ public class InputManager : MonoBehaviour
     private InputAction shieldAction;
     private InputAction pickAction;
     private InputAction slashAction;
+
 
     public static InputManager Instance { get => instance; set => instance = value; }
 
@@ -55,15 +57,27 @@ public class InputManager : MonoBehaviour
 
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         myInputAction.Enable();
+        this.GetComponent<PlayerInput>().ActivateInput();
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         myInputAction.Disable();
+        this.GetComponent<PlayerInput>().DeactivateInput();
     }
+
+    //public void EnableInput()
+    //{
+    //    gameManager.inputManager.GetComponent<PlayerInput>().ActivateInput();
+    //}
+
+    //public void DisableInput()
+    //{
+    //    gameManager.inputManager.GetComponent<PlayerInput>().DeactivateInput();
+    //}
 
     #region Inputs
 
@@ -73,6 +87,7 @@ public class InputManager : MonoBehaviour
         gameManager.player.GetComponent<PlayerEntity>().XAxis = gameManager.player.GetComponent<PlayerEntity>().Move.x;
         gameManager.player.GetComponent<PlayerEntity>().ZAxis = gameManager.player.GetComponent<PlayerEntity>().Move.y;
     }
+
 
     //public void OnJump(InputAction.CallbackContext context)
     //{
@@ -120,7 +135,7 @@ public class InputManager : MonoBehaviour
 
     private void Fire()
     {
-        if (fireAction.triggered)
+        if (fireAction.IsPressed())
         {
             gameManager.player.GetComponent<PlayerEntity>().IsFiring = true;
         }

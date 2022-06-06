@@ -27,11 +27,25 @@ public class BaseMelee : MonoBehaviour
         }
         if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         {
+
+
             if (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
             {
-                other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
-                gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
+                if (!gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
+                {
+                    gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
+                    other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 30;
+                    gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
+                }
+
+                if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
+                {
+                    other.gameObject.GetComponent<EnemyMain>().GetCurrentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
+                    //gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
+                }
             }
+
+
 
             if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
             {
@@ -46,6 +60,18 @@ public class BaseMelee : MonoBehaviour
         }
     }
 
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
+        {
+            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
+            {
+                other.gameObject.GetComponent<EnemyMain>().GetCurrentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
+                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
