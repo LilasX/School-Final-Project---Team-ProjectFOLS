@@ -15,15 +15,12 @@ public class BaseMelee : MonoBehaviour
     {
         if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>() && canDmg) 
         {
-            if(other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
-            {
-                other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP = other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP;
-            }
-            else
+            if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
             {
                 other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
                 canDmg = false;
             }
+          
         }
         if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         {
@@ -55,18 +52,6 @@ public class BaseMelee : MonoBehaviour
                     }
                 }
             }
-
-
-            //if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
-            //{
-            //    other.gameObject.GetComponent<EnemyMain>().OnHurt(10);
-            //    //gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
-            //}
-        }
-        if (other.gameObject.GetComponent<MockTest>() && canDmg)
-        {
-            other.gameObject.GetComponent<MockTest>().hp -= 5;
-            canDmg = false;
         }
     }
 
@@ -77,12 +62,7 @@ public class BaseMelee : MonoBehaviour
         {
             if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(otherObject))
             {
-                //int currentHP;
-                //currentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
-                //otherObject.GetComponent<EnemyMain>().GetCurrentHP = currentHP;
-                otherObject.GetComponent<EnemyMain>().OnHurt(0);
-    
-                //gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
+                otherObject.GetComponent<EnemyMain>().OnHurt(0);           
             }
         }
 
@@ -93,38 +73,6 @@ public class BaseMelee : MonoBehaviour
                 otherObject.GetComponent<EnemyMain>().OnHurt(0);
             }
         }
-
-        //if (gameManager.player.GetComponent<PlayerEntity>().IsSlashing)
-        //{
-        //    if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
-        //    {
-        //        int currentHP;
-        //        currentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
-        //        otherObject.GetComponent<EnemyMain>().GetCurrentHP = currentHP;
-        //    }
-        //}
-
-        //if (otherObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
-        //{
-        //    gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(otherObject);
-        //}
-
-    }
-
-
-    private void OnTriggerExit(Collider other)
-    {
-
-        //if (!gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee) /*|| !gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)*/
-        //{
-        //    if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(otherObject))
-        //    {
-        //        otherObject.GetComponent<EnemyMain>().OnHurt(0);
-        //        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(otherObject);
-        //    }
-        //}
-
-
     }
 
     // Start is called before the first frame update

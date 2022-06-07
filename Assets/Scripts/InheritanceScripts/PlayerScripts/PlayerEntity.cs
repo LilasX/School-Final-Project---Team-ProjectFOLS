@@ -26,7 +26,10 @@ public class PlayerEntity : PhysicalEntity
     //  Variables pour la gravité
     [SerializeField] private bool isGrounded = false;
     [SerializeField] private LayerMask groundLayerMask;
-    [SerializeField] private float checkGroundDistance = 0.1f;
+    [SerializeField] private float checkGroundDistance;
+    public Vector3 velocity;
+    [SerializeField] private float gravityForce;
+    [SerializeField] private GameObject checkGroundSphere;
 
 
     [Header("Movement Attributes")]
@@ -46,11 +49,6 @@ public class PlayerEntity : PhysicalEntity
     [SerializeField] private float maxStamina;
     [SerializeField] private float currentMana;
     [SerializeField] private float maxMana;
-
-
-    //  Variables pour la gravité
-    public Vector3 velocity;
-    [SerializeField] private float gravityForce;
 
 
     // Variables pour le Firing
@@ -107,6 +105,7 @@ public class PlayerEntity : PhysicalEntity
     public List<GameObject> damagedEnemiesList;
     public float resetMeleeInputTimer = 0f;
     public float resetSlashInputTimer = 0f;
+
 
 
 
@@ -203,9 +202,7 @@ public class PlayerEntity : PhysicalEntity
         damagedEnemiesList = new List<GameObject>();
 
         defaultState = new PlayerDefaultState(this, playerState);
-        //jumpState = new PlayerJumpState(this, playerState);
         dodgeState = new PlayerDodgeState(this, playerState);
-        //pickState = new PlayerPickState(this, playerState);
         blockState = new PlayerBlockState(this, playerState);
         rangedAttackState = new PlayerRangedAttackState(this, playerState);
         meleeState = new PlayerMeleeState(this, playerState);
@@ -277,6 +274,16 @@ public class PlayerEntity : PhysicalEntity
         //If the player can sell items, Define how and what happens when player sells an item (equipment if implementing the concept for example to the shop)
     }
 
+    public void OnUsingMana(int mana)
+    {
+        GetCurrentMana -= mana;
+    }
+
+    public void OnRecoverMana(int mana)
+    {
+        GetCurrentMana += mana;
+    }
+
     #endregion
 
     #region Sliders
@@ -307,13 +314,6 @@ public class PlayerEntity : PhysicalEntity
         else if (GetCurrentHP <= 0)
         {
             GetCurrentHP = 0;
-            //animator.SetBool("Dead", true);
-            //float waitTime = 0f;
-            //waitTime += Time.deltaTime;
-            //if (waitTime >= 2.5f)
-            //{
-            //    animator.SetBool("Dead", false);
-            //}
         }
     }
 
@@ -353,12 +353,11 @@ public class PlayerEntity : PhysicalEntity
 
     private bool IsPlayerGrounded()
     {
-        RaycastHit hit;
-
-        IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, checkGroundDistance, groundLayerMask);
+        IsGrounded = Physics.CheckSphere(checkGroundSphere.transform.position, checkGroundDistance, groundLayerMask);
 
         return IsGrounded || MyCharacter.isGrounded;
     }
+
 
     #endregion
 

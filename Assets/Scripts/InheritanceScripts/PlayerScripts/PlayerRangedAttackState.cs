@@ -30,7 +30,7 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
                     playerEntityInstance.hasFired = true;
                     if (playerEntityInstance.GetCurrentMana >= 10f)
                     {
-                        playerEntityInstance.GetCurrentMana -= 10;
+                        playerEntityInstance.OnUsingMana(10);
                         GameObject gameObj = Instantiate(gameManager.fireSpell, new Vector3(playerEntityInstance.transform.position.x, playerEntityInstance.transform.position.y + 1.25f, playerEntityInstance.transform.position.z) + playerEntityInstance.transform.forward * 1.5f, Quaternion.identity); //Instantiation du projectile
                         gameObj.GetComponent<Rigidbody>().AddForce(playerEntityInstance.transform.forward * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
                         Destroy(gameObj, 5f); //Destruction du projectile

@@ -24,14 +24,10 @@ public class EnemyMelee : EnemyMain
         posOrigin = transform;
         GetMaxHP = 100;
         GetCurrentHP = GetMaxHP;
-        /*HpMax = 100; 
-        Hp = HpMax;*/
         canAttack = true; 
         timer = 0;
         cameraMain = gameManager.cameraMain;
-        //melee.SetActive(false);
-        RandomWeapon();
-        //typeMelee = MeleeWeapon.Sword; 
+        RandomWeapon(); 
     }
 
     public override void RandomWeapon()
@@ -95,11 +91,6 @@ public class EnemyMelee : EnemyMain
         }
     }
 
-    public override void OnHurt(int damage)
-    {
-        GetCurrentHP -= damage;
-    }
-
     public override void OnDeath()
     {
         transform.position = posOrigin.position;
@@ -130,7 +121,7 @@ public class EnemyMelee : EnemyMain
 
         //if (ranNum <= 24)
         //{
-            Instantiate(coin, this.transform.position, this.transform.rotation);
+            Instantiate(coin, new Vector3(this.transform.position.x,this.transform.position.y +0.5f, this.transform.position.z), this.transform.rotation);
         //}
     }
 
@@ -154,9 +145,6 @@ public class EnemyMelee : EnemyMain
         IsAttacking(); 
         DisplayHealthBar(); 
         //VerifyDeath(); 
-
-        if (GetCurrentHP <= 0)
-            OnDeath();
 
         if (attack) 
         {

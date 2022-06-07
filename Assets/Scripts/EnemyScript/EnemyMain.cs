@@ -34,4 +34,14 @@ public abstract class EnemyMain : EnemyEntity
     //public abstract void OnDeath();
     public abstract void DropItem(); 
     public abstract void DisplayHealthBar();
+
+    public override void OnHurt(int damage)
+    {
+        GetCurrentHP -= damage;
+
+        if(GetCurrentHP <= 0)
+        {
+            OnDeath();
+        }
+    }
 }

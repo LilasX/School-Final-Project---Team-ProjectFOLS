@@ -35,6 +35,7 @@ public class PlayerDodgeState : IPlayerBaseState
             playerEntityInstance.Animator.SetBool("Dive", false);
             //gameManager.inputManager.OnEnable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+           
         }
     }
 

@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2335394, guid: 20b7b23b86efa8e46a703fab1a8a1058, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 169bd604eb7f4bf42bdb6c877f677c9c, type: 2}
     - target: {fileID: 64335448339687674, guid: 20b7b23b86efa8e46a703fab1a8a1058, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -94,6 +98,7 @@ MonoBehaviour:
   minModifier: 40
   maxModifier: 50
   distance: 5
+  timer: 0
   manager: {fileID: 0}
 --- !u!114 &1918752503
 MonoBehaviour:

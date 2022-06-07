@@ -88,7 +88,6 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
         Run();
 
-
         //DODGE
         if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina > 20f && playerEntityInstance.Move != Vector3.zero) //DONE
         {
@@ -125,7 +124,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         {
             if(playerEntityInstance.GetCurrentMana >= 10)
             {
-                playerEntityInstance.GetCurrentMana -= 10;
+                playerEntityInstance.OnUsingMana(10);
                 uiManager.ShieldImage.SetActive(false);
                 playerEntityInstance.playerState.ChangeState(playerEntityInstance.BlockState);
             }
@@ -230,6 +229,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             }   
         }
     }
+
 
     ////PICK
     //if (playerEntityInstance.IsPicking && playerEntityInstance.IsGrounded && playerEntityInstance.IsCollidingWithItem) //DONE
