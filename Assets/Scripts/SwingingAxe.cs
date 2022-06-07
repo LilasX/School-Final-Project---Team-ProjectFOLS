@@ -58,7 +58,7 @@ public class SwingingAxe : MonoBehaviour
             if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
             {
                 other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
-                other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 20;
+                other.gameObject.GetComponent<PlayerEntity>().OnHurt(20);
             }
             
         }
