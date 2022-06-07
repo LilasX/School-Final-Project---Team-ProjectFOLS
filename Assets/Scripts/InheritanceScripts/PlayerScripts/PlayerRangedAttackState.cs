@@ -19,33 +19,23 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
     private void RangedAttack()
     {
         playerEntityInstance.Animator.SetBool("Spell", true);
-        // Fire
-        //if (playerEntityInstance.IsFiring)
-        //{
-            if (!playerEntityInstance.hasFired)
+        if (!playerEntityInstance.hasFired)
+        {
+            playerEntityInstance.Timer += Time.deltaTime; //lance le chrono
+            if (playerEntityInstance.Timer >= playerEntityInstance.FireRate)
             {
-                playerEntityInstance.Timer += Time.deltaTime; //lance le chrono
-                if (playerEntityInstance.Timer >= playerEntityInstance.FireRate)
+                playerEntityInstance.hasFired = true;
+                if (playerEntityInstance.GetCurrentMana >= 10f)
                 {
-                    playerEntityInstance.hasFired = true;
-                    if (playerEntityInstance.GetCurrentMana >= 10f)
-                    {
-                        playerEntityInstance.OnUsingMana(10);
-                        GameObject gameObj = Instantiate(gameManager.fireSpell, new Vector3(playerEntityInstance.transform.position.x, playerEntityInstance.transform.position.y + 1.25f, playerEntityInstance.transform.position.z) + playerEntityInstance.transform.forward * 1.5f, Quaternion.identity); //Instantiation du projectile
-                        gameObj.GetComponent<Rigidbody>().AddForce(playerEntityInstance.transform.forward * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
-                        Destroy(gameObj, 5f); //Destruction du projectile
-                    }
-                    playerEntityInstance.Timer = 0; //reset du chrono
-                    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+                    playerEntityInstance.OnUsingMana(10);
+                    GameObject gameObj = Instantiate(gameManager.fireSpell, new Vector3(playerEntityInstance.transform.position.x, playerEntityInstance.transform.position.y + 1.25f, playerEntityInstance.transform.position.z) + playerEntityInstance.transform.forward * 1.5f, Quaternion.identity); //Instantiation du projectile
+                    gameObj.GetComponent<Rigidbody>().AddForce(playerEntityInstance.transform.forward * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
+                    Destroy(gameObj, 5f); //Destruction du projectile
+                }
+                playerEntityInstance.Timer = 0; //reset du chrono
+                playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
             }
         }
-        //}
-        //else
-        //{
-        //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-        //}
-
-
     }
 
     public void EnterState()

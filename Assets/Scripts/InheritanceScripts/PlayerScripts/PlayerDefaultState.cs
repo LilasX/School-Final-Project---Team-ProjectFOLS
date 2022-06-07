@@ -154,7 +154,6 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
                 gameManager.inputManager.OnEnable();
                 playerEntityInstance.HasUsedMelee = false;
                 playerEntityInstance.resetMeleeInputTimer = 0f;
-                uiManager.SwordImage.SetActive(true);
             }
         }
 

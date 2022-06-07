@@ -34,6 +34,7 @@ public class PlayerMeleeState : IPlayerBaseState
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
             playerEntityInstance.meleeTime = 0f;
+            uiManager.SwordImage.SetActive(true);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
         //else

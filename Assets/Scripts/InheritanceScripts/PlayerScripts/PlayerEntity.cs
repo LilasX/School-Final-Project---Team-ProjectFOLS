@@ -13,6 +13,7 @@ public class PlayerEntity : PhysicalEntity
     private GameManager gameManager;
     private UIManager uiManager;
     private PlayerEntity playerEntityInstance;
+    [SerializeField] private GameObject renderedCharacter;
     private CharacterController myCharacter; //Référence au character controller
     private Animator animator;
     [SerializeField] private CinemachineVirtualCamera cam; // Référence à la caméra
@@ -106,6 +107,10 @@ public class PlayerEntity : PhysicalEntity
     public float resetMeleeInputTimer = 0f;
     public float resetSlashInputTimer = 0f;
 
+    public Material defaultMaterial;
+    public Material damageMaterial;
+    private bool materíalChanged = false;
+    public float resetMaterialTimer = 0f;
 
 
 
@@ -221,6 +226,8 @@ public class PlayerEntity : PhysicalEntity
 
         OnManagingGravity();
 
+        ResetCharacterMaterial();
+
         playerState.Update(); // Excute the running state update
 
     }
@@ -243,9 +250,24 @@ public class PlayerEntity : PhysicalEntity
     {
         ////Player taking damage
         GetCurrentHP -= damage;
+        renderedCharacter.GetComponent<Renderer>().material = damageMaterial;
+        materíalChanged = true;
         if (GetCurrentHP <= 0)
         {
             OnDeath();
+        }
+    }
+
+    public void ResetCharacterMaterial()
+    {
+        if(materíalChanged)
+        {
+            resetMaterialTimer += Time.deltaTime;
+            if (resetMaterialTimer >= 2f)
+            {
+                renderedCharacter.GetComponent<Renderer>().material = defaultMaterial;
+                resetMaterialTimer = 0f;
+            }
         }
     }
 

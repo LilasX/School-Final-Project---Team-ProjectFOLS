@@ -2789,7 +2789,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.6260433, y: 1}
+    m_SensorSize: {x: 2.2038462, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6070,9 +6070,17 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3165254492795457942, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
+      propertyPath: damageMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 3fe1f7d8b65a9b94fb467db07a5c320c, type: 2}
+    - target: {fileID: 3165254492795457942, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: coolDownExample
       value: 
       objectReference: {fileID: 549607274}
+    - target: {fileID: 3165254492795457942, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
+      propertyPath: defaultMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
     - target: {fileID: 3165254492795457942, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: resetSpeedValue
       value: 6
@@ -6081,6 +6089,10 @@ PrefabInstance:
       propertyPath: checkGroundSphere
       value: 
       objectReference: {fileID: 1761348314}
+    - target: {fileID: 3165254492795457942, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
+      propertyPath: renderedCharacter
+      value: 
+      objectReference: {fileID: 1828050135}
     - target: {fileID: 3165254492795457942, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: checkGroundDistance
       value: 0.4
@@ -11046,6 +11058,11 @@ MonoBehaviour:
   inputManager: {fileID: 231535361}
   defaultController: {fileID: 9100000, guid: 5b3abd06becaee3479e2abf71937377c, type: 2}
   deathController: {fileID: 9100000, guid: 75488827879d5d845994211b21fcdd2a, type: 2}
+--- !u!1 &1828050135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3165254492154465417, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
+  m_PrefabInstance: {fileID: 1471809470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1856589256 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5166385727121913958, guid: 65ba2c1c810040042bee18de0e008951, type: 3}

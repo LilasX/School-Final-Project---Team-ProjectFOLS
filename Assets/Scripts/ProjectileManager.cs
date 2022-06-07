@@ -39,8 +39,8 @@ public class ProjectileManager : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        //Destroy(gameObject);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        //gameObject.SetActive(false);
         vfxDestroyed = true;
         if (vfxDestroyed && !instantiateOnce)
         {

@@ -18,6 +18,7 @@ public class BaseMelee : MonoBehaviour
             if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
             {
                 other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
+                other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
                 canDmg = false;
             }
           
@@ -93,7 +94,7 @@ public class BaseMelee : MonoBehaviour
             }
         }
 
-        if (gameManager.player.GetComponent<PlayerEntity>().resetSlashInputTimer >= 0.7f)
+        if (gameManager.player.GetComponent<PlayerEntity>().resetSlashInputTimer >= 0.5f)
         {
             if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
             {
