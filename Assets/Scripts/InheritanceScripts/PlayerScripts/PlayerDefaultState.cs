@@ -7,17 +7,19 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 {
 
     private GameManager gameManager;
+    private UIManager uiManager;
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
     float resetDodgeInputTimer = 0f;
-    float resetMeleeInputTimer = 0f;
-    float resetSlashInputTimer = 0f;
+    //float resetMeleeInputTimer = 0f;
+    //float resetSlashInputTimer = 0f;
 
 
     public PlayerDefaultState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
         gameManager = GameManager.instance;
+        uiManager = UIManager.Instance;
         this.playerEntityInstance = playerEntity;
         this.playerState = stateMachine;
     }
@@ -124,7 +126,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             if(playerEntityInstance.GetCurrentMana >= 10)
             {
                 playerEntityInstance.GetCurrentMana -= 10;
-                playerEntityInstance.shieldImage.SetActive(false);
+                uiManager.ShieldImage.SetActive(false);
                 playerEntityInstance.playerState.ChangeState(playerEntityInstance.BlockState);
             }
         }
@@ -147,13 +149,13 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
         if(playerEntityInstance.HasUsedMelee)
         {
-            resetMeleeInputTimer += Time.deltaTime;
-            if(resetMeleeInputTimer >= 1.2f)
+            playerEntityInstance.resetMeleeInputTimer += Time.deltaTime;
+            if(playerEntityInstance.resetMeleeInputTimer >= 1.2f)
             {
                 gameManager.inputManager.OnEnable();
                 playerEntityInstance.HasUsedMelee = false;
-                resetMeleeInputTimer = 0f;
-                playerEntityInstance.swordImage.SetActive(true);
+                playerEntityInstance.resetMeleeInputTimer = 0f;
+                uiManager.SwordImage.SetActive(true);
             }
         }
 
@@ -196,7 +198,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
                 if (playerEntityInstance.BlockCoolDown == 10)
                 {
-                    playerEntityInstance.shieldImage.SetActive(true);
+                    uiManager.ShieldImage.SetActive(true);
                 }
             }
         }
@@ -218,12 +220,12 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
 
         if (playerEntityInstance.hasRequestedSlash)
         {
-            resetSlashInputTimer += Time.deltaTime;
-            if (resetSlashInputTimer >= 0.75f)
+            playerEntityInstance.resetSlashInputTimer += Time.deltaTime;
+            if (playerEntityInstance.resetSlashInputTimer >= 0.75f)
             {
                 playerEntityInstance.hasRequestedSlash = false;
                 //playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 0f);
-                resetSlashInputTimer = 0f;
+                playerEntityInstance.resetSlashInputTimer = 0f;
                 gameManager.inputManager.OnEnable();
             }   
         }

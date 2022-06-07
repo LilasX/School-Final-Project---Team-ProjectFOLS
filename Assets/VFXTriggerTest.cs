@@ -7,10 +7,7 @@ public class VFXTriggerTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<EnemyMain>())
-        {
-            other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 20;
-        }
+
     }
 
     // Start is called before the first frame update

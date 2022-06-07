@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMeleeState : IPlayerBaseState
 {
     private GameManager gameManager;
+    private UIManager uiManager;
 
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
@@ -13,6 +14,7 @@ public class PlayerMeleeState : IPlayerBaseState
     public PlayerMeleeState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
         gameManager = GameManager.instance;
+        uiManager = UIManager.Instance;
         this.playerEntityInstance = playerEntity;
         this.playerState = stateMachine;
     }
@@ -22,7 +24,7 @@ public class PlayerMeleeState : IPlayerBaseState
         // Using Stick
         //if (playerEntityInstance.IsUsingMelee)
         //{
-        playerEntityInstance.swordImage.SetActive(false);
+        uiManager.SwordImage.SetActive(false);
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.MeleeVelocity * playerEntityInstance.meleeSpeed * Time.deltaTime);
         playerEntityInstance.HasUsedMelee = true;
         playerEntityInstance.Animator.SetBool("Attack", true);

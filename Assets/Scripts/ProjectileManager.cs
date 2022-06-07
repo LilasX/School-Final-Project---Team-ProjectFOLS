@@ -9,6 +9,7 @@ public class ProjectileManager : MonoBehaviour
 
     private ParticleSystem vfx;
     private bool vfxDestroyed;
+    private bool instantiateOnce = false;
 
     private GameManager gameManager;
 
@@ -17,6 +18,7 @@ public class ProjectileManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        instantiateOnce = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,8 +42,9 @@ public class ProjectileManager : MonoBehaviour
         //Destroy(gameObject);
         gameObject.SetActive(false);
         vfxDestroyed = true;
-        if (vfxDestroyed)
+        if (vfxDestroyed && !instantiateOnce)
         {
+            instantiateOnce = true;
             Instantiate(gameManager.fireBurstVfx, transform.position, transform.rotation);
         }
     }

@@ -11,13 +11,23 @@ public class PlayerEntity : PhysicalEntity
     #region Variables
 
     private GameManager gameManager;
-
-    //  Variables pour le déplacement
+    private UIManager uiManager;
+    private PlayerEntity playerEntityInstance;
     private CharacterController myCharacter; //Référence au character controller
+    private Animator animator;
     [SerializeField] private CinemachineVirtualCamera cam; // Référence à la caméra
+    
+    //  Variables pour le déplacement
     private Vector3 move;
     private float xAxis;
     private float zAxis;
+    private bool isMoving = false;
+
+    //  Variables pour la gravité
+    [SerializeField] private bool isGrounded = false;
+    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private float checkGroundDistance = 0.1f;
+
 
     [Header("Movement Attributes")]
     [SerializeField] private float speed = 6f;
@@ -28,24 +38,23 @@ public class PlayerEntity : PhysicalEntity
     [SerializeField] private float dodgeTime = 0f;
     [SerializeField] private float dodgeSpeed;
     private Vector3 dodgeVelocity;
+    public bool hasExecutedDodge = false;
 
-    //  Variables pour l'endurance, points de magie et point de vie
-    [SerializeField] private Slider staminaBar;
+
+    //  Variables pour l'endurance, points de magie
     [SerializeField] private float currentStamina;
     [SerializeField] private float maxStamina;
-    [SerializeField] private Slider manaBar;
     [SerializeField] private float currentMana;
     [SerializeField] private float maxMana;
-    [SerializeField] private Slider hpBar;
+
 
     //  Variables pour la gravité
     public Vector3 velocity;
     [SerializeField] private float gravityForce;
-    public float jumpForce;
-    private bool isJumping = false;
 
-    // Variables pour tirer
-    [Header("Attack Attributes")]
+
+    // Variables pour le Firing
+    [Header("Firing Attributes")]
     [SerializeField] private GameObject bullet; //Référence au projectile
     private bool isFiring = false;
     public bool hasFired = false;
@@ -55,81 +64,51 @@ public class PlayerEntity : PhysicalEntity
 
 
     //Variables pour arme courte portée
-    [SerializeField] private GameObject stick;
-    [SerializeField] private GameObject sword;
+    //Melee
+    [Header("Melee Attributes")]
     private bool isUsingMelee = false;
     [SerializeField] private bool hasUsedMelee = false;
     private Vector3 meleeVelocity;
     public float meleeTime = 0f;
     public float meleeSpeed;
-    [SerializeField] private GameObject shield;
-    private bool isUsingShield = false;
+
+
+    //Slash
+    [Header("Slash Attributes")]
     private Vector3 slashVelocity;
     public float slashSpeed;
     public float slashTimer = 0f;
-
-
-    [SerializeField] private GameObject pickableText;
-    [SerializeField] private GameObject coolDownExample;
-    [SerializeField] private Slider coolDownBar;
-    [SerializeField] private bool isUsingPower = false;
-    private float blockCoolDown = 10f;
-
-
-    [SerializeField] private bool canReturnAttack = false;
-    [SerializeField] private bool isReturningAttack = false;
-    //public bool hasRequestedAttackReturn = false;
-    [SerializeField] private int returnFireIndex = 0;
-
-    private GameObject attackToReturn;
-    private CapsuleCollider capsuleCollider; // to steal attack
-    [SerializeField] private float timercapsule = 0f;
-
-    private Animator animator;
-    private bool canDash = true;
-    private bool isMoving = false;
-
-    //pick
-    private bool isPicking = false;
-    private bool hasPickedItem = false;
-    private float timeToWait = 0f;
-
-
-    private bool meleePerformed = false;
-
-    private PlayerEntity playerEntityInstance;
-
-
-    [SerializeField] private bool isGrounded = false;
-    [SerializeField] private LayerMask groundLayerMask;
-    [SerializeField] private float checkGroundDistance = 0.1f;
-
-    [SerializeField] private bool isCollidingWithItem = false;
-
-    public bool hasReturnedAttack = false;
-    public float changeStateDelay = 0;
-
-    public bool isStealingAttack = false;
-    public bool hasStolenAttack = false;
-
     private bool isSlashing = false;
     public bool hasRequestedSlash = false;
 
-    public GameObject vfxCube;
 
-    public GameObject hpText;
-    public GameObject manaText;
-    public GameObject staminaText;
-
-
+    //Shield
+    [Header("Shield Attributes")]
+    private bool isUsingShield = false;
+    private float blockCoolDown = 10f;
     public float shieldTimer = 5f;
+    public GameObject vfxCube;
     public bool hasBlockedAttack = false;
-    public GameObject shieldImage;
-    public GameObject swordImage;
 
-    public bool hasExecutedDodge = false;
 
-    public HashSet<GameObject> damagedEnemiesList;
+    // Variables pour Steal & return attack
+    [SerializeField] private bool canReturnAttack = false;
+    [SerializeField] private bool isReturningAttack = false;
+    [SerializeField] private int returnFireIndex = 0;
+    private GameObject attackToReturn;
+    private CapsuleCollider capsuleCollider; // to steal attack
+    [SerializeField] private float timercapsule = 0f;
+    public bool hasReturnedAttack = false;
+    public float changeStateDelay = 0;
+    public bool isStealingAttack = false;
+
+
+
+    public List<GameObject> damagedEnemiesList;
+    public float resetMeleeInputTimer = 0f;
+    public float resetSlashInputTimer = 0f;
+
+
 
     #endregion
 
@@ -146,26 +125,15 @@ public class PlayerEntity : PhysicalEntity
     public bool IsDodging { get => isDodging; set => isDodging = value; }
     public float DodgeTime { get => dodgeTime; set => dodgeTime = value; }
     public float DodgeSpeed { get => dodgeSpeed; set => dodgeSpeed = value; }
-    public Slider StaminaBar { get => staminaBar; set => staminaBar = value; }
     public float GravityForce { get => gravityForce; set => gravityForce = value; }
-    public bool IsJumping { get => isJumping; set => isJumping = value; }
     public GameObject Bullet { get => bullet; set => bullet = value; }
     public bool IsFiring { get => isFiring; set => isFiring = value; }
     public float Timer { get => timer; set => timer = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
     public int BulletVelocity { get => bulletVelocity; set => bulletVelocity = value; }
-    public GameObject Stick { get => stick; set => stick = value; }
-    public GameObject Sword { get => sword; set => sword = value; }
     public bool IsUsingMelee { get => isUsingMelee; set => isUsingMelee = value; }
     public bool HasUsedMelee { get => hasUsedMelee; set => hasUsedMelee = value; }
-
-    //public bool CanAttack { get => canAttack; set => canAttack = value; }
-    public GameObject Shield { get => shield; set => shield = value; }
     public bool IsUsingShield { get => isUsingShield; set => isUsingShield = value; }
-    public GameObject PickableText { get => pickableText; set => pickableText = value; }
-    public GameObject CoolDownExample { get => coolDownExample; set => coolDownExample = value; }
-    public Slider CoolDownBar { get => coolDownBar; set => coolDownBar = value; }
-    public bool IsUsingPower { get => isUsingPower; set => isUsingPower = value; }
     public float BlockCoolDown { get => blockCoolDown; set => blockCoolDown = value; }
     public bool CanReturnAttack { get => canReturnAttack; set => canReturnAttack = value; }
     public bool IsReturningAttack { get => isReturningAttack; set => isReturningAttack = value; }
@@ -173,25 +141,17 @@ public class PlayerEntity : PhysicalEntity
     public CapsuleCollider CapsuleCollider { get => capsuleCollider; set => capsuleCollider = value; }
     public float Timercapsule { get => timercapsule; set => timercapsule = value; }
     public Animator Animator { get => animator; set => animator = value; }
-    public bool CanDash { get => canDash; set => canDash = value; }
     public bool IsMoving { get => isMoving; set => isMoving = value; }
-    public bool IsPicking { get => isPicking; set => isPicking = value; }
-    public bool HasPickedItem { get => hasPickedItem; set => hasPickedItem = value; }
-    public float TimeToWait { get => timeToWait; set => timeToWait = value; }
-    public Slider HpBar { get => hpBar; set => hpBar = value; }
-    public bool MeleePerformed { get => meleePerformed; set => meleePerformed = value; }
     public float GetCurrentMana { get => currentMana; set => currentMana = value; }
     public float GetMaxMana { get => maxMana; set => maxMana = value; }
     public float GetCurrentStamina { get => currentStamina; set => currentStamina = value; }
     public float GetMaxStamina { get => maxStamina; set => maxStamina = value; }
     public int ReturnFireIndex { get => returnFireIndex; set => returnFireIndex = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
-    public bool IsCollidingWithItem { get => isCollidingWithItem; set => isCollidingWithItem = value; }
     public bool IsSlashing { get => isSlashing; set => isSlashing = value; }
     public float ResetSpeedValue { get => resetSpeedValue; set => resetSpeedValue = value; }
     public Vector3 DodgeVelocity { get => dodgeVelocity; set => dodgeVelocity = value; }
     public Vector3 MeleeVelocity { get => meleeVelocity; set => meleeVelocity = value; }
-
     public PlayerEntity PlayerEntityInstance { get => playerEntityInstance; set => playerEntityInstance = value; }
 
 
@@ -239,7 +199,8 @@ public class PlayerEntity : PhysicalEntity
         CapsuleCollider = GetComponent<CapsuleCollider>();
         CapsuleCollider.enabled = false;
         gameManager = GameManager.Instance;
-        damagedEnemiesList = new HashSet<GameObject>();
+        uiManager = UIManager.Instance;
+        damagedEnemiesList = new List<GameObject>();
 
         defaultState = new PlayerDefaultState(this, playerState);
         //jumpState = new PlayerJumpState(this, playerState);
@@ -331,17 +292,17 @@ public class PlayerEntity : PhysicalEntity
     private void OnManagingStamina()
     {
         //Barre d'endurance
-        staminaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentStamina.ToString("0") + " / " + GetMaxStamina.ToString();
-        staminaBar.maxValue = GetMaxStamina;
-        staminaBar.value = currentStamina;
+        uiManager.StaminaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentStamina.ToString("0") + " / " + GetMaxStamina.ToString();
+        uiManager.StaminaBar.maxValue = GetMaxStamina;
+        uiManager.StaminaBar.value = currentStamina;
         if (currentStamina >= GetMaxStamina) { currentStamina = maxStamina; } else if (currentStamina <= 0) { currentStamina = 0; }
     }
 
     private void OnManagingHealth()
     {
-        hpText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentHP.ToString("0") + " / " + GetMaxHP.ToString();
-        hpBar.maxValue = GetMaxHP;
-        HpBar.value = GetCurrentHP;
+        uiManager.HpText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentHP.ToString("0") + " / " + GetMaxHP.ToString();
+        uiManager.HpBar.maxValue = GetMaxHP;
+        uiManager.HpBar.value = GetCurrentHP;
         if (GetCurrentHP >= GetMaxHP) { GetCurrentHP = GetMaxHP; }
         else if (GetCurrentHP <= 0)
         {
@@ -359,9 +320,9 @@ public class PlayerEntity : PhysicalEntity
     private void OnManagingMana()
     {
         //Barre d'endurance
-        manaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentMana.ToString("0") + " / " + GetMaxMana.ToString();
-        manaBar.maxValue = GetMaxMana;
-        manaBar.value = GetCurrentMana;
+        uiManager.ManaText.GetComponent<TMPro.TextMeshProUGUI>().text = GetCurrentMana.ToString("0") + " / " + GetMaxMana.ToString();
+        uiManager.ManaBar.maxValue = GetMaxMana;
+        uiManager.ManaBar.value = GetCurrentMana;
         if (GetCurrentMana >= GetMaxMana) { GetCurrentMana = GetMaxMana; } else if (GetCurrentMana <= 0) { GetCurrentMana = 0; }
     }
     #endregion
@@ -403,48 +364,21 @@ public class PlayerEntity : PhysicalEntity
 
     #region Collisions and Triggers
 
-    private void OnCollisionStay(Collision collision) //OnStealingAttack
-    {
-        //if (collision.gameObject.GetComponent<ProjectileManager>())
-        //{
-        //    if (!CanReturnAttack)
-        //    {
-        //        collision.gameObject.SetActive(false);
-        //        collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-        //        AttackToReturn = collision.gameObject;
-        //        CanReturnAttack = true;
-        //        Debug.Log("Colliding");
-        //    }
-        //}
-
-        //if (collision.gameObject.GetComponent<BaseProjectile>())
-        //{
-        //    if (!CanReturnAttack)
-        //    {
-        //        collision.gameObject.SetActive(false);
-        //        collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-        //        AttackToReturn = collision.gameObject;
-        //        CanReturnAttack = true;
-        //        Debug.Log("Colliding");
-        //    }
-        //}
-    }
-
     private void OnTriggerStay(Collider other) //OnPickingItem
     {
         if (other.gameObject != null)
         {
-            if (other.gameObject.GetComponent<Drops>())
-            {
-                IsCollidingWithItem = true;
-                if (IsPicking)
-                {
-                    HasPickedItem = true;
-                    //playerEntityInstance.PickableText.GetComponent<TMPro.TextMeshProUGUI>().text = "Picked";
-                    //other.gameObject.SetActive(false);
-                    Destroy(other.gameObject);
-                }
-            }
+            //if (other.gameObject.GetComponent<Drops>())
+            //{
+            //    IsCollidingWithItem = true;
+            //    if (IsPicking)
+            //    {
+            //        HasPickedItem = true;
+            //        //playerEntityInstance.PickableText.GetComponent<TMPro.TextMeshProUGUI>().text = "Picked";
+            //        //other.gameObject.SetActive(false);
+            //        Destroy(other.gameObject);
+            //    }
+            //}
 
             if (other.gameObject.GetComponent<ProjectileManager>())
             {
@@ -460,16 +394,16 @@ public class PlayerEntity : PhysicalEntity
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject != null)
-        {
-            if (other.gameObject.GetComponent<Drops>())
-            {
-                IsCollidingWithItem = false;
-            }
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject != null)
+    //    {
+    //        if (other.gameObject.GetComponent<Drops>())
+    //        {
+    //            IsCollidingWithItem = false;
+    //        }
+    //    }
+    //}
 
     #endregion
 

@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   striker: 1
   canDmg: 0
+  otherObject: {fileID: 0}
 --- !u!54 &523348590344247363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -244,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   striker: 1
   canDmg: 0
+  otherObject: {fileID: 0}
 --- !u!54 &6469974402913446392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2225,7 +2227,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 12
+  m_Radius: 1
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!195 &6881588284876657015
 NavMeshAgent:

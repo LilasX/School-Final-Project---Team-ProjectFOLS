@@ -21,7 +21,7 @@ public class BaseMelee : MonoBehaviour
             }
             else
             {
-                other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 10;
+                other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
                 canDmg = false;
             }
         }
@@ -35,15 +35,11 @@ public class BaseMelee : MonoBehaviour
                     gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
                     other.gameObject.GetComponent<EnemyMain>().OnHurt(30);
                     gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
+                    if(other.gameObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
+                    {
+                        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
+                    }
                 }
-
-                //if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
-                //{
-                //    int currentHP;
-                //    currentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
-                //    other.gameObject.GetComponent<EnemyMain>().GetCurrentHP = currentHP;
-                //    //gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
-                //}
             }
 
             if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
@@ -53,6 +49,10 @@ public class BaseMelee : MonoBehaviour
                     gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
                     other.gameObject.GetComponent<EnemyMain>().OnHurt(10);
                     gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash = false;
+                    if (other.gameObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
+                    {
+                        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
+                    }
                 }
             }
 
@@ -77,28 +77,37 @@ public class BaseMelee : MonoBehaviour
         {
             if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(otherObject))
             {
-                int currentHP;
-                currentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
-                otherObject.GetComponent<EnemyMain>().GetCurrentHP = currentHP;
+                //int currentHP;
+                //currentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
+                //otherObject.GetComponent<EnemyMain>().GetCurrentHP = currentHP;
+                otherObject.GetComponent<EnemyMain>().OnHurt(0);
     
                 //gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
             }
         }
 
-        if (gameManager.player.GetComponent<PlayerEntity>().IsSlashing)
+        if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
         {
-            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
+            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(otherObject))
             {
-                int currentHP;
-                currentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
-                otherObject.GetComponent<EnemyMain>().GetCurrentHP = currentHP;
+                otherObject.GetComponent<EnemyMain>().OnHurt(0);
             }
         }
 
-        if (otherObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
-        {
-            gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(otherObject);
-        }
+        //if (gameManager.player.GetComponent<PlayerEntity>().IsSlashing)
+        //{
+        //    if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
+        //    {
+        //        int currentHP;
+        //        currentHP = other.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
+        //        otherObject.GetComponent<EnemyMain>().GetCurrentHP = currentHP;
+        //    }
+        //}
+
+        //if (otherObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
+        //{
+        //    gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(otherObject);
+        //}
 
     }
 
@@ -106,14 +115,14 @@ public class BaseMelee : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (!gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee || !gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
-        {
-            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(otherObject))
-            {
-                otherObject.GetComponent<EnemyMain>().GetCurrentHP = otherObject.GetComponent<EnemyMain>().GetCurrentHP;
-                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(otherObject);
-            }
-        }
+        //if (!gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee) /*|| !gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)*/
+        //{
+        //    if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(otherObject))
+        //    {
+        //        otherObject.GetComponent<EnemyMain>().OnHurt(0);
+        //        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(otherObject);
+        //    }
+        //}
 
 
     }
@@ -128,6 +137,20 @@ public class BaseMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(gameManager.player.GetComponent<PlayerEntity>().resetMeleeInputTimer >= 1f)
+        {
+            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
+            {
+                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Clear();
+            }
+        }
+
+        if (gameManager.player.GetComponent<PlayerEntity>().resetSlashInputTimer >= 0.7f)
+        {
+            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
+            {
+                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Clear();
+            }
+        }
     }
 }

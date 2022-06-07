@@ -94,17 +94,17 @@ public class InputManager : MonoBehaviour
     //    gameManager.player.GetComponent<PlayerEntity>().IsJumping = context.performed;
     //}
 
-    private void Jump()
-    {
-        if (jumpAction.triggered)
-        {
-            gameManager.player.GetComponent<PlayerEntity>().IsJumping = true;
-        }
-        else
-        {
-            gameManager.player.GetComponent<PlayerEntity>().IsJumping = false;
-        }
-    }
+    //private void Jump()
+    //{
+    //    if (jumpAction.triggered)
+    //    {
+    //        gameManager.player.GetComponent<PlayerEntity>().IsJumping = true;
+    //    }
+    //    else
+    //    {
+    //        gameManager.player.GetComponent<PlayerEntity>().IsJumping = false;
+    //    }
+    //}
 
     public void OnRun(InputAction.CallbackContext context)
     {
@@ -180,10 +180,10 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void OnPick(InputAction.CallbackContext context)
-    {
-        gameManager.player.GetComponent<PlayerEntity>().IsPicking = context.performed;
-    }
+    //public void OnPick(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsPicking = context.performed;
+    //}
 
     //private void Pick()
     //{
@@ -236,7 +236,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Jump();
+        //Jump();
         Melee();
         ReturningAttack();
         Dodge();
