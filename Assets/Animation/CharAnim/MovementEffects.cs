@@ -25,6 +25,7 @@ public class MovementEffects : MonoBehaviour
     public AudioClip shield;
     public AudioSource audioShield;
 
+
     private Vector3 old_pos;
     private bool isMoving = false;
 
@@ -101,4 +102,6 @@ public class MovementEffects : MonoBehaviour
     {
         audioShield.PlayOneShot(shield);
     }
+
+   
 }

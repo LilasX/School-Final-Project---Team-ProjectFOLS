@@ -11,10 +11,15 @@ public class SpikeTrap : MonoBehaviour
 
     public Animator animator;
 
+
+    public AudioClip spike;
+    public AudioSource audioSpike;
+
     // Start is called before the first frame update
     void Start()
     {
         motionCountDown = delay;
+        audioSpike = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +35,7 @@ public class SpikeTrap : MonoBehaviour
                 animator.SetBool("Up", true);
 
                 trapTriggered = true;
+                audioSpike.PlayOneShot(spike);
             }
             else if (trapTriggered == true)
             {
@@ -37,9 +43,10 @@ public class SpikeTrap : MonoBehaviour
                 animator.SetBool("Down", true);
 
                 trapTriggered = false;
+                motionCountDown = delay;
             }
 
-            motionCountDown = delay;
+            
         }
     }
 
@@ -51,7 +58,7 @@ public class SpikeTrap : MonoBehaviour
             if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
             {
                 other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
-                other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP -= 20;
+                other.gameObject.GetComponent<PlayerEntity>().OnHurt(20);
             }
         }
     }

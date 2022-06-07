@@ -284,11 +284,11 @@ public class PlayerEntity : PhysicalEntity
     public override void OnHurt(int damage)
     {
         ////Player taking damage
-        //GetCurrentHP -= damage;
-        //if (GetCurrentHP <= 0)
-        //{
-        //    OnDeath();
-        //}
+        GetCurrentHP -= damage;
+        if (GetCurrentHP <= 0)
+        {
+            OnDeath();
+        }
     }
 
     public override void OnHeal(int hp)

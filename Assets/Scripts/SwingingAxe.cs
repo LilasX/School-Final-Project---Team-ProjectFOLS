@@ -11,10 +11,14 @@ public class SwingingAxe : MonoBehaviour
 
     public Animator animator;
 
+    public AudioClip axe;
+    public AudioSource audioAxe;
+
     // Start is called before the first frame update
     void Start()
     {
         motionCountDown = delay;
+        audioAxe = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +34,7 @@ public class SwingingAxe : MonoBehaviour
                 animator.SetBool("LeftSwing", true);
 
                 rightSide = true;
+                audioAxe.PlayOneShot(axe);
             }
             else if (rightSide == true)
             {
@@ -37,6 +42,7 @@ public class SwingingAxe : MonoBehaviour
                 animator.SetBool("RightSwing", true);
               
                 rightSide = false;
+                audioAxe.PlayOneShot(axe);
             }
 
             motionCountDown = delay;

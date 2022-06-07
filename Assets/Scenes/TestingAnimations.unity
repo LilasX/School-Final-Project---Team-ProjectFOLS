@@ -2307,13 +2307,14 @@ MonoBehaviour:
   player: {fileID: 3165254492715092050}
   myCharacter: {fileID: 3165254491199406036}
   cam: {fileID: 1422009817}
+  cameraMain: {fileID: 1019607202}
   bullet: {fileID: 6630236338828245609, guid: d9671e5f537104d49889c890c45d6e9b, type: 3}
   fireSpell: {fileID: 545954287311120432, guid: 7cd50cdf1045068408135de165560e8f, type: 3}
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}
   inventoryscript: {fileID: 436133749}
   inputManager: {fileID: 1549218585}
   defaultController: {fileID: 9100000, guid: 2343e7290bac5fa488d79484695ee976, type: 2}
-  deathController: {fileID: 9100000, guid: 3e7eeb56a84c349428a15614dd4aba30, type: 2}
+  deathController: {fileID: 9100000, guid: 75488827879d5d845994211b21fcdd2a, type: 2}
 --- !u!1 &824609607
 GameObject:
   m_ObjectHideFlags: 0
@@ -4323,7 +4324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 29.99878, y: 50}
+  m_AnchoredPosition: {x: 29.998718, y: 50}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1380949486
@@ -9993,6 +9994,8 @@ MonoBehaviour:
   meleeTime: 0
   meleeSpeed: 0
   shield: {fileID: 2122693027}
+  slashSpeed: 0
+  slashTimer: 0
   pickableText: {fileID: 1675870390}
   coolDownExample: {fileID: 1534635994}
   coolDownBar: {fileID: 1063256716}

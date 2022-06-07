@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-9062667050799448029
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 7c81afafb9a858f469319729adf25d45
+  m_EffectName: Attenuation
+  m_MixLevel: bfcca6d0c05309c428ae2931e237919f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-6753622073581075414
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -52,6 +66,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &-272216501173623573
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpikeTrap
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7cdd136fa8a018342a846eee7536ddc1
+  m_Children: []
+  m_Volume: 5315e73b23d962f44890a714cc35e9e3
+  m_Pitch: 7e94fd396d7fc164ba59dbe32bdd6b13
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -9062667050799448029}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -75,6 +108,8 @@ AudioMixerController:
     - 461ec76e8a8d95144a6031acb331996f
     - 9d138300b74402c4082d7d534d83209d
     - dfb4e1103cd60cb45a872266a969f5bd
+    - 7cdd136fa8a018342a846eee7536ddc1
+    - abfb438d64ef52b43847803b0324266d
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -92,6 +127,8 @@ AudioMixerGroupController:
   - {fileID: -6753622073581075414}
   - {fileID: 7133260659662645673}
   - {fileID: -2405232616615676547}
+  - {fileID: -272216501173623573}
+  - {fileID: 2418931159321952719}
   m_Volume: 9be9a4bc79d48fc4eab676127b7dc487
   m_Pitch: 165b92a1a7615ce4faa800be74b4a30f
   m_Send: 00000000000000000000000000000000
@@ -125,9 +162,11 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: a0ab2324bd4581040812a400dd0d1a29
   m_FloatValues:
+    1c9487d042679f24994b8d908ab9de82: -10
     be7bc1b3486ed4844a4e43dcdd2dac51: -7.5
-    9ba2a39467198874289a4274396ddb79: -15
+    9ba2a39467198874289a4274396ddb79: -20
     16fca869a7e79f4449d2f0c5896a134f: -5.5
+    5315e73b23d962f44890a714cc35e9e3: -5
     208dcd2ce5a37dc4ab9df668bafcbe13: -5
     9be9a4bc79d48fc4eab676127b7dc487: 0
   m_TransitionOverrides: {}
@@ -145,6 +184,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &2418931159321952719
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AxeTrap
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: abfb438d64ef52b43847803b0324266d
+  m_Children: []
+  m_Volume: 1c9487d042679f24994b8d908ab9de82
+  m_Pitch: 8b813000adf2b5e42bcd6fc5641c4a2e
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 6706456685958969314}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &3729033627219129157
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -178,6 +236,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &6706456685958969314
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 72713b04c2d57834f9de6482eb80b988
+  m_EffectName: Attenuation
+  m_MixLevel: 7926621c8a883c349ba4a18efd8a65db
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &7133260659662645673
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
