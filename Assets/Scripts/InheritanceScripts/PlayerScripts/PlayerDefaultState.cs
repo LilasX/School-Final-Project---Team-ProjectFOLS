@@ -12,6 +12,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
     private PlayerStateMachine playerState;
 
     float resetDodgeInputTimer = 0f;
+    float resetKnockedInputTimer = 0f;
     //float resetMeleeInputTimer = 0f;
     //float resetSlashInputTimer = 0f;
 
@@ -139,17 +140,15 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         //MELEE
         if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded && playerEntityInstance.Move != Vector3.zero) //A REVOIR
         {
-            //Debug.Log("IS ATTACKING"); //MAKE A TIMER ?
             playerEntityInstance.MeleeVelocity = playerEntityInstance.Move;
             gameManager.inputManager.OnDisable();
-            //playerEntityInstance.meleeSpeed = 10f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.MeleeState);
         }
 
         if(playerEntityInstance.HasUsedMelee)
         {
             playerEntityInstance.resetMeleeInputTimer += Time.deltaTime;
-            if(playerEntityInstance.resetMeleeInputTimer >= 1.2f)
+            if(playerEntityInstance.resetMeleeInputTimer >= 0.633f)
             {
                 gameManager.inputManager.OnEnable();
                 playerEntityInstance.HasUsedMelee = false;
@@ -227,19 +226,25 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
                 gameManager.inputManager.OnEnable();
             }   
         }
+
+        if(playerEntityInstance.isKnocked)
+        {
+            playerEntityInstance.knockedVelocity = playerEntityInstance.Move;
+            gameManager.inputManager.OnDisable();
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
+        }
+
+        if(playerEntityInstance.isKnocked)
+        {
+            resetKnockedInputTimer += Time.deltaTime;
+            if (resetKnockedInputTimer >= 0.5f)
+            {
+                playerEntityInstance.isKnocked = false;
+                resetKnockedInputTimer = 0f;
+                gameManager.inputManager.OnEnable();
+            }
+        }
     }
 
-
-    ////PICK
-    //if (playerEntityInstance.IsPicking && playerEntityInstance.IsGrounded && playerEntityInstance.IsCollidingWithItem) //DONE
-    //{
-    //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.PickState);
-    //}
-
-    ////JUMP
-    //if (playerEntityInstance.IsJumping && playerEntityInstance.IsGrounded) 
-    //{
-    //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.JumpState);
-    //}
 
 }

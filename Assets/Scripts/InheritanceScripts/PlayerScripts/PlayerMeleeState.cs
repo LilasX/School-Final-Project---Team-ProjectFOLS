@@ -21,15 +21,11 @@ public class PlayerMeleeState : IPlayerBaseState
 
     public void MeleeAttack() //changed to public
     {
-        // Using Stick
-        //if (playerEntityInstance.IsUsingMelee)
-        //{
         uiManager.SwordImage.SetActive(false);
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.MeleeVelocity * playerEntityInstance.meleeSpeed * Time.deltaTime);
         playerEntityInstance.HasUsedMelee = true;
         playerEntityInstance.Animator.SetBool("Attack", true);
         playerEntityInstance.meleeTime += Time.deltaTime;
-        //}
         if (playerEntityInstance.meleeTime >= 0.633f)
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
@@ -37,12 +33,6 @@ public class PlayerMeleeState : IPlayerBaseState
             uiManager.SwordImage.SetActive(true);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
-        //else
-        //{
-        //    playerEntityInstance.Stick.SetActive(false);
-        //    playerEntityInstance.Animator.SetBool("Attack", false);
-        //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-        //}
     }
 
     public void EnterState()

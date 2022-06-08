@@ -24,12 +24,12 @@ public class BaseMelee : MonoBehaviour
                 else
                 {
                     other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
-                    other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
+                    other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                     canDmg = false;
                 }
             }
-          
         }
+
         if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         {
 

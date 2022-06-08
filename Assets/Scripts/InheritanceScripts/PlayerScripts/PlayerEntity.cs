@@ -116,6 +116,10 @@ public class PlayerEntity : PhysicalEntity
 
     public bool isInteracting = false;
 
+
+    public Vector3 knockedVelocity;
+    public bool isKnocked = false;
+
     #endregion
 
 
@@ -240,7 +244,7 @@ public class PlayerEntity : PhysicalEntity
         //Death animation maybe then Respawn to Hub, maybe get health, mana and stamina to full by default?
         animator.runtimeAnimatorController = gameManager.deathController;
         animator.SetBool("Dead", true);
-        float waitTime = 0f;
+        float waitTime = 0f; //A CORRIGER
         waitTime += Time.deltaTime;
         if (waitTime >= 2.5f)
         {

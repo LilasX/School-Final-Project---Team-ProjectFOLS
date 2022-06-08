@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerKnockedState : IPlayerBaseState
 {
     private GameManager gameManager;
+    private UIManager uiManager;
 
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
@@ -12,6 +13,7 @@ public class PlayerKnockedState : IPlayerBaseState
     public PlayerKnockedState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
         gameManager = GameManager.instance;
+        uiManager = UIManager.Instance;
         this.playerEntityInstance = playerEntity;
         this.playerState = stateMachine;
     }
@@ -19,7 +21,10 @@ public class PlayerKnockedState : IPlayerBaseState
 
     private void KnockedAnimation()
     {
-        playerEntityInstance.GetComponent<PlayerEntity>().Animator.SetTrigger("Knocked");
+        playerEntityInstance.Animator.SetBool("Attack", false);
+        playerEntityInstance.meleeTime = 0f;
+        uiManager.SwordImage.SetActive(true);
+        playerEntityInstance.Animator.SetTrigger("Knocked");
         playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
     }
 
