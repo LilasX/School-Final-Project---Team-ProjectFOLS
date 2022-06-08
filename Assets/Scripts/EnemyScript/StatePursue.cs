@@ -26,7 +26,7 @@ public class StatePursue : EnemyState
 		//----- ----- Condition To Go To Script StateAttack ----- -----
 		if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
 		{
-			if (playerDistance <= 2)
+			if (playerDistance <= 3)
 			{
 				once = false;
 				//enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);

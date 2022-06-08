@@ -15,6 +15,7 @@ public abstract class EnemyMain : EnemyEntity
 
     //Need ATK, DEF & SPD?
     public GameManager gameManager;
+    public Animator animState;
     public Canvas canvas;
     public Slider slider;
     public GameObject cameraMain;
@@ -32,7 +33,8 @@ public abstract class EnemyMain : EnemyEntity
     public abstract void IsAttacking();
     //public abstract void VerifyDeath(); 
     //public abstract void OnDeath();
-    public abstract void DropItem(); 
+    public abstract void DropItem(); //Not Needed since Coin Existed
+    //public abstract void DropCoin();
     public abstract void DisplayHealthBar();
 
     public override void OnHurt(int damage)
@@ -42,6 +44,11 @@ public abstract class EnemyMain : EnemyEntity
         if(GetCurrentHP <= 0)
         {
             OnDeath();
+        }
+        else
+        {
+            //animState.SetTrigger("isKnocked"); //Done Multiple Times. Why?
+            //GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("isKnocked");
         }
     }
 }

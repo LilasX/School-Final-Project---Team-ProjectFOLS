@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   striker: 1
   canDmg: 0
+  otherObject: {fileID: 0}
 --- !u!54 &8677266001250683193
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -141,7 +142,6 @@ GameObject:
   - component: {fileID: 3579076600052452694}
   - component: {fileID: 3579076600062096018}
   - component: {fileID: 3579076600062096021}
-  - component: {fileID: 3579076600062096022}
   - component: {fileID: 3579076600062096023}
   - component: {fileID: 3579076600062096016}
   - component: {fileID: 3579076600062096017}
@@ -205,19 +205,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!135 &3579076600062096022
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3579076600052681954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 12
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!195 &3579076600062096023
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -262,7 +249,6 @@ MonoBehaviour:
   enemyAnim: {fileID: 3579076600062096018}
   currState: {fileID: 7251639271291498042}
   stateWander: {fileID: 7251639271291498042}
-  canSeePlayer: 0
 --- !u!114 &3579076600062096017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +264,10 @@ MonoBehaviour:
   currentHP: 100
   maxHP: 100
   distance: 0
+  gameManager: {fileID: 0}
+  canvas: {fileID: 0}
   slider: {fileID: 7251639272396716338}
+  cameraMain: {fileID: 0}
   drop: {fileID: 0}
   waveSpawnerObject: {fileID: 0}
   canAttack: 0
@@ -3114,6 +3103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   striker: 1
   canDmg: 0
+  otherObject: {fileID: 0}
 --- !u!54 &4955844075275769792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3224,6 +3214,7 @@ MonoBehaviour:
   statePursue: {fileID: 7251639271889053193}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
+  playerDistance: 0
   once: 0
   found: 0
   randomX: 0

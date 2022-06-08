@@ -8,6 +8,7 @@ public class StateWander : EnemyState
     public StatePursue statePursue; 
     public Vector3 wanderPos;
     public float wanderDistance = 0;
+    public float playerDistance = 0;
     public bool once = false;
     public bool found = false;
     public float randomX;
@@ -54,10 +55,13 @@ public class StateWander : EnemyState
 
         wanderDistance = Vector3.Distance(wanderPos, transform.position);
 
+        playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
+
         //----- ----- Condition To Go To Script StatePursue ----- -----
-        if (enemyBehaviour.canSeePlayer) 
+        if (playerDistance <= 10f) 
 		{
             wanderDistance = 0;
+            playerDistance = 0;
             once = false;
             return statePursue; 
         }

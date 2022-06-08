@@ -8,6 +8,10 @@ public class StateAttack : EnemyState
     public float playerDistance;
     private Vector3 target;
     public bool once = false;
+    public Animator anim;
+    public bool canDmg;
+    public bool onceTimer = false;
+    public float timer;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -19,7 +23,27 @@ public class StateAttack : EnemyState
             once = true;
         }
 
-        enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
+        //If CurrentAnimation is Walk Anim. Trying to Prevent Player Hurt Before Attack Animation Start After Walking
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking") && !onceTimer)
+        {
+            if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= 0.1f)
+                {
+                    canDmg = true;
+                    timer = 0;
+                    onceTimer = true;
+                }
+            }
+        }
+
+        //when Walk Anim is done
+        if (canDmg)
+        {
+            enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
+        }
 
         //Look At Player
         target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
@@ -30,10 +54,12 @@ public class StateAttack : EnemyState
         //----- ----- Condition To Go To Script StatePursue ----- -----
         if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
         {
-            if (playerDistance >= 3)
+            if (playerDistance >= 4)
             {
                 //enemyBehaviour.agent.isStopped = false;
                 once = false;
+                onceTimer = false;
+                canDmg = false;
                 return statePursue;
             }
         }

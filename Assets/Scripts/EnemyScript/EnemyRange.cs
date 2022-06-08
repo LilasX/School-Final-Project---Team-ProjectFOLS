@@ -214,7 +214,7 @@ public class EnemyRange : EnemyMain
             gameObject.SetActive(false);
         }
     }*/
-    public override void DropItem() 
+    public override void DropItem() //Not Needed since Coin existed
     {
         drop.transform.position = transform.position;
     }

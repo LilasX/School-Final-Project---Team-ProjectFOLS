@@ -10,13 +10,15 @@ public class EnemyMelee : EnemyMain
 
     public bool canAttack; 
     public GameObject[] melee = new GameObject[2];
-    public Animator meleeAnim; 
+    public Animator meleeAnim;
+    //public Animator animState;
     public MeleeWeapon typeMelee;
     private float timer;
     private int randNum;
     public GameObject coin;
 
     public bool attack; //Testing Attack Purpose in Inspector
+    public bool die; //Testing OnDeath
 
     public override void InitializeEnemy() 
     {
@@ -57,9 +59,19 @@ public class EnemyMelee : EnemyMain
 
             //enemyBehaviour.enemyAnim.SetTrigger("IsAttacking");
             GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking"); //For Goblin
-            melee[randNum].GetComponent<BaseMelee>().canDmg = true;
             canAttack = false;
+
+            //if (animState.GetCurrentAnimatorStateInfo(0).IsName("MSword And Shield Slash"))
+            //{
+                Invoke("CanDamage", 0.1f);
+            //}
+
         }
+    }
+
+    public void CanDamage()
+    {
+        melee[randNum].GetComponent<BaseMelee>().canDmg = true;
     }
 
     /*public override void AttackPlayer()
@@ -97,6 +109,7 @@ public class EnemyMelee : EnemyMain
         CoinDrop();
         //DropItem();
         waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
+        //GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("isDead"); Use State
         gameObject.SetActive(false);
     }
 
@@ -145,7 +158,10 @@ public class EnemyMelee : EnemyMain
         IsAttacking(); 
         DisplayHealthBar(); 
         //VerifyDeath(); 
-
+        if (die)
+        {
+            OnDeath();
+        }
         if (attack) 
         {
             //AttackPlayer(); 

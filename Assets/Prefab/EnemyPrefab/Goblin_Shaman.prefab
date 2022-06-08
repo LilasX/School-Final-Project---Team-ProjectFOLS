@@ -445,6 +445,7 @@ MonoBehaviour:
   statePursue: {fileID: 1752756847888944543}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
+  playerDistance: 0
   once: 0
   found: 0
   randomX: 0
@@ -2516,7 +2517,6 @@ GameObject:
   - component: {fileID: 8063936023394082166}
   - component: {fileID: 8063936023387003820}
   - component: {fileID: 8063936023394082161}
-  - component: {fileID: 8063936023394082162}
   - component: {fileID: 8063936023394082163}
   - component: {fileID: 8063936023394082164}
   - component: {fileID: 8063936023394082165}
@@ -2581,19 +2581,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!135 &8063936023394082162
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8063936023394381340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 12
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!195 &8063936023394082163
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2638,7 +2625,6 @@ MonoBehaviour:
   enemyAnim: {fileID: 8063936023387003820}
   currState: {fileID: 1752756848856197116}
   stateWander: {fileID: 1752756848856197116}
-  canSeePlayer: 0
 --- !u!114 &8063936023394082165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2654,8 +2640,12 @@ MonoBehaviour:
   currentHP: 60
   maxHP: 60
   distance: 0
+  gameManager: {fileID: 0}
+  canvas: {fileID: 0}
   slider: {fileID: 1752756847930241974}
+  cameraMain: {fileID: 0}
   drop: {fileID: 0}
+  waveSpawnerObject: {fileID: 0}
   canAttack: 0
   projectileSpawn: {fileID: 3277730593341248704}
   floorSpawn: {fileID: 8315239476800483531}
@@ -2670,6 +2660,7 @@ MonoBehaviour:
   - {fileID: 0}
   typeRange: 0
   randNum: 0
+  coin: {fileID: 0}
   attack: 0
 --- !u!1 &8063936023394384266
 GameObject:
