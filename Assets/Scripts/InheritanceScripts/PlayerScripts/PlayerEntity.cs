@@ -114,6 +114,8 @@ public class PlayerEntity : PhysicalEntity
 
     public bool isInvincible = false;
 
+    public bool isInteracting = false;
+
     #endregion
 
 

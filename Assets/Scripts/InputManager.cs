@@ -14,12 +14,11 @@ public class InputManager : MonoBehaviour
     private MyInputAction myInputAction;
     private InputAction moveAction;
     private InputAction meleeAction;
-    private InputAction jumpAction;
+    private InputAction interactAction;
     private InputAction returnAttackAction;
     private InputAction dodgeAction;
     private InputAction fireAction;
     private InputAction shieldAction;
-    private InputAction pickAction;
     private InputAction slashAction;
 
 
@@ -42,11 +41,11 @@ public class InputManager : MonoBehaviour
         myInputAction = new MyInputAction();
         meleeAction = myInputAction.Player.Melee;
         returnAttackAction = myInputAction.Player.ReturnAttack;
-        jumpAction = myInputAction.Player.Jump;
+   
         dodgeAction = myInputAction.Player.Dodge;
         fireAction = myInputAction.Player.Fire;
         shieldAction = myInputAction.Player.Shield;
-        //pickAction = myInputAction.Player.Pick;
+        interactAction = myInputAction.Player.Interact;
         slashAction = myInputAction.Player.Slash;
 
     }
@@ -231,6 +230,18 @@ public class InputManager : MonoBehaviour
         }
     }
 
+
+    private void Interact()
+    {
+        if(interactAction.IsPressed())
+        {
+            gameManager.player.GetComponent<PlayerEntity>().isInteracting = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().isInteracting = false;
+        }
+    }
     #endregion
 
     // Update is called once per frame
@@ -244,5 +255,6 @@ public class InputManager : MonoBehaviour
         Shield();
         //Pick();
         Slash();
+        Interact();
     }
 }

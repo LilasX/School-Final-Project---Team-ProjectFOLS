@@ -208,10 +208,12 @@ public class LootBox : MonoBehaviour
         if (collision.gameObject.tag == playerTag)
         {
             // if the method is OpenOnKeyPress, let's just flag the player as close
-            if (openingMethod == OpeningMethods.OpenOnKeyPress) isPlayerAround = true;
+            //if (openingMethod == OpeningMethods.OpenOnKeyPress) isPlayerAround = true;
+
+            if (gameManager.player.GetComponent<PlayerEntity>().isInteracting) { Open(); }//isPlayerAround = true; }
 
             // otherwise, open the box.
-            else Open();
+            //else Open();
         }
     }
 

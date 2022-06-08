@@ -37,24 +37,6 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""3561d561-cf57-4216-a5a2-d5ee1de01968"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Run"",
-                    ""type"": ""Button"",
-                    ""id"": ""ecfc89a9-2aa5-462b-b87a-be5ed003c540"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""478cd886-778d-41ce-a370-571dfa6bad85"",
@@ -78,7 +60,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""id"": ""ae3d73b8-6ffd-4c0a-9bce-560036a095fb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -103,6 +85,15 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""ReturnAttack"",
                     ""type"": ""Button"",
                     ""id"": ""1942692f-2c69-4f2e-bb82-047862230637"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""89433bdc-418c-4cfd-a075-fc4872481166"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -166,6 +157,61 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Arrows"",
+                    ""id"": ""5ff96671-eeab-4132-8647-b0e18c953a0b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d21eaf64-e7e5-42c8-b25d-41d35773c7da"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""40f9e9f5-5962-43c3-a62c-afe8ed335602"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""cecfa025-4654-421a-b44c-fe8ba41f8adb"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f2a3b0f4-9eb3-4ccd-afbc-539a5e1298bb"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""fba9882b-f840-4e88-b241-f54e4a1388cc"",
                     ""path"": ""<Gamepad>/leftStick"",
@@ -173,50 +219,6 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""processors"": ""StickDeadzone(min=0.5)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dd906a56-12fa-45a1-9051-1d07b788c647"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dfc7244d-944b-4b93-87e7-51203289eef9"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""839a009b-bf36-489c-94f9-568acaabb1fe"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Run"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e8e657c6-560b-40b1-a739-a175f96919d1"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -245,7 +247,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3c00e39-7a9a-4eb9-977f-bc79aa403faf"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/numpad2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -289,7 +291,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""31364bd6-98a4-4020-8016-dcb0cf3ebe4c"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""path"": ""<Keyboard>/numpad3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -311,7 +313,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1171003f-81cb-4769-aca7-01b97a21ca2f"",
-                    ""path"": ""<Keyboard>/b"",
+                    ""path"": ""<Keyboard>/numpad1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -349,6 +351,28 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ReturnAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5246319e-ca8c-4998-a6d5-d78111e41224"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""316eb4c5-f7d8-49ed-8f2a-bfb9f6b5b01c"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -937,14 +961,13 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
         m_Player_Slash = m_Player.FindAction("Slash", throwIfNotFound: true);
         m_Player_ReturnAttack = m_Player.FindAction("ReturnAttack", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1017,27 +1040,25 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Melee;
     private readonly InputAction m_Player_Shield;
     private readonly InputAction m_Player_Slash;
     private readonly InputAction m_Player_ReturnAttack;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @MyInputAction m_Wrapper;
         public PlayerActions(@MyInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputAction @Shield => m_Wrapper.m_Player_Shield;
         public InputAction @Slash => m_Wrapper.m_Player_Slash;
         public InputAction @ReturnAttack => m_Wrapper.m_Player_ReturnAttack;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1050,12 +1071,6 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
@@ -1074,6 +1089,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @ReturnAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
                 @ReturnAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
                 @ReturnAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnAttack;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1081,12 +1099,6 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Run.started += instance.OnRun;
-                @Run.performed += instance.OnRun;
-                @Run.canceled += instance.OnRun;
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
@@ -1105,6 +1117,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @ReturnAttack.started += instance.OnReturnAttack;
                 @ReturnAttack.performed += instance.OnReturnAttack;
                 @ReturnAttack.canceled += instance.OnReturnAttack;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -1262,14 +1277,13 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
         void OnSlash(InputAction.CallbackContext context);
         void OnReturnAttack(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

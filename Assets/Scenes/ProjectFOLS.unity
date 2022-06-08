@@ -1055,38 +1055,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 231535361}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3561d561-cf57-4216-a5a2-d5ee1de01968
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 231535361}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnRun
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ecfc89a9-2aa5-462b-b87a-be5ed003c540
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 231535361}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnFire
         m_Mode: 0
         m_Arguments:
@@ -1179,6 +1147,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1942692f-2c69-4f2e-bb82-047862230637
     m_ActionName: Player/ReturnAttack[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 89433bdc-418c-4cfd-a075-fc4872481166
+    m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1261,8 +1233,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256266648}
-  m_LocalRotation: {x: 0.29413486, y: -0.2757603, z: 0.08905687, w: 0.9107743}
-  m_LocalPosition: {x: -9.124603, y: -1.134716, z: 20.538025}
+  m_LocalRotation: {x: 0.29413489, y: -0.2757603, z: 0.08905687, w: 0.9107743}
+  m_LocalPosition: {x: -9.124603, y: 0.5652847, z: 19.218025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2684,7 +2656,7 @@ Transform:
   - {fileID: 1273597243}
   - {fileID: 814946719}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &678139939
 PrefabInstance:
@@ -2695,7 +2667,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622869848222992919, guid: 2299be390c4868a4cba74285ed646346, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2622869848222992919, guid: 2299be390c4868a4cba74285ed646346, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2805,8 +2777,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779685947}
-  m_LocalRotation: {x: 0.29413486, y: -0.2757603, z: 0.08905687, w: 0.9107743}
-  m_LocalPosition: {x: -9.124603, y: -1.134716, z: 20.538025}
+  m_LocalRotation: {x: 0.29413489, y: -0.2757603, z: 0.08905687, w: 0.9107743}
+  m_LocalPosition: {x: -9.124603, y: 0.5652847, z: 19.218025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5887,11 +5859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3165254492154571629, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.5
+      value: -11.8
       objectReference: {fileID: 0}
     - target: {fileID: 3165254492154571629, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.68
+      value: 6.36
       objectReference: {fileID: 0}
     - target: {fileID: 3165254492154571629, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: m_LocalRotation.w
