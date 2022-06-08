@@ -19,12 +19,14 @@ public class BaseMelee : MonoBehaviour
             {
                 if (gameManager.player.GetComponent<PlayerEntity>().isInvincible)
                 {
+                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", false);
                     other.gameObject.GetComponent<PlayerEntity>().OnHurt(0);
                 }
                 else
                 {
                     other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
                     other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
                     canDmg = false;
                 }
             }

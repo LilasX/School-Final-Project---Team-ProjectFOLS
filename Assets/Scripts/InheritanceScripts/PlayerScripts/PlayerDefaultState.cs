@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
+public class PlayerDefaultState : IPlayerBaseState
 {
 
     private GameManager gameManager;
@@ -201,7 +201,6 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
         }
 
 
-
         if (playerEntityInstance.GetCurrentHP <= 0)
         {
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DeathState);
@@ -240,6 +239,7 @@ public class PlayerDefaultState : MonoBehaviour, IPlayerBaseState
             if (resetKnockedInputTimer >= 0.5f)
             {
                 playerEntityInstance.isKnocked = false;
+ 
                 resetKnockedInputTimer = 0f;
                 gameManager.inputManager.OnEnable();
             }

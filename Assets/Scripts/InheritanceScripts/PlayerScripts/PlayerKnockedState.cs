@@ -24,7 +24,7 @@ public class PlayerKnockedState : IPlayerBaseState
         playerEntityInstance.Animator.SetBool("Attack", false);
         playerEntityInstance.meleeTime = 0f;
         uiManager.SwordImage.SetActive(true);
-        playerEntityInstance.Animator.SetTrigger("Knocked");
+        playerEntityInstance.Animator.SetBool("Knocked", false);
         playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
     }
 
