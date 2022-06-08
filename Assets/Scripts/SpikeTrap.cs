@@ -57,8 +57,15 @@ public class SpikeTrap : MonoBehaviour
             //Play knockback animation
             if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
             {
-                other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
-                other.gameObject.GetComponent<PlayerEntity>().OnHurt(20);
+                if (other.gameObject.GetComponent<PlayerEntity>().isInvincible)
+                {
+                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(0);
+                }
+                else
+                {
+                    other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
+                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(20);
+                }
             }
         }
     }

@@ -112,7 +112,7 @@ public class PlayerEntity : PhysicalEntity
     private bool materíalChanged = false;
     public float resetMaterialTimer = 0f;
 
-
+    public bool isInvincible = false;
 
     #endregion
 
@@ -250,6 +250,7 @@ public class PlayerEntity : PhysicalEntity
     {
         ////Player taking damage
         GetCurrentHP -= damage;
+        isInvincible = true;
         renderedCharacter.GetComponent<Renderer>().material = damageMaterial;
         materíalChanged = true;
         if (GetCurrentHP <= 0)
@@ -265,6 +266,7 @@ public class PlayerEntity : PhysicalEntity
             resetMaterialTimer += Time.deltaTime;
             if (resetMaterialTimer >= 2f)
             {
+                isInvincible = false;
                 renderedCharacter.GetComponent<Renderer>().material = defaultMaterial;
                 resetMaterialTimer = 0f;
             }

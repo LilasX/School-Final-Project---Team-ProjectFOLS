@@ -17,9 +17,16 @@ public class BaseMelee : MonoBehaviour
         {
             if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
             {
-                other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
-                other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
-                canDmg = false;
+                if (gameManager.player.GetComponent<PlayerEntity>().isInvincible)
+                {
+                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(0);
+                }
+                else
+                {
+                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
+                    other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
+                    canDmg = false;
+                }
             }
           
         }
