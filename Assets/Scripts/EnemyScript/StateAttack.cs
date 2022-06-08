@@ -24,18 +24,11 @@ public class StateAttack : EnemyState
         }
 
         //If CurrentAnimation is Walk Anim. Trying to Prevent Player Hurt Before Attack Animation Start After Walking
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking") && !onceTimer)
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking")/* && !onceTimer*/)
         {
-            if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9)
             {
-                timer += Time.deltaTime;
-
-                if (timer >= 0.1f)
-                {
-                    canDmg = true;
-                    timer = 0;
-                    onceTimer = true;
-                }
+                canDmg = true;
             }
         }
 
@@ -58,7 +51,7 @@ public class StateAttack : EnemyState
             {
                 //enemyBehaviour.agent.isStopped = false;
                 once = false;
-                onceTimer = false;
+                //onceTimer = false;
                 canDmg = false;
                 return statePursue;
             }

@@ -24,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Animator enemyAnim;
     public EnemyState currState;
     public StateWander stateWander;
+    public StateDeath stateDeath;
     //public bool canSeePlayer;
 
 
@@ -79,5 +80,10 @@ public class EnemyBehaviour : MonoBehaviour
     private void SwitchNextState(EnemyState nextState) 
     {
         currState = nextState;
+    }
+
+    public void SwitchStateDeath()
+    {
+        currState = stateDeath;
     }
 }
