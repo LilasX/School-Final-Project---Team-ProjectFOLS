@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 3471643305006496075}
   - component: {fileID: 3471643305006496069}
   - component: {fileID: 2309540424758792666}
+  - component: {fileID: -5223151270020641616}
   m_Layer: 0
   m_Name: TreasureChestPrefab
   m_TagString: Untagged
@@ -613,6 +614,7 @@ MonoBehaviour:
   bouncingBox: 1
   closeOnExit: 0
   boxContents: []
+  gameManager: {fileID: 0}
 --- !u!65 &2309540424758792666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -626,6 +628,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.42, z: 0}
+--- !u!114 &-5223151270020641616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471643304241853864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe9ef892a41b114d8f9971297a3aaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot:
+  - {fileID: 8179790854871830465, guid: b2b49023c9617164bb7c9eb7c3d3c4e7, type: 3}
+  minRange: 5
+  maxRange: 10
+  spawned: 0
 --- !u!1 &3798021681981134488
 GameObject:
   m_ObjectHideFlags: 0

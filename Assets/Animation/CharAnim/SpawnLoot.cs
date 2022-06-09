@@ -29,6 +29,7 @@ public class SpawnLoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(spawned && !collected)
         {
             spawned = false;

@@ -136,6 +136,7 @@ public class LootBox : MonoBehaviour
         // avoid opening when it's already open
         if (isOpen) return;
         isOpen = true;
+        this.gameObject.GetComponent<SpawnLoot>().spawned = true;
 
         // play the open animation
         if (animator) animator.Play("Open");

@@ -47,7 +47,7 @@ public class CoinLoot : MonoBehaviour
         {
             rb.useGravity = true;
             rb.isKinematic = false;
-            
+
             //rb.velocity = velocity;
             this.enabled = false;
         }
@@ -56,6 +56,7 @@ public class CoinLoot : MonoBehaviour
         {
             animatorCoin.enabled = true;
             audioCoin.PlayOneShot(coins);
+
         }
     }
 }   
