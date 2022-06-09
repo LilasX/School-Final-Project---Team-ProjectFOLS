@@ -175,8 +175,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca14f2c21a12e44dbbb3da9ca799735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  once: 0
+  once1: 0
+  once2: 0
+  once3: 0
   deathAnimator: {fileID: 9100000, guid: 903590d8bf860d24da23d51a52604a67, type: 2}
+  anim: {fileID: 6881588284867706748}
+  character: {fileID: 6881588284876957842}
+  dissolveMaterial: {fileID: 2100000, guid: 3e7101ee60b046b418bc7a05d385162b, type: 2}
+  dissolveShader: {fileID: 4800000, guid: 8842c84d9ff79e24abe4295f91ae4a7a, type: 3}
 --- !u!1 &5655259719716562432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,7 +1497,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
+  - {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

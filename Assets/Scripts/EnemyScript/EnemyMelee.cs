@@ -109,9 +109,9 @@ public class EnemyMelee : EnemyMain
         CoinDrop();
         //DropItem();
         waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
-        //GetComponent<EnemyBehaviour>().SwitchStateDeath(); //Don't know if it works
+        GetComponent<EnemyBehaviour>().SwitchStateDeath(); //Don't know if it works
         //GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("isDead"); Use State
-        gameObject.SetActive(false); //Need to to after death anim and dissolve
+        //gameObject.SetActive(false); //Need to to after death anim and dissolve
     }
 
     /*public override void VerifyDeath()
