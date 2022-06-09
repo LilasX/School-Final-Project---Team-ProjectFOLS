@@ -111,7 +111,8 @@ public class EnemyMelee : EnemyMain
         {
             transform.position = posOrigin.position;
             onceDeath = true;
-            CoinDrop();
+            GetComponent<SpawnLoot>().spawned = true;
+            //CoinDrop();
             //DropItem();
             waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
             GetComponent<EnemyBehaviour>().SwitchStateDeath(); //Don't know if it works
