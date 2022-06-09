@@ -21,6 +21,8 @@ public class InputManager : MonoBehaviour
     private InputAction shieldAction;
     private InputAction slashAction;
 
+    private InputAction UISubmit;
+    public bool UISubmitPressed = false;
 
     public static InputManager Instance { get => instance; set => instance = value; }
 
@@ -47,7 +49,7 @@ public class InputManager : MonoBehaviour
         shieldAction = myInputAction.Player.Shield;
         interactAction = myInputAction.Player.Interact;
         slashAction = myInputAction.Player.Slash;
-
+        UISubmit = myInputAction.UI.Submit;
     }
 
     private void Start()
@@ -242,6 +244,16 @@ public class InputManager : MonoBehaviour
             gameManager.player.GetComponent<PlayerEntity>().isInteracting = false;
         }
     }
+
+    private void Submit()
+    {
+        if (UISubmit.triggered)
+        {
+            UISubmitPressed = true;
+        }
+        else { UISubmitPressed = false; }
+    }
+
     #endregion
 
     // Update is called once per frame
@@ -256,5 +268,6 @@ public class InputManager : MonoBehaviour
         //Pick();
         Slash();
         Interact();
+        Submit();
     }
 }

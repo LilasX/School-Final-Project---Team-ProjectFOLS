@@ -893,6 +893,34 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI.FOLS"",
+            ""id"": ""23db392c-179f-4fdf-8ffe-ac868e39e438"",
+            ""actions"": [
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""b629437f-b1fb-45a3-8f23-5f740585b9a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0c6c3c82-42de-4b5c-a0e5-55dd41c6c89d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -980,6 +1008,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // UI.FOLS
+        m_UIFOLS = asset.FindActionMap("UI.FOLS", throwIfNotFound: true);
+        m_UIFOLS_Submit = m_UIFOLS.FindAction("Submit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1229,6 +1260,39 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // UI.FOLS
+    private readonly InputActionMap m_UIFOLS;
+    private IUIFOLSActions m_UIFOLSActionsCallbackInterface;
+    private readonly InputAction m_UIFOLS_Submit;
+    public struct UIFOLSActions
+    {
+        private @MyInputAction m_Wrapper;
+        public UIFOLSActions(@MyInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Submit => m_Wrapper.m_UIFOLS_Submit;
+        public InputActionMap Get() { return m_Wrapper.m_UIFOLS; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIFOLSActions set) { return set.Get(); }
+        public void SetCallbacks(IUIFOLSActions instance)
+        {
+            if (m_Wrapper.m_UIFOLSActionsCallbackInterface != null)
+            {
+                @Submit.started -= m_Wrapper.m_UIFOLSActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_UIFOLSActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_UIFOLSActionsCallbackInterface.OnSubmit;
+            }
+            m_Wrapper.m_UIFOLSActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
+            }
+        }
+    }
+    public UIFOLSActions @UIFOLS => new UIFOLSActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1297,5 +1361,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IUIFOLSActions
+    {
+        void OnSubmit(InputAction.CallbackContext context);
     }
 }

@@ -871,6 +871,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI.FOLS",
+            "id": "23db392c-179f-4fdf-8ffe-ac868e39e438",
+            "actions": [
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "b629437f-b1fb-45a3-8f23-5f740585b9a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0c6c3c82-42de-4b5c-a0e5-55dd41c6c89d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
