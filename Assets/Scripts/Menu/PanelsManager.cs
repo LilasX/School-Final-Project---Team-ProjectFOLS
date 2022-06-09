@@ -1,32 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine;
-using Cinemachine;
 
-public class GameManager : MonoBehaviour
+public class PanelsManager : MonoBehaviour
 {
-
-    public static GameManager instance = null;
-    public static GameManager Instance { get { return instance; } }
-
-    public GameObject player;
-    public CharacterController myCharacter;
-    public CinemachineVirtualCamera cam;
-    public GameObject cameraMain;
-    public GameObject bullet;
-    public GameObject fireSpell;
-    public GameObject fireBurstVfx;
-    public Inventory inventoryscript;
-    public InputManager inputManager;
-    public RuntimeAnimatorController defaultController;
-    public RuntimeAnimatorController deathController;
-
     [SerializeField] private GameObject[] panels = null;
     [SerializeField] private Selectable[] defaultBtn = null;
 
     public bool isPaused;
+
+    // private InputManager InputManagerInstance;
 
     public void PanelToggle(int position)
     {
@@ -35,28 +20,17 @@ public class GameManager : MonoBehaviour
             panels[i].SetActive(position == i);
             if (position == i)
             {
-                StartCoroutine(Wait(0.1f, i));
+                defaultBtn[i].Select();
+                //StartCoroutine(Wait(0.1f, i));
             }
         }
     }
 
-    IEnumerator Wait(float seconds, int index)
-    {
-        yield return new WaitForSeconds(seconds);
-        defaultBtn[index].Select();
-    }
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(instance);
-        }
-    }
+    //IEnumerator Wait(float seconds, int index)
+    //{
+    //    yield return new WaitForSeconds(seconds);
+    //    defaultBtn[index].Select();
+    //}
 
     // Start is called before the first frame update
     void Start()
