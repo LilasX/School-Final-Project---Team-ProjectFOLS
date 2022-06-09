@@ -16,6 +16,7 @@ public class EnemyMelee : EnemyMain
     private float timer;
     private int randNum;
     public GameObject coin;
+    public bool onceDeath = false;
 
     public bool attack; //Testing Attack Purpose in Inspector
     public bool die; //Testing OnDeath
@@ -28,6 +29,7 @@ public class EnemyMelee : EnemyMain
         GetCurrentHP = GetMaxHP;
         canAttack = true; 
         timer = 0;
+        onceDeath = false;
         cameraMain = gameManager.cameraMain;
         RandomWeapon(); 
     }
@@ -105,13 +107,17 @@ public class EnemyMelee : EnemyMain
 
     public override void OnDeath()
     {
-        transform.position = posOrigin.position;
-        CoinDrop();
-        //DropItem();
-        waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
-        GetComponent<EnemyBehaviour>().SwitchStateDeath(); //Don't know if it works
-        //GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("isDead"); Use State
-        //gameObject.SetActive(false); //Need to to after death anim and dissolve
+        if (!onceDeath)
+        {
+            transform.position = posOrigin.position;
+            onceDeath = true;
+            CoinDrop();
+            //DropItem();
+            waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
+            GetComponent<EnemyBehaviour>().SwitchStateDeath(); //Don't know if it works
+                                                               //GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("isDead"); Use State
+                                                               //gameObject.SetActive(false); //Need to to after death anim and dissolve
+        }
     }
 
     /*public override void VerifyDeath()
