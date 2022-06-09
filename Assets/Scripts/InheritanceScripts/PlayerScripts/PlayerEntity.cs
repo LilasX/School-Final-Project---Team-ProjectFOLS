@@ -119,6 +119,8 @@ public class PlayerEntity : PhysicalEntity
 
     public Vector3 knockedVelocity;
     public bool isKnocked = false;
+    public bool hasBeenKnocked = false;
+    public float resetKnockedInputTimer = 0f;
 
     #endregion
 
@@ -235,6 +237,8 @@ public class PlayerEntity : PhysicalEntity
         ResetCharacterMaterial();
 
         playerState.Update(); // Excute the running state update
+
+        Debug.Log(isKnocked);
 
     }
 

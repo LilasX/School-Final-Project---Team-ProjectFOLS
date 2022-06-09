@@ -48,5 +48,11 @@ public class PlayerMeleeState : IPlayerBaseState
     public void OnUpdate()
     {
         MeleeAttack();
+        
+        if(playerEntityInstance.isKnocked)
+        {
+            playerEntityInstance.Animator.SetBool("Attack", false);
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
+        }
     }
 }

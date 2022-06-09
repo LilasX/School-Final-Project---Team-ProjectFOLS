@@ -25,7 +25,7 @@ public class BaseProjectile : MonoBehaviour
         if(shooter == Shooter.player && other.gameObject.GetComponent<EnemyMain>()) 
         {
             //other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 20;
-                other.gameObject.GetComponent<EnemyMain>().OnHurt(20); //FIRE BURST is instanciated twice
+                other.gameObject.GetComponent<EnemyMain>().OnHurt(40); //FIRE BURST is instanciated twice
             
         }
 

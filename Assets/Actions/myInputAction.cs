@@ -31,7 +31,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""ca01116d-4b03-41c1-aca3-a8b3e0ae4db8"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true

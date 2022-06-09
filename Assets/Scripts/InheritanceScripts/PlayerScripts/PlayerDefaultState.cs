@@ -12,7 +12,7 @@ public class PlayerDefaultState : IPlayerBaseState
     private PlayerStateMachine playerState;
 
     float resetDodgeInputTimer = 0f;
-    float resetKnockedInputTimer = 0f;
+
     //float resetMeleeInputTimer = 0f;
     //float resetSlashInputTimer = 0f;
 
@@ -38,7 +38,14 @@ public class PlayerDefaultState : IPlayerBaseState
             //Debug.Log(move);
             playerEntityInstance.IsMoving = true;
             playerEntityInstance.MyCharacter.transform.forward = playerEntityInstance.Move * Time.deltaTime; //Oriente le joueur vers la direction du mouvement
-            playerEntityInstance.Animator.SetFloat("Speed", 1f, 20f, Time.time);
+            if(playerEntityInstance.Move.magnitude  <= 0.5)
+            {
+                playerEntityInstance.Animator.SetFloat("Speed", 0.5f, 20f, Time.time);
+            }
+            else
+            {
+                playerEntityInstance.Animator.SetFloat("Speed", 1f, 20f, Time.time);
+            }
         }
         else 
         { 
@@ -49,26 +56,26 @@ public class PlayerDefaultState : IPlayerBaseState
     }
 
 
-    private void Run()
-    {
+    //private void Run()
+    //{
 
-        //  Vitesse du joueur en course
-        if (playerEntityInstance.IsRunning && playerEntityInstance.IsMoving)
-        {
-            playerEntityInstance.Speed = playerEntityInstance.RunningSpeed; //Valeur de la vitesse en mode course
-            playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 1f, 10f * Time.deltaTime); //Vide la barre d'endurance
-            playerEntityInstance.Animator.SetFloat("Speed", 1.2f, 25f, Time.time);
-            if (playerEntityInstance.GetCurrentStamina == 1)
-            {
-                playerEntityInstance.IsRunning = false;
-            }
-        }
-        else
-        {
-            playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue; //Valeur de la vitesse en mode Walk
-            playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, playerEntityInstance.GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
-        }
-    }
+    //    //  Vitesse du joueur en course
+    //    if (playerEntityInstance.IsRunning && playerEntityInstance.IsMoving)
+    //    {
+    //        playerEntityInstance.Speed = playerEntityInstance.RunningSpeed; //Valeur de la vitesse en mode course
+    //        playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 1f, 10f * Time.deltaTime); //Vide la barre d'endurance
+    //        playerEntityInstance.Animator.SetFloat("Speed", 1.2f, 25f, Time.time);
+    //        if (playerEntityInstance.GetCurrentStamina == 1)
+    //        {
+    //            playerEntityInstance.IsRunning = false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue; //Valeur de la vitesse en mode Walk
+    //        playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, playerEntityInstance.GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
+    //    }
+    //}
 
     public void EnterState()
     {
@@ -87,7 +94,7 @@ public class PlayerDefaultState : IPlayerBaseState
 
         Move();
 
-        Run();
+        //Run();
 
         //DODGE
         if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina > 20f && playerEntityInstance.Move != Vector3.zero) //DONE
@@ -220,7 +227,6 @@ public class PlayerDefaultState : IPlayerBaseState
             if (playerEntityInstance.resetSlashInputTimer >= 0.75f)
             {
                 playerEntityInstance.hasRequestedSlash = false;
-                //playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 0f);
                 playerEntityInstance.resetSlashInputTimer = 0f;
                 gameManager.inputManager.OnEnable();
             }   
@@ -228,19 +234,19 @@ public class PlayerDefaultState : IPlayerBaseState
 
         if(playerEntityInstance.isKnocked)
         {
-            playerEntityInstance.knockedVelocity = playerEntityInstance.Move;
             gameManager.inputManager.OnDisable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
         }
 
-        if(playerEntityInstance.isKnocked)
+        if (playerEntityInstance.isKnocked)
         {
-            resetKnockedInputTimer += Time.deltaTime;
-            if (resetKnockedInputTimer >= 0.5f)
+            playerEntityInstance.resetKnockedInputTimer += Time.deltaTime;
+            if (playerEntityInstance.resetKnockedInputTimer >= 0.5f)
             {
                 playerEntityInstance.isKnocked = false;
- 
-                resetKnockedInputTimer = 0f;
+
+                playerEntityInstance.resetKnockedInputTimer = 0f;
+                //playerEntityInstance.hasBeenKnocked = false;
                 gameManager.inputManager.OnEnable();
             }
         }
