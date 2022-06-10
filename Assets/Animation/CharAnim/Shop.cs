@@ -11,8 +11,8 @@ public class Shop : MonoBehaviour
 
     private IShopCustomer shopCustomer;
 
-    private Item.ItemType itemH = Item.ItemType.HealthPotion;
-    private Item.ItemType itemM = Item.ItemType.ManaPotion;
+    public AudioClip buy;
+    public AudioSource audioCoin;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class Shop : MonoBehaviour
     {
         CreateItemButton(Item.ItemType.HealthPotion, Item.GetSprite(Item.ItemType.HealthPotion), "Health Potion", Item.GetPrice(Item.ItemType.HealthPotion), 0);
         CreateItemButton(Item.ItemType.ManaPotion, Item.GetSprite(Item.ItemType.ManaPotion), "Mana Potion", Item.GetPrice(Item.ItemType.ManaPotion), 1);
-
+        audioCoin = GetComponent<AudioSource>();
         HideShop();
     }
 
@@ -51,6 +51,7 @@ public class Shop : MonoBehaviour
         if (shopCustomer.SpendCoin(Item.GetPrice(itemType)))
         {
             shopCustomer.BuyItem(itemType);
+            audioCoin.PlayOneShot(buy);
         }
         
     }
