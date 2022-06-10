@@ -10,7 +10,7 @@ public class Follow : MonoBehaviour
     //public float minModifier;
     //public float maxModifier;
 
-    public float distance = 5;
+    //public float distance = 5;
     public float timer;
     public GameManager manager;
 
@@ -53,11 +53,11 @@ public class Follow : MonoBehaviour
     {
         if (timer >= 3f)
         {
-            if (target.position.x - transform.position.x <= distance)
-            {
+            //if (target.position.x - transform.position.x <= distance)
+            //{
                 //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(target.position.x, target.position.y + 1, target.position.z), ref velocity, Time.deltaTime * Random.Range(minModifier, maxModifier));
-                transform.position = Vector3.MoveTowards(transform.position, manager.player.transform.position, 20 * Time.deltaTime);
-            }
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, target.position.y + 1.5f, target.position.z), 20 * Time.deltaTime);
+            //}
         }
         timer += Time.deltaTime;
         /*
