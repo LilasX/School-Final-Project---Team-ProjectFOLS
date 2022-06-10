@@ -122,8 +122,6 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
     public bool hasBeenKnocked = false;
     public float resetKnockedInputTimer = 0f;
 
-    private Inventory inventory;
-
     #endregion
 
 
@@ -315,9 +313,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
 
     public bool SpendCoin(int coinAmount)
     {
-        if (inventory.coins >= coinAmount)
+        if (gameManager.inventoryscript.coins >= coinAmount)
         {
-            inventory.coins -= coinAmount;
+            gameManager.inventoryscript.coins -= coinAmount;
             return true;
         }
         else
