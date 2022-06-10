@@ -41,13 +41,9 @@ public class PhysicalEntity : BaseEntity
         }
     }
 
-    public virtual void OnHeal(int hp)
+    public virtual void OnHeal()
     {
-        //Default definition for now
-        if(base.GetCurrentHP < base.GetMaxHP)
-        {
-            base.GetCurrentHP += hp;
-        }
+        //Define heal
     }
     public virtual void OnAttack()
     {

@@ -35,7 +35,7 @@ public class EnemyEntity : PhysicalEntity
         }
     }
 
-    public override void OnHeal(int hp)
+    public override void OnHeal()
     {
         //If the enemies can heal, else we can remove this method or override this method in one of its subclasses if only some specific enemies can heal
     }

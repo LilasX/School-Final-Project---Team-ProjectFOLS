@@ -56,7 +56,7 @@ public class Follow : MonoBehaviour
             if (target.position.x - transform.position.x <= distance)
             {
                 //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(target.position.x, target.position.y + 1, target.position.z), ref velocity, Time.deltaTime * Random.Range(minModifier, maxModifier));
-                transform.position = Vector3.MoveTowards(transform.position, manager.player.transform.position, 10 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, manager.player.transform.position, 20 * Time.deltaTime);
             }
         }
         timer += Time.deltaTime;

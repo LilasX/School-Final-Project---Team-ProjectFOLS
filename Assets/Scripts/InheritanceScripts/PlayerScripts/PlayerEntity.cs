@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-public class PlayerEntity : PhysicalEntity
+public class PlayerEntity : PhysicalEntity, IShopCustomer
 {
 
     #region Variables
@@ -121,6 +121,8 @@ public class PlayerEntity : PhysicalEntity
     public bool isKnocked = false;
     public bool hasBeenKnocked = false;
     public float resetKnockedInputTimer = 0f;
+
+    private Inventory inventory;
 
     #endregion
 
@@ -283,12 +285,12 @@ public class PlayerEntity : PhysicalEntity
         }
     }
 
-    public override void OnHeal(int hp)
+    public override void OnHeal()
     {
         //Player healing their health points
         if (GetCurrentHP < GetMaxHP)
         {
-            GetCurrentHP += hp;
+            GetCurrentHP = GetMaxHP;
         }
     }
 
@@ -298,9 +300,30 @@ public class PlayerEntity : PhysicalEntity
         //How the player interacts with the NPC or objects in the hub?
     }
 
-    public void OnBuy()
+    public void BuyItem(Item.ItemType itemType)
     {
         //Define how and what happens when player buys an item (potion for example from the shop)
+        Debug.Log("Item Bought : " + itemType);
+        switch (itemType)
+        {
+            case Item.ItemType.HealthPotion: OnHeal();
+                break;
+            case Item.ItemType.ManaPotion: OnRecoverMana();
+                break;
+        }
+    }
+
+    public bool SpendCoin(int coinAmount)
+    {
+        if (inventory.coins >= coinAmount)
+        {
+            inventory.coins -= coinAmount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void OnSell()
@@ -313,9 +336,12 @@ public class PlayerEntity : PhysicalEntity
         GetCurrentMana -= mana;
     }
 
-    public void OnRecoverMana(int mana)
+    public void OnRecoverMana()
     {
-        GetCurrentMana += mana;
+        if (GetCurrentMana < GetMaxMana)
+        {
+            GetCurrentMana = GetMaxMana;
+        }
     }
 
     #endregion
