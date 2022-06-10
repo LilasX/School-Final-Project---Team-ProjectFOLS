@@ -35,7 +35,9 @@ public class SelectMenu : MonoBehaviour
     IEnumerator Start()
     {
         yield return new WaitForFixedUpdate();
+        Time.timeScale = 1f;
         PanelToggle(0);
+        UnlockCursor();
     }
 
     IEnumerator Wait(float seconds, int index)
@@ -70,5 +72,11 @@ public class SelectMenu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
