@@ -5,13 +5,14 @@ using UnityEngine;
 public class StateAttack : EnemyState
 {
     public StatePursue statePursue;
+    public StateAttackMelee01 stateMelee01;
+    public StateAttackRange01 stateRange01;
     public float playerDistance;
     private Vector3 target;
     public bool once = false;
     public Animator anim;
     public bool canDmg;
-    public bool onceTimer = false;
-    public float timer;
+    public int randNum;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -24,7 +25,7 @@ public class StateAttack : EnemyState
         }
 
         //If CurrentAnimation is Walk Anim. Trying to Prevent Player Hurt Before Attack Animation Start After Walking
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking")/* && !onceTimer*/)
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking") || anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
         {
             if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9)
             {
@@ -66,6 +67,17 @@ public class StateAttack : EnemyState
                 return statePursue;
             }
         }
+        /*
+        randNum = Random.Range(0, 3);
+        switch (randNum)
+        {
+            case 2:
+                return stateRange01;
+                //break;
+            default:
+                return stateMelee01;
+                //break;
+        }*/
 
         return this;
     }

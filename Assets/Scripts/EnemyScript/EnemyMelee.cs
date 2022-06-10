@@ -31,6 +31,7 @@ public class EnemyMelee : EnemyMain
         timer = 0;
         onceDeath = false;
         cameraMain = gameManager.cameraMain;
+        canvas.gameObject.SetActive(true);
         RandomWeapon(); 
     }
 
@@ -76,6 +77,11 @@ public class EnemyMelee : EnemyMain
         melee[randNum].GetComponent<BaseMelee>().canDmg = true;
     }
 
+    public void CannotDamage()
+    {
+        melee[randNum].GetComponent<BaseMelee>().canDmg = false;
+    }
+
     /*public override void AttackPlayer()
     {
         if (canAttack) 
@@ -109,8 +115,9 @@ public class EnemyMelee : EnemyMain
     {
         if (!onceDeath)
         {
-            transform.position = posOrigin.position;
+            //transform.position = posOrigin.position;
             onceDeath = true;
+            canvas.gameObject.SetActive(false);
             GetComponent<SpawnLoot>().spawned = true;
             //CoinDrop();
             //DropItem();
@@ -121,6 +128,7 @@ public class EnemyMelee : EnemyMain
         }
     }
 
+
     /*public override void VerifyDeath()
     {
         if (Hp <= 0)
@@ -130,7 +138,7 @@ public class EnemyMelee : EnemyMain
             gameObject.SetActive(false);
         }
     }*/
-
+    /*
     public override void DropItem() 
     {
         drop.transform.position = transform.position; 
@@ -144,7 +152,7 @@ public class EnemyMelee : EnemyMain
         //{
             Instantiate(coin, new Vector3(this.transform.position.x,this.transform.position.y +0.5f, this.transform.position.z), this.transform.rotation);
         //}
-    }
+    }*/
 
     public override void DisplayHealthBar() 
     {

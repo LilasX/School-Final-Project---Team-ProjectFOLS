@@ -4,58 +4,57 @@ using UnityEngine;
 
 public class StateKnocked : EnemyState
 {
+    public StatePursue statePursue;
+    public StateAttack stateAttack; //Need to enter code to reset once and bool
     public bool once1 = false;
     public bool once2 = false;
-    public bool once3 = false;
-    public bool dissolveStart = false;
-    public RuntimeAnimatorController deathAnimator;
     public Animator anim;
     public GameObject character;
-    public float cutoffValue = 0;
+    //public Material defaultMat;
+    public Material knockedMat;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
-        /*
         if (!once1)
         {
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); //Have another SetDestination after Death Animation is Done
+            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
             enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
-            enemyBehaviour.enemyAnim.runtimeAnimatorController = deathAnimator;
-            cutoffValue = 0;
-            dissolveStart = false;
-            once2 = false;
-            once3 = false;
+            anim.SetTrigger("IsKnocked");
+            character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
+            //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
+            stateAttack.once = false;
+            stateAttack.canDmg = false;
+            enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage(); //Only Usable if this enemy gameobject has script enemymelee
             once1 = true;
         }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && !once2)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked") && !once2)
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.1)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-                dissolveStart = true;
+                character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 4f);
+                enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;
                 once2 = true;
             }
         }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && !once3)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
+                character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
+                enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
                 once1 = false;
-                once3 = true;
-                enemyBehaviour.gameObject.SetActive(false);
+                once2 = false;
+                anim.SetBool("IsRunning", false);
+                anim.SetBool("IsWalking", true);
+                return statePursue;
             }
         }
 
-        if (dissolveStart)
-        {
-            cutoffValue += Time.deltaTime;
-            character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Cutoff", cutoffValue);
-        }
-        */
         return this;
     }
 }

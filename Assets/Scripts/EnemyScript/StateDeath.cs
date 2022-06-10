@@ -11,16 +11,18 @@ public class StateDeath : EnemyState
     public RuntimeAnimatorController deathAnimator;
     public Animator anim;
     public GameObject character;
+    public Material dissolveMat;
     public float cutoffValue = 0;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
         if (!once1)
         {
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); //Have another SetDestination after Death Animation is Done
+            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
             enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             enemyBehaviour.enemyAnim.runtimeAnimatorController = deathAnimator;
+            character.GetComponent<Renderer>().material = dissolveMat;
             cutoffValue = 0;
             dissolveStart = false;
             once2 = false;
@@ -52,7 +54,7 @@ public class StateDeath : EnemyState
         if (dissolveStart)
         {
             cutoffValue += Time.deltaTime;
-            character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Cutoff", cutoffValue);
+            character.GetComponent<Renderer>().material.SetFloat("_Cutoff", cutoffValue);
         }
 
         return this;

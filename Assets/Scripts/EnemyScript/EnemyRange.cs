@@ -199,7 +199,7 @@ public class EnemyRange : EnemyMain
     public override void OnDeath()
     {
         transform.position = posOrigin.position;
-        CoinDrop();
+        //CoinDrop();
         //DropItem();
         waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
         gameObject.SetActive(false);
@@ -214,7 +214,7 @@ public class EnemyRange : EnemyMain
             gameObject.SetActive(false);
         }
     }*/
-    public override void DropItem() //Not Needed since Coin existed
+    /*public override void DropItem() //Not Needed since Coin existed
     {
         drop.transform.position = transform.position;
     }
@@ -222,7 +222,7 @@ public class EnemyRange : EnemyMain
     public void CoinDrop()
     {
         Instantiate(coin, this.transform.position, this.transform.rotation);
-    }
+    }*/
 
     public override void DisplayHealthBar() 
     {

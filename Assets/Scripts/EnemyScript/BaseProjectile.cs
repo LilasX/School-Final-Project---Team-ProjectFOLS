@@ -28,8 +28,7 @@ public class BaseProjectile : MonoBehaviour
                 other.gameObject.GetComponent<EnemyMain>().OnHurt(40); //FIRE BURST is instanciated twice
             
         }
-
-        if (shooter == Shooter.enemy)
+        else if (shooter == Shooter.enemy)
         {
             switch (typeRange)
             {
@@ -46,6 +45,7 @@ public class BaseProjectile : MonoBehaviour
                         //Indirect Damage - Player near Explosion from Sphere
                         //other.gameObject.GetComponent<Player>().Hp -= 10;
                         canDmgSphere = false;
+                        Destroy(gameObject);
                     }
                     Invoke("SetInactiveRange", 1f);
                     break;
@@ -112,6 +112,11 @@ public class BaseProjectile : MonoBehaviour
                     }
                     break;
             }
+        }
+        else
+        {
+            //SetInactiveRange();
+            Destroy(gameObject);
         }
 
     }

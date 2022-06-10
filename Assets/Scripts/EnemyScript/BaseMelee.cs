@@ -21,6 +21,7 @@ public class BaseMelee : MonoBehaviour
                 {
                     other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", false);
                     other.gameObject.GetComponent<PlayerEntity>().OnHurt(0);
+                    canDmg = false;
                 }
                 else
                 {
