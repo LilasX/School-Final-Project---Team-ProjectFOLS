@@ -36,8 +36,8 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
     [Header("Movement Attributes")]
     [SerializeField] private float speed = 6f;
     [SerializeField] private float resetSpeedValue = 6f;
-    private bool isRunning;
-    [SerializeField] private float runningSpeed;
+    //private bool isRunning;
+    //[SerializeField] private float runningSpeed;
     private bool isDodging;
     [SerializeField] private float dodgeTime = 0f;
     [SerializeField] private float dodgeSpeed;
@@ -132,8 +132,8 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
     public float XAxis { get => xAxis; set => xAxis = value; }
     public float ZAxis { get => zAxis; set => zAxis = value; }
     public float Speed { get => speed; set => speed = value; }
-    public bool IsRunning { get => isRunning; set => isRunning = value; }
-    public float RunningSpeed { get => runningSpeed; set => runningSpeed = value; }
+    //public bool IsRunning { get => isRunning; set => isRunning = value; }
+    //public float RunningSpeed { get => runningSpeed; set => runningSpeed = value; }
     public bool IsDodging { get => isDodging; set => isDodging = value; }
     public float DodgeTime { get => dodgeTime; set => dodgeTime = value; }
     public float DodgeSpeed { get => dodgeSpeed; set => dodgeSpeed = value; }
@@ -238,7 +238,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
 
         playerState.Update(); // Excute the running state update
 
-        Debug.Log(isKnocked);
+        GetCurrentStamina = Mathf.MoveTowards(GetCurrentStamina, GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
 
     }
 

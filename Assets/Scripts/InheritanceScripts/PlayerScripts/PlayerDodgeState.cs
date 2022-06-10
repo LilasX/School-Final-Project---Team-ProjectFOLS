@@ -33,7 +33,7 @@ public class PlayerDodgeState : IPlayerBaseState
             playerEntityInstance.IsDodging = false;
             playerEntityInstance.DodgeTime = 0;
             playerEntityInstance.Animator.SetBool("Dive", false);
-            //gameManager.inputManager.OnEnable();
+            playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue;  //Valeur de la vitesse en mode esquive
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
            
         }

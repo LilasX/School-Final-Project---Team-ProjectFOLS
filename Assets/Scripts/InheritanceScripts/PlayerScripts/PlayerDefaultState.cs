@@ -97,7 +97,7 @@ public class PlayerDefaultState : IPlayerBaseState
         //Run();
 
         //DODGE
-        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina > 20f && playerEntityInstance.Move != Vector3.zero) //DONE
+        if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina >= 20f && playerEntityInstance.Move != Vector3.zero) //DONE
         {
             playerEntityInstance.GetCurrentStamina -= 20f;
             playerEntityInstance.DodgeVelocity = playerEntityInstance.Move;
@@ -120,7 +120,7 @@ public class PlayerDefaultState : IPlayerBaseState
         if (!playerEntityInstance.hasExecutedDodge)
         {
             resetDodgeInputTimer += Time.deltaTime;
-            if(resetDodgeInputTimer >= 0.35f)
+            if (resetDodgeInputTimer >= 0.35f)
             {
                 gameManager.inputManager.OnEnable();
                 resetDodgeInputTimer = 0f;
@@ -145,8 +145,9 @@ public class PlayerDefaultState : IPlayerBaseState
         }
 
         //MELEE
-        if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded && playerEntityInstance.Move != Vector3.zero) //A REVOIR
+        if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina >= 50f && playerEntityInstance.Move != Vector3.zero) //A REVOIR
         {
+            playerEntityInstance.GetCurrentStamina -= 50f;
             playerEntityInstance.MeleeVelocity = playerEntityInstance.Move;
             gameManager.inputManager.OnDisable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.MeleeState);

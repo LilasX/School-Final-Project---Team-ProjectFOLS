@@ -107,10 +107,10 @@ public class InputManager : MonoBehaviour
     //    }
     //}
 
-    public void OnRun(InputAction.CallbackContext context)
-    {
-        gameManager.player.GetComponent<PlayerEntity>().IsRunning = context.performed;
-    }
+    //public void OnRun(InputAction.CallbackContext context)
+    //{
+    //    gameManager.player.GetComponent<PlayerEntity>().IsRunning = context.performed;
+    //}
 
     //public void OnDodge(InputAction.CallbackContext context)
     //{
