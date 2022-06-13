@@ -42,17 +42,19 @@ public abstract class EnemyMain : EnemyEntity
     {
         if (canHurt)
         {
-            GetCurrentHP -= damage;
-
-            if (GetCurrentHP <= 0)
+            if (damage != 0)
             {
-                OnDeath();
-            }
-            else
-            {
-                //Delay in Knocked Animation;
                 canHurt = false;
-                GetComponent<EnemyBehaviour>().SwitchStateKnocked();
+                GetCurrentHP -= damage;
+
+                if (GetCurrentHP <= 0)
+                {
+                    OnDeath();
+                }
+                else
+                {
+                    GetComponent<EnemyBehaviour>().SwitchStateKnocked();
+                }
             }
         }
     }

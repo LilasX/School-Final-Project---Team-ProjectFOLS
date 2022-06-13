@@ -29,8 +29,7 @@ public class StateAttackMelee01 : EnemyState
             Debug.Log("Melee Once2");
             target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
             enemyBehaviour.gameObject.transform.LookAt(target);
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
-            enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
+            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
             once2 = true;

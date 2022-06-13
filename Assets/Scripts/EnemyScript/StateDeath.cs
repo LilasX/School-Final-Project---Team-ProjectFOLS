@@ -19,7 +19,6 @@ public class StateDeath : EnemyState
         if (!once1)
         {
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
-            enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             enemyBehaviour.enemyAnim.runtimeAnimatorController = deathAnimator;
             character.GetComponent<Renderer>().material = dissolveMat;

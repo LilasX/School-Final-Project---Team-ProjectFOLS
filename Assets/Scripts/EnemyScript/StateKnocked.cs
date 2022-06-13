@@ -18,7 +18,6 @@ public class StateKnocked : EnemyState
         if (!once1)
         {
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
-            enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             anim.SetTrigger("IsKnocked");
             character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
@@ -31,7 +30,7 @@ public class StateKnocked : EnemyState
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked") && !once2)
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.1)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
                 character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 4f);
@@ -42,14 +41,13 @@ public class StateKnocked : EnemyState
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
                 character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
                 enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
                 once1 = false;
                 once2 = false;
-                anim.SetBool("IsRunning", false);
                 anim.SetBool("IsWalking", true);
                 return statePursue;
             }

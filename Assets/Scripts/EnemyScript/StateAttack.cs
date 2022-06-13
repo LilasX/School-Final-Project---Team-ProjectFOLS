@@ -19,25 +19,24 @@ public class StateAttack : EnemyState
         if (!once)
         {
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-            enemyBehaviour.enemyAnim.SetBool("IsRunning", false);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once = true;
         }
 
         //If CurrentAnimation is Walk Anim. Trying to Prevent Player Hurt Before Attack Animation Start After Walking
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking") || anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
+        /*if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking") || anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
         {
             if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9)
             {
                 canDmg = true;
             }
-        }
+        }*/
 
         //when Walk Anim is done
-        if (canDmg)
-        {
+        //if (canDmg)
+        //{
             enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
-        }
+        //}
 
         //Look At Player
         target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
