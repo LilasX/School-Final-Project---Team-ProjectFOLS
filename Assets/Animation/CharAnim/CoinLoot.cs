@@ -56,7 +56,7 @@ public class CoinLoot : MonoBehaviour
         {
             animatorCoin.enabled = true;
             audioCoin.PlayOneShot(coins);
-
+            Destroy(this.GetComponent<Rigidbody>());
         }
     }
 }   
