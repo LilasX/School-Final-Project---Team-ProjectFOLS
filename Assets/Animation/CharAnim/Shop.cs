@@ -14,6 +14,8 @@ public class Shop : MonoBehaviour
     public AudioClip buy;
     public AudioSource audioCoin;
 
+    private GameManager manager;
+
     private void Awake()
     {
         container = transform.Find("Container");
@@ -23,6 +25,7 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameManager.Instance;
         CreateItemButton(Item.ItemType.HealthPotion, Item.GetSprite(Item.ItemType.HealthPotion), "Health Potion", Item.GetPrice(Item.ItemType.HealthPotion), 0);
         CreateItemButton(Item.ItemType.ManaPotion, Item.GetSprite(Item.ItemType.ManaPotion), "Mana Potion", Item.GetPrice(Item.ItemType.ManaPotion), 1);
         audioCoin = GetComponent<AudioSource>();
@@ -48,12 +51,23 @@ public class Shop : MonoBehaviour
 
     private void BuyShopItem(Item.ItemType itemType)
     {
-        if (shopCustomer.SpendCoin(Item.GetPrice(itemType)))
+        if(itemType == Item.ItemType.HealthPotion && manager.player.GetComponent<PlayerEntity>().GetCurrentHP < manager.player.GetComponent<PlayerEntity>().GetMaxHP)
         {
-            shopCustomer.BuyItem(itemType);
-            audioCoin.PlayOneShot(buy);
+            if (shopCustomer.SpendCoin(Item.GetPrice(itemType)))
+            {
+                shopCustomer.BuyItem(itemType);
+                audioCoin.PlayOneShot(buy);
+            }
         }
-        
+        else if (itemType == Item.ItemType.ManaPotion && manager.player.GetComponent<PlayerEntity>().GetCurrentMana < manager.player.GetComponent<PlayerEntity>().GetMaxMana)
+        {
+            if (shopCustomer.SpendCoin(Item.GetPrice(itemType)))
+            {
+                shopCustomer.BuyItem(itemType);
+                audioCoin.PlayOneShot(buy);
+            }
+        }
+
     }
 
     public void ShowShop(IShopCustomer shopCustomer)
