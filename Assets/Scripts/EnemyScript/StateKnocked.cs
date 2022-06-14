@@ -6,6 +6,9 @@ public class StateKnocked : EnemyState
 {
     public StatePursue statePursue;
     public StateAttack stateAttack; //Need to enter code to reset once and bool
+    public StateAttackMelee01 stateMelee01;
+    public StateAttackMelee02 stateMelee02;
+    public StateAttackRange01 stateRange01;
     public bool once1 = false;
     public bool once2 = false;
     public Animator anim;
@@ -22,15 +25,29 @@ public class StateKnocked : EnemyState
             anim.SetTrigger("IsKnocked");
             character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
             //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
+            
             stateAttack.once = false;
             stateAttack.canDmg = false;
+
+            stateMelee01.once1 = false;
+            stateMelee01.once2 = false;
+            stateMelee01.once3 = false;
+
+            stateMelee02.once1 = false;
+            stateMelee02.once2 = false;
+            stateMelee02.once3 = false;
+
+            stateRange01.once1 = false;
+            stateRange01.once2 = false;
+            stateRange01.once3 = false;
+
             enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage(); //Only Usable if this enemy gameobject has script enemymelee
             once1 = true;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked") && !once2)
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
                 character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 4f);

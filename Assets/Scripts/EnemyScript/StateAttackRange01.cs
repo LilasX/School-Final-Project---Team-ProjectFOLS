@@ -7,6 +7,7 @@ public class StateAttackRange01 : EnemyState
     public StatePursue statePursue;
     public Vector3 target;
     public Vector3 rangePos;
+    public GameObject ranged;
     public GameObject projectile;
     public GameObject projectileSpawn;
     public bool once1 = false;
@@ -51,19 +52,19 @@ public class StateAttackRange01 : EnemyState
         //When Shoot Animation reached Halfway (Hand goes Forward to Shoot)
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && !once3)
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
-                
+
                 // Code for launching rocks
                 /*projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 projectile.transform.position = projectileSpawn.transform.position;
                 projectile.transform.rotation = projectileSpawn.transform.rotation;
                 projectile.SetActive(true);*/
 
-                Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
+                ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
                 once3 = true;
             }
         }
@@ -71,7 +72,7 @@ public class StateAttackRange01 : EnemyState
         //When Shoot Animation almost End
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell"))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1) //0.9
             {
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
                 once1 = false;

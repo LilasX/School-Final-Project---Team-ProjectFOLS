@@ -44,6 +44,7 @@ public class BaseProjectile : MonoBehaviour
                         //other.gameObject.GetComponent<Player>().Hp -= 20;
                         //Indirect Damage - Player near Explosion from Sphere
                         //other.gameObject.GetComponent<Player>().Hp -= 10;
+                        other.gameObject.GetComponent<PlayerEntity>().OnHurt(10);
                         canDmgSphere = false;
                         Destroy(gameObject);
                     }

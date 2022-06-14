@@ -7,6 +7,7 @@ public class StateAttack : EnemyState
     public StatePursue statePursue;
     public StateAttackMelee01 stateMelee01;
     public StateAttackRange01 stateRange01;
+    public StateAttackMelee02 stateMelee02;
     public float playerDistance;
     private Vector3 target;
     public bool once = false;
@@ -16,12 +17,12 @@ public class StateAttack : EnemyState
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
-        if (!once)
+        /*if (!once)
         {
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once = true;
-        }
+        }*/
 
         //If CurrentAnimation is Walk Anim. Trying to Prevent Player Hurt Before Attack Animation Start After Walking
         /*if(anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking") || anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
@@ -35,17 +36,17 @@ public class StateAttack : EnemyState
         //when Walk Anim is done
         //if (canDmg)
         //{
-            enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
+        //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
         //}
 
         //Look At Player
-        target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
+        /*target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
         enemyBehaviour.gameObject.transform.LookAt(target);
 
-        playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
+        playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);*/
 
         //----- ----- Condition To Go To Script StatePursue ----- -----
-        if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
+        /*if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
         {
             if (playerDistance >= 4)
             {
@@ -65,19 +66,17 @@ public class StateAttack : EnemyState
                 once = false;
                 return statePursue;
             }
-        }
-        /*
+        }*/
+
         randNum = Random.Range(0, 3);
         switch (randNum)
         {
             case 2:
                 return stateRange01;
-                //break;
             default:
                 return stateMelee01;
-                //break;
-        }*/
+        }
 
-        return this;
+        //return this;
     }
 }

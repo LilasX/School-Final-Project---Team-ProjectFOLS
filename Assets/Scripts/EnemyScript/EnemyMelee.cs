@@ -61,7 +61,7 @@ public class EnemyMelee : EnemyMain
             //if (meleeAnim) meleeAnim.SetTrigger("Attack"); //For Capsule
 
             //enemyBehaviour.enemyAnim.SetTrigger("IsAttacking");
-            GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking"); //For Goblin
+            GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking01"); //For Goblin
             canAttack = false;
 
             //if (animState.GetCurrentAnimatorStateInfo(0).IsName("MSword And Shield Slash"))
