@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4370113968687178945}
   - component: {fileID: 6246180529461929259}
   - component: {fileID: 523348590344247363}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SM_Wep_Goblin_Club_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 5664935326506106768}
   - component: {fileID: 9219881144033280976}
   - component: {fileID: 6469974402913446392}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SM_Wep_Goblin_Machete_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
