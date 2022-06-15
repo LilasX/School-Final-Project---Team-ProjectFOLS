@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour
             panels[i].SetActive(position == i);
             if (position == i)
             {
-                UnlockCursor();
                 StartCoroutine(Wait(0.1f, i));
             }
         }
@@ -66,7 +65,6 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -90,20 +88,12 @@ public class UIManager : MonoBehaviour
         panels[0].SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-        Cursor.visible = false;
     }
 
     public void PauseGame()
     {
         PanelToggle(0);
-        UnlockCursor();
         Time.timeScale = 0.1f;
         isPaused = true;
-    }
-
-    public void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 }
