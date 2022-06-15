@@ -16,7 +16,7 @@ public class Shop : MonoBehaviour
 
     private GameManager manager;
 
-    private List<Button> shopB;
+    public List<Button> shopB;
 
     private void Awake()
     {
