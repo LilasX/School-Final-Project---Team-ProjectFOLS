@@ -16,6 +16,8 @@ public class Shop : MonoBehaviour
 
     private GameManager manager;
 
+    private List<Button> shopB;
+
     private void Awake()
     {
         container = transform.Find("Container");
@@ -26,10 +28,13 @@ public class Shop : MonoBehaviour
     void Start()
     {
         manager = GameManager.Instance;
+
         CreateItemButton(Item.ItemType.HealthPotion, Item.GetSprite(Item.ItemType.HealthPotion), "Health Potion", Item.GetPrice(Item.ItemType.HealthPotion), 0);
         CreateItemButton(Item.ItemType.ManaPotion, Item.GetSprite(Item.ItemType.ManaPotion), "Mana Potion", Item.GetPrice(Item.ItemType.ManaPotion), 1);
         audioCoin = GetComponent<AudioSource>();
         HideShop();
+
+        NavigateShopItems();
     }
 
     private void CreateItemButton(Item.ItemType itemType, Sprite itemSprite, string itemName, int itemPrice, int positionIndex)
@@ -45,8 +50,25 @@ public class Shop : MonoBehaviour
 
         shopItemT.Find("itemImage").GetComponent<Image>().sprite = itemSprite;
 
+        shopB.Add(shopItemT.GetComponent<Button>());
+
         shopItemT.GetComponent<Button>().onClick.AddListener(delegate { BuyShopItem(itemType); });
 
+    }
+
+    private void NavigateShopItems()
+    {
+        Navigation navigation = shopB[0].GetComponent<Button>().navigation;
+        navigation.mode = Navigation.Mode.Explicit;
+        navigation.selectOnDown = shopB[1].GetComponent<Button>();
+        navigation.selectOnUp = shopB[1].GetComponent<Button>();
+        shopB[0].GetComponent<Button>().navigation = navigation;
+
+        Navigation navigation1 = shopB[1].GetComponent<Button>().navigation;
+        navigation1.mode = Navigation.Mode.Explicit;
+        navigation1.selectOnDown = shopB[0].GetComponent<Button>();
+        navigation1.selectOnUp = shopB[0].GetComponent<Button>();
+        shopB[1].GetComponent<Button>().navigation = navigation1;
     }
 
     private void BuyShopItem(Item.ItemType itemType)
@@ -74,6 +96,7 @@ public class Shop : MonoBehaviour
     {
         this.shopCustomer = shopCustomer;
         gameObject.SetActive(true);
+        shopB[0].Select();
     }
 
     public void HideShop()
