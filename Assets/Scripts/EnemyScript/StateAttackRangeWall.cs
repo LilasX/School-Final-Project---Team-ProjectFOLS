@@ -2,24 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateAttackRange01 : EnemyState
+public class StateAttackRangeWall : StateAttackRange02
 {
-    //FOR IMPRECISE RANGE ATTACK ROCK (SPHERE)
-    public StatePursue statePursue;
-    public Vector3 target;
-    public Vector3 rangePos;
-    public GameObject ranged;
-    public GameObject projectile; //rock
-    public GameObject projectileSpawn;
-    public bool once1 = false;
-    public bool once2 = false;
-    public bool once3 = false;
-    public float randomX;
-    public float randomZ;
-    public float rangeDistance = 0;
-    public float playerDistance = 0;
-    public Animator anim;
-
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
         rangeDistance = Vector3.Distance(rangePos, transform.position);
@@ -39,15 +23,20 @@ public class StateAttackRange01 : EnemyState
             once1 = true;
         }
 
-        //Look At Player & Shoot Animation
+        //Shoot Animation
         if ((playerDistance >= 7f || rangeDistance <= enemyBehaviour.agent.stoppingDistance) && !once2)
         {
-            target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
-            enemyBehaviour.gameObject.transform.LookAt(target);
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
+            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once2 = true;
             anim.SetTrigger("IsThrowing");
+        }
+
+        //Look At Player
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && once2)
+        {
+            target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
+            enemyBehaviour.gameObject.transform.LookAt(target);
         }
 
         //When Shoot Animation reached Halfway (Hand goes Forward to Shoot)
@@ -55,6 +44,7 @@ public class StateAttackRange01 : EnemyState
         {
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
+                once4 = false;
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
@@ -65,14 +55,13 @@ public class StateAttackRange01 : EnemyState
                 projectile.SetActive(true);*/
 
                 ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                ranged.GetComponent<BaseProjectile>().dmg = 10;
-                ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                ranged.GetComponent<BaseProjectile>().dmg = 40;
                 once3 = true;
             }
         }
 
         //When Shoot Animation almost End
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && !once4)
         {
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1) //0.9
             {
@@ -80,7 +69,26 @@ public class StateAttackRange01 : EnemyState
                 once1 = false;
                 once2 = false;
                 once3 = false;
-                return statePursue;
+                once4 = true;
+
+                if (combo && stateRange02)
+                {
+                    randNum = Random.Range(0, 3);
+                    switch (randNum)
+                    {
+                        case 2:
+                            enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                            //stateRange02.once1 = true;
+                            //stateRange02.rangeDistance = 0;
+                            return stateRange02;
+                        default:
+                            return statePursue;
+                    }
+                }
+                else
+                {
+                    return statePursue;
+                }
             }
         }
 

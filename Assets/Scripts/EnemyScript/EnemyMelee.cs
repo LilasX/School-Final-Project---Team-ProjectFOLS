@@ -6,8 +6,6 @@ public enum MeleeWeapon { Knife, Sword, Spear, Hammer }
 
 public class EnemyMelee : EnemyMain
 {
-    public GameObject waveSpawnerObject;
-
     public bool canAttack; 
     public GameObject[] melee = new GameObject[2];
     public Animator meleeAnim;

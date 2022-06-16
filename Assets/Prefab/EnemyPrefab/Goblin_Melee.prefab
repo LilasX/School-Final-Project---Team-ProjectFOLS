@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8966625454804584792}
-  - component: {fileID: 3876422577802167013}
+  - component: {fileID: 3144496299525706980}
   m_Layer: 8
   m_Name: StateKnocked
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 6881588284900260896}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3876422577802167013
+--- !u!114 &3144496299525706980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 52132955414284957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22fbab1c7cb92840bb05015c8d31ee6, type: 3}
+  m_Script: {fileID: 11500000, guid: d51327dfb2ff6644cb21126630e955d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 6881588285909992070}
-  stateAttack: {fileID: 6881588286030556020}
   stateMelee01: {fileID: 8727847870739026074}
   stateMelee02: {fileID: 4642344349108319272}
   stateRange01: {fileID: 6525474285438701406}
@@ -2460,7 +2459,7 @@ MonoBehaviour:
   currState: {fileID: 6881588284479463216}
   stateWander: {fileID: 6881588284479463216}
   stateDeath: {fileID: 4902154532596490118}
-  stateKnocked: {fileID: 3876422577802167013}
+  stateKnocked: {fileID: 0}
 --- !u!114 &6881588284876657012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,13 +2476,13 @@ MonoBehaviour:
   maxHP: 100
   distance: 0
   gameManager: {fileID: 0}
+  waveSpawnerObject: {fileID: 0}
   animState: {fileID: 6881588284867706748}
   canvas: {fileID: 6881588284374531153}
   slider: {fileID: 6881588285620541924}
   cameraMain: {fileID: 0}
   drop: {fileID: 4227461106753351263, guid: 9e8ae706d10b0564cb5c0e54d2b5726a, type: 3}
   canHurt: 1
-  waveSpawnerObject: {fileID: 0}
   canAttack: 0
   melee:
   - {fileID: 5655259719716562432}
@@ -3857,7 +3856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b407da0b5d5f674781d0bb578dc42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateAttack: {fileID: 6881588286030556020}
+  stateMelee: {fileID: 7264736059987307790}
+  stateRange: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &6881588286030556027
@@ -3869,7 +3869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6881588286030556021}
-  - component: {fileID: 6881588286030556020}
+  - component: {fileID: 7264736059987307790}
   m_Layer: 8
   m_Name: StateAttack
   m_TagString: Untagged
@@ -3892,7 +3892,7 @@ Transform:
   m_Father: {fileID: 6881588284900260896}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6881588286030556020
+--- !u!114 &7264736059987307790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3907,7 +3907,6 @@ MonoBehaviour:
   statePursue: {fileID: 6881588285909992070}
   stateMelee01: {fileID: 8727847870739026074}
   stateRange01: {fileID: 6525474285438701406}
-  stateMelee02: {fileID: 4642344349108319272}
   playerDistance: 0
   once: 0
   anim: {fileID: 6881588284867706748}

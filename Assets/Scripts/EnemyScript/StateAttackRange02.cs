@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateAttackRange01 : EnemyState
+public class StateAttackRange02 : EnemyState
 {
-    //FOR IMPRECISE RANGE ATTACK ROCK (SPHERE)
+    //FOR PRECISE RANGE ATTACK ROCK (SPHERE)
     public StatePursue statePursue;
+    public StateAttackRange02 stateRange02;
     public Vector3 target;
     public Vector3 rangePos;
     public GameObject ranged;
-    public GameObject projectile; //rock
+    public GameObject projectile;
     public GameObject projectileSpawn;
     public bool once1 = false;
     public bool once2 = false;
     public bool once3 = false;
+    public bool once4 = true; //Prevent Return Instantaneous. In short, Upon Entering the Second StateRange, it immediately goes to return, thus breaking the combo.
     public float randomX;
     public float randomZ;
     public float rangeDistance = 0;
     public float playerDistance = 0;
+    public int randNum;
     public Animator anim;
+    public bool combo;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -39,15 +43,20 @@ public class StateAttackRange01 : EnemyState
             once1 = true;
         }
 
-        //Look At Player & Shoot Animation
+        //Shoot Animation
         if ((playerDistance >= 7f || rangeDistance <= enemyBehaviour.agent.stoppingDistance) && !once2)
         {
-            target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
-            enemyBehaviour.gameObject.transform.LookAt(target);
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
+            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once2 = true;
             anim.SetTrigger("IsThrowing");
+        }
+
+        //Look At Player
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && once2)
+        {
+            target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
+            enemyBehaviour.gameObject.transform.LookAt(target);
         }
 
         //When Shoot Animation reached Halfway (Hand goes Forward to Shoot)
@@ -55,6 +64,7 @@ public class StateAttackRange01 : EnemyState
         {
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
+                once4 = false;
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
@@ -72,7 +82,7 @@ public class StateAttackRange01 : EnemyState
         }
 
         //When Shoot Animation almost End
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && !once4) 
         {
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1) //0.9
             {
@@ -80,7 +90,29 @@ public class StateAttackRange01 : EnemyState
                 once1 = false;
                 once2 = false;
                 once3 = false;
-                return statePursue;
+                once4 = true;
+
+                if (combo && stateRange02)
+                {
+                    randNum = Random.Range(0, 3);
+                    switch (randNum)
+                    {
+                        case 2:
+                            //Debug.Log("Pursuing 2 " + this.gameObject);
+                            return statePursue;
+                        default:
+                            //Debug.Log("Shooting 0-1 " + randNum + " " + this.gameObject);
+                            stateRange02.once4 = true;
+                            enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                            //stateRange02.once1 = true;
+                            //stateRange02.rangeDistance = 0;
+                            return stateRange02;
+                    }
+                }
+                else
+                {
+                    return statePursue;
+                }
             }
         }
 

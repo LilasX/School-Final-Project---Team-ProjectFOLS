@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateKnocked : EnemyState
+public class StateKnocked_GoblinRange : EnemyState
 {
     public StatePursue statePursue;
     //public StateAttack stateAttack; //Need to enter code to reset once and bool
-    public StateAttackMelee01 stateMelee01;
-    public StateAttackMelee02 stateMelee02;
-    public StateAttackRange01 stateRange01;
+    public StateAttackRange02 stateRange01;
+    public StateAttackRange02 stateRange02;
+    public StateAttackRange02 stateRange03;
     public bool once1 = false;
     public bool once2 = false;
     public Animator anim;
@@ -20,7 +20,7 @@ public class StateKnocked : EnemyState
     {
         if (!once1)
         {
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
+            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             anim.SetTrigger("IsKnocked");
             character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
@@ -28,21 +28,20 @@ public class StateKnocked : EnemyState
 
             //stateAttack.once = false;
             //stateAttack.canDmg = false;
-            if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
+            if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
             {
-                if (stateMelee01)
-                {
-                    stateMelee01.once1 = false; stateMelee01.once2 = false; stateMelee01.once3 = false;
-                }
-                if (stateMelee02)
-                {
-                    stateMelee02.once1 = false; stateMelee02.once2 = false; stateMelee02.once3 = false;
-                }
                 if (stateRange01)
                 {
-                    stateRange01.once1 = false; stateRange01.once2 = false; stateRange01.once3 = false;
+                    stateRange01.once1 = false; stateRange01.once2 = false; stateRange01.once3 = false; stateRange01.once4 = true;
                 }
-                enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage(); //Only Usable if this enemy gameobject has script enemymelee
+                if (stateRange02)
+                {
+                    stateRange02.once1 = false; stateRange02.once2 = false; stateRange02.once3 = false; stateRange02.once4 = true;
+                }
+                if (stateRange03)
+                {
+                    stateRange03.once1 = false; stateRange03.once2 = false; stateRange03.once3 = false; stateRange03.once4 = true;
+                }
             }
             once1 = true;
         }

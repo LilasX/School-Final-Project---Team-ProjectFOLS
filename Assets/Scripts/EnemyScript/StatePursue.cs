@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class StatePursue : EnemyState
 {
-	public StateAttack stateAttack; 
+	public StateAttackMeleeStart stateMelee;
+	public StateAttackRangeStart stateRange;
 	public float playerDistance;
 	public bool once = false;
 
@@ -23,7 +24,7 @@ public class StatePursue : EnemyState
 		playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
 
 		//----- ----- Condition To Go To Script StateAttack ----- -----
-		if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
+		if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>() && stateMelee)
 		{
 			if (playerDistance <= 5f) //2f-3f for old StateAttack, 5f for new StateAttack
 			{
@@ -31,10 +32,10 @@ public class StatePursue : EnemyState
 				//enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
 				//enemyBehaviour.agent.speed = 1f;
 				//enemyBehaviour.agent.acceleration = 2f;
-				return stateAttack;
+				return stateMelee;
 			}
 		} 
-		else if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
+		else if (enemyBehaviour.gameObject.GetComponent<EnemyRange>() && stateRange)
         {
 			if (playerDistance <= 7f)
 			{
@@ -45,7 +46,7 @@ public class StatePursue : EnemyState
 				//enemyBehaviour.agent.speed = 0.5f;
 				//enemyBehaviour.agent.acceleration = 1f;
 				//enemyBehaviour.agent.enabled = false;
-				return stateAttack;
+				return stateRange;
 			}
 		}
 

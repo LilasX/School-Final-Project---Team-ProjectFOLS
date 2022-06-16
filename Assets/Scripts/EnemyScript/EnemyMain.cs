@@ -15,6 +15,7 @@ public abstract class EnemyMain : EnemyEntity
 
     //Need ATK, DEF & SPD?
     public GameManager gameManager;
+    public GameObject waveSpawnerObject;
     public Animator animState;
     public Canvas canvas;
     public Slider slider;

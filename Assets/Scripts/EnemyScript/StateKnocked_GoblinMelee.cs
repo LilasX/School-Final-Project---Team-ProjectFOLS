@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateKnocked : EnemyState
+public class StateKnocked_GoblinMelee : EnemyState
 {
     public StatePursue statePursue;
     //public StateAttack stateAttack; //Need to enter code to reset once and bool
@@ -20,7 +20,7 @@ public class StateKnocked : EnemyState
     {
         if (!once1)
         {
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
+            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             anim.SetTrigger("IsKnocked");
             character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;

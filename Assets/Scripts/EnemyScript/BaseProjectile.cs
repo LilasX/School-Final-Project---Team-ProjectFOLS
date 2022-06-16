@@ -9,6 +9,7 @@ public class BaseProjectile : MonoBehaviour
     public Shooter shooter;
     public RangeWeapon typeRange;
 
+    public int dmg = 0;
     public bool canDmgSphere;
     public bool canDmgArrow;
     public bool canDmgLance;
@@ -22,99 +23,118 @@ public class BaseProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(shooter == Shooter.player && other.gameObject.GetComponent<EnemyMain>()) 
+        if (shooter == Shooter.player && other.gameObject.GetComponent<EnemyMain>())
         {
             //other.gameObject.GetComponent<EnemyMain>().GetCurrentHP -= 20;
-                other.gameObject.GetComponent<EnemyMain>().OnHurt(40); //FIRE BURST is instanciated twice
-            
+            other.gameObject.GetComponent<EnemyMain>().OnHurt(40); //FIRE BURST is instanciated twice
+
         }
         else if (shooter == Shooter.enemy)
         {
-            switch (typeRange)
+            if (other.gameObject.GetComponent<PlayerEntity>())
             {
-                case RangeWeapon.Sphere:
-                    if (other.gameObject.GetComponent<MockTest>() && canDmgSphere) //ForTestingGrounds
+                if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield && !other.gameObject.GetComponent<PlayerEntity>().isInvincible)
+                {
+                    switch (typeRange)
                     {
-                        other.gameObject.GetComponent<MockTest>().hp -= 20;
-                        canDmgSphere = false;
+                        case RangeWeapon.Sphere:
+                            if (other.gameObject.GetComponent<MockTest>() && canDmgSphere) //ForTestingGrounds
+                            {
+                                other.gameObject.GetComponent<MockTest>().hp -= 20;
+                                canDmgSphere = false;
+                            }
+                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgSphere)
+                            {
+                                //Direct Damage
+                                //other.gameObject.GetComponent<Player>().Hp -= 20;
+                                //Indirect Damage - Player near Explosion from Sphere
+                                //other.gameObject.GetComponent<Player>().Hp -= 10;
+                                other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                                other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                canDmgSphere = false;
+                                Destroy(gameObject);
+                            }
+                            Invoke("SetInactiveRange", 1f);
+                            break;
+                        case RangeWeapon.Arrow:
+                            if (other.gameObject.GetComponent<MockTest>() && canDmgArrow) //ForTestingGrounds
+                            {
+                                other.gameObject.GetComponent<MockTest>().hp -= 20;
+                                canDmgArrow = false;
+                            }
+                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgArrow)
+                            {
+                                //other.gameObject.GetComponent<Player>().Hp -= 30;
+                                other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                                other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                canDmgArrow = false;
+                            }
+                            Invoke("SetInactiveRange", 1f);
+                            break;
+                        case RangeWeapon.Lance:
+                            if (other.gameObject.GetComponent<MockTest>() && canDmgLance) //ForTestingGrounds
+                            {
+                                other.gameObject.GetComponent<MockTest>().hp -= 40;
+                                canDmgLance = false;
+                            }
+                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgLance)
+                            {
+                                //other.gameObject.GetComponent<Player>().Hp -= 40;
+                                //other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                //other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                canDmgLance = false;
+                            }
+                            Invoke("SetInactiveRange", 1f);
+                            break;
+                        case RangeWeapon.Wall:
+                            if (other.gameObject.GetComponent<MockTest>() && canDmgWall) //ForTestingGrounds
+                            {
+                                other.gameObject.GetComponent<MockTest>().hp -= 30;
+                                canDmgWall = false;
+                            }
+                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgWall)
+                            {
+                                //other.gameObject.GetComponent<Player>().Hp -= 30;
+                                //other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                //other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                canDmgWall = false;
+                            }
+                            break;
+                        case RangeWeapon.Floor:
+                            if (other.gameObject.GetComponent<MockTest>() && canDmgFloor) //ForTestingGrounds
+                            {
+                                other.gameObject.GetComponent<MockTest>().hp -= 10;
+                                canDmgFloor = false;
+                            }
+                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgFloor)
+                            {
+                                //other.gameObject.GetComponent<Player>().Hp -= 10;
+                                //other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                //other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                canDmgFloor = false;
+                            }
+                            break;
+                        case RangeWeapon.Wave:
+                            if (other.gameObject.GetComponent<MockTest>() && canDmgWave) //ForTestingGrounds
+                            {
+                                other.gameObject.GetComponent<MockTest>().hp -= 20;
+                                canDmgWave = false;
+                            }
+                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgWave)
+                            {
+                                //other.gameObject.GetComponent<Player>().Hp -= 20;
+                                //other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                //other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                canDmgWave = false;
+                            }
+                            break;
                     }
-                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgSphere)
-                    {
-                        //Direct Damage
-                        //other.gameObject.GetComponent<Player>().Hp -= 20;
-                        //Indirect Damage - Player near Explosion from Sphere
-                        //other.gameObject.GetComponent<Player>().Hp -= 10;
-                        other.gameObject.GetComponent<PlayerEntity>().OnHurt(10);
-                        canDmgSphere = false;
-                        Destroy(gameObject);
-                    }
-                    Invoke("SetInactiveRange", 1f);
-                    break;
-                case RangeWeapon.Arrow:
-                    if (other.gameObject.GetComponent<MockTest>() && canDmgArrow) //ForTestingGrounds
-                    {
-                        other.gameObject.GetComponent<MockTest>().hp -= 20;
-                        canDmgArrow = false;
-                    }
-                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgArrow)
-                    {
-                        //other.gameObject.GetComponent<Player>().Hp -= 30;
-                        canDmgArrow = false;
-                    }
-                    Invoke("SetInactiveRange", 1f);
-                    break;
-                case RangeWeapon.Lance:
-                    if (other.gameObject.GetComponent<MockTest>() && canDmgLance) //ForTestingGrounds
-                    {
-                        other.gameObject.GetComponent<MockTest>().hp -= 40;
-                        canDmgLance = false;
-                    }
-                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgLance)
-                    {
-                        //other.gameObject.GetComponent<Player>().Hp -= 40;
-                        canDmgLance = false;
-                    }
-                    Invoke("SetInactiveRange", 1f);
-                    break;
-                case RangeWeapon.Wall:
-                    if (other.gameObject.GetComponent<MockTest>() && canDmgWall) //ForTestingGrounds
-                    {
-                        other.gameObject.GetComponent<MockTest>().hp -= 30;
-                        canDmgWall = false;
-                    }
-                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgWall)
-                    {
-                        //other.gameObject.GetComponent<Player>().Hp -= 30;
-                        canDmgWall = false;
-                    }
-                    break;
-                case RangeWeapon.Floor:
-                    if (other.gameObject.GetComponent<MockTest>() && canDmgFloor) //ForTestingGrounds
-                    {
-                        other.gameObject.GetComponent<MockTest>().hp -= 10;
-                        canDmgFloor = false;
-                    }
-                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgFloor)
-                    {
-                        //other.gameObject.GetComponent<Player>().Hp -= 10;
-                        canDmgFloor = false;
-                    }
-                    break;
-                case RangeWeapon.Wave:
-                    if (other.gameObject.GetComponent<MockTest>() && canDmgWave) //ForTestingGrounds
-                    {
-                        other.gameObject.GetComponent<MockTest>().hp -= 20;
-                        canDmgWave = false;
-                    }
-                    if (other.gameObject.GetComponent<PlayerEntity>() && canDmgWave)
-                    {
-                        //other.gameObject.GetComponent<Player>().Hp -= 20;
-                        canDmgWave = false;
-                    }
-                    break;
+                }
             }
         }
-        else
+        else //if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) //To Check
         {
             //SetInactiveRange();
             Destroy(gameObject);
@@ -122,7 +142,7 @@ public class BaseProjectile : MonoBehaviour
 
     }
 
-    public void SetInactiveRange() 
+    public void SetInactiveRange() //For Pooling, Destroy for Instantiate
     {
         gameObject.SetActive(false); 
     }

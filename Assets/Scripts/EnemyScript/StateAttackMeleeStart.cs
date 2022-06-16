@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateAttack : EnemyState
+public class StateAttackMeleeStart : EnemyState
 {
     public StatePursue statePursue;
     public StateAttackMelee01 stateMelee01;
     public StateAttackRange01 stateRange01;
-    public StateAttackMelee02 stateMelee02;
     public float playerDistance;
     private Vector3 target;
     public bool once = false;

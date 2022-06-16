@@ -6,8 +6,6 @@ public enum RangeWeapon { Sphere, Arrow, Lance, Wall, Floor, Wave }
 
 public class EnemyRange : EnemyMain
 {
-    public GameObject waveSpawnerObject;
-
     public bool canAttack;
     public GameObject projectileSpawn;
     public GameObject floorSpawn;
@@ -18,8 +16,10 @@ public class EnemyRange : EnemyMain
     private float timer;
     public int randNum;
     public GameObject coin;
+    public bool onceDeath = false;
 
     public bool attack;//Testing Attack Purpose
+    public bool die; //Testing OnDeath
     public override void InitializeEnemy() 
     {
         gameManager = GameManager.instance;
@@ -30,6 +30,7 @@ public class EnemyRange : EnemyMain
         Hp = HpMax; */
         canAttack = true; 
         timer = 0;
+        onceDeath = false;
         cameraMain = gameManager.cameraMain;
         HideRangedWeapon();
         RandomWeapon();
@@ -191,18 +192,26 @@ public class EnemyRange : EnemyMain
             }
         }
     }
-
+    /*
     public override void OnHurt(int damage)
     {
         GetCurrentHP -= damage;
-    }
+    }*/
     public override void OnDeath()
     {
-        transform.position = posOrigin.position;
+        if(!onceDeath)
+        {
+            onceDeath = true;
+            canvas.gameObject.SetActive(false);
+            GetComponent<SpawnLoot>().spawned = true;
+            waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
+            GetComponent<EnemyBehaviour>().SwitchStateDeath();
+        }
+        //transform.position = posOrigin.position;
         //CoinDrop();
         //DropItem();
-        waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
-        gameObject.SetActive(false);
+        //waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
+        //gameObject.SetActive(false);
     }
 
     /*public override void VerifyDeath() 
@@ -243,9 +252,14 @@ public class EnemyRange : EnemyMain
         DisplayHealthBar();
         //VerifyDeath();
 
-        if (GetCurrentHP <= 0)
+        /*if (GetCurrentHP <= 0)
             OnDeath();
-
+        */
+        if(die)
+        {
+            OnDeath();
+            die = false;
+        }
         if (attack)
         {
             //AttackPlayer(); 

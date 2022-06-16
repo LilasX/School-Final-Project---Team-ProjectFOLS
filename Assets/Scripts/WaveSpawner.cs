@@ -142,7 +142,7 @@ public class WaveSpawner : MonoBehaviour
             Transform _sp = spawnPoints[randNum];
             enemySpawned = Instantiate(_enemy, _sp.position, _sp.rotation); 
             enemySpawned.gameObject.GetComponent<EnemyBehaviour>().SetBoundBox(boundBox); //Added. To send BoundBox of Spawner to Enemy. Seng
-            enemySpawned.gameObject.GetComponent<EnemyMelee>().waveSpawnerObject = gameObject; //Added by Seng
+            enemySpawned.gameObject.GetComponent<EnemyMain>().waveSpawnerObject = gameObject; //Added by Seng
             Debug.Log("Sent BoundBox");
         }
 
