@@ -2,19 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateKnocked_GoblinRange : EnemyState
+public class StateKnocked_GoblinRange : StateKnocked
 {
-    public StatePursue statePursue;
-    //public StateAttack stateAttack; //Need to enter code to reset once and bool
     public StateAttackRange02 stateRange01;
     public StateAttackRange02 stateRange02;
     public StateAttackRange02 stateRange03;
-    public bool once1 = false;
-    public bool once2 = false;
-    public Animator anim;
-    public GameObject character;
-    //public Material defaultMat;
-    public Material knockedMat;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {

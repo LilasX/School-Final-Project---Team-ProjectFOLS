@@ -45,14 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 6881588285909992070}
-  stateMelee01: {fileID: 8727847870739026074}
-  stateMelee02: {fileID: 4642344349108319272}
-  stateRange01: {fileID: 6525474285438701406}
   once1: 0
   once2: 0
   anim: {fileID: 6881588284867706748}
   character: {fileID: 6881588284876957842}
   knockedMat: {fileID: 2100000, guid: 6485d0340d49552408fafd20e5188f72, type: 2}
+  stateMelee01: {fileID: 8727847870739026074}
+  stateMelee02: {fileID: 4642344349108319272}
+  stateRange01: {fileID: 6525474285438701406}
 --- !u!1 &2900806700970358460
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   currState: {fileID: 6881588284479463216}
   stateWander: {fileID: 6881588284479463216}
   stateDeath: {fileID: 4902154532596490118}
-  stateKnocked: {fileID: 0}
+  stateKnocked: {fileID: 3144496299525706980}
 --- !u!114 &6881588284876657012
 MonoBehaviour:
   m_ObjectHideFlags: 0
