@@ -42,6 +42,7 @@ public class SpawnLoot : MonoBehaviour
         collected = true;
         int num = Random.Range(minRange, maxRange);
         StartCoroutine(LootSpawning(num));
+        StartCoroutine(GemSpawning());
     }
 
     IEnumerator LootSpawning(int number)
@@ -54,5 +55,14 @@ public class SpawnLoot : MonoBehaviour
             tempLoot.transform.position = this.spawnPos.position;
             yield return new WaitForSeconds(0.1f);
         }
+
+    }
+
+    IEnumerator GemSpawning()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GameObject tempLoot = Instantiate(loot[1]);
+        tempLoot.transform.position = this.spawnPos.position;
     }
 }

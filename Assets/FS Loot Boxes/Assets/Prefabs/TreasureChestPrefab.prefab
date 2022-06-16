@@ -642,6 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loot:
   - {fileID: 8179790854871830465, guid: b2b49023c9617164bb7c9eb7c3d3c4e7, type: 3}
+  - {fileID: 383882173484610777, guid: c7746d878743a044489a710ad414e634, type: 3}
   minRange: 5
   maxRange: 10
   spawned: 0

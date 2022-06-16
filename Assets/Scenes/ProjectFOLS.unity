@@ -11800,6 +11800,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6736849746070288546, guid: caba122cdc725104b8b75a9385f66562, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6736849746070288547, guid: caba122cdc725104b8b75a9385f66562, type: 3}
       propertyPath: m_RootOrder
       value: 2
