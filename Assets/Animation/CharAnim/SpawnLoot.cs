@@ -42,7 +42,10 @@ public class SpawnLoot : MonoBehaviour
         collected = true;
         int num = Random.Range(minRange, maxRange);
         StartCoroutine(LootSpawning(num));
-        StartCoroutine(GemSpawning());
+        if(this.GetComponent<LootBox>() != null)
+        {
+            StartCoroutine(GemSpawning());
+        }
     }
 
     IEnumerator LootSpawning(int number)
