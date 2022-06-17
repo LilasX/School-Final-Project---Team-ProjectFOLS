@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 70506a240a93cb446b4e7eab809d5b52
   - enabled: 1
+    path: Assets/Scenes/RealHub.unity
+    guid: 732bcd99c4c31534b9eeefa91968fe99
+  - enabled: 1
     path: Assets/Scenes/ProjectFOLS.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:

@@ -10,6 +10,8 @@ public class LoadScene : MonoBehaviour
 
     private AsyncOperation async;
 
+    private GameManager gameManager;
+
     public void BtnLoadScene(int i) //pas de parametres = charge la scene suivante.
     {
         if (async != null) return;
@@ -38,9 +40,22 @@ public class LoadScene : MonoBehaviour
         async = SceneManager.LoadSceneAsync(s);
     }
 
+    private void Start()
+    {
+        gameManager = GameManager.instance;
+    }
+
     private void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject == gameManager.player)
+        {
+            BtnLoadScene("ProjectFOLS");
+        }
     }
 
     //public void OnFadeCompleteString(string s)
