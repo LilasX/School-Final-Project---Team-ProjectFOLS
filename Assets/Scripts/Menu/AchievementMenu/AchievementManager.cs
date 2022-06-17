@@ -6,13 +6,15 @@ using TMPro;
 
 public class AchievementManager : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public GameObject achievementPrefab;
 
     public Sprite[] sprites;
 
     public GameObject[] CategoryList;
 
-    public List<GameObject> CategoryL;
+    public GameObject AchievementMenu;
 
     private AchievementButton activeButton;
 
@@ -21,34 +23,38 @@ public class AchievementManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.instance;
+
         activeButton = GameObject.Find("GeneralBtn").GetComponent<AchievementButton>();
 
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "TestTitle", "This is the Description", 10, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 10, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 15, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 20, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 15, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 5, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 10, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 5, 0);
+        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 30, 0);
 
-        CreateAchievement("OtherCategory", "TestTitle", "This is the Description", 10, 1);
-       
+        CreateAchievement("Other", "OtherTitle", "This is the Description", 10, 0);
 
-        //foreach (GameObject achievementList in GameObject.FindGameObjectsWithTag("AchievementList"))
-        //{
-        //    Debug.Log(achievementList);
-        //    achievementList.SetActive(false);
 
-        //}
+        foreach (GameObject achievementList in CategoryList)
+        {
+            Debug.Log(achievementList);
+            achievementList.SetActive(false);
+
+        }
 
         activeButton.Click();
+
+        AchievementMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void CreateAchievement(string category, string title, string description,  int points, int spriteIndex)
@@ -78,5 +84,19 @@ public class AchievementManager : MonoBehaviour
         activeButton = achievementButton;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == gameManager.player)
+        {
+            AchievementMenu.SetActive(true);
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == gameManager.player)
+        {
+            AchievementMenu.SetActive(false);
+        }
+    }
 }
