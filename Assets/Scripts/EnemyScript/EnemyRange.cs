@@ -23,20 +23,20 @@ public class EnemyRange : EnemyMain
     public override void InitializeEnemy() 
     {
         gameManager = GameManager.instance;
-        posOrigin = transform;
+        //posOrigin = transform;
         GetMaxHP = 60;
         GetCurrentHP = GetMaxHP;
-       /* HpMax = 60; 
-        Hp = HpMax; */
         canAttack = true; 
         timer = 0;
         onceDeath = false;
         cameraMain = gameManager.cameraMain;
+        canvas.gameObject.SetActive(true);
+        //GetComponent<EnemyBehaviour>().InitializeBehaviour();
         HideRangedWeapon();
         RandomWeapon();
     }
 
-    public void HideRangedWeapon()
+    public void HideRangedWeapon() //Don't know if used
     {
         for (int i = 0; i > range.Length; i++)
         {
@@ -44,7 +44,7 @@ public class EnemyRange : EnemyMain
         }
     }
 
-    public override void RandomWeapon()
+    public override void RandomWeapon() //No Longer Used
     {
         randNum = Random.Range(0, 6);
         switch(randNum)
@@ -70,7 +70,7 @@ public class EnemyRange : EnemyMain
         }
     }
 
-    public override void OnAttack()
+    public override void OnAttack() //No Longer Used
     {
         if (canAttack)
         {
@@ -164,7 +164,7 @@ public class EnemyRange : EnemyMain
         }
     }*/
 
-    public override void IsAttacking() 
+    public override void IsAttacking() //No Longer Used
     {
         if (!canAttack) 
         {

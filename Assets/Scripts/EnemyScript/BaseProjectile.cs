@@ -134,11 +134,11 @@ public class BaseProjectile : MonoBehaviour
                 }
             }
         }
-        else //if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) //To Check
+        /*else
         {
             //SetInactiveRange();
             Destroy(gameObject);
-        }
+        }*/
 
     }
 
@@ -166,11 +166,11 @@ public class BaseProjectile : MonoBehaviour
             case RangeWeapon.Arrow:
             case RangeWeapon.Lance:
             case RangeWeapon.Wave:
-                Invoke("SetInactiveRange", 4f);
+                Invoke("SetInactiveRange", 2f);
                 break;
             case RangeWeapon.Wall:
             case RangeWeapon.Floor:
-                Invoke("SetInactiveRange", 8f);
+                Invoke("SetInactiveRange", 6f);
                 break;
         }
     }

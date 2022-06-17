@@ -24,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Animator enemyAnim;
     public EnemyState currState;
     public StateWander stateWander;
+    public StateStart stateStart;
     public StateDeath stateDeath;
     public StateKnocked stateKnocked;
     //public bool canSeePlayer;
@@ -34,6 +35,14 @@ public class EnemyBehaviour : MonoBehaviour
         boundBox.center = spawnBoundBox.center;
         boundBox.extents = spawnBoundBox.extents;
         spawningBox = true;
+    }
+
+    public void InitializeBehaviour()
+    {
+        manager = GameManager.instance;
+        currState = stateWander;
+        //currState = stateStart;
+        player = manager.player;
     }
 
     private void OnDrawGizmos()
@@ -50,14 +59,15 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameManager.instance;
-        currState = stateWander;
-        if (!spawningBox)
+        InitializeBehaviour();
+        //manager = GameManager.instance;
+        //currState = stateWander;
+        /*if (!spawningBox)
         {
             //boundBox.center = gameObject.transform.position;
             //boundBox.extents = new Vector3(); //for BoundBox of Enemy in the arena //Have WaveSpawner Keep Vector3 for extents
-        }
-        player = manager.player;
+        }*/
+        //player = manager.player;
         //SetState(initialState); 
     }
 

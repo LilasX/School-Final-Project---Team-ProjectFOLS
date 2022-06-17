@@ -22,7 +22,7 @@ public class EnemyMelee : EnemyMain
     public override void InitializeEnemy() 
     {
         gameManager = GameManager.instance;
-        posOrigin = transform;
+        //posOrigin = transform;
         GetMaxHP = 100;
         GetCurrentHP = GetMaxHP;
         canAttack = true; 
@@ -30,6 +30,7 @@ public class EnemyMelee : EnemyMain
         onceDeath = false;
         cameraMain = gameManager.cameraMain;
         canvas.gameObject.SetActive(true);
+        //GetComponent<EnemyBehaviour>().InitializeBehaviour();
         RandomWeapon(); 
     }
 
@@ -49,7 +50,7 @@ public class EnemyMelee : EnemyMain
         }
     }
 
-    public override void OnAttack()
+    public override void OnAttack() //No Longer Used
     {
         if (canAttack)
         {
@@ -95,7 +96,7 @@ public class EnemyMelee : EnemyMain
         }
     }*/
 
-    public override void IsAttacking() 
+    public override void IsAttacking() //No Longer Used
     {
         if (!canAttack)
         {
