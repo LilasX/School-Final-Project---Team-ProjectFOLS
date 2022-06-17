@@ -22,6 +22,24 @@ public class GameManager : MonoBehaviour
     public RuntimeAnimatorController defaultController;
     public RuntimeAnimatorController deathController;
 
+
+    public int pentagramActivatedindex = 0;
+    public GameObject elevatorPlateform;
+
+
+    public GameObject gate;
+    public GameObject rune1;
+    public GameObject rune2;
+    public GameObject rune3;
+    public GameObject rune4;
+    public GameObject rune5;
+    public HashSet<GameObject> runesList;
+    public List<GameObject> runesListIndex;
+    public Material runeDefaultMaterial;
+    public Material runeActivatedMaterial;
+
+    public int capacity;
+
     private void Awake()
     {
         if (instance == null)
@@ -37,11 +55,32 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        runesList = new HashSet<GameObject>();
+        runesListIndex = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+       if(pentagramActivatedindex >= 3)
+        {
+            elevatorPlateform.GetComponent<Animator>().enabled = true;
+        }
+
+       capacity = runesList.Count;
+
+        if(runesList.Count >= 2 && runesListIndex.IndexOf(rune2) == 0 && runesListIndex.IndexOf(rune1) == 1 && runesListIndex.IndexOf(rune3) == 2 && runesListIndex.IndexOf(rune4) == 3 && runesListIndex.IndexOf(rune5) == 4)
+        {
+            gate.GetComponent<Animator>().enabled = true;
+        }
+
+        foreach (GameObject rune in runesListIndex)
+        {
+            if(gate.GetComponent<Animator>().enabled)
+            {
+                Destroy(rune.GetComponent<OnTriggerRune>());
+                rune.GetComponent<MeshRenderer>().material = runeActivatedMaterial;
+            }
+        }
     }
 }

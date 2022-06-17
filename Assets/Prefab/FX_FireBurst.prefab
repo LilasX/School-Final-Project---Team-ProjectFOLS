@@ -84,7 +84,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19862286, guid: f65b497ff807d95439b38e7da2fab667, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19862286, guid: f65b497ff807d95439b38e7da2fab667, type: 3}
       propertyPath: TrailModule.mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19862286, guid: f65b497ff807d95439b38e7da2fab667, type: 3}
+      propertyPath: startDelay.scalar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19862286, guid: f65b497ff807d95439b38e7da2fab667, type: 3}
@@ -129,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19862286, guid: f65b497ff807d95439b38e7da2fab667, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 19862286, guid: f65b497ff807d95439b38e7da2fab667, type: 3}
       propertyPath: RotationBySpeedModule.enabled
@@ -401,6 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: 0
   typeRange: 0
+  dmg: 0
   canDmgSphere: 0
   canDmgArrow: 0
   canDmgLance: 0
