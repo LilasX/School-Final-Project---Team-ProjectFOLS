@@ -19,7 +19,7 @@ public class CameraBehaviour : MonoBehaviour
         {
             lerpFieldOfView = true;
             gameManager.cam.m_Lens.FieldOfView = Mathf.Lerp(gameManager.cam.m_Lens.FieldOfView, 20f, 1f * Time.deltaTime);
-            gameManager.cam.m_Lens.NearClipPlane = 13f;
+            //gameManager.cam.m_Lens.NearClipPlane = 13f;
         }
     }
 
@@ -37,7 +37,7 @@ public class CameraBehaviour : MonoBehaviour
         if(!lerpFieldOfView)
         {
             gameManager.cam.m_Lens.FieldOfView = Mathf.Lerp(gameManager.cam.m_Lens.FieldOfView, 40f, 1f * Time.deltaTime);
-            gameManager.cam.m_Lens.NearClipPlane = 0.01f;
+            //gameManager.cam.m_Lens.NearClipPlane = 0.01f;
         }
     }
 }

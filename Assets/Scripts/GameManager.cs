@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Cinemachine;
 
 public class GameManager : MonoBehaviour
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject gate;
+    private List<GameObject> standardRuneList = new List<GameObject>();
     public GameObject rune1;
     public GameObject rune2;
     public GameObject rune3;
@@ -39,6 +41,9 @@ public class GameManager : MonoBehaviour
     public Material runeActivatedMaterial;
 
     public int capacity;
+
+    [SerializeField] private GameObject keyboard;
+    [SerializeField] private GameObject gamePad;
 
     private void Awake()
     {
@@ -57,30 +62,118 @@ public class GameManager : MonoBehaviour
     {
         runesList = new HashSet<GameObject>();
         runesListIndex = new List<GameObject>();
+        standardRuneList.Add(rune1);
+        standardRuneList.Add(rune2);
+        standardRuneList.Add(rune3);
+        standardRuneList.Add(rune4);
+        standardRuneList.Add(rune5);
     }
 
     // Update is called once per frame
     void Update()
     {
-       if(pentagramActivatedindex >= 3)
+        if (pentagramActivatedindex >= 3)
         {
             elevatorPlateform.GetComponent<Animator>().enabled = true;
         }
 
-       capacity = runesList.Count;
+        capacity = runesList.Count;
 
-        if(runesList.Count >= 2 && runesListIndex.IndexOf(rune2) == 0 && runesListIndex.IndexOf(rune1) == 1 && runesListIndex.IndexOf(rune3) == 2 && runesListIndex.IndexOf(rune4) == 3 && runesListIndex.IndexOf(rune5) == 4)
+        if (runesList.Count >= 2 && runesListIndex.IndexOf(rune2) == 0 && runesListIndex.IndexOf(rune1) == 1 && runesListIndex.IndexOf(rune3) == 2 && runesListIndex.IndexOf(rune4) == 3 && runesListIndex.IndexOf(rune5) == 4)
         {
             gate.GetComponent<Animator>().enabled = true;
         }
 
+
         foreach (GameObject rune in runesListIndex)
         {
-            if(gate.GetComponent<Animator>().enabled)
+            if (gate.GetComponent<Animator>().enabled)
             {
                 Destroy(rune.GetComponent<OnTriggerRune>());
                 rune.GetComponent<MeshRenderer>().material = runeActivatedMaterial;
             }
+        }
+
+
+        switch (runesList.Count)
+        {
+            case 2:
+                if (runesListIndex.IndexOf(rune2) != 0)
+                {
+                    runesList.Clear();
+                    runesListIndex.Clear();
+                    if (runesList.Count == 0)
+                    {
+                        foreach (GameObject rune in standardRuneList)
+                        {
+                            rune.GetComponent<MeshRenderer>().material = runeDefaultMaterial;
+                            rune.GetComponent<OnTriggerRune>().runeActivated = false;
+                        }
+                    }
+                }
+                break;
+
+            case 3:
+                if (runesListIndex.IndexOf(rune2) != 0 || runesListIndex.IndexOf(rune1) != 1)
+                {
+                    runesList.Clear();
+                    runesListIndex.Clear();
+                    if (runesList.Count == 0)
+                    {
+                        foreach (GameObject rune in standardRuneList)
+                        {
+                            rune.GetComponent<MeshRenderer>().material = runeDefaultMaterial;
+                            rune.GetComponent<OnTriggerRune>().runeActivated = false;
+                        }
+                    }
+                }
+                break;
+
+            case 4:
+                if (runesListIndex.IndexOf(rune2) != 0 || runesListIndex.IndexOf(rune1) != 1 || runesListIndex.IndexOf(rune3) != 2)
+                {
+                    runesList.Clear();
+                    runesListIndex.Clear();
+                    if (runesList.Count == 0)
+                    {
+                        foreach (GameObject rune in standardRuneList)
+                        {
+                            rune.GetComponent<MeshRenderer>().material = runeDefaultMaterial;
+                            rune.GetComponent<OnTriggerRune>().runeActivated = false;
+                        }
+                    }
+                }
+                break;
+
+            case 5:
+                if (runesListIndex.IndexOf(rune2) != 0 || runesListIndex.IndexOf(rune1) != 1 || runesListIndex.IndexOf(rune3) != 2 || runesListIndex.IndexOf(rune4) != 3)
+                {
+                    runesList.Clear();
+                    runesListIndex.Clear();
+                    if (runesList.Count == 0)
+                    {
+                        foreach (GameObject rune in standardRuneList)
+                        {
+                            rune.GetComponent<MeshRenderer>().material = runeDefaultMaterial;
+                            rune.GetComponent<OnTriggerRune>().runeActivated = false;
+                        }
+                    }
+                }
+                break;
+        }
+
+
+        switch (inputManager.GetCurrentScheme())
+        {
+            case "Keyboard&Mouse":
+                keyboard.SetActive(true);
+                gamePad.SetActive(false);
+                break;
+
+            case "Gamepad":
+                keyboard.SetActive(false);
+                gamePad.SetActive(true);
+                break;
         }
     }
 }

@@ -10,8 +10,8 @@ public class InputManager : MonoBehaviour
     //[SerializeField] private GameObject player; //Référence au joueur pour accéder à ses variables
 
     private GameManager gameManager;
-
-    private MyInputAction myInputAction;
+    public PlayerInput myPlayerInput;
+    public MyInputAction myInputAction;
     private InputAction moveAction;
     private InputAction meleeAction;
     private InputAction interactAction;
@@ -235,7 +235,7 @@ public class InputManager : MonoBehaviour
 
     private void Interact()
     {
-        if(interactAction.IsPressed())
+        if(interactAction.triggered)
         {
             gameManager.player.GetComponent<PlayerEntity>().isInteracting = true;
         }
@@ -254,6 +254,12 @@ public class InputManager : MonoBehaviour
         else { UISubmitPressed = false; }
     }
 
+    public string GetCurrentScheme()
+    {
+        string currentScheme = myPlayerInput.currentControlScheme;
+        return currentScheme;
+    }
+
     #endregion
 
     // Update is called once per frame
@@ -269,5 +275,7 @@ public class InputManager : MonoBehaviour
         Slash();
         Interact();
         Submit();
+
+        GetCurrentScheme();
     }
 }
