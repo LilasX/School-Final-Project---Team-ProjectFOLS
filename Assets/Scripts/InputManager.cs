@@ -55,6 +55,7 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;
+        myPlayerInput = GetComponent<PlayerInput>();
 
     }
 
