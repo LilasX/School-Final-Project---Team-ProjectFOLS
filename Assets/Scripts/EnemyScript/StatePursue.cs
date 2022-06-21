@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StatePursue : EnemyState
 {
-	public StateAttackMeleeStart stateMelee;
-	public StateAttackRangeStart stateRange;
+	public StateAttack stateMelee;
+	public StateAttack stateRange;
 	public float playerDistance;
 	public bool once = false;
 

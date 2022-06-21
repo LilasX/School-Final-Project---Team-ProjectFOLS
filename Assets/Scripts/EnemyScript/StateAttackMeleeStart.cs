@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateAttackMeleeStart : EnemyState
+public class StateAttackMeleeStart : StateAttack
 {
     public StatePursue statePursue;
     public StateAttackMelee01 stateMelee01;

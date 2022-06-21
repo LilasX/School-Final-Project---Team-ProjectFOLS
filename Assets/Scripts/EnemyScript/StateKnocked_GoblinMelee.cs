@@ -43,8 +43,8 @@ public class StateKnocked_GoblinMelee : StateKnocked
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-                character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 4f);
-                enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;
+                //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 4f);
+                //enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;
                 once2 = true;
             }
         }
@@ -54,8 +54,8 @@ public class StateKnocked_GoblinMelee : StateKnocked
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-                character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
-                enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
+                //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
+                //enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
                 once1 = false;
                 once2 = false;
                 anim.SetBool("IsWalking", true);

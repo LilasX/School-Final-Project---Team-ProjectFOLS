@@ -21,7 +21,7 @@ public abstract class EnemyMain : EnemyEntity
     public Slider slider;
     public GameObject cameraMain;
     public GameObject drop;
-    public bool canHurt = true;
+    //public bool canHurt = true;
 
     //Don't know if I need those
     /*public int Hp { get => hp; set => hp = value; }
@@ -41,11 +41,11 @@ public abstract class EnemyMain : EnemyEntity
 
     public override void OnHurt(int damage)
     {
-        if (canHurt)
-        {
+        //if (canHurt)
+        //{
             if (damage != 0)
             {
-                canHurt = false;
+                //canHurt = false;
                 GetCurrentHP -= damage;
 
                 if (GetCurrentHP <= 0)
@@ -57,6 +57,6 @@ public abstract class EnemyMain : EnemyEntity
                     GetComponent<EnemyBehaviour>().SwitchStateKnocked();
                 }
             }
-        }
+        //}
     }
 }

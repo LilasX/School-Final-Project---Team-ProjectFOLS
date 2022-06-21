@@ -32,8 +32,8 @@ public class EnemyRange : EnemyMain
         cameraMain = gameManager.cameraMain;
         canvas.gameObject.SetActive(true);
         //GetComponent<EnemyBehaviour>().InitializeBehaviour();
-        HideRangedWeapon();
-        RandomWeapon();
+        //HideRangedWeapon();
+        //RandomWeapon();
     }
 
     public void HideRangedWeapon() //Don't know if used
