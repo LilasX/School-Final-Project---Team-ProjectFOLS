@@ -3386,6 +3386,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2622869848222992918, guid: 2299be390c4868a4cba74285ed646346, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2622869848222992919, guid: 2299be390c4868a4cba74285ed646346, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -19376,10 +19380,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 6716448721430894412}
   m_HandleRect: {fileID: 6716448719904226104}
   m_Direction: 0
-  m_MinValue: -60
-  m_MaxValue: 20
+  m_MinValue: -30
+  m_MaxValue: 0
   m_WholeNumbers: 1
-  m_Value: -20
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
