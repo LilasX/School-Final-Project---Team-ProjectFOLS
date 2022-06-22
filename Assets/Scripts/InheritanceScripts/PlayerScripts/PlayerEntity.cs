@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-public class PlayerEntity : PhysicalEntity, IShopCustomer
+public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 {
 
     #region Variables
@@ -208,7 +208,6 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
         MyCharacter = GetComponent<CharacterController>(); //Récupère le component character controller dans le gameobject
         Animator = GetComponent<Animator>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
@@ -228,6 +227,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
         slashState = new PlayerSlashState(this, playerState);
 
         playerState = new PlayerStateMachine(DefaultState);
+
     }
 
     // Update is called once per frame
@@ -257,6 +257,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
         {
             animator.SetBool("Dead", false);
         }
+        gameManager.inventoryscript.coins = 0;
     }
 
     public override void OnHurt(int damage)
@@ -343,6 +344,22 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
         {
             GetCurrentMana = GetMaxMana;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPos;
+        this.GetCurrentHP = data.hpData;
+        this.GetCurrentMana = data.manaData;
+        this.GetCurrentStamina = data.staminaData;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.playerPos = this.transform.position;
+        data.hpData = this.GetCurrentHP;
+        data.manaData = this.GetCurrentMana;
+        data.staminaData = this.GetCurrentStamina;
     }
 
     #endregion

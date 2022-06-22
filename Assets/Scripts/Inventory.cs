@@ -69,11 +69,15 @@ public class Inventory : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        this.coins = data.coinsCount;
         this.gems = data.gemsCount;
+        this.keys = data.keysCount;
     }
 
     public void SaveData(GameData data)
     {
+        data.coinsCount = this.coins;
         data.gemsCount = this.gems;
+        data.keysCount = this.keys;
     }
 }

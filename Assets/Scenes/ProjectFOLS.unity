@@ -395,9 +395,9 @@ Transform:
   - {fileID: 1153713109}
   - {fileID: 1633373743}
   - {fileID: 1810680826}
+  - {fileID: 1353601553}
   - {fileID: 1102342577}
   - {fileID: 394039662}
-  - {fileID: 1353601553}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1549,6 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: c704188f-9e50-4c31-a30b-4319c0f01868
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Defeat them all and become victorious!
@@ -1780,7 +1781,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 100192528}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &394039663
 MonoBehaviour:
@@ -3099,6 +3100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 08a710ed-8f57-40a7-b078-f082180ca641
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Look where you're going!
@@ -4590,6 +4592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 361794cc-baa8-4964-8341-ceb0e5f3ca8f
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Oh no! Other goblins! Defeat them!
@@ -5074,7 +5077,7 @@ Transform:
   - {fileID: 1894422590}
   - {fileID: 344117931}
   m_Father: {fileID: 100192528}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1113258291
 GameObject:
@@ -5954,7 +5957,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 100192528}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1353601554
 MonoBehaviour:
@@ -5969,6 +5972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data.game
+  useEncryption: 1
 --- !u!1 &1369607502
 GameObject:
   m_ObjectHideFlags: 0
@@ -6180,6 +6184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 718e4cfe-565c-4564-a316-1991a77ef4df
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Continue forward...be careful!
@@ -9875,6 +9880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: fd12da94-832a-4fe8-bf53-97e00a9f3d51
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Survive and defeat the goblins!
@@ -10988,6 +10994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: bab08e6f-a8c2-4ecd-88d5-0a6a28f37ab8
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Seems like there's a shop over there, let's take a look!
@@ -12500,6 +12507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: e527b394-b803-40e7-991d-8d3e4804f8fb
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Are you sure you're ready for this?
@@ -13052,6 +13060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276c6833e449589449342b80c17e4741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 8bf4e0c0-d633-419b-8097-5dbd0acf1590
   objActive: 0
   objectiveText: {fileID: 259716716}
   mission: Move forward and avoid the traps!

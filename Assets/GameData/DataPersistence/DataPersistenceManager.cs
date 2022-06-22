@@ -9,6 +9,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     [SerializeField] private string fileName;
 
+    [SerializeField] private bool useEncryption;
+
     private GameData gameData;
 
     private List<IDataPersistence> dataPersistenceObjects;
@@ -29,7 +31,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Start()
     {
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
         Debug.Log(Application.persistentDataPath);
@@ -54,8 +56,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObjs.LoadData(gameData);
         }
-
-        //Debug.Log("Loaded gems count = " + gameData.gemsCount);
     }
 
     public void SaveGame()
@@ -64,8 +64,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObjs.SaveData(gameData);
         }
-
-        //Debug.Log("Saved gems count = " + gameData.gemsCount);
 
         dataHandler.Save(gameData);
     }
