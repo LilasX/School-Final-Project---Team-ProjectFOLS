@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, IDataPersistence
 {
 
     public int coins = 0;
@@ -21,11 +21,11 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coinsO.AddComponent<TMPro.TextMeshProUGUI>();
+        //coinsO.AddComponent<TMPro.TextMeshProUGUI>();
         coinsText = coinsO.GetComponent<TMPro.TextMeshProUGUI>();
-        gemsO.AddComponent<TMPro.TextMeshProUGUI>();
+        //gemsO.AddComponent<TMPro.TextMeshProUGUI>();
         gemsText = gemsO.GetComponent<TMPro.TextMeshProUGUI>();
-        keysO.AddComponent<TMPro.TextMeshProUGUI>();
+        //keysO.AddComponent<TMPro.TextMeshProUGUI>();
         keysText = keysO.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
@@ -65,5 +65,15 @@ public class Inventory : MonoBehaviour
     public void DoorOpened()
     {
         keys -= 1;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.gems = data.gemsCount;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.gemsCount = this.gems;
     }
 }
