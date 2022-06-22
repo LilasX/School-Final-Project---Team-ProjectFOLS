@@ -13,7 +13,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
     private GameManager gameManager;
     private UIManager uiManager;
     private PlayerEntity playerEntityInstance;
-    [SerializeField] private GameObject renderedCharacter;
+    public GameObject renderedCharacter;
     private CharacterController myCharacter; //Référence au character controller
     private Animator animator;
     [SerializeField] private CinemachineVirtualCamera cam; // Référence à la caméra
@@ -121,6 +121,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer
     public bool isKnocked = false;
     public bool hasBeenKnocked = false;
     public float resetKnockedInputTimer = 0f;
+
+    public Material dodgeMaterial;
+    public GameObject fxElectricity;
 
     #endregion
 

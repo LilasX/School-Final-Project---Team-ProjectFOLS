@@ -5,19 +5,22 @@ using UnityEngine.UI;
 
 public class ActivatePentagram : MonoBehaviour
 {
-    private GameManager gameManager;
+    private GameManager _gameManager;
 
     [SerializeField] GameObject pentagram;
     [SerializeField] private Slider _activationProgressBar;
     [SerializeField] private Material _pentagramActivatedMaterial;
     [SerializeField] private GameObject progressBar;
     [SerializeField] private GameObject _spiralVfx;
+    //[SerializeField] private GameObject circleImage;
+    [SerializeField] private GameObject _buttonNameText;
+    [SerializeField] private GameObject _interactionButtonText;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.Instance;
+        _gameManager = GameManager.Instance;
         _activationProgressBar.value = 0;
     }
 
@@ -26,10 +29,12 @@ public class ActivatePentagram : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
             _activationProgressBar.gameObject.SetActive(true);
+            _interactionButtonText.SetActive(true);
 
-            if (gameManager.player.GetComponent<PlayerEntity>().isInteracting)
+            if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
             {
                 _spiralVfx.gameObject.SetActive(true);
+                _interactionButtonText.SetActive(false);
 
                 _activationProgressBar.value = Mathf.MoveTowards(_activationProgressBar.value, _activationProgressBar.maxValue, 5f * Time.deltaTime);
 
@@ -37,7 +42,7 @@ public class ActivatePentagram : MonoBehaviour
                 {
                     pentagram.GetComponent<MeshRenderer>().material = _pentagramActivatedMaterial;
                     progressBar.GetComponent<Image>().color = Color.green;
-                    gameManager.pentagramActivatedindex += 1;
+                    _gameManager.pentagramActivatedindex += 1;
                     _activationProgressBar.gameObject.SetActive(false);
                     _spiralVfx.gameObject.SetActive(false);
                     Destroy(pentagram.GetComponent<SphereCollider>());
@@ -46,6 +51,18 @@ public class ActivatePentagram : MonoBehaviour
             else
             {
                 _spiralVfx.gameObject.SetActive(false);
+            }
+
+
+            switch (_gameManager.inputManager.GetCurrentScheme())
+            {
+                case "Keyboard&Mouse":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                    break;
+
+                case "Gamepad":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+                    break;
             }
         }
     }
@@ -56,6 +73,8 @@ public class ActivatePentagram : MonoBehaviour
         {
             _activationProgressBar.gameObject.SetActive(false);
             _spiralVfx.gameObject.SetActive(false);
+            _interactionButtonText.SetActive(false);
+            //circleImage.gameObject.SetActive(false);
         }
     }
 

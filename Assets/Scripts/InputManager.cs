@@ -236,7 +236,8 @@ public class InputManager : MonoBehaviour
 
     private void Interact()
     {
-        if(interactAction.triggered)
+        //if(interactAction.triggered)
+        if(interactAction.IsPressed())
         {
             gameManager.player.GetComponent<PlayerEntity>().isInteracting = true;
         }

@@ -24,6 +24,8 @@ public class PlayerDodgeState : IPlayerBaseState
     private void Dodge()
     {
         playerEntityInstance.hasExecutedDodge = true;
+        playerEntityInstance.renderedCharacter.GetComponent<Renderer>().material = playerEntityInstance.dodgeMaterial;
+        playerEntityInstance.fxElectricity.SetActive(true);
         playerEntityInstance.Speed = playerEntityInstance.DodgeSpeed;  //Valeur de la vitesse en mode esquive
         playerEntityInstance.Animator.SetBool("Dive", true);
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.DodgeVelocity * playerEntityInstance.Speed * Time.deltaTime);
@@ -34,8 +36,9 @@ public class PlayerDodgeState : IPlayerBaseState
             playerEntityInstance.DodgeTime = 0;
             playerEntityInstance.Animator.SetBool("Dive", false);
             playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue;  //Valeur de la vitesse en mode esquive
+            playerEntityInstance.renderedCharacter.GetComponent<Renderer>().material = playerEntityInstance.defaultMaterial;
+            playerEntityInstance.fxElectricity.SetActive(false);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-           
         }
     }
 
