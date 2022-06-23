@@ -98,6 +98,15 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""0eb13db2-5c07-4021-8f62-54ccc7dc4b5e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -258,7 +267,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""945fd8d8-4d01-4494-93e0-6e86cb33effb"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -324,7 +333,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fb0a4ac8-4729-418a-9ccd-916cf94079e1"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -373,6 +382,28 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c213cfb9-e96f-49f6-b90d-1ae0fc041c1f"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23a61e67-1cf5-479d-b875-73e1caea0d13"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -996,6 +1027,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         m_Player_Slash = m_Player.FindAction("Slash", throwIfNotFound: true);
         m_Player_ReturnAttack = m_Player.FindAction("ReturnAttack", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Cancel = m_Player.FindAction("Cancel", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1078,6 +1110,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Slash;
     private readonly InputAction m_Player_ReturnAttack;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Cancel;
     public struct PlayerActions
     {
         private @MyInputAction m_Wrapper;
@@ -1090,6 +1123,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         public InputAction @Slash => m_Wrapper.m_Player_Slash;
         public InputAction @ReturnAttack => m_Wrapper.m_Player_ReturnAttack;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Cancel => m_Wrapper.m_Player_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1123,6 +1157,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Cancel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1151,6 +1188,9 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -1348,6 +1388,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
         void OnSlash(InputAction.CallbackContext context);
         void OnReturnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

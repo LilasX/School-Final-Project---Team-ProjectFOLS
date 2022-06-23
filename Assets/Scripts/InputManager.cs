@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     private InputAction moveAction;
     private InputAction meleeAction;
     private InputAction interactAction;
+    private InputAction cancelAction;
     private InputAction returnAttackAction;
     private InputAction dodgeAction;
     private InputAction fireAction;
@@ -48,6 +49,7 @@ public class InputManager : MonoBehaviour
         fireAction = myInputAction.Player.Fire;
         shieldAction = myInputAction.Player.Shield;
         interactAction = myInputAction.Player.Interact;
+        cancelAction = myInputAction.Player.Cancel;
         slashAction = myInputAction.Player.Slash;
         UISubmit = myInputAction.UI.Submit;
     }
@@ -247,6 +249,18 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void Cancel()
+    {
+        if(cancelAction.triggered)
+        {
+            gameManager.player.GetComponent<PlayerEntity>().isCanceling = true;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().isCanceling = false;
+        }
+    }
+
     private void Submit()
     {
         if (UISubmit.triggered)
@@ -276,6 +290,7 @@ public class InputManager : MonoBehaviour
         //Pick();
         Slash();
         Interact();
+        Cancel();
         Submit();
 
         GetCurrentScheme();

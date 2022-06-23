@@ -115,6 +115,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     public bool isInvincible = false;
 
     public bool isInteracting = false;
+    public bool isCanceling = false;
 
 
     public Vector3 knockedVelocity;

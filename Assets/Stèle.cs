@@ -9,7 +9,7 @@ public class Stèle : MonoBehaviour
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
     [SerializeField] private GameObject _tipsPanel;
-    private int index;
+    //private int index;
     private float tipTimer= 0;
     private bool insideTrigger = false;
 
@@ -22,18 +22,18 @@ public class Stèle : MonoBehaviour
             insideTrigger = true;
             _interactionButtonText.SetActive(true);
 
-            if(_gameManager.player.GetComponent<PlayerEntity>().isInteracting && index == 0)
+            if(_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
             {
                 _tipsPanel.SetActive(true);
-                index = 1;
+                //index = 1;
             }
 
-            else if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting && index == 1)
-            {
-                _interactionButtonText.SetActive(false);
-                _tipsPanel.SetActive(false);
-                index = 0;
-            }
+            //else if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
+            //{
+            //    _interactionButtonText.SetActive(false);
+            //    _tipsPanel.SetActive(false);
+            //    //index = 0;
+            //}
         }
 
         switch(_gameManager.inputManager.GetCurrentScheme())
@@ -54,7 +54,7 @@ public class Stèle : MonoBehaviour
         {
             _interactionButtonText.SetActive(false);
             //_tipsPanel.SetActive(false);
-            index = 0;
+            //index = 0;
             insideTrigger = false;
         }
     }
@@ -65,7 +65,7 @@ public class Stèle : MonoBehaviour
         _gameManager = GameManager.Instance;
         _interactionButtonText.SetActive(false);
         _tipsPanel.SetActive(false);
-        index = 0;
+        //index = 0;
     }
 
     // Update is called once per frame
@@ -76,11 +76,18 @@ public class Stèle : MonoBehaviour
             tipTimer += Time.deltaTime;
         }
 
-        if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting && _tipsPanel.activeInHierarchy && index == 0 || tipTimer >= 10f && !insideTrigger)
+        if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting && _tipsPanel.activeInHierarchy || tipTimer >= 10f && !insideTrigger)
         {
             _tipsPanel.SetActive(false);
-            index = 0;
+            //index = 0;
             tipTimer = 0;
+        }
+
+        if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
+        {
+            _interactionButtonText.SetActive(false);
+            _tipsPanel.SetActive(false);
+            //index = 0;
         }
     }
 }

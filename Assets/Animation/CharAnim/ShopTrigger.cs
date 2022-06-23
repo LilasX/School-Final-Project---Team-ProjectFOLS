@@ -8,7 +8,6 @@ public class ShopTrigger : MonoBehaviour
     private GameManager _gameManager;
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
-    private int _index;
     private bool _insideTrigger = false;
 
 
@@ -16,7 +15,6 @@ public class ShopTrigger : MonoBehaviour
     void Start()
     {
         _gameManager = GameManager.Instance;
-        _index = 0;
         _insideTrigger = false;
     }
 
@@ -38,17 +36,15 @@ public class ShopTrigger : MonoBehaviour
         {
             _interactionButtonText.SetActive(true);
 
-            if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting && _index == 0)
+            if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
             {
                 shop.ShowShop(shopCustomer);
-                _index = 1;
             }
 
-            else if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting && _index == 1)
-            {
-                shop.HideShop();
-                _index = 0;
-            }
+            //else if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
+            //{
+            //    shop.HideShop();
+            //}
         }
     }
 
@@ -59,7 +55,14 @@ public class ShopTrigger : MonoBehaviour
         {
             shop.HideShop();
             _interactionButtonText.SetActive(false);
-            _index = 0;
+        }
+    }
+
+    private void Update()
+    {
+        if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
+        {
+            shop.HideShop();
         }
     }
 }
