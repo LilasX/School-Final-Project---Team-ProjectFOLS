@@ -125,6 +125,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     public Material dodgeMaterial;
     public GameObject fxElectricity;
+    public GameObject meleePS;
 
     #endregion
 

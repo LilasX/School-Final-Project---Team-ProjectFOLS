@@ -22,15 +22,17 @@ public class PlayerMeleeState : IPlayerBaseState
     public void MeleeAttack() //changed to public
     {
         uiManager.SwordImage.SetActive(false);
+        playerEntityInstance.meleePS.SetActive(true);
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.MeleeVelocity * playerEntityInstance.meleeSpeed * Time.deltaTime);
         playerEntityInstance.HasUsedMelee = true;
         playerEntityInstance.Animator.SetBool("Attack", true);
         playerEntityInstance.meleeTime += Time.deltaTime;
-        if (playerEntityInstance.meleeTime >= 0.633f)
+        if (playerEntityInstance.meleeTime >= 0.4f)
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
             playerEntityInstance.meleeTime = 0f;
             uiManager.SwordImage.SetActive(true);
+            playerEntityInstance.meleePS.SetActive(false);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

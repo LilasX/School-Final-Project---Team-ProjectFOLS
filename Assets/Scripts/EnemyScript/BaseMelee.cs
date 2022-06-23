@@ -96,7 +96,7 @@ public class BaseMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.player.GetComponent<PlayerEntity>().resetMeleeInputTimer >= 0.5f)
+        if(gameManager.player.GetComponent<PlayerEntity>().resetMeleeInputTimer >= 0.25f)
         {
             if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
             {

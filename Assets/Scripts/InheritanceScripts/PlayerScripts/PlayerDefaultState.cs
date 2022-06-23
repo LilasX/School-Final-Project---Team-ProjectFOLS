@@ -156,7 +156,7 @@ public class PlayerDefaultState : IPlayerBaseState
         if(playerEntityInstance.HasUsedMelee)
         {
             playerEntityInstance.resetMeleeInputTimer += Time.deltaTime;
-            if(playerEntityInstance.resetMeleeInputTimer >= 0.633f)
+            if(playerEntityInstance.resetMeleeInputTimer >= 0.3f)
             {
                 gameManager.inputManager.OnEnable();
                 playerEntityInstance.HasUsedMelee = false;
