@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProjectFOLS.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/NewLevel.unity
+    guid: cd3d4e60ba48ea742bdcf7c9b4f28c9d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ee141a52abd55e641913dfa2bdb023a7, type: 2}

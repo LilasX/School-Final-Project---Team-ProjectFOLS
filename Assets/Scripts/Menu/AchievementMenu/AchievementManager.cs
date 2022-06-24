@@ -15,7 +15,7 @@ public class AchievementManager : MonoBehaviour
     public GameObject[] CategoryList;
 
     public GameObject AchievementMenu;
-
+   
     private AchievementButton activeButton;
 
     public ScrollRect scrollRect;
@@ -30,6 +30,9 @@ public class AchievementManager : MonoBehaviour
 
 
     public int goblinsKilled;
+
+   
+
 
     private static AchievementManager instance;
 
@@ -56,7 +59,7 @@ public class AchievementManager : MonoBehaviour
         activeButton = GameObject.Find("GeneralBtn").GetComponent<AchievementButton>();
 
         CreateAchievement("GeneralCategory", "Die Goblins!", "Kill 5 Goblins", 10, 0);
-       
+        CreateAchievement("GeneralCategory", "Die Goblins! 2", "Kill 10 Goblins", 20, 0);
 
 
         foreach (GameObject achievementList in CategoryList)
@@ -69,6 +72,7 @@ public class AchievementManager : MonoBehaviour
         activeButton.Click();
 
         AchievementMenu.SetActive(false);
+       
     }
 
     // Update is called once per frame
@@ -81,6 +85,10 @@ public class AchievementManager : MonoBehaviour
         if (goblinsKilled == 5)
         {
             EarnAchievement("Die Goblins!");
+        }
+        if (goblinsKilled == 10)
+        {
+            EarnAchievement("Die Goblins! 2");
         }
     }
 
@@ -132,21 +140,5 @@ public class AchievementManager : MonoBehaviour
         achievementButton.Click();
         activeButton.Click();
         activeButton = achievementButton;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == gameManager.player)
-        {
-            AchievementMenu.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == gameManager.player)
-        {
-            AchievementMenu.SetActive(false);
-        }
     }
 }
