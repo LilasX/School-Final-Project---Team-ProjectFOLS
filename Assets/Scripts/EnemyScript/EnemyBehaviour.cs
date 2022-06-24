@@ -44,6 +44,11 @@ public class EnemyBehaviour : MonoBehaviour
         spawningBox = true;
     }
 
+    public void StartBossAttack()
+    {
+        stateWaiting.start = true;
+    }
+
     public void InitializeBehaviour()
     {
         manager = GameManager.instance;

@@ -26,7 +26,8 @@ public class StateWander : EnemyState
 
         if (wanderDistance <= enemyBehaviour.agent.stoppingDistance) 
         {
-            /*do //To Prevent WanderPos being Outside of NavMesh
+            found = false;
+            do //To Prevent WanderPos being Outside of NavMesh
             {
                 randomX = Random.Range(enemyBehaviour.boundBox.center.x - enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius,
                     enemyBehaviour.boundBox.center.x + enemyBehaviour.boundBox.extents.x - enemyBehaviour.agent.radius);
@@ -40,14 +41,14 @@ public class StateWander : EnemyState
                     wanderPos = hit.position;
                     found = true;
                 }
-            } while (!found);*/
+            } while (!found);
 
-            randomX = Random.Range(enemyBehaviour.boundBox.center.x - enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius, 
+            /*randomX = Random.Range(enemyBehaviour.boundBox.center.x - enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius, 
                 enemyBehaviour.boundBox.center.x + enemyBehaviour.boundBox.extents.x - enemyBehaviour.agent.radius); 
             randomZ = Random.Range(enemyBehaviour.boundBox.center.z - enemyBehaviour.boundBox.extents.z + enemyBehaviour.agent.radius, 
                 enemyBehaviour.boundBox.center.z + enemyBehaviour.boundBox.extents.z - enemyBehaviour.agent.radius); 
             wanderPos = new Vector3(randomX, transform.position.y, randomZ);
-
+            */
             enemyBehaviour.agent.SetDestination(wanderPos); 
             enemyBehaviour.agent.isStopped = false;
         }
