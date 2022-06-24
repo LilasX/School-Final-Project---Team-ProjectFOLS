@@ -24,6 +24,7 @@ public class CoinLoot : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = true;
         animatorCoin.enabled = false;
+        this.GetComponent<Collider>().enabled = false;
     }
 
     // Update is called once per frame
@@ -54,6 +55,7 @@ public class CoinLoot : MonoBehaviour
 
         if (!enabled)
         {
+            this.GetComponent<Collider>().enabled = true;
             animatorCoin.enabled = true;
             audioCoin.PlayOneShot(coins);
             Destroy(this.GetComponent<Rigidbody>());
