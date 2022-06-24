@@ -9,6 +9,8 @@ public class Objective : MonoBehaviour, IDataPersistence
 
     private GameManager manager;
 
+    private DataPersistenceManager dpManager;
+
     [SerializeField] private string id;
     [ContextMenu("Generate Guid for id")]
     private void GenerateGuid()
@@ -25,6 +27,7 @@ public class Objective : MonoBehaviour, IDataPersistence
     void Start()
     {
         manager = GameManager.Instance;
+        dpManager = DataPersistenceManager.instance;
         objActive = false;
     }
 
@@ -36,6 +39,8 @@ public class Objective : MonoBehaviour, IDataPersistence
             collision = true;
             this.gameObject.SetActive(false);
             objectiveText.text = mission;
+
+            dpManager.SaveGame();
         }
     }
 

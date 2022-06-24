@@ -7577,10 +7577,14 @@ MonoBehaviour:
   resetMaterialTimer: 0
   isInvincible: 0
   isInteracting: 0
+  isCanceling: 0
   knockedVelocity: {x: 0, y: 0, z: 0}
   isKnocked: 0
   hasBeenKnocked: 0
   resetKnockedInputTimer: 0
+  dodgeMaterial: {fileID: 2100000, guid: acd8f714506fd6540a36a074eb7f1491, type: 2}
+  fxElectricity: {fileID: 1179552385594127154, guid: 73cf276ff55f8df44b70847f143822f7, type: 3}
+  meleePS: {fileID: 6378020034983088162, guid: 6c7818a6d940c934b9beaaaf0df0dd4d, type: 3}
 --- !u!114 &642476585726724914
 MonoBehaviour:
   m_ObjectHideFlags: 0
