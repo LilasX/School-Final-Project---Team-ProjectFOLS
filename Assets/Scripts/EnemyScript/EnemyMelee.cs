@@ -19,9 +19,12 @@ public class EnemyMelee : EnemyMain
     public bool attack; //Testing Attack Purpose in Inspector
     public bool die; //Testing OnDeath
 
+    private AchievementManager achievementManager;
+
     public override void InitializeEnemy() 
     {
         gameManager = GameManager.instance;
+        achievementManager = AchievementManager.Instance;
         //posOrigin = transform;
         GetMaxHP = 100;
         GetCurrentHP = GetMaxHP;
@@ -114,6 +117,7 @@ public class EnemyMelee : EnemyMain
     {
         if (!onceDeath)
         {
+            AchievementManager.Instance.goblinsKilled += 1;
             //transform.position = posOrigin.position;
             onceDeath = true;
             canvas.gameObject.SetActive(false);

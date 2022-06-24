@@ -7,6 +7,7 @@ public enum Striker { player, enemy }
 public class BaseMelee : MonoBehaviour
 {
     private GameManager gameManager;
+    private AchievementManager achievementManager;
     public Striker striker;
     public bool canDmg = false;
     public GameObject otherObject;
@@ -90,6 +91,7 @@ public class BaseMelee : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.instance;
+        achievementManager = AchievementManager.Instance;
         canDmg = false;
     }
 

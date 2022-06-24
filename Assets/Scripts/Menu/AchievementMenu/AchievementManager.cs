@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class AchievementManager : MonoBehaviour
 {
@@ -20,23 +20,43 @@ public class AchievementManager : MonoBehaviour
 
     public ScrollRect scrollRect;
 
+    public GameObject visualAchievement;
+
+    public Dictionary<string, Achievement> achievements = new Dictionary<string, Achievement>();
+
+    public Sprite unlockedSprite;
+
+    public TMP_Text textPoints;
+
+
+    public int goblinsKilled;
+
+    private static AchievementManager instance;
+
+    public static AchievementManager Instance 
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<AchievementManager>();
+            }
+            return AchievementManager.instance;
+        }   
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
+
         gameManager = GameManager.instance;
 
         activeButton = GameObject.Find("GeneralBtn").GetComponent<AchievementButton>();
 
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 15, 0);
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 20, 0);
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 15, 0);
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 5, 0);
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 10, 0);
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 5, 0);
-        CreateAchievement("GeneralCategory", "GeneralTitle", "This is the Description", 30, 0);
-
-        CreateAchievement("Other", "OtherTitle", "This is the Description", 10, 0);
+        CreateAchievement("GeneralCategory", "Die Goblins!", "Kill 5 Goblins", 10, 0);
+       
 
 
         foreach (GameObject achievementList in CategoryList)
@@ -54,23 +74,53 @@ public class AchievementManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            AchievementMenu.SetActive(!AchievementMenu.activeSelf);
+        }
+        if (goblinsKilled == 5)
+        {
+            EarnAchievement("Die Goblins!");
+        }
     }
 
-    public void CreateAchievement(string category, string title, string description,  int points, int spriteIndex)
+    public void EarnAchievement(string title)
+    {
+        if (achievements[title].EarnAchievement()) 
+        {
+            GameObject achievement = (GameObject)Instantiate(visualAchievement);
+            SetAchievementInfo("EarnCanvas", achievement, title);
+            textPoints.text = "Points: " + PlayerPrefs.GetInt("Points");
+            StartCoroutine(HideAchievement(achievement));
+        }
+    }
+
+    public IEnumerator HideAchievement(GameObject achievement)
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(achievement);
+    }
+
+
+    public void CreateAchievement(string parent, string title, string description,  int points, int spriteIndex)
     {
         GameObject achievement = (GameObject)Instantiate(achievementPrefab);
-        SetAchievementInfo(category, achievement, title, description, points, spriteIndex);
+
+        Achievement newAchievement = new Achievement(title, description, points, spriteIndex, achievement);
+
+        achievements.Add(title, newAchievement);
+
+        SetAchievementInfo(parent, achievement, title);
     }
 
-    public void SetAchievementInfo(string category, GameObject achievement, string title, string description, int points, int spriteIndex)
+    public void SetAchievementInfo(string parent, GameObject achievement, string title)
     {
-        achievement.transform.SetParent(GameObject.Find(category).transform);
+        achievement.transform.SetParent(GameObject.Find(parent).transform);
         achievement.transform.localScale = new Vector3(1, 1, 1);
         achievement.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = title;
-        achievement.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = description;
-        achievement.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = points.ToString();
-        achievement.transform.GetChild(3).GetComponent<Image>().sprite = sprites[spriteIndex];
+        achievement.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = achievements[title].Description;
+        achievement.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = achievements[title].Points.ToString();
+        achievement.transform.GetChild(3).GetComponent<Image>().sprite = sprites[achievements[title].SpriteIndex];
     }
 
     public void ChangeCategory(GameObject button)
