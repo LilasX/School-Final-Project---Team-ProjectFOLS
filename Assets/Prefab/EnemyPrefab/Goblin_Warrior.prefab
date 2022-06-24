@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 95227320906098812}
-  - component: {fileID: 6962815777291410665}
+  - component: {fileID: 7357813823131482986}
   m_Layer: 0
-  m_Name: StateAttackRange02
+  m_Name: StateAttackRangeWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6962815777291410665
+--- !u!114 &7357813823131482986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,26 +41,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 741705319026095497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: a7d304351da47e443811a32830195cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
-  stateRange02: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 7479229380263031121, guid: 4e28aba269915be49ab8a182d748694b, type: 3}
+  spellSpawn: {fileID: 6336153115743787800}
+  spellSign: {fileID: 206246605819822299, guid: 4df3e95ae92a5ec4a93b974b5fc7a6e0, type: 3}
   once1: 0
   once2: 0
   once3: 0
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
+  once4: 1
   randNum: 0
   anim: {fileID: 3579076600062096018}
   combo: 0
+  character: {fileID: 3579076600052755578}
+  defaultMat: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
+  signMat: {fileID: 2100000, guid: 471078a3097aec349bff8057b204ec81, type: 2}
 --- !u!1 &1447365944868939700
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +90,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &540656368319665192
 MonoBehaviour:
@@ -123,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3034261811580574926}
-  - component: {fileID: 8060554476406295048}
+  - component: {fileID: 8225589752207758259}
   m_Layer: 0
   m_Name: StateKnocked
   m_TagString: Untagged
@@ -144,9 +143,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8060554476406295048
+--- !u!114 &8225589752207758259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,18 +154,80 @@ MonoBehaviour:
   m_GameObject: {fileID: 1540421736056557225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22fbab1c7cb92840bb05015c8d31ee6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c51038811afbbd47b3fa97cb528b838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
-  stateMelee01: {fileID: 4224099180244508620}
-  stateMelee02: {fileID: 8512332469694304842}
-  stateRange01: {fileID: 5419297180483504715}
   once1: 0
   once2: 0
   anim: {fileID: 3579076600062096018}
   character: {fileID: 3579076600052755578}
   knockedMat: {fileID: 2100000, guid: 6485d0340d49552408fafd20e5188f72, type: 2}
+  stateMeleeLight: {fileID: 4224099180244508620}
+  stateMeleeHeavy: {fileID: 8512332469694304842}
+  stateRangeThrow: {fileID: 9007328443739330453}
+  stateMagicWave: {fileID: 7357813823131482986}
+  stateMagicQuake: {fileID: 2797602314039654727}
+--- !u!1 &1652879903598190804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4023220076510810342}
+  - component: {fileID: 2797602314039654727}
+  m_Layer: 0
+  m_Name: StateAttackRangeQuake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4023220076510810342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652879903598190804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2797602314039654727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652879903598190804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4f9cef28974f642a051030c20c262f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 7251639271889053193}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 4100321554669386465, guid: f0951ae1b8d842546b3149e478b352a9, type: 3}
+  spellSpawn: {fileID: 6336153115743787800}
+  spellSign: {fileID: 206246605819822299, guid: 4df3e95ae92a5ec4a93b974b5fc7a6e0, type: 3}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 3579076600062096018}
+  combo: 0
+  character: {fileID: 3579076600052755578}
+  defaultMat: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
+  signMat: {fileID: 2100000, guid: 7d33afaccbace35499be80613e1bcadb, type: 2}
 --- !u!1 &1835933127984624359
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,9 +237,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7574247402563260913}
-  - component: {fileID: 5419297180483504715}
+  - component: {fileID: 9007328443739330453}
   m_Layer: 0
-  m_Name: StateAttackRange01
+  m_Name: StateAttackRangeThrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,9 +258,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5419297180483504715
+--- !u!114 &9007328443739330453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,23 +269,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835933127984624359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df3c4f8d4563ad4f8c66e0403832d4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
+  stateRange02: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   rangePos: {x: 0, y: 0, z: 0}
   ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  projectile: {fileID: 6301398141151204176, guid: 2cc7e8bef63a2b641b8324156ee16cf7, type: 3}
+  projectileSpawn: {fileID: 7911182035086666816}
   once1: 0
   once2: 0
   once3: 0
+  once4: 1
   randomX: 0
   randomZ: 0
   rangeDistance: 0
   playerDistance: 0
+  randNum: 0
   anim: {fileID: 3579076600062096018}
+  combo: 0
 --- !u!1 &3205221632402484855
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,9 +301,10 @@ GameObject:
   - component: {fileID: 3205221632402015133}
   - component: {fileID: 3205221632399116395}
   - component: {fileID: 3205221632400290603}
-  - component: {fileID: 3215361509354647935}
+  - component: {fileID: 1255669961535686680}
   - component: {fileID: 7900753205525382063}
   - component: {fileID: 8677266001250683193}
+  - component: {fileID: 3215361509354647935}
   m_Layer: 0
   m_Name: SM_Wep_Goblin_Axe_Spikes_01
   m_TagString: Untagged
@@ -311,8 +377,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3215361509354647935
-MeshCollider:
+--- !u!65 &1255669961535686680
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -321,10 +387,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43443467492277392, guid: fa0fb4807aabcbc49bfffee5a5cfbbff, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.5, z: 0.5}
+  m_Center: {x: 0.00000033930576, y: 0.4, z: 0.1}
 --- !u!114 &7900753205525382063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +421,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &3215361509354647935
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205221632402484855}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43443467492277392, guid: fa0fb4807aabcbc49bfffee5a5cfbbff, type: 2}
 --- !u!1 &3579076600052681954
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +448,7 @@ GameObject:
   - component: {fileID: 3579076600062096021}
   - component: {fileID: 3579076600062096023}
   - component: {fileID: 3579076600062096016}
-  - component: {fileID: 3579076600062096017}
+  - component: {fileID: 3491374443437746150}
   m_Layer: 0
   m_Name: Goblin_Warrior
   m_TagString: Untagged
@@ -386,13 +465,14 @@ Transform:
   m_GameObject: {fileID: 3579076600052681954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.64, y: 1, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3579076600052542974}
   - {fileID: 3579076600052505034}
   - {fileID: 7251639272593070510}
   - {fileID: 7251639272775189435}
+  - {fileID: 3810998817510636799}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -474,9 +554,15 @@ MonoBehaviour:
   enemyAnim: {fileID: 3579076600062096018}
   currState: {fileID: 7251639271291498042}
   stateWander: {fileID: 7251639271291498042}
-  stateDeath: {fileID: 0}
-  stateKnocked: {fileID: 0}
---- !u!114 &3579076600062096017
+  stateWaiting: {fileID: 7156847913494611106}
+  stateStart: {fileID: 4143823324001286029}
+  stateDeath: {fileID: 540656368319665192}
+  stateKnocked: {fileID: 8225589752207758259}
+  earthWave: 0
+  earthQuake: 0
+  stateMagicWave: {fileID: 7357813823131482986}
+  stateMagicQuake: {fileID: 2797602314039654727}
+--- !u!114 &3491374443437746150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -485,27 +571,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3579076600052681954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2bae6c59681d3248923675ba1701d6c, type: 3}
+  m_Script: {fileID: 11500000, guid: ed5c8f55242249d49b87b2a86e09a2e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 100
-  maxHP: 100
+  currentHP: 0
+  maxHP: 0
   distance: 0
   gameManager: {fileID: 0}
-  animState: {fileID: 0}
-  canvas: {fileID: 0}
+  waveSpawnerObject: {fileID: 0}
+  animState: {fileID: 3579076600062096018}
+  canvas: {fileID: 7251639272775189432}
   slider: {fileID: 7251639272396716338}
   cameraMain: {fileID: 0}
-  drop: {fileID: 0}
-  canHurt: 1
-  waveSpawnerObject: {fileID: 0}
-  canAttack: 0
   melee:
-  - {fileID: 4850359353970465452}
   - {fileID: 3205221632402484855}
-  meleeAnim: {fileID: 0}
-  typeMelee: 0
-  coin: {fileID: 0}
+  - {fileID: 4850359353970465452}
   onceDeath: 0
   attack: 0
   die: 0
@@ -3231,9 +3311,10 @@ GameObject:
   - component: {fileID: 4850359353970196058}
   - component: {fileID: 4850359353969419846}
   - component: {fileID: 4850359353968024292}
-  - component: {fileID: 4876222918068165478}
+  - component: {fileID: 6706544846164802026}
   - component: {fileID: 2588809918443545243}
   - component: {fileID: 4955844075275769792}
+  - component: {fileID: 4876222918068165478}
   m_Layer: 0
   m_Name: SM_Wep_Goblin_Machete_Spikes_01
   m_TagString: Untagged
@@ -3306,8 +3387,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4876222918068165478
-MeshCollider:
+--- !u!65 &6706544846164802026
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3316,10 +3397,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43930271239787602, guid: bad698357c1213e4faa2d557340c96d6, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.5, z: 0.5}
+  m_Center: {x: -0.00000020034679, y: 0.4, z: 0}
 --- !u!114 &2588809918443545243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3351,6 +3431,112 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &4876222918068165478
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4850359353970465452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43930271239787602, guid: bad698357c1213e4faa2d557340c96d6, type: 2}
+--- !u!1 &4895724175065069421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8791654580649066997}
+  - component: {fileID: 7156847913494611106}
+  m_Layer: 0
+  m_Name: StateWaiting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8791654580649066997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895724175065069421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7156847913494611106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895724175065069421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e608d1f61dcd3546bafc38104ee2826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 7251639271889053193}
+  start: 0
+  once: 0
+--- !u!1 &6336153115743787800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7121215308759883735}
+  - component: {fileID: 5900971417788960070}
+  m_Layer: 0
+  m_Name: EarthSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7121215308759883735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336153115743787800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3810998817510636799}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5900971417788960070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336153115743787800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7251639271268131539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,7 +3546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7251639271268131537}
-  - component: {fileID: 7251639271268131538}
+  - component: {fileID: 2021087330388109871}
   m_Layer: 0
   m_Name: StateAttack
   m_TagString: Untagged
@@ -3381,9 +3567,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7251639271268131538
+--- !u!114 &2021087330388109871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3392,16 +3578,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7251639271268131539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f8cfcdd886d0a42aedcb8932a65733, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d861a70c7426f443a104139a9332e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
-  stateMelee01: {fileID: 4224099180244508620}
-  stateRange01: {fileID: 5419297180483504715}
+  stateMeleeLight: {fileID: 4224099180244508620}
+  stateMeleeHeavy: {fileID: 8512332469694304842}
+  stateRangeBoulder: {fileID: 9007328443739330453}
+  stateMagicQuake: {fileID: 0}
+  stateMagicWave: {fileID: 0}
   playerDistance: 0
+  hp: 0
+  hpMax: 0
   once: 0
-  anim: {fileID: 3579076600062096018}
-  canDmg: 0
   randNum: 0
 --- !u!1 &7251639271291498043
 GameObject:
@@ -3433,7 +3622,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7251639271291498042
 MonoBehaviour:
@@ -3485,7 +3674,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7251639271889053193
 MonoBehaviour:
@@ -3501,6 +3690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMelee: {fileID: 0}
   stateRange: {fileID: 0}
+  stateWarrior: {fileID: 2021087330388109871}
   playerDistance: 0
   once: 0
 --- !u!1 &7251639272149403242
@@ -3773,6 +3963,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3258617533870938162}
+  - {fileID: 8791654580649066997}
   - {fileID: 7251639271291498041}
   - {fileID: 7251639271889053192}
   - {fileID: 7251639271268131537}
@@ -3780,6 +3972,7 @@ Transform:
   - {fileID: 3417620158005020032}
   - {fileID: 7574247402563260913}
   - {fileID: 95227320906098812}
+  - {fileID: 4023220076510810342}
   - {fileID: 3034261811580574926}
   - {fileID: 2929039741205156475}
   m_Father: {fileID: 3579076600052452694}
@@ -3934,7 +4127,7 @@ GameObject:
   - component: {fileID: 8203463760639901544}
   - component: {fileID: 4224099180244508620}
   m_Layer: 0
-  m_Name: StateAttackMelee01
+  m_Name: StateAttackMeleeLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3953,7 +4146,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4224099180244508620
 MonoBehaviour:
@@ -3975,6 +4168,138 @@ MonoBehaviour:
   playerDistance: 0
   anim: {fileID: 3579076600062096018}
   randNum: 0
+--- !u!1 &7757443187439207271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3258617533870938162}
+  - component: {fileID: 4143823324001286029}
+  m_Layer: 0
+  m_Name: StateStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3258617533870938162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7757443187439207271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4143823324001286029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7757443187439207271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6683b3cdcea1a704d91998d809374865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateWaiting: {fileID: 7156847913494611106}
+  stateWander: {fileID: 0}
+  statePursue: {fileID: 7251639271889053193}
+  stateKnocked: {fileID: 8225589752207758259}
+  stateDeath: {fileID: 540656368319665192}
+  stateMeleeLight: {fileID: 4224099180244508620}
+  stateMeleeHeavy: {fileID: 8512332469694304842}
+  stateRangeThrow: {fileID: 9007328443739330453}
+  stateMagicWave: {fileID: 7357813823131482986}
+  stateMagicQuake: {fileID: 2797602314039654727}
+--- !u!1 &7911182035086666816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6689316863430778476}
+  - component: {fileID: 2968097883257716558}
+  m_Layer: 0
+  m_Name: BoulderSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6689316863430778476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911182035086666816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3810998817510636799}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2968097883257716558
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911182035086666816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8217183844010210888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3810998817510636799}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3810998817510636799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8217183844010210888}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6689316863430778476}
+  - {fileID: 7121215308759883735}
+  m_Father: {fileID: 3579076600052452694}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9186510365119116602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,7 +4311,7 @@ GameObject:
   - component: {fileID: 3417620158005020032}
   - component: {fileID: 8512332469694304842}
   m_Layer: 0
-  m_Name: StateAttackMelee02
+  m_Name: StateAttackMeleeHeavy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4005,7 +4330,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8512332469694304842
 MonoBehaviour:

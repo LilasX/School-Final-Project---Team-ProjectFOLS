@@ -20,7 +20,7 @@ public abstract class EnemyMain : EnemyEntity
     public Canvas canvas;
     public Slider slider;
     public GameObject cameraMain;
-    public GameObject drop;
+    //public GameObject drop;
     //public bool canHurt = true;
 
     //Don't know if I need those
@@ -32,7 +32,7 @@ public abstract class EnemyMain : EnemyEntity
     public abstract void RandomWeapon();
     //public abstract void AttackPlayer();
     //public abstract void OnAttack();
-    public abstract void IsAttacking();
+    //public abstract void IsAttacking();
     //public abstract void VerifyDeath(); 
     //public abstract void OnDeath();
     //public abstract void DropItem(); //Not Needed since Coin Existed

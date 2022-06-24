@@ -70,7 +70,7 @@ public class EnemyRange : EnemyMain
         }
     }
 
-    public override void OnAttack() //No Longer Used
+    /*public override void OnAttack() //No Longer Used
     {
         if (canAttack)
         {
@@ -117,7 +117,7 @@ public class EnemyRange : EnemyMain
             }
             canAttack = false;
         }
-    }
+    }*/
 
     /*public override void AttackPlayer()
     {
@@ -164,7 +164,7 @@ public class EnemyRange : EnemyMain
         }
     }*/
 
-    public override void IsAttacking() //No Longer Used
+    /*public override void IsAttacking() //No Longer Used
     {
         if (!canAttack) 
         {
@@ -191,7 +191,7 @@ public class EnemyRange : EnemyMain
                     break;
             }
         }
-    }
+    }*/
     /*
     public override void OnHurt(int damage)
     {
@@ -248,7 +248,7 @@ public class EnemyRange : EnemyMain
     // Update is called once per frame
     protected override void Update()
     {
-        IsAttacking(); 
+        //IsAttacking(); 
         DisplayHealthBar();
         //VerifyDeath();
 

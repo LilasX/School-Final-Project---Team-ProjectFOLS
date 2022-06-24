@@ -6,6 +6,7 @@ public class StatePursue : EnemyState
 {
 	public StateAttack stateMelee;
 	public StateAttack stateRange;
+	public StateAttack stateWarrior;
 	public float playerDistance;
 	public bool once = false;
 
@@ -48,7 +49,15 @@ public class StatePursue : EnemyState
 				//enemyBehaviour.agent.enabled = false;
 				return stateRange;
 			}
-		}
+		} 
+		else if (enemyBehaviour.gameObject.GetComponent<EnemyBossWarrior>() && stateWarrior)
+        {
+			if (playerDistance <=7f)
+            {
+				once = false;
+				return stateWarrior;
+            }
+        }
 
 		return this; 
 	}

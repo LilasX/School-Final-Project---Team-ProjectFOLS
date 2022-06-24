@@ -24,11 +24,18 @@ public class EnemyBehaviour : MonoBehaviour
     public Animator enemyAnim;
     public EnemyState currState;
     public StateWander stateWander;
+    public StateWaiting stateWaiting;
     public StateStart stateStart;
     public StateDeath stateDeath;
     public StateKnocked stateKnocked;
+
     //public bool canSeePlayer;
 
+    //To Test Magic
+    public bool earthWave = false;
+    public bool earthQuake = false;
+    public StateAttackMagic stateMagicWave;
+    public StateAttackMagic stateMagicQuake;
 
     public void SetBoundBox (Bounds spawnBoundBox)
     {
@@ -40,8 +47,17 @@ public class EnemyBehaviour : MonoBehaviour
     public void InitializeBehaviour()
     {
         manager = GameManager.instance;
-        currState = stateWander;
-        //currState = stateStart;
+        
+        /*if (this.gameObject.GetComponent<EnemyBossWarrior>())
+        {
+            SwitchStateWaiting();
+        }
+        else
+        {
+            SwitchStateWander();
+        }*/
+
+        currState = stateStart;
         player = manager.player;
     }
 
@@ -75,6 +91,19 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         RunStateMachine();
+
+        if (earthWave)
+        {
+            earthWave = false;
+            currState = stateMagicWave;
+        }
+
+        if (earthQuake)
+        {
+            earthQuake = false;
+            currState = stateMagicQuake;
+        }
+
     }
 
     //Testing StateMachine
@@ -91,6 +120,21 @@ public class EnemyBehaviour : MonoBehaviour
     private void SwitchNextState(EnemyState nextState) 
     {
         currState = nextState;
+    }
+
+    public void SwitchStateStart()
+    {
+        currState = stateStart;
+    }
+
+    public void SwitchStateWaiting()
+    {
+        currState = stateWaiting;
+    }
+
+    public void SwitchStateWander()
+    {
+        currState = stateWander;
     }
 
     public void SwitchStateDeath()

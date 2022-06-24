@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e6a819877a2d544bd80ff42e9f1149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
+  statePursue: {fileID: 3342772925535606146}
   stateRange02: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   rangePos: {x: 0, y: 0, z: 0}
@@ -479,7 +479,7 @@ MonoBehaviour:
   rangeDistance: 0
   playerDistance: 0
   randNum: 0
-  anim: {fileID: 0}
+  anim: {fileID: 6747795950854689142}
   combo: 0
 --- !u!1 &2454860161893028244
 GameObject:

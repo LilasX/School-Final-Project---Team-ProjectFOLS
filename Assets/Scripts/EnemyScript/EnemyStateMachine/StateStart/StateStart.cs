@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StateStart : EnemyState
 {
+    public StateWaiting stateWaiting;
     public StateWander stateWander;
     public StatePursue statePursue;
     public StateKnocked stateKnocked;

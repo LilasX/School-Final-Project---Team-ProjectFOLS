@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b51b8bcfe13794992decb59c07a24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateWaiting: {fileID: 0}
   stateWander: {fileID: 6881588284479463216}
   statePursue: {fileID: 6881588285909992070}
   stateKnocked: {fileID: 3144496299525706980}
@@ -2509,8 +2510,14 @@ MonoBehaviour:
   enemyAnim: {fileID: 6881588284867706748}
   currState: {fileID: 6881588284479463216}
   stateWander: {fileID: 6881588284479463216}
+  stateWaiting: {fileID: 0}
+  stateStart: {fileID: 4820868273824233374}
   stateDeath: {fileID: 4902154532596490118}
   stateKnocked: {fileID: 3144496299525706980}
+  earthWave: 0
+  earthQuake: 0
+  stateMagicWave: {fileID: 0}
+  stateMagicQuake: {fileID: 0}
 --- !u!114 &6881588284876657012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2532,8 +2539,6 @@ MonoBehaviour:
   canvas: {fileID: 6881588284374531153}
   slider: {fileID: 6881588285620541924}
   cameraMain: {fileID: 0}
-  drop: {fileID: 4227461106753351263, guid: 9e8ae706d10b0564cb5c0e54d2b5726a, type: 3}
-  canHurt: 1
   canAttack: 0
   melee:
   - {fileID: 5655259719716562432}
@@ -3910,6 +3915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMelee: {fileID: 7264736059987307790}
   stateRange: {fileID: 0}
+  stateWarrior: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &6881588286030556027

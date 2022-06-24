@@ -53,7 +53,7 @@ public class EnemyMelee : EnemyMain
         }
     }
 
-    public override void OnAttack() //No Longer Used
+    /*public override void OnAttack() //No Longer Used
     {
         if (canAttack)
         {
@@ -72,7 +72,7 @@ public class EnemyMelee : EnemyMain
             //}
 
         }
-    }
+    }*/
 
     public void CanDamage()
     {
@@ -99,7 +99,7 @@ public class EnemyMelee : EnemyMain
         }
     }*/
 
-    public override void IsAttacking() //No Longer Used
+    /*public override void IsAttacking() //No Longer Used
     {
         if (!canAttack)
         {
@@ -111,7 +111,7 @@ public class EnemyMelee : EnemyMain
                 //melee.SetActive(false);//Testing Attack
             }
         }
-    }
+    }*/
 
     public override void OnDeath()
     {
@@ -174,7 +174,7 @@ public class EnemyMelee : EnemyMain
     // Update is called once per frame
     protected override void Update()
     {
-        IsAttacking(); 
+        //IsAttacking(); 
         DisplayHealthBar(); 
         //VerifyDeath(); 
         if (die)
