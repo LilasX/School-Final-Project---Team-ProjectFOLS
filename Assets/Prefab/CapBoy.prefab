@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,33 +231,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc75ebf9bc5ac9c439e611cddc52b460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCharacter: {fileID: 0}
+  currentHP: 0
+  maxHP: 0
+  renderedCharacter: {fileID: 0}
   cam: {fileID: 0}
-  move: {x: 0, y: 0, z: 0}
-  xAxis: 0
-  zAxis: 0
-  speed: 5
-  isRunning: 0
-  runningSpeed: 10
-  isDashing: 0
-  dashSpeed: 20
-  staminaBar: {fileID: 1321410082996752307}
-  stamina: 100
+  isGrounded: 0
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  checkGroundDistance: 0
+  velocity: {x: 0, y: 0, z: 0}
   gravityForce: 0.75
-  jumpForce: 50
-  isJumping: 0
+  checkGroundSphere: {fileID: 0}
+  speed: 5
+  resetSpeedValue: 6
+  dodgeTime: 0
+  dodgeSpeed: 0
+  hasExecutedDodge: 0
+  currentStamina: 0
+  maxStamina: 0
+  currentMana: 0
+  maxMana: 0
   bullet: {fileID: 4049261494554390678, guid: a0a430a799aa2cc4cac591e92013318c, type: 3}
-  isFiring: 0
+  hasFired: 0
   bulletVelocity: 15
-  stick: {fileID: 1321410083640292456}
-  isUsingStick: 0
-  shield: {fileID: 1321410083141205059}
-  isUsingShield: 0
-  pickableText: {fileID: 0}
-  coolDownExample: {fileID: 0}
-  coolDownBar: {fileID: 0}
-  isUsingPower: 0
-  canDash: 1
+  hasUsedMelee: 0
+  meleeTime: 0
+  meleeSpeed: 0
+  slashSpeed: 0
+  slashTimer: 0
+  hasRequestedSlash: 0
+  shieldTimer: 5
+  vfxCube: {fileID: 0}
+  hasBlockedAttack: 0
+  canReturnAttack: 0
+  isReturningAttack: 0
+  returnFireIndex: 0
+  timercapsule: 0
+  hasReturnedAttack: 0
+  changeStateDelay: 0
+  isStealingAttack: 0
+  damagedEnemiesList: []
+  resetMeleeInputTimer: 0
+  resetSlashInputTimer: 0
+  defaultMaterial: {fileID: 0}
+  damageMaterial: {fileID: 0}
+  resetMaterialTimer: 0
+  isInvincible: 0
+  isInteracting: 0
+  isCanceling: 0
+  knockedVelocity: {x: 0, y: 0, z: 0}
+  isKnocked: 0
+  hasBeenKnocked: 0
+  resetKnockedInputTimer: 0
+  dodgeMaterial: {fileID: 0}
+  fxElectricity: {fileID: 0}
+  meleePS: {fileID: 0}
 --- !u!1 &1321410082404245161
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +655,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -832,7 +861,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -917,3 +946,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 0
+  canDmg: 0
+  otherObject: {fileID: 0}

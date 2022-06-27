@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject fireBurstVfx;
     public Inventory inventoryscript;
     public InputManager inputManager;
+    public DialogueManager _dialogueManager;
     public RuntimeAnimatorController defaultController;
     public RuntimeAnimatorController deathController;
 

@@ -212,7 +212,7 @@
                 {
                     "name": "",
                     "id": "766bf903-8cfa-45ac-a244-e1fb76795cdc",
-                    "path": "<Keyboard>/rightCtrl",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -234,7 +234,7 @@
                 {
                     "name": "",
                     "id": "e3c00e39-7a9a-4eb9-977f-bc79aa403faf",
-                    "path": "<Keyboard>/numpad2",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -256,7 +256,7 @@
                 {
                     "name": "",
                     "id": "aaf671bd-eecd-425b-8490-c9824a894a4f",
-                    "path": "<Keyboard>/rightShift",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -278,7 +278,7 @@
                 {
                     "name": "",
                     "id": "31364bd6-98a4-4020-8016-dcb0cf3ebe4c",
-                    "path": "<Keyboard>/numpad3",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -300,7 +300,7 @@
                 {
                     "name": "",
                     "id": "1171003f-81cb-4769-aca7-01b97a21ca2f",
-                    "path": "<Keyboard>/numpad1",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -355,7 +355,7 @@
                 {
                     "name": "",
                     "id": "316eb4c5-f7d8-49ed-8f2a-bfb9f6b5b01c",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

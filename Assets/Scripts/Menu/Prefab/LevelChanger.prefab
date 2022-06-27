@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6736849746070288546}
+  sceneName: 
+  loaderCanvas: {fileID: 0}
+  progressBar: {fileID: 0}
 --- !u!1 &6736849747621195848
 GameObject:
   m_ObjectHideFlags: 0

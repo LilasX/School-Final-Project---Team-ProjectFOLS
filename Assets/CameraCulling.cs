@@ -28,12 +28,16 @@ public class CameraCulling : MonoBehaviour
 
         if(wallHit)
         {
-            hit.transform.gameObject.GetComponent<MeshRenderer>().material.shader = Shader.Find("Shader Graphs/Transparent");
+            //hit.transform.gameObject.GetComponent<MeshRenderer>().material.shader = Shader.Find("Unlit/Transparent Cutout");
+           // hit.transform.gameObject.GetComponent<MeshRenderer>().material.shader = Shader.Find("Shader Graphs/Transparent");
+           //hit.transform.gameObject.GetComponent<MeshRenderer>().material.shader = Shader.Find("Shader Graphs/DitherTransparency");
+           hit.transform.gameObject.GetComponent<MeshRenderer>().material.shader = Shader.Find("Shader Graphs/PhysicalTransparent");
             wall = hit.transform.gameObject;
         }
         else
         {
-            wall.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+            //wall.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+            wall.GetComponent<MeshRenderer>().material.shader = Shader.Find("Universal Render Pipeline/Lit");
         }
 
         //if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance)) //, mask))

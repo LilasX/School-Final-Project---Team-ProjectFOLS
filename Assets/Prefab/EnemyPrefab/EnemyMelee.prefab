@@ -78,7 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b407da0b5d5f674781d0bb578dc42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateAttack: {fileID: 2772201454869958442}
+  stateMelee: {fileID: 0}
+  stateRange: {fileID: 0}
+  stateWarrior: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &1750002836168517169
@@ -317,6 +319,7 @@ MonoBehaviour:
   statePursue: {fileID: 3285063209951688636}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
+  playerDistance: 0
   once: 0
   found: 0
   randomX: 0
@@ -634,16 +637,21 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 0
   distance: 0
-  slider: {fileID: 7067872109950529185}
-  drop: {fileID: 4227461106753351263, guid: 9e8ae706d10b0564cb5c0e54d2b5726a, type: 3}
+  gameManager: {fileID: 0}
   waveSpawnerObject: {fileID: 0}
+  animState: {fileID: 0}
+  canvas: {fileID: 0}
+  slider: {fileID: 7067872109950529185}
+  cameraMain: {fileID: 0}
   canAttack: 0
   melee:
   - {fileID: 0}
   meleeAnim: {fileID: 8597424824692020808}
   typeMelee: 1
   coin: {fileID: 0}
+  onceDeath: 0
   attack: 0
+  die: 0
 --- !u!114 &777710012713393932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,7 +674,14 @@ MonoBehaviour:
   enemyAnim: {fileID: 0}
   currState: {fileID: 0}
   stateWander: {fileID: 0}
-  canSeePlayer: 0
+  stateWaiting: {fileID: 0}
+  stateStart: {fileID: 0}
+  stateDeath: {fileID: 0}
+  stateKnocked: {fileID: 0}
+  earthWave: 0
+  earthQuake: 0
+  stateMagicWave: {fileID: 0}
+  stateMagicQuake: {fileID: 0}
 --- !u!195 &7948994436109537851
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -734,8 +749,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3285063209951688636}
+  stateMelee01: {fileID: 0}
+  stateRange01: {fileID: 0}
   playerDistance: 0
   once: 0
+  anim: {fileID: 0}
+  canDmg: 0
+  randNum: 0
 --- !u!1001 &253469375523337461
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -322,7 +322,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -589,6 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMelee: {fileID: 0}
   stateRange: {fileID: 3202524036674290352}
+  stateWarrior: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &3780362601935029841
@@ -729,7 +730,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -940,6 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d884d4e9714664f91f0fe4107b745f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateWaiting: {fileID: 0}
   stateWander: {fileID: 6734637619124556553}
   statePursue: {fileID: 3342772925535606146}
   stateKnocked: {fileID: 0}
@@ -3107,9 +3109,14 @@ MonoBehaviour:
   enemyAnim: {fileID: 6747795950854689142}
   currState: {fileID: 0}
   stateWander: {fileID: 6734637619124556553}
+  stateWaiting: {fileID: 0}
   stateStart: {fileID: 0}
   stateDeath: {fileID: 2702617853602921663}
   stateKnocked: {fileID: 0}
+  earthWave: 0
+  earthQuake: 0
+  stateMagicWave: {fileID: 0}
+  stateMagicQuake: {fileID: 0}
 --- !u!114 &5812788334318128870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,7 +3138,6 @@ MonoBehaviour:
   canvas: {fileID: 497819029900508389}
   slider: {fileID: 3912245276124910553}
   cameraMain: {fileID: 0}
-  drop: {fileID: 0}
   canAttack: 0
   projectileSpawn: {fileID: 0}
   floorSpawn: {fileID: 0}
@@ -4392,7 +4398,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
