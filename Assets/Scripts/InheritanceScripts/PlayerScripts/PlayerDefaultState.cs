@@ -145,7 +145,7 @@ public class PlayerDefaultState : IPlayerBaseState
         }
 
         //MELEE
-        if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina >= 50f) //&& playerEntityInstance.Move != Vector3.zero) //A REVOIR
+        if (playerEntityInstance.IsUsingMelee && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina >= 50f)
         {
             playerEntityInstance.GetCurrentStamina -= 50f;
             playerEntityInstance.MeleeVelocity = playerEntityInstance.Move;
