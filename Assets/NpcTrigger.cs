@@ -17,6 +17,7 @@ public class NpcTrigger : MonoBehaviour
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
 
+    public GameObject _signUI;
     public Transform _chatBackGround;
     public Transform _npc;
     private Vector3 _camPos;
@@ -45,6 +46,7 @@ public class NpcTrigger : MonoBehaviour
         _camPos.y += 200;
         _camPos.x -= 80;
         _chatBackGround.transform.position = _camPos;
+        _signUI.transform.position = new Vector3 (_camPos.x + 80, _camPos.y - 70, _camPos.z);
 
         if (_dialogueBoxUI.activeInHierarchy && !_insideTrigger)
         {
@@ -92,6 +94,7 @@ public class NpcTrigger : MonoBehaviour
 
             if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
             {
+                _signUI.SetActive(false);
                 _isTalking = true;
                 TriggerDialogue();
             }
@@ -132,6 +135,7 @@ public class NpcTrigger : MonoBehaviour
             _animator.SetBool("Talking", false);
             _isTalking = false;
             _isInRange = false;
+            _signUI.SetActive(true);
         }
     }
 }
