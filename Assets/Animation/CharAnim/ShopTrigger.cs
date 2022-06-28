@@ -20,25 +20,36 @@ public class ShopTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        switch (_gameManager.inputManager.GetCurrentScheme())
-        {
-            case "Keyboard&Mouse":
-                _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
-                break;
-
-            case "Gamepad":
-                _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
-                break;
-        }
-
         IShopCustomer shopCustomer = other.GetComponent<IShopCustomer>();
         if(shopCustomer != null || other.gameObject.GetComponent<PlayerEntity>())
         {
+            switch (_gameManager.inputManager.GetCurrentScheme())
+            {
+                case "Keyboard&Mouse":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                    break;
+
+                case "Gamepad":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+                    break;
+            }
+
             _interactionButtonText.SetActive(true);
 
             if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
             {
                 shop.ShowShop(shopCustomer);
+                _gameManager.player.GetComponent<CharacterController>().enabled = false;
+                switch (_gameManager.inputManager.GetCurrentScheme())
+                {
+                    case "Keyboard&Mouse":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[0].ToDisplayString().ToUpper();
+                        break;
+
+                    case "Gamepad":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[1].ToDisplayString().ToUpper();
+                        break;
+                }
             }
 
             //else if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
@@ -63,6 +74,7 @@ public class ShopTrigger : MonoBehaviour
         if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
         {
             shop.HideShop();
+            _gameManager.player.GetComponent<CharacterController>().enabled = true;
         }
     }
 }
