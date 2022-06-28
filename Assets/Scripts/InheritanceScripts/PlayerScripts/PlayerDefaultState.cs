@@ -242,7 +242,7 @@ public class PlayerDefaultState : IPlayerBaseState
         if (playerEntityInstance.isKnocked)
         {
             playerEntityInstance.resetKnockedInputTimer += Time.deltaTime;
-            if (playerEntityInstance.resetKnockedInputTimer >= 0.5f)
+            if (playerEntityInstance.resetKnockedInputTimer >= 0.35f)
             {
                 playerEntityInstance.isKnocked = false;
 

@@ -45,7 +45,7 @@ ModelImporter:
       name: Knocked
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
