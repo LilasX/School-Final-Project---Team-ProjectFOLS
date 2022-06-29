@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 0
+  maxHP: 200
   distance: 0
   gameManager: {fileID: 0}
   waveSpawnerObject: {fileID: 0}
@@ -3585,8 +3585,8 @@ MonoBehaviour:
   stateMeleeLight: {fileID: 4224099180244508620}
   stateMeleeHeavy: {fileID: 8512332469694304842}
   stateRangeBoulder: {fileID: 9007328443739330453}
-  stateMagicQuake: {fileID: 0}
-  stateMagicWave: {fileID: 0}
+  stateMagicQuake: {fileID: 2797602314039654727}
+  stateMagicWave: {fileID: 7357813823131482986}
   playerDistance: 0
   hp: 0
   hpMax: 0
@@ -3691,6 +3691,8 @@ MonoBehaviour:
   stateMelee: {fileID: 0}
   stateRange: {fileID: 0}
   stateWarrior: {fileID: 2021087330388109871}
+  stateShaman: {fileID: 0}
+  stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &7251639272149403242

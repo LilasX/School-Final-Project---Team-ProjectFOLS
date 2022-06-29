@@ -24,7 +24,6 @@ public class EnemyRange : EnemyMain
     {
         gameManager = GameManager.instance;
         //posOrigin = transform;
-        GetMaxHP = 60;
         GetCurrentHP = GetMaxHP;
         canAttack = true; 
         timer = 0;

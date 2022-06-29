@@ -24,7 +24,6 @@ public class EnemyBossWarrior : EnemyMain
         gameManager = GameManager.instance;
         //achievementManager = AchievementManager.Instance;
         //posOrigin = transform;
-        GetMaxHP = 200;
         GetCurrentHP = GetMaxHP;
         //canAttack = true;
         //timer = 0;

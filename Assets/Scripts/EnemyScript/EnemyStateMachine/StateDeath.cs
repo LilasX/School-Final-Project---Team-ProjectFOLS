@@ -12,7 +12,7 @@ public class StateDeath : EnemyState
     public Animator anim;
     public GameObject character;
     public Material dissolveMat;
-    public float cutoffValue = 0;
+    public float cutoffValue = -1;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -22,7 +22,7 @@ public class StateDeath : EnemyState
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             enemyBehaviour.enemyAnim.runtimeAnimatorController = deathAnimator;
             character.GetComponent<Renderer>().material = dissolveMat;
-            cutoffValue = 0;
+            cutoffValue = -1;
             dissolveStart = false;
             once2 = false;
             once3 = false;
@@ -50,10 +50,10 @@ public class StateDeath : EnemyState
             }
         }
 
-        if (dissolveStart)
+        if (dissolveStart && cutoffValue <= 1f)
         {
             cutoffValue += Time.deltaTime;
-            character.GetComponent<Renderer>().material.SetFloat("_Cutoff", cutoffValue);
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValue);
         }
 
         return this;

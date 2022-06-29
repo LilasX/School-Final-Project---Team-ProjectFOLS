@@ -78,12 +78,11 @@ public class StateAttackMelee01 : EnemyState
                 once1 = false;
                 once2 = false;
                 once3 = false;
-
+                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                 randNum = Random.Range(0, 3);
                 switch (randNum)
                 {
                     case 2:
-                        enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                         return stateMelee02;
                     default:
                         return statePursue;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6242319800972878731}
   - component: {fileID: 8966125151615867884}
   - component: {fileID: 126648220810808312}
+  - component: {fileID: 617088196329753015}
   m_Layer: 0
   m_Name: Burning
   m_TagString: Untagged
@@ -42,7 +43,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2188082562504889155}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 3
   simulationSpeed: 1
   stopAction: 2
   cullingMode: 3
@@ -4794,6 +4795,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &617088196329753015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188082562504889155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: 1
+  dmg: 0
+  canDmg: 0
 --- !u!1 &2227937826192054582
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,6 +4822,7 @@ GameObject:
   - component: {fileID: 4973716721272180118}
   - component: {fileID: 6633548393330630639}
   - component: {fileID: 1974109621839669966}
+  - component: {fileID: 441214116918402361}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -9643,8 +9660,23 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5, z: 2.5}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &441214116918402361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2227937826192054582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: 1
+  dmg: 0
+  canDmg: 0
 --- !u!1 &3831372202422053096
 GameObject:
   m_ObjectHideFlags: 0
@@ -9655,6 +9687,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4440810616662266817}
   - component: {fileID: 981684402655827195}
+  - component: {fileID: 4177871589518094629}
+  - component: {fileID: 6209269516386792829}
   m_Layer: 0
   m_Name: EM_FireBall
   m_TagString: Untagged
@@ -9695,3 +9729,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4177871589518094629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3831372202422053096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab49b6960212a143bc10b27a597549f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningZone: []
+  spellZone: []
+  start: 0
+  timer: 0
+  burn: {fileID: 2188082562504889155}
+  blast: {fileID: 2227937826192054582}
+--- !u!65 &6209269516386792829
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3831372202422053096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

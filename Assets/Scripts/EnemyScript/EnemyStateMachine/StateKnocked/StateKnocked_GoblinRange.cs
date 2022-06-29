@@ -15,7 +15,7 @@ public class StateKnocked_GoblinRange : StateKnocked
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             anim.SetTrigger("IsKnocked");
-            character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
+            //character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
             //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
 
             //stateAttack.once = false;

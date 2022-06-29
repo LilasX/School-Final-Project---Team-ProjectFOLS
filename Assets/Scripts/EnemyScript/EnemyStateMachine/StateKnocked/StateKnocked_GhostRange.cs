@@ -1,78 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StateKnocked_GhostRange : StateKnocked
 {
-    public StateAttackRange02 stateRange01;
-    public StateAttackRange02 stateRange02;
-    public StateAttackRange02 stateRange03;
-    public StateAttackRange02 stateRange04; 
-    public StateAttackRange02 stateRange05; 
+    public bool found = false;
+    public float randomX;
+    public float randomZ;
+    public Vector3 escapePos;
+
+    public StateAttackMagic stateMagic01;
+    public StateAttackMagic stateMagic02;
+    public StateAttackMagic stateMagic03;
+    public StateAttackMagic stateMagic04; 
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
-        if (!once1)
+        if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
         {
-            enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-            enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
-            anim.SetTrigger("IsKnocked");
-            character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
-            //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
-
-            //stateAttack.once = false;
-            //stateAttack.canDmg = false;
-            if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
+            if (stateMagic01)
             {
-                if (stateRange01)
-                {
-                    stateRange01.once1 = false; stateRange01.once2 = false; stateRange01.once3 = false; stateRange01.once4 = true;
-                }
-                if (stateRange02)
-                {
-                    stateRange02.once1 = false; stateRange02.once2 = false; stateRange02.once3 = false; stateRange02.once4 = true;
-                }
-                if (stateRange03)
-                {
-                    stateRange03.once1 = false; stateRange03.once2 = false; stateRange03.once3 = false; stateRange03.once4 = true;
-                }
-                if (stateRange04)
-                {
-                    stateRange04.once1 = false; stateRange04.once2 = false; stateRange04.once3 = false; stateRange04.once4 = true;
-                }
-                if (stateRange05)
-                {
-                    stateRange05.once1 = false; stateRange05.once2 = false; stateRange05.once3 = false; stateRange05.once4 = true;
-                }
+                stateMagic01.once1 = false; stateMagic01.once2 = false; stateMagic01.once3 = false; stateMagic01.once4 = true;
             }
-            once1 = true;
-        }
-
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked") && !once2)
-        {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+            if (stateMagic02)
             {
-                enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-                //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 4f);
-                //enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;
-                once2 = true;
+                stateMagic02.once1 = false; stateMagic02.once2 = false; stateMagic02.once3 = false; stateMagic02.once4 = true;
+            }
+            if (stateMagic03)
+            {
+                stateMagic03.once1 = false; stateMagic03.once2 = false; stateMagic03.once3 = false; stateMagic03.once4 = true;
+            }
+            if (stateMagic04)
+            {
+                stateMagic04.once1 = false; stateMagic04.once2 = false; stateMagic04.once3 = false; stateMagic04.once4 = true;
             }
         }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
+        found = false;
+        do 
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-            {
-                enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-                //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
-                //enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
-                once1 = false;
-                once2 = false;
-                anim.SetBool("IsWalking", true);
-                return statePursue;
-            }
-        }
+            randomX = Random.Range(enemyBehaviour.boundBox.center.x - enemyBehaviour.boundBox.extents.x + enemyBehaviour.agent.radius,
+                enemyBehaviour.boundBox.center.x + enemyBehaviour.boundBox.extents.x - enemyBehaviour.agent.radius);
+            randomZ = Random.Range(enemyBehaviour.boundBox.center.z - enemyBehaviour.boundBox.extents.z + enemyBehaviour.agent.radius,
+                enemyBehaviour.boundBox.center.z + enemyBehaviour.boundBox.extents.z - enemyBehaviour.agent.radius);
+            escapePos = new Vector3(randomX, transform.position.y, randomZ);
 
-        return this;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(escapePos, out hit, 1f, NavMesh.AllAreas))
+            {
+                escapePos = hit.position;
+                found = true;
+            }
+        } while (!found);
+
+        enemyBehaviour.gameObject.transform.position = escapePos;
+        anim.SetBool("IsWalking", true);
+        return statePursue;
+
+        //return this;
     }
 }

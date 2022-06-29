@@ -26,7 +26,6 @@ public class EnemyMelee : EnemyMain
         gameManager = GameManager.instance;
         achievementManager = AchievementManager.Instance;
         //posOrigin = transform;
-        GetMaxHP = 100;
         GetCurrentHP = GetMaxHP;
         canAttack = true; 
         timer = 0;

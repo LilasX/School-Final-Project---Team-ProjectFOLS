@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1159187376778093064
+--- !u!1 &512055033515380480
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,60 +105,63 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8149810075998820012}
-  - component: {fileID: 496754650047967275}
+  - component: {fileID: 707627216782252442}
+  - component: {fileID: 2806225094827647344}
   m_Layer: 0
-  m_Name: StateAttackRange04
+  m_Name: StateAttackMagicFireBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8149810075998820012
+--- !u!4 &707627216782252442
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1159187376778093064}
+  m_GameObject: {fileID: 512055033515380480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8527515010824234131}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &496754650047967275
+--- !u!114 &2806225094827647344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1159187376778093064}
+  m_GameObject: {fileID: 512055033515380480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a923bdd6762afc45af8d518e431174c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
-  stateRange02: {fileID: 0}
+  stateWaiting: {fileID: 7932779427009352171}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 4201591704844558429, guid: a2718e7093d57624f955f09b6700a075, type: 3}
-  projectileSpawn: {fileID: 7126146122153696097}
+  magic: {fileID: 0}
+  spell: {fileID: 5489408164426829969, guid: 2e5e8d2e6f2e3aa4287c53c696f7233b, type: 3}
+  spellSpawn: {fileID: 8898728550937584344}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
   once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
   randNum: 0
   anim: {fileID: 6747795950854689142}
+  isProjectile: 0
+  projectileSpeed: 0
   combo: 0
+  coolDown: 1
+  coolTime: 3
+  character: {fileID: 6747795950847166892}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
 --- !u!1 &1319184947057942581
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +263,71 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &1418879028656560547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7762630242508923684}
+  - component: {fileID: 4049046503150278975}
+  m_Layer: 0
+  m_Name: StateAttackMagicFireWall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7762630242508923684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418879028656560547}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8527515010824234131}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4049046503150278975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418879028656560547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 3342772925535606146}
+  stateWaiting: {fileID: 7932779427009352171}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 5390382022434656551, guid: c471c7d4420d1064eb041be1b8787ab8, type: 3}
+  spellSpawn: {fileID: 1507092144332546043}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 6747795950854689142}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  character: {fileID: 6747795950847166892}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
 --- !u!1 &1507092144332546043
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +425,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &2166067177768234099
+--- !u!1 &2257594135500712334
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,184 +433,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4141861665779216052}
-  - component: {fileID: 8951893817877179908}
+  - component: {fileID: 4212504446554633569}
+  - component: {fileID: 7932779427009352171}
   m_Layer: 0
-  m_Name: StateAttackRange02
+  m_Name: StateWaiting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4141861665779216052
+--- !u!4 &4212504446554633569
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2166067177768234099}
+  m_GameObject: {fileID: 2257594135500712334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8527515010824234131}
-  m_RootOrder: 5
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8951893817877179908
+--- !u!114 &7932779427009352171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2166067177768234099}
+  m_GameObject: {fileID: 2257594135500712334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e608d1f61dcd3546bafc38104ee2826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
-  stateRange02: {fileID: 2334186871423505987}
-  target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 7479886252129632761, guid: fc9cb3e7a907ae745b90bc27c2f32bde, type: 3}
-  projectileSpawn: {fileID: 7126146122153696097}
-  once1: 0
-  once2: 0
-  once3: 0
-  once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
-  randNum: 0
-  anim: {fileID: 6747795950854689142}
-  combo: 0
---- !u!1 &2210844140949354387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8862593807691470528}
-  - component: {fileID: 3208317706423076226}
-  m_Layer: 0
-  m_Name: StateAttackRange05
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8862593807691470528
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210844140949354387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8527515010824234131}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3208317706423076226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210844140949354387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e6a819877a2d544bd80ff42e9f1149, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statePursue: {fileID: 3342772925535606146}
-  stateRange02: {fileID: 0}
-  target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 6283610582419935475, guid: 105cd2ed9a41adc45a4a507024f08d88, type: 3}
-  projectileSpawn: {fileID: 1507092144332546043}
-  once1: 0
-  once2: 0
-  once3: 0
-  once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
-  randNum: 0
-  anim: {fileID: 6747795950854689142}
-  combo: 0
---- !u!1 &2454860161893028244
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6218377185239382405}
-  - component: {fileID: 2334186871423505987}
-  m_Layer: 0
-  m_Name: StateAttackRange03
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6218377185239382405
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2454860161893028244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8527515010824234131}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2334186871423505987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2454860161893028244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08015fc421a1f0f4babf11c7b3d4019a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statePursue: {fileID: 3342772925535606146}
-  stateRange02: {fileID: 496754650047967275}
-  target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 4110583942685283110, guid: cf0cb98ac4aa10a46b829dfc8c268e17, type: 3}
-  projectileSpawn: {fileID: 7126146122153696097}
-  once1: 0
-  once2: 0
-  once3: 0
-  once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
-  randNum: 0
-  anim: {fileID: 6747795950854689142}
-  combo: 0
+  start: 0
+  once: 0
+  magicCoolDown: 0
+  timer: 0
+  coolTime: 0
 --- !u!1 &3207637771309402136
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,10 +520,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMelee: {fileID: 0}
-  stateRange: {fileID: 3202524036674290352}
+  stateRange: {fileID: 1667726573858938222}
   stateWarrior: {fileID: 0}
+  stateShaman: {fileID: 0}
+  stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
+--- !u!1 &3658028403483356721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1172750845047553703}
+  - component: {fileID: 4282308331167630137}
+  m_Layer: 0
+  m_Name: StateAttackMagicFireFloor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1172750845047553703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3658028403483356721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8527515010824234131}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4282308331167630137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3658028403483356721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 3342772925535606146}
+  stateWaiting: {fileID: 7932779427009352171}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 3299223172741919301, guid: 1cb179f9569e6994cb0267318f5836da, type: 3}
+  spellSpawn: {fileID: 179957032483077433}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 6747795950854689142}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  character: {fileID: 6747795950847166892}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
 --- !u!1 &3780362601935029841
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +794,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8527515010824234131}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4329322129047094022
 MonoBehaviour:
@@ -815,11 +814,14 @@ MonoBehaviour:
   anim: {fileID: 6747795950854689142}
   character: {fileID: 6747795950847166892}
   knockedMat: {fileID: 2100000, guid: 6485d0340d49552408fafd20e5188f72, type: 2}
-  stateRange01: {fileID: 2194760324275749178}
-  stateRange02: {fileID: 8951893817877179908}
-  stateRange03: {fileID: 2334186871423505987}
-  stateRange04: {fileID: 496754650047967275}
-  stateRange05: {fileID: 0}
+  found: 0
+  randomX: 0
+  randomZ: 0
+  escapePos: {x: 0, y: 0, z: 0}
+  stateMagic01: {fileID: 8301371948919519904}
+  stateMagic02: {fileID: 4076468503981610297}
+  stateMagic03: {fileID: 5588394385007614578}
+  stateMagic04: {fileID: 2806225094827647344}
 --- !u!1 &4442675621654553514
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,9 +854,75 @@ Transform:
   - {fileID: 8654862380481680017}
   - {fileID: 1762517348380609663}
   - {fileID: 6240715897653716065}
+  - {fileID: 4394095006159886834}
   m_Father: {fileID: 6747795950847439762}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4462404753674562044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1724800479738577426}
+  - component: {fileID: 4076468503981610297}
+  m_Layer: 0
+  m_Name: StateAttackMagicFireArrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1724800479738577426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462404753674562044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8527515010824234131}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4076468503981610297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462404753674562044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 3342772925535606146}
+  stateWaiting: {fileID: 7932779427009352171}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 5072883975102710703, guid: e6bbbcfab1da91d4bac64256da5c5043, type: 3}
+  spellSpawn: {fileID: 7126146122153696097}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 6747795950854689142}
+  isProjectile: 1
+  projectileSpeed: 24
+  combo: 0
+  coolDown: 1
+  coolTime: 2
+  character: {fileID: 6747795950847166892}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
 --- !u!1 &4619609377695055936
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,13 +955,15 @@ Transform:
   - {fileID: 916041382541566963}
   - {fileID: 1837754891580654353}
   - {fileID: 5017415138926961724}
-  - {fileID: 2686873796728850453}
-  - {fileID: 4141861665779216052}
-  - {fileID: 6218377185239382405}
-  - {fileID: 8149810075998820012}
-  - {fileID: 8862593807691470528}
   - {fileID: 1093251656948654433}
   - {fileID: 700953414406458039}
+  - {fileID: 4464114867411413331}
+  - {fileID: 1724800479738577426}
+  - {fileID: 4577529814465707155}
+  - {fileID: 707627216782252442}
+  - {fileID: 7762630242508923684}
+  - {fileID: 1172750845047553703}
+  - {fileID: 4212504446554633569}
   m_Father: {fileID: 6747795950847439762}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -944,13 +1014,12 @@ MonoBehaviour:
   stateWaiting: {fileID: 0}
   stateWander: {fileID: 6734637619124556553}
   statePursue: {fileID: 3342772925535606146}
-  stateKnocked: {fileID: 0}
+  stateKnocked: {fileID: 4329322129047094022}
   stateDeath: {fileID: 2702617853602921663}
-  stateRange01: {fileID: 2194760324275749178}
-  stateRange02: {fileID: 8951893817877179908}
-  stateRange03: {fileID: 2334186871423505987}
-  stateRange04: {fileID: 496754650047967275}
-  stateRange05: {fileID: 0}
+  stateMagic01: {fileID: 8301371948919519904}
+  stateMagic02: {fileID: 4076468503981610297}
+  stateMagic03: {fileID: 5588394385007614578}
+  stateMagic04: {fileID: 2806225094827647344}
 --- !u!1 &5540048320254614466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1110,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &6185190130402122871
+--- !u!1 &5586843686515264754
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1049,60 +1118,128 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2686873796728850453}
-  - component: {fileID: 2194760324275749178}
+  - component: {fileID: 4464114867411413331}
+  - component: {fileID: 8301371948919519904}
   m_Layer: 0
-  m_Name: StateAttackRange01
+  m_Name: StateAttackMagicFireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2686873796728850453
+--- !u!4 &4464114867411413331
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6185190130402122871}
+  m_GameObject: {fileID: 5586843686515264754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8527515010824234131}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2194760324275749178
+--- !u!114 &8301371948919519904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6185190130402122871}
+  m_GameObject: {fileID: 5586843686515264754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
-  stateRange02: {fileID: 8951893817877179908}
+  stateWaiting: {fileID: 7932779427009352171}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 7479886252129632761, guid: fc9cb3e7a907ae745b90bc27c2f32bde, type: 3}
-  projectileSpawn: {fileID: 7126146122153696097}
+  magic: {fileID: 0}
+  spell: {fileID: 3831372202422053096, guid: bb6955abb8af41f42b6b49c588bf042e, type: 3}
+  spellSpawn: {fileID: 7126146122153696097}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
   once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
   randNum: 0
   anim: {fileID: 6747795950854689142}
+  isProjectile: 1
+  projectileSpeed: 24
   combo: 0
+  coolDown: 0
+  coolTime: 0
+  character: {fileID: 6747795950847166892}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+--- !u!1 &5663443299682759163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4577529814465707155}
+  - component: {fileID: 5588394385007614578}
+  m_Layer: 0
+  m_Name: StateAttackMagicFireLance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4577529814465707155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663443299682759163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8527515010824234131}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5588394385007614578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663443299682759163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 3342772925535606146}
+  stateWaiting: {fileID: 7932779427009352171}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 4527642962175130996, guid: effd1306c696f244390458e61c4b1ffb, type: 3}
+  spellSpawn: {fileID: 7126146122153696097}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 6747795950854689142}
+  isProjectile: 1
+  projectileSpeed: 12
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  character: {fileID: 6747795950847166892}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
 --- !u!1 &6747795950847134484
 GameObject:
   m_ObjectHideFlags: 0
@@ -3018,7 +3155,7 @@ Transform:
   m_GameObject: {fileID: 6747795950847367356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6747795950847418010}
@@ -3041,7 +3178,7 @@ Animator:
   m_GameObject: {fileID: 6747795950847367356}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b69174d668ba02d44b14a084b217670a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3061,10 +3198,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.3
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!195 &6020561587506622432
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3110,9 +3247,9 @@ MonoBehaviour:
   currState: {fileID: 0}
   stateWander: {fileID: 6734637619124556553}
   stateWaiting: {fileID: 0}
-  stateStart: {fileID: 0}
+  stateStart: {fileID: 4321345013317278735}
   stateDeath: {fileID: 2702617853602921663}
-  stateKnocked: {fileID: 0}
+  stateKnocked: {fileID: 4329322129047094022}
   earthWave: 0
   earthQuake: 0
   stateMagicWave: {fileID: 0}
@@ -3130,7 +3267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 0
+  maxHP: 60
   distance: 0
   gameManager: {fileID: 0}
   waveSpawnerObject: {fileID: 0}
@@ -4552,7 +4689,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8527515010824234131}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2702617853602921663
 MonoBehaviour:
@@ -4584,7 +4721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5017415138926961724}
-  - component: {fileID: 3202524036674290352}
+  - component: {fileID: 1667726573858938222}
   m_Layer: 0
   m_Name: StateAttack
   m_TagString: Untagged
@@ -4607,7 +4744,7 @@ Transform:
   m_Father: {fileID: 8527515010824234131}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3202524036674290352
+--- !u!114 &1667726573858938222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4616,14 +4753,72 @@ MonoBehaviour:
   m_GameObject: {fileID: 7580012727303502287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d77ee9b8fb165ab4e931b49f9e111191, type: 3}
+  m_Script: {fileID: 11500000, guid: fff242ac6be7fe54ebd48c110179ac1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
-  stateRange01: {fileID: 2194760324275749178}
-  stateRange02: {fileID: 496754650047967275}
+  stateMagicBall: {fileID: 8301371948919519904}
+  stateMagicArrow: {fileID: 4076468503981610297}
+  stateMagicLance: {fileID: 5588394385007614578}
+  stateMagicBomb: {fileID: 2806225094827647344}
+  stateMagicWall: {fileID: 4049046503150278975}
+  stateMagicFloor: {fileID: 0}
   playerDistance: 0
   once: 0
   anim: {fileID: 6747795950854689142}
   canDmg: 0
   randNum: 0
+--- !u!1 &8898728550937584344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4394095006159886834}
+  - component: {fileID: 5075593026052676253}
+  - component: {fileID: 2557883000676460125}
+  m_Layer: 0
+  m_Name: SpawnBomb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4394095006159886834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898728550937584344}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7041781801826443692}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5075593026052676253
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898728550937584344}
+  m_Mesh: {fileID: -5495902117074765545, guid: 28dafc9407ecb0841b41723168b46f17, type: 3}
+--- !u!65 &2557883000676460125
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898728550937584344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}

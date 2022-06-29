@@ -85,11 +85,6 @@ public class Spell_EarthWave : BaseSpell
         }
     }
 
-    public override void ShowWarningZone()
-    {
-        throw new System.NotImplementedException();
-    }
-
     // Start is called before the first frame update
     void Start()
     {

@@ -12,7 +12,6 @@ public abstract class BaseSpell : MonoBehaviour
 
     public abstract void StartSpell();
     public abstract void InitializeSpell();
-    public abstract void ShowWarningZone();
     public abstract void ShowSpellEffect(GameObject[] list, GameObject zone);
     
 }

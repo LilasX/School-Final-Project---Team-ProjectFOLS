@@ -76,6 +76,7 @@ public class StateAttackMelee02 : EnemyState
                 once1 = false;
                 once2 = false;
                 once3 = false;
+                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                 return statePursue;
             }
         }

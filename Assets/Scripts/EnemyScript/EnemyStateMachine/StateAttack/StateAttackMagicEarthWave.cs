@@ -73,7 +73,7 @@ public class StateAttackMagicEarthWave : StateAttackMagic
                 once2 = false;
                 once3 = false;
                 once4 = true;
-
+                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                 return statePursue;
                 /*if (combo)
                 {

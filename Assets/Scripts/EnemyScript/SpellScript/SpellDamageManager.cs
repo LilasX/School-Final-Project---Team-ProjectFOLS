@@ -8,7 +8,7 @@ public class SpellDamageManager : MonoBehaviour
 {
     public Caster caster;
     public int dmg = 0;
-    public bool canDmg;
+    public bool canDmg = false;
 
     public void InitializeSpellEffect(int dmgSpell)
     {
