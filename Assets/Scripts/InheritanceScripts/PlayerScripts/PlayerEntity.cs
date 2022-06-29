@@ -127,6 +127,11 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     public GameObject fxElectricity;
     public GameObject meleePS;
 
+    public int _currentWeaponIndex;
+    public int _currentMeleeDamage;
+    public int _currentSlashDamage;
+    public GameObject[] _possesedWeapons;
+
     #endregion
 
 
@@ -230,6 +235,11 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         playerState = new PlayerStateMachine(DefaultState);
 
+
+        
+
+
+
     }
 
     // Update is called once per frame
@@ -245,7 +255,11 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         GetCurrentStamina = Mathf.MoveTowards(GetCurrentStamina, GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
 
+        SetCurrentWeapon();
+
     }
+
+
 
     #region Actions
     public override void OnDeath()
@@ -362,6 +376,98 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
         data.hpData = this.GetCurrentHP;
         data.manaData = this.GetCurrentMana;
         data.staminaData = this.GetCurrentStamina;
+    }
+
+    private void SetCurrentWeapon()
+    {
+        switch (_currentWeaponIndex)
+        {
+            case 0:
+
+                foreach (GameObject obj in _possesedWeapons)
+                {
+                    if (obj.name == _possesedWeapons[0].name)
+                    {
+                        obj.SetActive(true);
+                    }
+                    if (obj.name != _possesedWeapons[0].name)
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+                _currentMeleeDamage = 30;
+                _currentSlashDamage = 10;
+                break;
+
+            case 1:
+
+                foreach (GameObject obj in _possesedWeapons)
+                {
+                    if (obj.name == _possesedWeapons[1].name)
+                    {
+                        obj.SetActive(true);
+                    }
+                    if (obj.name != _possesedWeapons[1].name)
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+                _currentMeleeDamage = 40;
+                _currentSlashDamage = 14;
+                break;
+
+            case 2:
+
+                foreach (GameObject obj in _possesedWeapons)
+                {
+                    if (obj.name == _possesedWeapons[2].name)
+                    {
+                        obj.SetActive(true);
+                    }
+                    if (obj.name != _possesedWeapons[2].name)
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+                _currentMeleeDamage = 50;
+                _currentSlashDamage = 18;
+                break;
+
+            case 3:
+
+                foreach (GameObject obj in _possesedWeapons)
+                {
+                    if (obj.name == _possesedWeapons[3].name)
+                    {
+                        obj.SetActive(true);
+                    }
+                    if (obj.name != _possesedWeapons[3].name)
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+                _currentMeleeDamage = 60;
+                _currentSlashDamage = 22;
+                break;
+
+            case 4:
+
+                foreach (GameObject obj in _possesedWeapons)
+                {
+                    if (obj.name == _possesedWeapons[4].name)
+                    {
+                        obj.SetActive(true);
+                    }
+                    if (obj.name != _possesedWeapons[4].name)
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+                _currentMeleeDamage = 70;
+                _currentSlashDamage = 26;
+                break;
+
+        }
     }
 
     #endregion
