@@ -18,6 +18,7 @@ public class Objective : MonoBehaviour, IDataPersistence
         id = System.Guid.NewGuid().ToString();
     }
 
+    public GameObject objUI;
     public bool objActive;
     public TextMeshProUGUI objectiveText;
     private bool collision;
@@ -35,11 +36,18 @@ public class Objective : MonoBehaviour, IDataPersistence
     {
         if (other.gameObject == manager.player && !collision)
         {
+            objUI.SetActive(true);
             objActive = true;
             collision = true;
-            this.gameObject.SetActive(false);
+            
             objectiveText.text = mission;
 
+            foreach(CloseFightingArea c in FindObjectsOfType<CloseFightingArea>())
+            {
+                c.GetComponent<Collider>().isTrigger = true;
+            }
+
+            StartCoroutine(HideObjective());
             dpManager.SaveGame();
         }
     }
@@ -47,7 +55,17 @@ public class Objective : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
-        
+        if (!this.gameObject.activeInHierarchy)
+        {
+            objUI.SetActive(false);
+        }
+    }
+
+    IEnumerator HideObjective()
+    {
+        yield return new WaitForSeconds(5f);
+        objUI.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void LoadData(GameData data)
@@ -55,7 +73,8 @@ public class Objective : MonoBehaviour, IDataPersistence
         data.objectiveTriggered.TryGetValue(id, out collision);
         if (collision)
         {
-            this.gameObject.SetActive(false);
+            StartCoroutine(HideObjective());
+            //this.gameObject.SetActive(false);
         }
 
         objectiveText.text = data.objectiveMission;

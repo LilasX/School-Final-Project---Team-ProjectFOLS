@@ -22,7 +22,8 @@ public class GameData
     public SerializableDictionary<string, bool> objectiveTriggered;
     public string objectiveMission;
 
-    
+    //Doors data
+    public SerializableDictionary<string, bool> doorsTriggered;
 
     public GameData()
     {
@@ -37,5 +38,7 @@ public class GameData
 
         objectiveTriggered = new SerializableDictionary<string, bool>();
         this.objectiveMission = null;
+
+        doorsTriggered = new SerializableDictionary<string, bool>();
     }
 }
