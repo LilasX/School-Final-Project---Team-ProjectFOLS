@@ -2415,7 +2415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
       propertyPath: isPooling
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
       propertyPath: boundBox.m_Center.x
