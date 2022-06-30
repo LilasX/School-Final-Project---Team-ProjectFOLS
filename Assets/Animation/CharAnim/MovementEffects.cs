@@ -14,6 +14,8 @@ public class MovementEffects : MonoBehaviour
     public AudioClip diving;
     public AudioSource audioMove;
 
+    public GameObject meleeParticle;
+    public ParticleSystem meleevfx;
     public AudioClip swordMelee;
     public AudioClip swordSlash;
     public AudioSource audioSword;
@@ -33,6 +35,7 @@ public class MovementEffects : MonoBehaviour
     void Start()
     {
         dust = dustObject.GetComponent<ParticleSystem>();
+        meleevfx = meleeParticle.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -77,6 +80,7 @@ public class MovementEffects : MonoBehaviour
 
     public void SwordMelee()
     {
+        meleevfx.Play();
         audioSword.PlayOneShot(swordMelee);
     }
 

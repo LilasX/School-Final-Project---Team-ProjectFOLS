@@ -5519,6 +5519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c7818a6d940c934b9beaaaf0df0dd4d, type: 3}
+--- !u!198 &773600671 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6378020034983088160, guid: 6c7818a6d940c934b9beaaaf0df0dd4d, type: 3}
+  m_PrefabInstance: {fileID: 773600670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &779066864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5634,7 +5639,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.5921948, y: 1}
+    m_SensorSize: {x: 1.9799019, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10479,6 +10484,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+    - target: {fileID: 642476585726724914, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
+      propertyPath: meleevfx
+      value: 
+      objectReference: {fileID: 773600671}
+    - target: {fileID: 642476585726724914, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
+      propertyPath: meleeParticle
+      value: 
+      objectReference: {fileID: 5661542}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: cam
       value: 

@@ -125,9 +125,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     public Material dodgeMaterial;
     public GameObject fxElectricity;
-    public GameObject meleePS;
+    //public GameObject meleePS;
 
-    public int _currentWeaponIndex;
+    //public int _currentWeaponIndex;
     public int _currentMeleeDamage;
     public int _currentSlashDamage;
     public GameObject[] _possesedWeapons;
@@ -255,7 +255,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         GetCurrentStamina = Mathf.MoveTowards(GetCurrentStamina, GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
 
-        SetCurrentWeapon();
+        //SetCurrentWeapon();
 
     }
 
@@ -378,9 +378,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
         data.staminaData = this.GetCurrentStamina;
     }
 
-    private void SetCurrentWeapon()
+    public void SetCurrentWeapon(int index)
     {
-        switch (_currentWeaponIndex)
+        switch (index)
         {
             case 0:
 
