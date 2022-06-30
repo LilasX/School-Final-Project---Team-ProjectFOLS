@@ -48,15 +48,23 @@ public class StateAttackRangeArrow : StateAttackRange02
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
-                // Code for launching rocks
-                /*projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                projectile.transform.position = projectileSpawn.transform.position;
-                projectile.transform.rotation = projectileSpawn.transform.rotation;
-                projectile.SetActive(true);*/
+                // Code for launching arrow
+                if (isPooling)
+                {
+                    projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    projectile.transform.position = projectileSpawn.transform.position;
+                    projectile.transform.rotation = projectileSpawn.transform.rotation;
+                    projectile.GetComponent<BaseProjectile>().dmg = 20;
+                    projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
+                    projectile.SetActive(true);
+                }
+                else
+                {
+                    ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
+                    ranged.GetComponent<BaseProjectile>().dmg = 20;
+                    ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
+                }
 
-                ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                ranged.GetComponent<BaseProjectile>().dmg = 20;
-                ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
                 once3 = true;
             }
         }

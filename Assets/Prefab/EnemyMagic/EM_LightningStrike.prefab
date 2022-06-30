@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5568067346876913402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,6 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8709529718261467566}
+  - component: {fileID: 8884782563140472759}
   m_Layer: 0
   m_Name: EM_LightningStrike
   m_TagString: Untagged
@@ -131,6 +132,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8884782563140472759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809277198669441507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1eb24b480a00dc4ba974c650ab7ed01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningZone:
+  - {fileID: 5568067346876913402}
+  spellZone:
+  - {fileID: 6236058724333026177}
+  start: 0
+  timer: 0
+  once1: 0
+  once2: 0
 --- !u!1 &6236058724333026177
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +164,7 @@ GameObject:
   - component: {fileID: 4636549071488269097}
   - component: {fileID: 7552271889770966130}
   - component: {fileID: 2741358363693798899}
+  - component: {fileID: 6045976260032620622}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -4879,3 +4901,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 2, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6045976260032620622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236058724333026177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: 0
+  dmg: 0
+  canDmg: 0

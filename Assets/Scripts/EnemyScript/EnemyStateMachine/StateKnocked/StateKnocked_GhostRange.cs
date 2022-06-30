@@ -13,7 +13,8 @@ public class StateKnocked_GhostRange : StateKnocked
     public StateAttackMagic stateMagic01;
     public StateAttackMagic stateMagic02;
     public StateAttackMagic stateMagic03;
-    public StateAttackMagic stateMagic04; 
+    public StateAttackMagic stateMagic04;
+    public StateWaiting stateWaiting;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -34,6 +35,12 @@ public class StateKnocked_GhostRange : StateKnocked
             if (stateMagic04)
             {
                 stateMagic04.once1 = false; stateMagic04.once2 = false; stateMagic04.once3 = false; stateMagic04.once4 = true;
+            }
+            if (stateWaiting)
+            {
+                stateWaiting.timer = 0;
+                stateWaiting.once = false;
+                stateWaiting.magicCoolDown = false;
             }
         }
 

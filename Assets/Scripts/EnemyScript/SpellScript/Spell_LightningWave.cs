@@ -128,7 +128,8 @@ public class Spell_LightningWave : BaseSpell
                 once5 = false;
                 once6 = false;
                 HideFifthWave(spellZone);
-                this.gameObject.SetActive(false);
+                ReturnOrigin(); 
+                //this.gameObject.SetActive(false);
             }
         }
     }

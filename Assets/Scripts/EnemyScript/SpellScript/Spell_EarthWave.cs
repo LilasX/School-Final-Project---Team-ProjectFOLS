@@ -142,7 +142,8 @@ public class Spell_EarthWave : BaseSpell
                 once4 = false;
                 once5 = false;
                 HideFourthWave(spellZone);
-                this.gameObject.SetActive(false);
+                ReturnOrigin(); 
+                //this.gameObject.SetActive(false);
             }
         }
     }

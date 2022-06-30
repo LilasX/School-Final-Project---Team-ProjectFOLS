@@ -20,6 +20,8 @@ public class StateAttackRange01 : EnemyState
     public float playerDistance = 0;
     public Animator anim;
 
+    public bool isPooling = false;
+
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
         rangeDistance = Vector3.Distance(rangePos, transform.position);
@@ -59,14 +61,22 @@ public class StateAttackRange01 : EnemyState
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
                 // Code for launching rocks
-                /*projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                projectile.transform.position = projectileSpawn.transform.position;
-                projectile.transform.rotation = projectileSpawn.transform.rotation;
-                projectile.SetActive(true);*/
+                if (isPooling)
+                {
+                    projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    projectile.transform.position = projectileSpawn.transform.position;
+                    projectile.transform.rotation = projectileSpawn.transform.rotation;
+                    projectile.GetComponent<BaseProjectile>().dmg = 10;
+                    projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                    projectile.SetActive(true);
+                } 
+                else
+                {
+                    ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
+                    ranged.GetComponent<BaseProjectile>().dmg = 10;
+                    ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                }
 
-                ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                ranged.GetComponent<BaseProjectile>().dmg = 10;
-                ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
                 once3 = true;
             }
         }

@@ -193,7 +193,8 @@ public class Spell_EarthQuake : BaseSpell
                     once3 = false;
                     once4 = false;
                     HideThirdQuake(spellZone);
-                    this.gameObject.SetActive(false);
+                    ReturnOrigin();
+                    //this.gameObject.SetActive(false);
                 }
             }
         }

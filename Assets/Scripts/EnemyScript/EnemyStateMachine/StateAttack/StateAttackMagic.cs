@@ -25,6 +25,9 @@ public class StateAttackMagic : EnemyState
     public GameObject character;
     public Material defaultMat;
     public Material signMat;
+
+    public bool isPooling = false;
+
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
         //Look At Player
@@ -65,22 +68,36 @@ public class StateAttackMagic : EnemyState
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
-                // Code for launching rocks
-                /*projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                projectile.transform.position = projectileSpawn.transform.position;
-                projectile.transform.rotation = projectileSpawn.transform.rotation;
-                projectile.SetActive(true);*/
-
-                //ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                //ranged.GetComponent<BaseProjectile>().dmg = 20;
-                //ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
-
+                // Code for casting spell
+                if (isPooling)
+                {
+                    spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    spell.transform.position = spellSpawn.transform.position;
+                    spell.transform.rotation = spellSpawn.transform.rotation;
+                    spell.GetComponent<BaseSpell>().StartSpell();
+                    spell.SetActive(true);
+                    
+                    if (isProjectile)
+                    {
+                        spell.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+                    }
+                } 
+                else
+                {
+                    magic = Instantiate(spell, spellSpawn.transform.position, spellSpawn.transform.rotation);
+                    magic.GetComponent<BaseSpell>().StartSpell();
+                    if (isProjectile)
+                    {
+                        magic.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+                    }
+                }
+                /*
                 magic = Instantiate(spell, spellSpawn.transform.position, spellSpawn.transform.rotation);
                 magic.GetComponent<BaseSpell>().StartSpell();
                 if (isProjectile)
                 {
                     magic.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
-                }
+                }*/
                 //magic.GetComponent<BaseProjectile>().dmg = 30;
 
 

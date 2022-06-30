@@ -41,7 +41,8 @@ public class Spell_FireLance : BaseSpell
             {
                 timer = 0;
                 start = false;
-                this.gameObject.SetActive(false);
+                ReturnOrigin(); 
+                //this.gameObject.SetActive(false);
             }
         }
     }

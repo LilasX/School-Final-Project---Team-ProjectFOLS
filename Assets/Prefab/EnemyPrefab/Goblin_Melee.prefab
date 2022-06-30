@@ -327,6 +327,7 @@ MonoBehaviour:
   rangeDistance: 0
   playerDistance: 0
   anim: {fileID: 6881588284867706748}
+  isPooling: 0
 --- !u!1 &5655259719716562432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,6 +2540,7 @@ MonoBehaviour:
   canvas: {fileID: 6881588284374531153}
   slider: {fileID: 6881588285620541924}
   cameraMain: {fileID: 0}
+  isPooling: 1
   canAttack: 0
   melee:
   - {fileID: 5655259719716562432}
@@ -3916,6 +3918,8 @@ MonoBehaviour:
   stateMelee: {fileID: 7264736059987307790}
   stateRange: {fileID: 0}
   stateWarrior: {fileID: 0}
+  stateShaman: {fileID: 0}
+  stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &6881588286030556027

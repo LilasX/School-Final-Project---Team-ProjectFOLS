@@ -128,7 +128,8 @@ public class Spell_FireWave : BaseSpell
                 once3 = false;
                 once4 = false;
                 HideThirdWave(spellZone);
-                this.gameObject.SetActive(false);
+                ReturnOrigin(); 
+                //this.gameObject.SetActive(false);
             }
         }
     }

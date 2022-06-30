@@ -48,15 +48,23 @@ public class StateAttackRangeLance : StateAttackRange02
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
-                // Code for launching rocks
-                /*projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                projectile.transform.position = projectileSpawn.transform.position;
-                projectile.transform.rotation = projectileSpawn.transform.rotation;
-                projectile.SetActive(true);*/
+                // Code for launching Lance
+                if (isPooling)
+                {
+                    projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    projectile.transform.position = projectileSpawn.transform.position;
+                    projectile.transform.rotation = projectileSpawn.transform.rotation;
+                    projectile.GetComponent<BaseProjectile>().dmg = 30;
+                    projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
+                    projectile.SetActive(true);
+                }
+                else
+                {
+                    ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
+                    ranged.GetComponent<BaseProjectile>().dmg = 30;
+                    ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
+                }
 
-                ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                ranged.GetComponent<BaseProjectile>().dmg = 30;
-                ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
                 once3 = true;
             }
         }

@@ -322,6 +322,8 @@ MonoBehaviour:
   stateMelee: {fileID: 0}
   stateRange: {fileID: 0}
   stateWarrior: {fileID: 0}
+  stateShaman: {fileID: 0}
+  stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &1752756847930241975
@@ -2901,7 +2903,7 @@ Transform:
   m_GameObject: {fileID: 8063936023394381340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.27, y: 1, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8063936023394117240}

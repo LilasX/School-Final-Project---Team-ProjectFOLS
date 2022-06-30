@@ -9,6 +9,9 @@ public class BaseProjectile : MonoBehaviour
     public Shooter shooter;
     public RangeWeapon typeRange;
 
+    public Transform posOrigin;
+    public bool isPooling;
+
     public int dmg = 0;
     public bool canDmgSphere;
     public bool canDmgArrow;
@@ -20,6 +23,13 @@ public class BaseProjectile : MonoBehaviour
     public float timerFloor;
     public float timerWave;
 
+    private void Awake()
+    {
+        if (isPooling)
+        {
+            posOrigin = this.gameObject.transform;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -53,7 +63,15 @@ public class BaseProjectile : MonoBehaviour
                                 other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                                 other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
                                 canDmgSphere = false;
-                                Destroy(gameObject);
+
+                                if (isPooling)
+                                {
+                                    SetInactiveRange();
+                                }
+                                else
+                                {
+                                    Destroy(gameObject);
+                                }
                             }
                             Invoke("SetInactiveRange", 1f);
                             break;
@@ -144,6 +162,7 @@ public class BaseProjectile : MonoBehaviour
 
     public void SetInactiveRange() //For Pooling, Destroy for Instantiate
     {
+        this.gameObject.transform.position = posOrigin.position;
         gameObject.SetActive(false); 
     }
 
@@ -160,7 +179,7 @@ public class BaseProjectile : MonoBehaviour
         timerFloor = 0f;
         timerWave = 0f;
 
-        switch (typeRange) //Can I put them all together?
+        /*switch (typeRange) //Can I put them all together?
         {
             case RangeWeapon.Sphere:
             case RangeWeapon.Arrow:
@@ -172,7 +191,7 @@ public class BaseProjectile : MonoBehaviour
             case RangeWeapon.Floor:
                 Invoke("SetInactiveRange", 6f);
                 break;
-        }
+        }*/
     }
 
     // Update is called once per frame

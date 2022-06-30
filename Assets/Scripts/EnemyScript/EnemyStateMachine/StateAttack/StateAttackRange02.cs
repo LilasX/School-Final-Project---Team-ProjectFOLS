@@ -24,6 +24,8 @@ public class StateAttackRange02 : EnemyState
     public Animator anim;
     public bool combo;
 
+    public bool isPooling = false;
+
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
         rangeDistance = Vector3.Distance(rangePos, transform.position);
@@ -69,14 +71,23 @@ public class StateAttackRange02 : EnemyState
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
                 // Code for launching rocks
-                /*projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                projectile.transform.position = projectileSpawn.transform.position;
-                projectile.transform.rotation = projectileSpawn.transform.rotation;
-                projectile.SetActive(true);*/
 
-                ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                ranged.GetComponent<BaseProjectile>().dmg = 10;
-                ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                if (isPooling)
+                {
+                    projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    projectile.transform.position = projectileSpawn.transform.position;
+                    projectile.transform.rotation = projectileSpawn.transform.rotation;
+                    projectile.GetComponent<BaseProjectile>().dmg = 10;
+                    projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                    projectile.SetActive(true);
+                }
+                else
+                {
+                    ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
+                    ranged.GetComponent<BaseProjectile>().dmg = 10;
+                    ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
+                }
+
                 once3 = true;
             }
         }

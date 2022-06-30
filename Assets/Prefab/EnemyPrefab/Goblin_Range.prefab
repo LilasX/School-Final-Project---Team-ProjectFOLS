@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6022106242324382661}
   - component: {fileID: 1054964430330277387}
   m_Layer: 0
-  m_Name: StateAttackRange03
+  m_Name: StateAttackRangeArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1481591106686762042}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1054964430330277387
 MonoBehaviour:
@@ -62,6 +62,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 1481591108628897015}
   combo: 0
+  isPooling: 0
 --- !u!1 &962203560856913289
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +181,9 @@ Transform:
   - {fileID: 1481591107790501381}
   - {fileID: 4696554939238351829}
   - {fileID: 3291095753344091722}
+  - {fileID: 114481084764962250}
   - {fileID: 6022106242324382661}
+  - {fileID: 934528268874531502}
   - {fileID: 6671803760598083635}
   - {fileID: 8977665183684517681}
   m_Father: {fileID: 1481591108628897014}
@@ -3279,6 +3282,7 @@ MonoBehaviour:
   canvas: {fileID: 1481591108680210951}
   slider: {fileID: 1481591107643497193}
   cameraMain: {fileID: 0}
+  isGoblin: 0
   canAttack: 0
   projectileSpawn: {fileID: 8348268580688750004}
   floorSpawn: {fileID: 6234596969303453004}
@@ -3494,6 +3498,8 @@ MonoBehaviour:
   stateMelee: {fileID: 0}
   stateRange: {fileID: 6211334714486149754}
   stateWarrior: {fileID: 0}
+  stateShaman: {fileID: 0}
+  stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
 --- !u!1 &1481591108747254685
@@ -3642,6 +3648,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 1481591108628897015}
   combo: 1
+  isPooling: 0
 --- !u!1 &2160924102574688090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3672,7 +3679,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1481591106686762042}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3252248948259355375
 MonoBehaviour:
@@ -3854,6 +3861,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 1481591108628897015}
   combo: 1
+  isPooling: 0
 --- !u!1 &3110278817978484025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3919,7 +3927,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1481591106686762042}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8890965401365931914
 MonoBehaviour:
@@ -4136,6 +4144,100 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6855937201365669617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 114481084764962250}
+  - component: {fileID: 4168320675622112005}
+  m_Layer: 0
+  m_Name: StateAttackRange03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &114481084764962250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6855937201365669617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481591106686762042}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4168320675622112005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6855937201365669617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 0}
+  stateRange02: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  rangePos: {x: 0, y: 0, z: 0}
+  ranged: {fileID: 0}
+  projectile: {fileID: 0}
+  projectileSpawn: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randomX: 0
+  randomZ: 0
+  rangeDistance: 0
+  playerDistance: 0
+  randNum: 0
+  anim: {fileID: 0}
+  combo: 0
+  isPooling: 0
+--- !u!1 &8021434526384481324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934528268874531502}
+  m_Layer: 0
+  m_Name: StateAttackRangeLance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934528268874531502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021434526384481324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481591106686762042}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8348268580688750004
 GameObject:
   m_ObjectHideFlags: 0

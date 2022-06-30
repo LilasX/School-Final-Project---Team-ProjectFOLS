@@ -10,6 +10,26 @@ public abstract class BaseSpell : MonoBehaviour
     public bool start = false;
     public float timer = 0f;
 
+    public Transform posOrigin;
+    public bool isPooling;
+
+    private void Awake()
+    {
+        if (isPooling)
+        {
+            posOrigin = this.gameObject.transform;
+        }
+    }
+
+    public void ReturnOrigin()
+    {
+        if (isPooling)
+        {
+            this.gameObject.transform.position = posOrigin.position;
+        }
+        this.gameObject.SetActive(false);
+    }
+
     public abstract void StartSpell();
     public abstract void InitializeSpell();
     public abstract void ShowSpellEffect(GameObject[] list, GameObject zone);

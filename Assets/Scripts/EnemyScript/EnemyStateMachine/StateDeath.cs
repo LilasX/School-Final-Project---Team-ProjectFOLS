@@ -46,6 +46,7 @@ public class StateDeath : EnemyState
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
                 once1 = false;
                 once3 = true;
+                enemyBehaviour.gameObject.GetComponent<EnemyMain>().ReturnOrigin();
                 enemyBehaviour.gameObject.SetActive(false);
             }
         }

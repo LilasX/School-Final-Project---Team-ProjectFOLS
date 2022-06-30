@@ -6,6 +6,7 @@ public enum RangeWeapon { Sphere, Arrow, Lance, Wall, Floor, Wave }
 
 public class EnemyRange : EnemyMain
 {
+    public bool isGhost;
     public bool canAttack;
     public GameObject projectileSpawn;
     public GameObject floorSpawn;

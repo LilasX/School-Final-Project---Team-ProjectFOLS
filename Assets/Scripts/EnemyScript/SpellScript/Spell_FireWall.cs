@@ -81,7 +81,8 @@ public class Spell_FireWall : BaseSpell
                 once1 = false;
                 once2 = false;
                 timer = 0;
-                this.gameObject.SetActive(false);
+                ReturnOrigin(); 
+                //this.gameObject.SetActive(false);
             }
         }
     }

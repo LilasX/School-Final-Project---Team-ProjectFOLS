@@ -53,7 +53,8 @@ public class Spell_FireBall : BaseSpell
             {
                 timer = 0;
                 start = false;
-                this.gameObject.SetActive(false);
+                ReturnOrigin(); 
+                //this.gameObject.SetActive(false);
             }
         }
     }

@@ -8,7 +8,6 @@ public class Spell_EarthStomp : BaseSpell
     public bool once2 = false;
     public bool once3 = false;
     public bool once4 = false;
-    public bool quakeV2 = false;
 
     public void ShowFirstQuake(GameObject[] list)
     {
@@ -137,7 +136,8 @@ public class Spell_EarthStomp : BaseSpell
                 once2 = false;
                 once3 = false;
                 HideThirdQuake(spellZone);
-                this.gameObject.SetActive(false);
+                ReturnOrigin();
+                //this.gameObject.SetActive(false);
             }
         }
     }

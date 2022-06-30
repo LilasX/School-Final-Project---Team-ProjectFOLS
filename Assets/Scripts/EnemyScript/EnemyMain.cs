@@ -20,6 +20,7 @@ public abstract class EnemyMain : EnemyEntity
     public Canvas canvas;
     public Slider slider;
     public GameObject cameraMain;
+    public bool isPooling = false;
     //public GameObject drop;
     //public bool canHurt = true;
 
@@ -38,6 +39,19 @@ public abstract class EnemyMain : EnemyEntity
     //public abstract void DropItem(); //Not Needed since Coin Existed
     //public abstract void DropCoin();
     public abstract void DisplayHealthBar();
+
+    private void Awake()
+    {
+        if (isPooling)
+        {
+            posOrigin = this.gameObject.transform;
+        }
+    }
+
+    public void ReturnOrigin()
+    {
+        this.gameObject.transform.position = posOrigin.position;
+    }
 
     public override void OnHurt(int damage)
     {

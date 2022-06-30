@@ -39,17 +39,22 @@ public class StateAttackMagicEarthQuake : StateAttackMagic
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
                 // Code for launching rocks
-                /*projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                projectile.transform.position = projectileSpawn.transform.position;
-                projectile.transform.rotation = projectileSpawn.transform.rotation;
-                projectile.SetActive(true);*/
+                if (isPooling)
+                {
+                    spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    spell.transform.position = spellSpawn.transform.position;
+                    spell.transform.rotation = spellSpawn.transform.rotation;
+                    spell.GetComponent<Spell_EarthQuake>().StartSpell();
+                    spell.SetActive(true);
+                }
+                else
+                {
+                    magic = Instantiate(spell, spellSpawn.transform.position, spellSpawn.transform.rotation);
+                    magic.GetComponent<Spell_EarthQuake>().StartSpell();
+                }
 
-                //ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                //ranged.GetComponent<BaseProjectile>().dmg = 20;
-                //ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);
-
-                magic = Instantiate(spell, spellSpawn.transform.position, spellSpawn.transform.rotation);
-                magic.GetComponent<Spell_EarthQuake>().StartSpell();
+                //magic = Instantiate(spell, spellSpawn.transform.position, spellSpawn.transform.rotation);
+                //magic.GetComponent<Spell_EarthQuake>().StartSpell();
                 //magic.GetComponent<BaseProjectile>().dmg = 30;
                 
 
