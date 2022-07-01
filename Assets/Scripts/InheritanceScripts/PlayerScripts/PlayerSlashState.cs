@@ -18,10 +18,19 @@ public class PlayerSlashState : IPlayerBaseState
 
     private void Slash()
     {
-        //playerEntityInstance.Animator.SetLayerWeight(playerEntityInstance.Animator.GetLayerIndex("UpperBody"), 1f);
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.SlashVelocity * playerEntityInstance.slashSpeed * Time.deltaTime);
         playerEntityInstance.Animator.SetBool("Slash", true);
         playerEntityInstance.hasRequestedSlash = true;
+    }
+
+    public void EnterState()
+    {
+        Debug.Log(GetType().Name); 
+        Slash();
+    }
+
+    public void ExitState()
+    {
         playerEntityInstance.slashTimer += Time.deltaTime;
         if (playerEntityInstance.slashTimer >= 0.75f)
         {
@@ -31,70 +40,8 @@ public class PlayerSlashState : IPlayerBaseState
         }
     }
 
-    //private void Move()
-    //{
-    //    //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), -transform.up, Color.red, 1);
-
-    //    playerEntityInstance.Animator.SetFloat("Speed", 0f, 100f, Time.time);
-
-    //    //  Mouvement du joueur
-    //    playerEntityInstance.Move = new Vector3(playerEntityInstance.XAxis, 0, playerEntityInstance.ZAxis); //Update des coordonnées d'emplacement du vecteur
-    //    playerEntityInstance.Move = Quaternion.Euler(0, playerEntityInstance.Cam.transform.eulerAngles.y, 0) * playerEntityInstance.Move; //Décale le vecteur de déplacement en fonction de la l'axe y de la caméra 
-
-    //    if (playerEntityInstance.Move != Vector3.zero) //Quand j'utilise mon input
-    //    {
-    //        //Debug.Log(move);
-    //        playerEntityInstance.IsMoving = true;
-    //        playerEntityInstance.MyCharacter.transform.forward = playerEntityInstance.Move * Time.deltaTime; //Oriente le joueur vers la direction du mouvement
-    //        playerEntityInstance.Animator.SetFloat("Speed", 0.5f, 100f, Time.time);
-    //    }
-    //    else
-    //    {
-    //        playerEntityInstance.IsMoving = false;
-    //    }
-
-    //    playerEntityInstance.MyCharacter.Move(playerEntityInstance.Move * playerEntityInstance.Speed * Time.deltaTime); //Déplace le joueur
-    //}
-
-
-    //private void Run()
-    //{
-
-    //    //  Vitesse du joueur en course
-    //    if (playerEntityInstance.IsRunning && playerEntityInstance.IsMoving)
-    //    {
-    //        playerEntityInstance.Speed = playerEntityInstance.RunningSpeed; //Valeur de la vitesse en mode course
-    //        playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 1f, 10f * Time.deltaTime); //Vide la barre d'endurance
-    //        playerEntityInstance.Animator.SetFloat("Speed", 1f, 25f, Time.time);
-    //        if (playerEntityInstance.GetCurrentStamina == 1)
-    //        {
-    //            playerEntityInstance.IsRunning = false;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue; //Valeur de la vitesse en mode Walk
-    //        playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, playerEntityInstance.GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
-    //    }
-    //}
-
-
-    public void EnterState()
-    {
-        Debug.Log(GetType().Name);
-    }
-
-    public void ExitState()
-    {
-        return;
-    }
-
     public void OnUpdate()
     {
-        //Move();
-
-        //Run();
-
-        Slash();
+        ExitState();
     }
 }

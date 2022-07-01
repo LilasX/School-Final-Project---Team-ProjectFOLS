@@ -11,6 +11,7 @@ public class PlayerMeleeState : IPlayerBaseState
     private PlayerStateMachine playerState;
 
 
+
     public PlayerMeleeState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
         gameManager = GameManager.instance;
@@ -26,6 +27,16 @@ public class PlayerMeleeState : IPlayerBaseState
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.MeleeVelocity * playerEntityInstance.meleeSpeed * Time.deltaTime);
         playerEntityInstance.HasUsedMelee = true;
         playerEntityInstance.Animator.SetBool("Attack", true);
+    }
+
+    public void EnterState()
+    {
+        Debug.Log(GetType().Name);
+        MeleeAttack();
+    }
+
+    public void ExitState()
+    {
         playerEntityInstance.meleeTime += Time.deltaTime;
         if (playerEntityInstance.meleeTime >= 0.4f)
         {
@@ -37,24 +48,14 @@ public class PlayerMeleeState : IPlayerBaseState
         }
     }
 
-    public void EnterState()
-    {
-        Debug.Log(GetType().Name);
-    }
-
-    public void ExitState()
-    {
-        return;
-    }
-
     public void OnUpdate()
     {
-        MeleeAttack();
-        
-        if(playerEntityInstance.isKnocked)
+        if (playerEntityInstance.isKnocked)
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
         }
+
+        ExitState();
     }
 }

@@ -17,10 +17,10 @@ public class PlayerStateMachine
 
     public void ChangeState(IPlayerBaseState newState)
     {
-        if(currentState != null)
-        {
-            currentState.ExitState(); // Resetting the state before any change
-        }
+        //if (currentState != null)
+        //{
+        //    currentState.ExitState(); // Resetting the state before any change
+        //}
 
         currentState = newState; // Setting the new state
 

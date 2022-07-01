@@ -9,10 +9,6 @@ public class PlayerDodgeState : IPlayerBaseState
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
-
-    //private Vector3 playerVelocity;
-    //private Quaternion playerRotation;
-
     public PlayerDodgeState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
         gameManager = GameManager.instance;
@@ -29,6 +25,16 @@ public class PlayerDodgeState : IPlayerBaseState
         playerEntityInstance.Speed = playerEntityInstance.DodgeSpeed;  //Valeur de la vitesse en mode esquive
         playerEntityInstance.Animator.SetBool("Dive", true);
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.DodgeVelocity * playerEntityInstance.Speed * Time.deltaTime);
+
+    }
+
+    public void EnterState()
+    {
+        Debug.Log(GetType().Name);
+    }
+
+    public void ExitState()
+    {
         playerEntityInstance.DodgeTime += Time.deltaTime;
         if (playerEntityInstance.DodgeTime >= 0.3f)
         {
@@ -42,18 +48,10 @@ public class PlayerDodgeState : IPlayerBaseState
         }
     }
 
-    public void EnterState()
-    {
-        Debug.Log(GetType().Name);
-    }
-
     public void OnUpdate()
     {
         Dodge();
-    }
 
-    public void ExitState()
-    {
-
+        ExitState();
     }
 }

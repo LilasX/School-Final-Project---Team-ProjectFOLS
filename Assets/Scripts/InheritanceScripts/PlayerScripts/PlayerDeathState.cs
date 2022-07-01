@@ -24,6 +24,7 @@ public class PlayerDeathState : IPlayerBaseState
     public void EnterState()
     {
         Debug.Log(GetType().Name);
+        PlayerDeath();
     }
 
     public void ExitState()
@@ -33,7 +34,7 @@ public class PlayerDeathState : IPlayerBaseState
 
     public void OnUpdate()
     {
-        PlayerDeath();
+        
     }
 
 

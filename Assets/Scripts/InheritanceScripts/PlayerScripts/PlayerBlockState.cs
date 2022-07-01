@@ -23,9 +23,18 @@ public class PlayerBlockState : MonoBehaviour, IPlayerBaseState
         playerEntityInstance.vfxCube.SetActive(true);
         playerEntityInstance.Animator.SetBool("Block", true);
         playerEntityInstance.Speed = 0f;
+    }
 
+    public void EnterState()
+    {
+        Debug.Log(GetType().Name);
+        UseShield();
+    }
+
+    public void ExitState()
+    {
         playerEntityInstance.shieldTimer -= Time.deltaTime;
-        if(playerEntityInstance.shieldTimer < 0)
+        if (playerEntityInstance.shieldTimer < 0)
         {
             playerEntityInstance.IsUsingShield = false;
         }
@@ -40,18 +49,10 @@ public class PlayerBlockState : MonoBehaviour, IPlayerBaseState
         }
     }
 
-    public void EnterState()
-    {
-        Debug.Log(GetType().Name);
-    }
-
     public void OnUpdate()
     {
-        UseShield();
+        ExitState();
     }
 
-    public void ExitState()
-    {
-        return;
-    }
+
 }

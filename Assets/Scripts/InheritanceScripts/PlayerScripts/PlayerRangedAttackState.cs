@@ -19,6 +19,16 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
     private void RangedAttack()
     {
         playerEntityInstance.Animator.SetBool("Spell", true);
+    }
+
+    public void EnterState()
+    {
+        Debug.Log(GetType().Name);
+        RangedAttack();
+    }
+
+    public void ExitState()
+    {
         if (!playerEntityInstance.hasFired)
         {
             playerEntityInstance.Timer += Time.deltaTime; //lance le chrono
@@ -38,18 +48,9 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
         }
     }
 
-    public void EnterState()
-    {
-        Debug.Log(GetType().Name);
-    }
-
     public void OnUpdate()
     {
-        RangedAttack();
+        ExitState();
     }
 
-    public void ExitState()
-    {
-        return;
-    }
 }
