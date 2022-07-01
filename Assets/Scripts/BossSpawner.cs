@@ -73,7 +73,7 @@ public class BossSpawner : MonoBehaviour
     public void SpawnTreasureChest()
     {
         chestInstant = Instantiate(treasureChest, chestSpawner.transform.position, chestSpawner.transform.rotation);
-
+        chestInstant.GetComponent<LootBox>().Boss1Defeated = true;
         //Want to Introduce PoolingSystem to TreasureChest
     }
 

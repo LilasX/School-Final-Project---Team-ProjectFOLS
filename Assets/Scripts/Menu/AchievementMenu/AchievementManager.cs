@@ -17,6 +17,7 @@ public class AchievementManager : MonoBehaviour
     public GameObject AchievementMenu;
    
     private AchievementButton activeButton;
+    
 
     public ScrollRect scrollRect;
 

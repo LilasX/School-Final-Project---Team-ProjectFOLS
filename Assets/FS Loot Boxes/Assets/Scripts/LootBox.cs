@@ -4,6 +4,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// The Loot class.
@@ -36,6 +37,7 @@ public class LootBox : MonoBehaviour
 
     Inventory inventoryScript;
 
+    public bool Boss1Defeated = false;
     /// <summary>
     /// How should the player open the box?
     /// </summary>
@@ -169,6 +171,17 @@ public class LootBox : MonoBehaviour
         // calls the OnBoxOpen event and deliver the
         // earned GameObjects on temp list
         OnBoxOpen?.Invoke(loots.ToArray());
+
+        if (Boss1Defeated == true)
+        {
+            StartCoroutine(Wait());
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5f);
+        gameManager.levelChanger.GetComponent<LoadScene>().BtnLoadScene("NewLevel");
     }
 
     /// <summary>

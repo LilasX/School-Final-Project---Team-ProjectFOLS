@@ -1946,6 +1946,7 @@ MonoBehaviour:
   capacity: 0
   keyboard: {fileID: 0}
   gamePad: {fileID: 0}
+  Paused: 0
 --- !u!4 &849427427076995099
 Transform:
   m_ObjectHideFlags: 0
@@ -2422,6 +2423,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7498602160501632939, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7761148085097809515, guid: 9a29d222997a9dd43be8c67c54e5c3c5, type: 2}
+    - target: {fileID: 7498602161094557158, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7761148085097809515, guid: 9a29d222997a9dd43be8c67c54e5c3c5, type: 2}
     - target: {fileID: 7498602161969981637, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -2474,6 +2483,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7498602162031715952, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7761148085097809515, guid: 9a29d222997a9dd43be8c67c54e5c3c5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
 --- !u!114 &9073696537490522729
