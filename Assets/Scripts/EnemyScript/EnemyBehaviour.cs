@@ -21,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     //public bool attack; //Testing Attack Purpose
     //public bool escape; //Testing Escape Purpose
 
+    public RuntimeAnimatorController liveAnimator;
     public Animator enemyAnim;
     public EnemyState currState;
     public StateWander stateWander;
@@ -52,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void InitializeBehaviour()
     {
         manager = GameManager.instance;
-        
+        enemyAnim.runtimeAnimatorController = liveAnimator;
         /*if (this.gameObject.GetComponent<EnemyBossWarrior>())
         {
             SwitchStateWaiting();

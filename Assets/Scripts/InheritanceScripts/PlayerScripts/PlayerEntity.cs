@@ -128,8 +128,8 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     //public GameObject meleePS;
 
     //public int _currentWeaponIndex;
-    public int _currentMeleeDamage;
-    public int _currentSlashDamage;
+    public int _currentMeleeDamage = 30;
+    public int _currentSlashDamage = 10;
     public GameObject[] _possesedWeapons;
 
     #endregion

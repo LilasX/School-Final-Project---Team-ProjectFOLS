@@ -3250,6 +3250,7 @@ MonoBehaviour:
   agent: {fileID: 1481591108628897002}
   player: {fileID: 0}
   manager: {fileID: 0}
+  liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   enemyAnim: {fileID: 1481591108628897015}
   currState: {fileID: 1481591108803555755}
   stateWander: {fileID: 1481591108803555755}
@@ -3282,7 +3283,8 @@ MonoBehaviour:
   canvas: {fileID: 1481591108680210951}
   slider: {fileID: 1481591107643497193}
   cameraMain: {fileID: 0}
-  isGoblin: 0
+  isPooling: 0
+  isGhost: 0
   canAttack: 0
   projectileSpawn: {fileID: 8348268580688750004}
   floorSpawn: {fileID: 6234596969303453004}

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
+  stateWaiting: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 7479229380263031121, guid: 4e28aba269915be49ab8a182d748694b, type: 3}
@@ -56,10 +57,15 @@ MonoBehaviour:
   once4: 1
   randNum: 0
   anim: {fileID: 3579076600062096018}
+  isProjectile: 0
+  projectileSpeed: 0
   combo: 0
+  coolDown: 0
+  coolTime: 0
   character: {fileID: 3579076600052755578}
   defaultMat: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
   signMat: {fileID: 2100000, guid: 471078a3097aec349bff8057b204ec81, type: 2}
+  isPooling: 0
 --- !u!1 &1447365944868939700
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
+  stateWaiting: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 4100321554669386465, guid: f0951ae1b8d842546b3149e478b352a9, type: 3}
@@ -224,10 +231,15 @@ MonoBehaviour:
   once4: 1
   randNum: 0
   anim: {fileID: 3579076600062096018}
+  isProjectile: 0
+  projectileSpeed: 0
   combo: 0
+  coolDown: 0
+  coolTime: 0
   character: {fileID: 3579076600052755578}
   defaultMat: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
   signMat: {fileID: 2100000, guid: 7d33afaccbace35499be80613e1bcadb, type: 2}
+  isPooling: 0
 --- !u!1 &1835933127984624359
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +302,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 3579076600062096018}
   combo: 0
+  isPooling: 0
 --- !u!1 &3205221632402484855
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +462,7 @@ GameObject:
   - component: {fileID: 3579076600062096023}
   - component: {fileID: 3579076600062096016}
   - component: {fileID: 3491374443437746150}
+  - component: {fileID: 6233634001185735642}
   m_Layer: 0
   m_Name: Goblin_Warrior
   m_TagString: Untagged
@@ -551,6 +565,7 @@ MonoBehaviour:
   agent: {fileID: 3579076600062096023}
   player: {fileID: 0}
   manager: {fileID: 0}
+  liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   enemyAnim: {fileID: 3579076600062096018}
   currState: {fileID: 7251639271291498042}
   stateWander: {fileID: 7251639271291498042}
@@ -583,12 +598,30 @@ MonoBehaviour:
   canvas: {fileID: 7251639272775189432}
   slider: {fileID: 7251639272396716338}
   cameraMain: {fileID: 0}
+  isPooling: 0
   melee:
   - {fileID: 3205221632402484855}
   - {fileID: 4850359353970465452}
   onceDeath: 0
   attack: 0
   die: 0
+--- !u!114 &6233634001185735642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579076600052681954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe9ef892a41b114d8f9971297a3aaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot:
+  - {fileID: 8179790854871830465, guid: b2b49023c9617164bb7c9eb7c3d3c4e7, type: 3}
+  minRange: 5
+  maxRange: 10
+  spawned: 0
 --- !u!1 &3579076600052684012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3492,6 +3525,9 @@ MonoBehaviour:
   statePursue: {fileID: 7251639271889053193}
   start: 0
   once: 0
+  magicCoolDown: 0
+  timer: 0
+  coolTime: 0
 --- !u!1 &6336153115743787800
 GameObject:
   m_ObjectHideFlags: 0

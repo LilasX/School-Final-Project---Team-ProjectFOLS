@@ -29,6 +29,7 @@ public class EnemyRange : EnemyMain
         canAttack = true; 
         timer = 0;
         onceDeath = false;
+        GetComponent<SpawnLoot>().spawned = false;
         cameraMain = gameManager.cameraMain;
         canvas.gameObject.SetActive(true);
         //GetComponent<EnemyBehaviour>().InitializeBehaviour();

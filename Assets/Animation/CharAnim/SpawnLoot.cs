@@ -9,7 +9,7 @@ public class SpawnLoot : MonoBehaviour
     public int maxRange = 10;
 
     private Transform spawnPos;
-    private bool collected;
+    //private bool collected;
     public bool spawned;
 
     private void OnValidate()
@@ -30,7 +30,7 @@ public class SpawnLoot : MonoBehaviour
     void Update()
     {
 
-        if(spawned && !collected)
+        if(spawned /*&& !collected*/)
         {
             spawned = false;
             TakeLoot();
@@ -39,7 +39,7 @@ public class SpawnLoot : MonoBehaviour
 
     public void TakeLoot()
     {
-        collected = true;
+        //collected = true;
         int num = Random.Range(minRange, maxRange);
         StartCoroutine(LootSpawning(num));
         if(this.GetComponent<LootBox>() != null)

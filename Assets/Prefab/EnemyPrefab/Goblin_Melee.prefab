@@ -2508,6 +2508,7 @@ MonoBehaviour:
   agent: {fileID: 6881588284876657015}
   player: {fileID: 0}
   manager: {fileID: 0}
+  liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   enemyAnim: {fileID: 6881588284867706748}
   currState: {fileID: 6881588284479463216}
   stateWander: {fileID: 6881588284479463216}

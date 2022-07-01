@@ -28,6 +28,7 @@ public class EnemyBossWarrior : EnemyMain
         //canAttack = true;
         //timer = 0;
         onceDeath = false;
+        GetComponent<SpawnLoot>().spawned = false;
         cameraMain = gameManager.cameraMain;
         canvas.gameObject.SetActive(true);
         //GetComponent<EnemyBehaviour>().InitializeBehaviour();
@@ -68,7 +69,7 @@ public class EnemyBossWarrior : EnemyMain
             //transform.position = posOrigin.position;
             onceDeath = true;
             canvas.gameObject.SetActive(false);
-            //GetComponent<SpawnLoot>().spawned = true;
+            GetComponent<SpawnLoot>().spawned = true;
             //waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
             GetComponent<EnemyBehaviour>().SwitchStateDeath(); 
         }

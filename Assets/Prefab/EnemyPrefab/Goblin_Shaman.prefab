@@ -112,6 +112,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 0}
   combo: 0
+  isPooling: 0
 --- !u!1 &1115190012521779134
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +175,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 0}
   combo: 0
+  isPooling: 0
 --- !u!1 &1752756847676587327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1061,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 0}
   combo: 0
+  isPooling: 0
 --- !u!1 &6481251292942350483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1124,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 0}
   combo: 0
+  isPooling: 0
 --- !u!1 &8063936023394259322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,6 +2993,7 @@ MonoBehaviour:
   agent: {fileID: 8063936023394082163}
   player: {fileID: 0}
   manager: {fileID: 0}
+  liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   enemyAnim: {fileID: 8063936023387003820}
   currState: {fileID: 1752756848856197116}
   stateWander: {fileID: 1752756848856197116}
@@ -3021,6 +3026,8 @@ MonoBehaviour:
   canvas: {fileID: 0}
   slider: {fileID: 1752756847930241974}
   cameraMain: {fileID: 0}
+  isPooling: 0
+  isGhost: 0
   canAttack: 0
   projectileSpawn: {fileID: 3277730593341248704}
   floorSpawn: {fileID: 8315239476800483531}
@@ -4287,3 +4294,4 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 0}
   combo: 0
+  isPooling: 0
