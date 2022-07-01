@@ -16,6 +16,7 @@ public class EnemyBehaviour : MonoBehaviour
     //private float wanderDistance; 
     public GameObject player;
     public GameManager manager;
+    public PoolingManager poolingManager;
     //private float playerDistance;
 
     //public bool attack; //Testing Attack Purpose
@@ -53,6 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void InitializeBehaviour()
     {
         manager = GameManager.instance;
+        poolingManager = PoolingManager.instance;
         enemyAnim.runtimeAnimatorController = liveAnimator;
         /*if (this.gameObject.GetComponent<EnemyBossWarrior>())
         {

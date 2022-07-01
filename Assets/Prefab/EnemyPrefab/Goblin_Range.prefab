@@ -2187,13 +2187,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 1481591108705789489}
-  stateRange01: {fileID: 7087950966768344220}
-  stateRange02: {fileID: 0}
+  stateRangeSphere: {fileID: 7087950966768344220}
+  stateRangeArrow: {fileID: 1054964430330277387}
+  stateRangeLance: {fileID: 3760914039931878697}
   playerDistance: 0
   once: 0
   anim: {fileID: 1481591108628897015}
   canDmg: 0
   randNum: 0
+  hp: 0
+  hpMax: 0
 --- !u!1 &1481591107935333275
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,7 +3636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 1481591108705789489}
-  stateRange02: {fileID: 1054964430330277387}
+  stateRange02: {fileID: 4168320675622112005}
   target: {x: 0, y: 0, z: 0}
   rangePos: {x: 0, y: 0, z: 0}
   ranged: {fileID: 0}
@@ -4190,13 +4193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
+  statePursue: {fileID: 1481591108705789489}
   stateRange02: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   rangePos: {x: 0, y: 0, z: 0}
   ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  projectile: {fileID: 7479886252129632761, guid: fc9cb3e7a907ae745b90bc27c2f32bde, type: 3}
+  projectileSpawn: {fileID: 8348268580688750004}
   once1: 0
   once2: 0
   once3: 0
@@ -4206,7 +4209,7 @@ MonoBehaviour:
   rangeDistance: 0
   playerDistance: 0
   randNum: 0
-  anim: {fileID: 0}
+  anim: {fileID: 1481591108628897015}
   combo: 0
   isPooling: 0
 --- !u!1 &8021434526384481324
@@ -4218,6 +4221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 934528268874531502}
+  - component: {fileID: 3760914039931878697}
   m_Layer: 0
   m_Name: StateAttackRangeLance
   m_TagString: Untagged
@@ -4240,6 +4244,37 @@ Transform:
   m_Father: {fileID: 1481591106686762042}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3760914039931878697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021434526384481324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a923bdd6762afc45af8d518e431174c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 1481591108705789489}
+  stateRange02: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  rangePos: {x: 0, y: 0, z: 0}
+  ranged: {fileID: 0}
+  projectile: {fileID: 4201591704844558429, guid: a2718e7093d57624f955f09b6700a075, type: 3}
+  projectileSpawn: {fileID: 8348268580688750004}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randomX: 0
+  randomZ: 0
+  rangeDistance: 0
+  playerDistance: 0
+  randNum: 0
+  anim: {fileID: 1481591108628897015}
+  combo: 0
+  isPooling: 0
 --- !u!1 &8348268580688750004
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,15 @@ public class StateStart_GoblinMelee : StateStart
         stateDeath.once2 = false;
         stateDeath.once3 = false;
 
+        if (enemyBehaviour.GetComponent<EnemyMain>().isPooling)
+        {
+            stateRange01.isPooling = true;
+        } 
+        else
+        {
+            stateRange01.isPooling = false;
+        }
+
         enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage();
 
         return stateWander;

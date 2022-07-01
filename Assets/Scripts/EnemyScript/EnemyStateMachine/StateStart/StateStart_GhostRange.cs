@@ -40,6 +40,21 @@ public class StateStart_GhostRange : StateStart
         stateDeath.once2 = false;
         stateDeath.once3 = false;
 
+        if (enemyBehaviour.GetComponent<EnemyMain>().isPooling)
+        {
+            stateMagic01.isPooling = true;
+            stateMagic02.isPooling = true;
+            stateMagic03.isPooling = true;
+            stateMagic04.isPooling = true;
+        }
+        else
+        {
+            stateMagic01.isPooling = false;
+            stateMagic02.isPooling = false;
+            stateMagic03.isPooling = false;
+            stateMagic04.isPooling = false;
+        }
+
         return stateWander;
     }
 }

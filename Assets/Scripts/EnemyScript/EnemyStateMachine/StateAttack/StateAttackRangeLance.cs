@@ -51,12 +51,13 @@ public class StateAttackRangeLance : StateAttackRange02
                 // Code for launching Lance
                 if (isPooling)
                 {
-                    projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    projectile.transform.position = projectileSpawn.transform.position;
-                    projectile.transform.rotation = projectileSpawn.transform.rotation;
-                    projectile.GetComponent<BaseProjectile>().dmg = 30;
-                    projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
-                    projectile.SetActive(true);
+                    ranged = enemyBehaviour.poolingManager.callRangeLance();
+                    ranged.SetActive(true);
+                    ranged.transform.position = projectileSpawn.transform.position;
+                    ranged.transform.rotation = projectileSpawn.transform.rotation;
+                    ranged.GetComponent<BaseProjectile>().dmg = 30;
+                    ranged.GetComponent<BaseProjectile>().useRange = true;
+                    ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
                 }
                 else
                 {

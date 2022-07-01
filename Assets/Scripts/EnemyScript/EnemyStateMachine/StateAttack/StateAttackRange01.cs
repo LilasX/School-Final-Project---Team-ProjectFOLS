@@ -63,12 +63,13 @@ public class StateAttackRange01 : EnemyState
                 // Code for launching rocks
                 if (isPooling)
                 {
-                    projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    projectile.transform.position = projectileSpawn.transform.position;
-                    projectile.transform.rotation = projectileSpawn.transform.rotation;
-                    projectile.GetComponent<BaseProjectile>().dmg = 10;
-                    projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
-                    projectile.SetActive(true);
+                    ranged = enemyBehaviour.poolingManager.callRangeSphere();
+                    ranged.SetActive(true);
+                    ranged.transform.position = projectileSpawn.transform.position;
+                    ranged.transform.rotation = projectileSpawn.transform.rotation;
+                    ranged.GetComponent<BaseProjectile>().dmg = 10;
+                    ranged.GetComponent<BaseProjectile>().useRange = true;
+                    ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 16, ForceMode.Impulse);
                 } 
                 else
                 {

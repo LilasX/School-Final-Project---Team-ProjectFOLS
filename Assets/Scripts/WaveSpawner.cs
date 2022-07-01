@@ -43,7 +43,7 @@ public class WaveSpawner : MonoBehaviour
 
     void Start()
     {
-        poolingManager = PoolingManager.Instance;
+        poolingManager = PoolingManager.instance;
         waveCountdown = timeBetweenWaves;
     }
 

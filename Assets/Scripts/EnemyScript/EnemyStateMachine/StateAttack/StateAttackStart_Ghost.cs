@@ -20,31 +20,38 @@ public class StateAttackStart_Ghost : StateAttack
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
-        if (enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP <= 30)
+        if (enemyBehaviour.GetComponent<EnemyMain>().isPooling)
         {
-            randNum = Random.Range(0, 4);
-            switch (randNum)
+            if (enemyBehaviour.GetComponent<EnemyMain>().GetCurrentHP <= 30)
             {
-                case 0:
-                    //return stateMagicWall;
-                case 1:
-                    //return stateMagicStrike;
-                case 2:
-                    //return stateMagicBomb;
-                default:
-                    return stateMagicBall;
+                randNum = Random.Range(0, 6);
+                switch (randNum)
+                {
+                    case 0:
+                        return stateMagicWall;
+                    case 1:
+                        return stateMagicFloor;
+                    case 2:
+                        return stateMagicBomb;
+                    default:
+                        return stateMagicBall;
+                }
             }
-        } 
+            else
+            {
+                randNum = Random.Range(0, 4);
+                switch (randNum)
+                {
+                    case 0:
+                        return stateMagicBomb;
+                    default:
+                        return stateMagicBall;
+                }
+            }
+        }
         else
         {
-            randNum = Random.Range(0, 4);
-            switch (randNum)
-            {
-                //case 0:
-                    //return stateMagicBomb;
-                default:
-                    return stateMagicBall;
-            }
+            return stateMagicBall;
         }
 
         //return this;

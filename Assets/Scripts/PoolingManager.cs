@@ -8,6 +8,9 @@ public class PoolingManager : MonoBehaviour
     public static PoolingManager instance = null;
     public static PoolingManager Instance { get => instance; set => instance = value; }
 
+    public bool isPooling = false;
+    public GameObject[] waveSpawnerList = new GameObject[2];
+
     //Enemy Character
     public GameObject[] goblinMeleeList = new GameObject[6];
     public GameObject[] goblinRangeList = new GameObject[6];
@@ -48,6 +51,25 @@ public class PoolingManager : MonoBehaviour
         }
     }
 
+    public void SetIsPooling(GameObject obj)
+    {
+        if (isPooling)
+        {
+            if (obj.GetComponent<EnemyMain>())
+            {
+                obj.GetComponent<EnemyMain>().isPooling = true;
+            } 
+            else if (obj.GetComponent<BaseProjectile>())
+            {
+                obj.GetComponent<BaseProjectile>().isPooling = true;
+            }
+            else if (obj.GetComponent<BaseSpell>())
+            {
+                obj.GetComponent<BaseSpell>().isPooling = true;
+            }
+        }
+    }
+
     //Do I Need to Create a List for Confirmation, to prevent the same GameObject being called at the same time?
 
     public GameObject callGoblinMelee()
@@ -57,10 +79,12 @@ public class PoolingManager : MonoBehaviour
             if (!goblinMeleeList[i].activeInHierarchy)
             {
                 //Initialize
+                SetIsPooling(goblinMeleeList[i]);
                 return goblinMeleeList[i];
             }
         }
 
+        SetIsPooling(goblinMeleeList[0]);
         return goblinMeleeList[0];
     }
 
@@ -70,10 +94,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!goblinRangeList[i].activeInHierarchy)
             {
+                SetIsPooling(goblinRangeList[i]);
                 return goblinRangeList[i];
             }
         }
 
+        SetIsPooling(goblinRangeList[0]);
         return goblinRangeList[0];
     }
 
@@ -83,20 +109,24 @@ public class PoolingManager : MonoBehaviour
         {
             if (!ghostRangeList[i].activeInHierarchy)
             {
+                SetIsPooling(ghostRangeList[i]);
                 return ghostRangeList[i];
             }
         }
 
+        SetIsPooling(ghostRangeList[0]);
         return ghostRangeList[0];
     }
 
     public GameObject callGoblinWarrior()
     {
+        SetIsPooling(goblinWarriorBoss);
         return goblinWarriorBoss;
     }
 
     public GameObject callGoblinShaman()
     {
+        SetIsPooling(goblinShamanBoss);
         return goblinShamanBoss;
     }
 
@@ -106,10 +136,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!rSphereList[i].activeInHierarchy)
             {
+                SetIsPooling(rSphereList[i]);
                 return rSphereList[i];
             }
         }
 
+        SetIsPooling(rSphereList[0]);
         return rSphereList[0];
     }
 
@@ -119,10 +151,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!rArrowList[i].activeInHierarchy)
             {
+                SetIsPooling(rArrowList[i]);
                 return rArrowList[i];
             }
         }
 
+        SetIsPooling(rArrowList[0]);
         return rArrowList[0];
     }
 
@@ -132,10 +166,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!rLanceList[i].activeInHierarchy)
             {
+                SetIsPooling(rLanceList[i]);
                 return rLanceList[i];
             }
         }
 
+        SetIsPooling(rLanceList[0]);
         return rLanceList[0];
     }
 
@@ -145,10 +181,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!fireBallList[i].activeInHierarchy)
             {
+                SetIsPooling(fireBallList[i]);
                 return fireBallList[i];
             }
         }
 
+        SetIsPooling(fireBallList[0]);
         return fireBallList[0];
     }
 
@@ -158,10 +196,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!fireBombList[i].activeInHierarchy)
             {
+                SetIsPooling(fireBombList[i]);
                 return fireBombList[i];
             }
         }
 
+        SetIsPooling(fireBombList[0]);
         return fireBombList[0];
     }
 
@@ -171,10 +211,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!fireWallList[i].activeInHierarchy)
             {
+                SetIsPooling(fireWallList[i]);
                 return fireWallList[i];
             }
         }
 
+        SetIsPooling(fireWallList[0]);
         return fireWallList[0];
     }
 
@@ -184,23 +226,27 @@ public class PoolingManager : MonoBehaviour
         {
             if (!fireFloorList[i].activeInHierarchy)
             {
+                SetIsPooling(fireFloorList[i]);
                 return fireFloorList[i];
             }
         }
 
+        SetIsPooling(fireFloorList[0]);
         return fireFloorList[0];
     }
 
-    public GameObject callWaveBall()
+    public GameObject callFireWave()
     {
         for (int i = 0; i < fireWaveList.Length; i++)
         {
             if (!fireWaveList[i].activeInHierarchy)
             {
+                SetIsPooling(fireWaveList[i]);
                 return fireWaveList[i];
             }
         }
 
+        SetIsPooling(fireWaveList[0]);
         return fireWaveList[0];
     }
 
@@ -210,10 +256,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!lightningStrikeList[i].activeInHierarchy)
             {
+                SetIsPooling(lightningStrikeList[i]);
                 return lightningStrikeList[i];
             }
         }
 
+        SetIsPooling(lightningStrikeList[0]);
         return lightningStrikeList[0];
     }
 
@@ -223,10 +271,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!lightningFieldList[i].activeInHierarchy)
             {
+                SetIsPooling(lightningFieldList[i]);
                 return lightningFieldList[i];
             }
         }
 
+        SetIsPooling(lightningFieldList[0]);
         return lightningFieldList[0];
     }
 
@@ -236,10 +286,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!lightningWaveList[i].activeInHierarchy)
             {
+                SetIsPooling(lightningWaveList[i]);
                 return lightningWaveList[i];
             }
         }
 
+        SetIsPooling(lightningWaveList[0]);
         return lightningWaveList[0];
     }
 
@@ -249,10 +301,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!earthQuakeList[i].activeInHierarchy)
             {
+                SetIsPooling(earthQuakeList[i]);
                 return earthQuakeList[i];
             }
         }
 
+        SetIsPooling(earthQuakeList[0]);
         return earthQuakeList[0];
     }
 
@@ -262,10 +316,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!earthQuakeV2List[i].activeInHierarchy)
             {
+                SetIsPooling(earthQuakeV2List[i]);
                 return earthQuakeV2List[i];
             }
         }
 
+        SetIsPooling(earthQuakeV2List[0]);
         return earthQuakeV2List[0];
     }
 
@@ -275,10 +331,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!earthStompList[i].activeInHierarchy)
             {
+                SetIsPooling(earthStompList[i]);
                 return earthStompList[i];
             }
         }
 
+        SetIsPooling(earthStompList[0]);
         return earthStompList[0];
     }
 
@@ -288,10 +346,12 @@ public class PoolingManager : MonoBehaviour
         {
             if (!earthWaveList[i].activeInHierarchy)
             {
+                SetIsPooling(earthWaveList[i]);
                 return earthWaveList[i];
             }
         }
 
+        SetIsPooling(earthWaveList[0]);
         return earthWaveList[0];
     }
 
@@ -301,17 +361,25 @@ public class PoolingManager : MonoBehaviour
         {
             if (!boulderThrowList[i].activeInHierarchy)
             {
+                SetIsPooling(boulderThrowList[i]);
                 return boulderThrowList[i];
             }
         }
 
+        SetIsPooling(boulderThrowList[0]);
         return boulderThrowList[0];
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (isPooling)
+        {
+            for (int i = 0; i < waveSpawnerList.Length; i++)
+            {
+                waveSpawnerList[i].GetComponent<WaveSpawner>().isPooling = true;
+            }
+        }
     }
 
     // Update is called once per frame

@@ -41,11 +41,12 @@ public class StateAttackMagicEarthWave : StateAttackMagic
                 // Code for launching rocks
                 if (isPooling)
                 {
-                    spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    spell.transform.position = spellSpawn.transform.position;
-                    spell.transform.rotation = spellSpawn.transform.rotation;
-                    spell.GetComponent<Spell_EarthWave>().StartSpell();
+                    magic = enemyBehaviour.poolingManager.callEarthWave();
+
                     spell.SetActive(true);
+                    magic.transform.position = spellSpawn.transform.position;
+                    magic.transform.rotation = spellSpawn.transform.rotation;
+                    magic.GetComponent<Spell_EarthQuake>().StartSpell();
                 }
                 else
                 {

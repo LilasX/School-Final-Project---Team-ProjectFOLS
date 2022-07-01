@@ -13,12 +13,17 @@ public class BaseProjectile : MonoBehaviour
     public bool isPooling;
 
     public int dmg = 0;
+    public bool canDmg;
     public bool canDmgSphere;
     public bool canDmgArrow;
     public bool canDmgLance;
     public bool canDmgWall;
     public bool canDmgFloor;
     public bool canDmgWave;
+
+    public bool useRange = false;
+    public float timer;
+
     public float timerWall;
     public float timerFloor;
     public float timerWave;
@@ -62,7 +67,7 @@ public class BaseProjectile : MonoBehaviour
                                 other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
                                 other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                                 other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-                                canDmgSphere = false;
+                                canDmg = false;
 
                                 if (isPooling)
                                 {
@@ -87,7 +92,7 @@ public class BaseProjectile : MonoBehaviour
                                 other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
                                 other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                                 other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-                                canDmgArrow = false;
+                                canDmg = false;
                             }
                             Invoke("SetInactiveRange", 1f);
                             break;
@@ -102,7 +107,7 @@ public class BaseProjectile : MonoBehaviour
                                 //other.gameObject.GetComponent<Player>().Hp -= 40;
                                 //other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                                 //other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-                                canDmgLance = false;
+                                canDmg = false;
                             }
                             Invoke("SetInactiveRange", 1f);
                             break;
@@ -162,13 +167,16 @@ public class BaseProjectile : MonoBehaviour
 
     public void SetInactiveRange() //For Pooling, Destroy for Instantiate
     {
-        this.gameObject.transform.position = posOrigin.position;
+        this.gameObject.transform.position = posOrigin.position; 
+        this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        canDmg = true;
         gameObject.SetActive(false); 
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        canDmg = true;
         canDmgSphere = true;
         canDmgArrow = true;
         canDmgLance = true;
@@ -179,6 +187,7 @@ public class BaseProjectile : MonoBehaviour
         timerFloor = 0f;
         timerWave = 0f;
 
+        //Invoke("SetInactiveRange", 2f);
         /*switch (typeRange) //Can I put them all together?
         {
             case RangeWeapon.Sphere:
@@ -197,6 +206,18 @@ public class BaseProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(useRange)
+        {
+            timer += Time.deltaTime;
+
+            if(timer >= 2f)
+            {
+                timer = 0;
+                useRange = false;
+                SetInactiveRange();
+            }
+        }
+
         if (!canDmgWall)
         {
             timerWall += Time.deltaTime;

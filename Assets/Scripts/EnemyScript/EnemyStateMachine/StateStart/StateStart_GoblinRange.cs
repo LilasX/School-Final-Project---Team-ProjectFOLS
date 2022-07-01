@@ -7,6 +7,8 @@ public class StateStart_GoblinRange : StateStart
     public StateAttackRange02 stateRange01;
     public StateAttackRange02 stateRange02;
     public StateAttackRange02 stateRange03;
+    //public StateAttackRange02 stateRange04;
+    //public StateAttackRange02 stateRange05;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -24,7 +26,17 @@ public class StateStart_GoblinRange : StateStart
         stateRange03.once2 = false;
         stateRange03.once3 = false;
         stateRange03.once4 = true;
+        /*
+        stateRange04.once1 = false;
+        stateRange04.once2 = false;
+        stateRange04.once3 = false;
+        stateRange04.once4 = true;
 
+        stateRange05.once1 = false;
+        stateRange05.once2 = false;
+        stateRange05.once3 = false;
+        stateRange05.once4 = true;
+        */
         statePursue.once = false;
 
         stateKnocked.once1 = false;
@@ -33,6 +45,23 @@ public class StateStart_GoblinRange : StateStart
         stateDeath.once1 = false;
         stateDeath.once2 = false;
         stateDeath.once3 = false;
+
+        if (enemyBehaviour.GetComponent<EnemyMain>().isPooling)
+        {
+            stateRange01.isPooling = true;
+            stateRange02.isPooling = true;
+            stateRange03.isPooling = true;
+            //stateRange04.isPooling = true;
+            //stateRange05.isPooling = true;
+        }
+        else
+        {
+            stateRange01.isPooling = false;
+            stateRange02.isPooling = false;
+            stateRange03.isPooling = false;
+            //stateRange04.isPooling = false;
+            //stateRange05.isPooling = false;
+        }
 
         return stateWander;
     }

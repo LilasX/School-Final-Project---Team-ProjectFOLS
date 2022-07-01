@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
-  stateWaiting: {fileID: 0}
+  stateWaiting: {fileID: 7156847913494611106}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 7479229380263031121, guid: 4e28aba269915be49ab8a182d748694b, type: 3}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 7251639271889053193}
-  stateWaiting: {fileID: 0}
+  stateWaiting: {fileID: 7156847913494611106}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 4100321554669386465, guid: f0951ae1b8d842546b3149e478b352a9, type: 3}
@@ -4251,7 +4251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateWaiting: {fileID: 7156847913494611106}
-  stateWander: {fileID: 0}
+  stateWander: {fileID: 7251639271291498042}
   statePursue: {fileID: 7251639271889053193}
   stateKnocked: {fileID: 8225589752207758259}
   stateDeath: {fileID: 540656368319665192}

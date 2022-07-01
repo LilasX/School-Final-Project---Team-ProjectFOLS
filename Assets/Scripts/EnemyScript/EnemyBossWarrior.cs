@@ -71,6 +71,7 @@ public class EnemyBossWarrior : EnemyMain
             canvas.gameObject.SetActive(false);
             GetComponent<SpawnLoot>().spawned = true;
             //waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
+            waveSpawnerObject.GetComponent<BossSpawner>().SpawnTreasureChest();
             GetComponent<EnemyBehaviour>().SwitchStateDeath(); 
         }
     }

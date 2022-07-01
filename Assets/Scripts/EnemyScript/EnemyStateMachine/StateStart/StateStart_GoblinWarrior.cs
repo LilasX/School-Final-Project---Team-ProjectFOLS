@@ -44,6 +44,19 @@ public class StateStart_GoblinWarrior : StateStart
         stateDeath.once2 = false;
         stateDeath.once3 = false;
 
+        if (enemyBehaviour.GetComponent<EnemyMain>().isPooling)
+        {
+            stateRangeThrow.isPooling = true;
+            stateMagicWave.isPooling = true;
+            stateMagicQuake.isPooling = true;
+        }
+        else
+        {
+            stateRangeThrow.isPooling = false;
+            stateMagicWave.isPooling = false;
+            stateMagicQuake.isPooling = false;
+        }
+
         enemyBehaviour.gameObject.GetComponent<EnemyBossWarrior>().CannotDamage();
 
         return stateWaiting;

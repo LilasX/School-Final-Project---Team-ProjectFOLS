@@ -71,15 +71,17 @@ public class StateAttackMagic : EnemyState
                 // Code for casting spell
                 if (isPooling)
                 {
-                    spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    spell.transform.position = spellSpawn.transform.position;
-                    spell.transform.rotation = spellSpawn.transform.rotation;
-                    spell.GetComponent<BaseSpell>().StartSpell();
-                    spell.SetActive(true);
-                    
+                    magic = CallMagicSpell(enemyBehaviour);
+
+                    magic.SetActive(true);
+                    magic.transform.position = spellSpawn.transform.position;
+                    magic.transform.rotation = spellSpawn.transform.rotation;
+                    magic.GetComponent<BaseSpell>().StartSpell(); //Doesn't have once in Trigger for Spell, may need it?
+
                     if (isProjectile)
                     {
-                        spell.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+                        magic.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        magic.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
                     }
                 } 
                 else
@@ -158,4 +160,56 @@ public class StateAttackMagic : EnemyState
 
         return this;
     }
+
+    public GameObject CallMagicSpell(EnemyBehaviour enemyBehaviour)
+    {
+        if (spell.GetComponent<Spell_FireBall>())
+        {
+            return enemyBehaviour.poolingManager.callFireBall();
+        } 
+        else if (spell.GetComponent<Spell_FireBomb>())
+        {
+            return enemyBehaviour.poolingManager.callFireBomb();
+        }
+        else if (spell.GetComponent<Spell_FireWall>())
+        {
+            return enemyBehaviour.poolingManager.callFireWall();
+        }
+        else if (spell.GetComponent<Spell_FireFloor>())
+        {
+            return enemyBehaviour.poolingManager.callFireFloor();
+        }
+        else if (spell.GetComponent<Spell_FireWave>())
+        {
+            return enemyBehaviour.poolingManager.callFireWave();
+        }
+        else if (spell.GetComponent<Spell_LightningStrike>())
+        {
+            return enemyBehaviour.poolingManager.callLightningStrike();
+        }
+        else if (spell.GetComponent<Spell_LightningField>())
+        {
+            return enemyBehaviour.poolingManager.callLightningField();
+        }
+        else if (spell.GetComponent<Spell_LightningWave>())
+        {
+            return enemyBehaviour.poolingManager.callLightningWave();
+        }
+        else if (spell.GetComponent<Spell_EarthQuake>())
+        {
+            return enemyBehaviour.poolingManager.callEarthQuake();
+        }
+        else if (spell.GetComponent<Spell_EarthStomp>())
+        {
+            return enemyBehaviour.poolingManager.callEarthStomp();
+        }
+        else if (spell.GetComponent<Spell_EarthWave>())
+        {
+            return enemyBehaviour.poolingManager.callEarthWave();
+        }
+
+        return enemyBehaviour.poolingManager.callFireBall();
+
+    }
+
 }
