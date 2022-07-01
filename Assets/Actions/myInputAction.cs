@@ -257,7 +257,7 @@ public partial class @MyInputAction : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""e3c00e39-7a9a-4eb9-977f-bc79aa403faf"",
                     ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Melee"",
