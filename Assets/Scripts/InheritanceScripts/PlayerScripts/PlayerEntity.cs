@@ -235,11 +235,6 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         playerState = new PlayerStateMachine(DefaultState);
 
-
-        
-
-
-
     }
 
     // Update is called once per frame
@@ -275,7 +270,6 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
         {
             animator.SetBool("Dead", false);
         }
-        gameManager.inventoryscript.coins = 0;
     }
 
     public override void OnHurt(int damage)

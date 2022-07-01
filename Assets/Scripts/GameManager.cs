@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
@@ -46,7 +47,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject keyboard;
     [SerializeField] private GameObject gamePad;
 
+    public GameObject levelChanger;
+
     public bool Paused = false;
+
+    private DataPersistenceManager dataPersistenceManager;
 
     private void Awake()
     {
@@ -70,6 +75,14 @@ public class GameManager : MonoBehaviour
         standardRuneList.Add(rune3);
         standardRuneList.Add(rune4);
         standardRuneList.Add(rune5);
+
+        dataPersistenceManager = DataPersistenceManager.instance;
+
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+        {
+            inventoryscript.coins = 0;
+            dataPersistenceManager.SaveGame();
+        }
     }
 
     // Update is called once per frame
