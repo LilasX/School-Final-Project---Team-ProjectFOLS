@@ -47,6 +47,7 @@ public class AchievementShop : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
             _interactionButtonText.SetActive(false);
+            AchievementMenu.SetActive(false);
             insideTrigger = false;
         }
     }

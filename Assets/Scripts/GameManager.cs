@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject keyboard;
     [SerializeField] private GameObject gamePad;
 
+    public bool Paused = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -176,5 +178,14 @@ public class GameManager : MonoBehaviour
                 gamePad.SetActive(true);
                 break;
         }
+    }
+
+    public void PauseGame()
+    {
+        if (Paused == false)
+        {
+            Paused = true;
+        }
+        else Paused = false;
     }
 }

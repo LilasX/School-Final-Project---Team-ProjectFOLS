@@ -245,6 +245,8 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     // Update is called once per frame
     protected override void Update()
     {
+        if (gameManager.Paused) { return; }
+
         OnManagingSliders();
 
         OnManagingGravity();

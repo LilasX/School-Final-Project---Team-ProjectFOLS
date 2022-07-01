@@ -162,6 +162,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &262563723 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6716448720773325513, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
+  m_PrefabInstance: {fileID: 6716448720372133616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262563716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fe93bddca2dec40b4efb60bbf440d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &298669293 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6716448720166203114, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
@@ -633,6 +644,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1355900077348829028, guid: 35b6f12985f329547b786982230d0aac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355900077348829031, guid: 35b6f12985f329547b786982230d0aac, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35b6f12985f329547b786982230d0aac, type: 3}
 --- !u!224 &649624095 stripped
@@ -665,11 +684,6 @@ RectTransform:
 Animator:
   m_CorrespondingSourceObject: {fileID: 6736849746070288546, guid: caba122cdc725104b8b75a9385f66562, type: 3}
   m_PrefabInstance: {fileID: 6736849746715233788}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &709139278 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7498602160501632939, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
-  m_PrefabInstance: {fileID: 7498602160941806821}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &761768803
 GameObject:
@@ -1282,13 +1296,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1330323846}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
         m_MethodName: BtnLoadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: ProjectFOLS
+          m_StringArgument: RealHub
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 250464515}
@@ -1424,6 +1438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1419633798}
   - component: {fileID: 1419633797}
+  - component: {fileID: 1419633799}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1508,6 +1523,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1419633799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419633796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1496900498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,6 +1929,7 @@ MonoBehaviour:
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}
   inventoryscript: {fileID: 0}
   inputManager: {fileID: 0}
+  _dialogueManager: {fileID: 0}
   defaultController: {fileID: 9100000, guid: 5b3abd06becaee3479e2abf71937377c, type: 2}
   deathController: {fileID: 9100000, guid: 75488827879d5d845994211b21fcdd2a, type: 2}
   pentagramActivatedindex: 0
@@ -2001,9 +2037,29 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6716448720773325511, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716448720773325511, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716448720773325511, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 709139278}
+      objectReference: {fileID: 262563723}
+    - target: {fileID: 6716448720773325511, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVol
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716448720773325511, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SetVolume, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716448720773325511, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6716448720860195168, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_fontSize
       value: 90
@@ -2054,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6716448721071901789, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6716448721071901790, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_Pivot.x
@@ -2293,6 +2349,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6736849746070288540, guid: caba122cdc725104b8b75a9385f66562, type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 649624096}
+    - target: {fileID: 6736849746070288540, guid: caba122cdc725104b8b75a9385f66562, type: 3}
+      propertyPath: loaderCanvas
+      value: 
+      objectReference: {fileID: 649624097}
     - target: {fileID: 6736849746070288545, guid: caba122cdc725104b8b75a9385f66562, type: 3}
       propertyPath: m_Name
       value: LevelChanger
@@ -2344,6 +2408,10 @@ PrefabInstance:
     - target: {fileID: 6736849746070288547, guid: caba122cdc725104b8b75a9385f66562, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736849747621195851, guid: caba122cdc725104b8b75a9385f66562, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caba122cdc725104b8b75a9385f66562, type: 3}
@@ -2593,6 +2661,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b629437f-b1fb-45a3-8f23-5f740585b9a5
     m_ActionName: UI.FOLS/Submit[/DualSenseGamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0eb13db2-5c07-4021-8f62-54ccc7dc4b5e
+    m_ActionName: Player/Cancel[/Keyboard/c,/DualSenseGamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    GameManager gameManager;
+
     private static UIManager instance;
+    public GameObject AchievementMenu;
 
     [SerializeField] private Slider hpBar;
     [SerializeField] private GameObject hpText;
@@ -65,6 +68,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+        gameManager = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -72,13 +76,16 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
+            if (!AchievementMenu.activeInHierarchy)
             {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
+                if (isPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
     }
@@ -86,6 +93,7 @@ public class UIManager : MonoBehaviour
     public void ResumeGame()
     {
         panels[0].SetActive(false);
+        gameManager.PauseGame();
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -93,7 +101,8 @@ public class UIManager : MonoBehaviour
     public void PauseGame()
     {
         PanelToggle(0);
-        Time.timeScale = 0.1f;
+        gameManager.PauseGame();
+        //Time.timeScale = 0.1f;
         isPaused = true;
     }
 }

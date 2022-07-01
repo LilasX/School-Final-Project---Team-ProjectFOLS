@@ -5826,7 +5826,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4211433, y: 1}
+    m_SensorSize: {x: 2.1452515, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12129,6 +12129,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4530609846362661031, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1901193091}
     - target: {fileID: 5139872345687812313, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -12187,7 +12191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5166385726225805801, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5166385726234292269, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_Layer
@@ -12791,7 +12795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5166385727050567629, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5166385727054135281, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14607,6 +14611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c6397b5431f2343b0fed57b4f0b73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AchievementMenu: {fileID: 356206619}
   hpBar: {fileID: 1988025209}
   hpText: {fileID: 2118331509}
   manaBar: {fileID: 115050108}
@@ -17287,6 +17292,7 @@ MonoBehaviour:
   capacity: 0
   keyboard: {fileID: 1040528465}
   gamePad: {fileID: 662363363}
+  Paused: 0
 --- !u!1001 &1811064955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17732,6 +17738,11 @@ PrefabInstance:
 Animator:
   m_CorrespondingSourceObject: {fileID: 6736849746070288546, guid: caba122cdc725104b8b75a9385f66562, type: 3}
   m_PrefabInstance: {fileID: 1894748456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1901193091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3993747641119987361, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
+  m_PrefabInstance: {fileID: 1588801034}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1902603966
 PrefabInstance:
