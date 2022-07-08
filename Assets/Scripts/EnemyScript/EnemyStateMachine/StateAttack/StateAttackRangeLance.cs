@@ -24,7 +24,7 @@ public class StateAttackRangeLance : StateAttackRange02
         }
 
         //Shoot Animation
-        if ((playerDistance >= 7f || rangeDistance <= enemyBehaviour.agent.stoppingDistance) && !once2)
+        if ((playerDistance >= 7f || playerDistance <= 3f || rangeDistance <= enemyBehaviour.agent.stoppingDistance) && !once2)
         {
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
