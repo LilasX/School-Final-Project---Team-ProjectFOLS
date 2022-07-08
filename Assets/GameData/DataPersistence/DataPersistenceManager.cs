@@ -2,6 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
+using System.IO;
+
+[CustomEditor(typeof(DataPersistenceManager))]
+class ButtonEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        DataPersistenceManager dataPersistenceManager = (DataPersistenceManager)target;
+        if (GUILayout.Button("Delete Save File"))
+        {
+            dataPersistenceManager.DeleteFile();
+        }
+    }
+}
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -78,5 +95,18 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistenceObjects);
+    }
+
+    public void DeleteFile()
+    {
+        if(File.Exists(Application.persistentDataPath + "/data.game"))
+        {
+            File.Delete(Application.persistentDataPath + "/data.game");
+            Debug.Log("Save File of the game has been deleted.");
+        }
+        else
+        {
+            Debug.Log("No Save File was found to be deleted.");
+        }
     }
 }

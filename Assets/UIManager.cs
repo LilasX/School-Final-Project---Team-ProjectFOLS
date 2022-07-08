@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused;
 
+    public GameObject[] uiObjects = null;
+
     private void Awake()
     {
         if (Instance == null)
@@ -43,6 +45,11 @@ public class UIManager : MonoBehaviour
         else
         {
             Destroy(Instance);
+        }
+
+        foreach(GameObject o in uiObjects)
+        {
+            o.SetActive(true);
         }
     }
   
