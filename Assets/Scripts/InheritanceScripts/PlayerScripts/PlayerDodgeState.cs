@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDodgeState : IPlayerBaseState
+public class PlayerDodgeState : MonoBehaviour, IPlayerBaseState
 {
     private GameManager gameManager;
 
@@ -53,5 +53,13 @@ public class PlayerDodgeState : IPlayerBaseState
         Dodge();
 
         ExitState();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
+        }
     }
 }

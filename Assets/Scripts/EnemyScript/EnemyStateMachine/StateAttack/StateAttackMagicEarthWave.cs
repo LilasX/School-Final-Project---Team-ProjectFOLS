@@ -20,7 +20,7 @@ public class StateAttackMagicEarthWave : StateAttackMagic
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
             anim.SetTrigger("IsThrowing");
-            character.GetComponent<SkinnedMeshRenderer>().material = signMat;
+            //character.GetComponent<SkinnedMeshRenderer>().material = signMat;
             /*spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 spellSign.transform.position = spellSpawn.transform.position;
                 spellSign.transform.rotation = spellSpawn.transform.rotation;
@@ -34,7 +34,7 @@ public class StateAttackMagicEarthWave : StateAttackMagic
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
                 once4 = false;
-                character.GetComponent<SkinnedMeshRenderer>().material = defaultMat;
+                //character.GetComponent<SkinnedMeshRenderer>().material = defaultMat;
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
@@ -43,10 +43,10 @@ public class StateAttackMagicEarthWave : StateAttackMagic
                 {
                     magic = enemyBehaviour.poolingManager.callEarthWave();
 
-                    spell.SetActive(true);
+                    magic.SetActive(true);
                     magic.transform.position = spellSpawn.transform.position;
                     magic.transform.rotation = spellSpawn.transform.rotation;
-                    magic.GetComponent<Spell_EarthQuake>().StartSpell();
+                    magic.GetComponent<Spell_EarthWave>().StartSpell();
                 }
                 else
                 {
@@ -80,8 +80,16 @@ public class StateAttackMagicEarthWave : StateAttackMagic
                 once2 = false;
                 once3 = false;
                 once4 = true;
-                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
-                return statePursue;
+
+                if (isBoss)
+                {
+                    return stateWarrior;
+                }
+                else
+                {
+                    enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                    return statePursue;
+                }
                 /*if (combo)
                 {
                     randNum = Random.Range(0, 3);

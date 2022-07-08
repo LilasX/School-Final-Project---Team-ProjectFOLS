@@ -1,5 +1,134 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &227055888067233012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5479898495346780261}
+  - component: {fileID: 7067959145702168823}
+  m_Layer: 0
+  m_Name: BoulderSpawnFL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5479898495346780261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227055888067233012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3810998817510636799}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7067959145702168823
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227055888067233012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &393970918627381731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4699453268009815361}
+  - component: {fileID: 2794007947242568378}
+  m_Layer: 0
+  m_Name: StateAttackMagicFallRandom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4699453268009815361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393970918627381731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2794007947242568378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393970918627381731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5030409db3065c4c8fddcfba889796b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 8489083882165349609}
+  stateWaiting: {fileID: 7156847913494611106}
+  stateWarrior: {fileID: 2021087330388109871}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 4471924890309222795, guid: a8ce36543e39098419d01c8b67edd68f, type: 3}
+  spellSpawn: {fileID: 0}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 3579076600062096018}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 1
+  character: {fileID: 3579076600052755578}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  isPooling: 1
+  pathPointList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  foundPlayerID: 0
+  count: 0
+  isRandom: 1
 --- !u!1 &741705319026095497
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +140,7 @@ GameObject:
   - component: {fileID: 95227320906098812}
   - component: {fileID: 7357813823131482986}
   m_Layer: 0
-  m_Name: StateAttackRangeWave
+  m_Name: StateAttackMagicWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +159,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7357813823131482986
 MonoBehaviour:
@@ -44,13 +173,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d304351da47e443811a32830195cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
   stateWaiting: {fileID: 7156847913494611106}
+  stateWarrior: {fileID: 2021087330388109871}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 7479229380263031121, guid: 4e28aba269915be49ab8a182d748694b, type: 3}
   spellSpawn: {fileID: 6336153115743787800}
-  spellSign: {fileID: 206246605819822299, guid: 4df3e95ae92a5ec4a93b974b5fc7a6e0, type: 3}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
@@ -60,12 +190,97 @@ MonoBehaviour:
   isProjectile: 0
   projectileSpeed: 0
   combo: 0
-  coolDown: 0
-  coolTime: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 1
   character: {fileID: 3579076600052755578}
-  defaultMat: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
-  signMat: {fileID: 2100000, guid: 471078a3097aec349bff8057b204ec81, type: 2}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
   isPooling: 0
+--- !u!1 &1328601093297975219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 948888833716869780}
+  - component: {fileID: 4882939011360258449}
+  m_Layer: 0
+  m_Name: StateAttackMagicFallPrecise
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &948888833716869780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328601093297975219}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4882939011360258449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328601093297975219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5030409db3065c4c8fddcfba889796b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 8489083882165349609}
+  stateWaiting: {fileID: 7156847913494611106}
+  stateWarrior: {fileID: 2021087330388109871}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 4471924890309222795, guid: a8ce36543e39098419d01c8b67edd68f, type: 3}
+  spellSpawn: {fileID: 0}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 3579076600062096018}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 1
+  character: {fileID: 3579076600052755578}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  isPooling: 1
+  pathPointList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  foundPlayerID: 0
+  count: 0
+  isRandom: 0
 --- !u!1 &1447365944868939700
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +311,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 11
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &540656368319665192
 MonoBehaviour:
@@ -149,7 +364,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 10
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8225589752207758259
 MonoBehaviour:
@@ -163,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c51038811afbbd47b3fa97cb528b838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
   once1: 0
   once2: 0
   anim: {fileID: 3579076600062096018}
@@ -171,9 +386,17 @@ MonoBehaviour:
   knockedMat: {fileID: 2100000, guid: 6485d0340d49552408fafd20e5188f72, type: 2}
   stateMeleeLight: {fileID: 4224099180244508620}
   stateMeleeHeavy: {fileID: 8512332469694304842}
-  stateRangeThrow: {fileID: 9007328443739330453}
+  stateMeleeCharge: {fileID: 3566339136208351595}
+  stateRangeThrow: {fileID: 101240047143293645}
+  stateRangeSpreadF: {fileID: 6295499396539738154}
+  stateRangeSpreadW: {fileID: 5752673199837123104}
   stateMagicWave: {fileID: 7357813823131482986}
-  stateMagicQuake: {fileID: 2797602314039654727}
+  stateMagicQuake: {fileID: 308380874577961046}
+  stateMagicQuakeV2: {fileID: 2797602314039654727}
+  stateMagicFallRandom: {fileID: 2794007947242568378}
+  stateMagicFallPrecise: {fileID: 4882939011360258449}
+  stateMagicBlast: {fileID: 7220510916685053787}
+  stateWarrior: {fileID: 2021087330388109871}
 --- !u!1 &1652879903598190804
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +408,7 @@ GameObject:
   - component: {fileID: 4023220076510810342}
   - component: {fileID: 2797602314039654727}
   m_Layer: 0
-  m_Name: StateAttackRangeQuake
+  m_Name: StateAttackMagicQuakeV2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +427,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 9
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2797602314039654727
 MonoBehaviour:
@@ -218,13 +441,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4f9cef28974f642a051030c20c262f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
   stateWaiting: {fileID: 7156847913494611106}
+  stateWarrior: {fileID: 2021087330388109871}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
-  spell: {fileID: 4100321554669386465, guid: f0951ae1b8d842546b3149e478b352a9, type: 3}
+  spell: {fileID: 152204310610888141, guid: c0d5526c88cd111478bc465bedd1dfc1, type: 3}
   spellSpawn: {fileID: 6336153115743787800}
-  spellSign: {fileID: 206246605819822299, guid: 4df3e95ae92a5ec4a93b974b5fc7a6e0, type: 3}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
@@ -234,12 +458,14 @@ MonoBehaviour:
   isProjectile: 0
   projectileSpeed: 0
   combo: 0
-  coolDown: 0
-  coolTime: 0
+  coolDown: 1
+  coolTime: 3
+  isBoss: 1
   character: {fileID: 3579076600052755578}
-  defaultMat: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
-  signMat: {fileID: 2100000, guid: 7d33afaccbace35499be80613e1bcadb, type: 2}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
   isPooling: 0
+  version2: 0
 --- !u!1 &1835933127984624359
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7574247402563260913}
-  - component: {fileID: 9007328443739330453}
+  - component: {fileID: 101240047143293645}
   m_Layer: 0
   m_Name: StateAttackRangeThrow
   m_TagString: Untagged
@@ -270,9 +496,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7251639272593070510}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9007328443739330453
+--- !u!114 &101240047143293645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,10 +507,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835933127984624359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: e635707435adff74f9b6f457e3ced499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
   stateRange02: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   rangePos: {x: 0, y: 0, z: 0}
@@ -302,6 +528,91 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 3579076600062096018}
   combo: 0
+  isPooling: 0
+  stateWarrior: {fileID: 2021087330388109871}
+  stateWaiting: {fileID: 7156847913494611106}
+  isBoss: 1
+  ranged2: {fileID: 0}
+  ranged3: {fileID: 0}
+  projectileSpawn2: {fileID: 227055888067233012}
+  projectileSpawn3: {fileID: 8965618651147423751}
+  isShootingPooling: 0
+  iSPOnce1: 0
+  iSPOnce2: 0
+  isShootingInstant: 0
+  iSIOnce1: 0
+  iSIOnce2: 0
+  multiShot: 0
+  coolDown: 1
+  coolTime: 1
+  timer: 0
+--- !u!1 &2401773473234830755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2268460049808058594}
+  - component: {fileID: 7220510916685053787}
+  m_Layer: 0
+  m_Name: StateAttackMagicBlast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2268460049808058594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401773473234830755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7220510916685053787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401773473234830755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 8489083882165349609}
+  stateWaiting: {fileID: 7156847913494611106}
+  stateWarrior: {fileID: 2021087330388109871}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 9200888226530340822, guid: 85c62369df8652c4aa73bca2cc512062, type: 3}
+  spellSpawn: {fileID: 7911182035086666816}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 3579076600062096018}
+  isProjectile: 1
+  projectileSpeed: 16
+  combo: 0
+  coolDown: 1
+  coolTime: 1
+  isBoss: 1
+  character: {fileID: 3579076600052755578}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
   isPooling: 0
 --- !u!1 &3205221632402484855
 GameObject:
@@ -416,6 +727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
+  isEnemy: 1
   canDmg: 0
   otherObject: {fileID: 0}
 --- !u!54 &8677266001250683193
@@ -448,6 +760,51 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43443467492277392, guid: fa0fb4807aabcbc49bfffee5a5cfbbff, type: 2}
+--- !u!1 &3251145512036171868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5277384729704034452}
+  - component: {fileID: 3731492032406723966}
+  m_Layer: 0
+  m_Name: BoulderSpawnRL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5277384729704034452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251145512036171868}
+  m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
+  m_LocalPosition: {x: -0.5, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3810998817510636799}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
+--- !u!135 &3731492032406723966
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251145512036171868}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3579076600052681954
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,8 +817,8 @@ GameObject:
   - component: {fileID: 3579076600062096018}
   - component: {fileID: 3579076600062096021}
   - component: {fileID: 3579076600062096023}
-  - component: {fileID: 3579076600062096016}
   - component: {fileID: 3491374443437746150}
+  - component: {fileID: 3579076600062096016}
   - component: {fileID: 6233634001185735642}
   m_Layer: 0
   m_Name: Goblin_Warrior
@@ -546,37 +903,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3579076600062096016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3579076600052681954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4ca358e5404bab4ba80ee99134a2e53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundBox:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  spawningBox: 0
-  agent: {fileID: 3579076600062096023}
-  player: {fileID: 0}
-  manager: {fileID: 0}
-  liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
-  enemyAnim: {fileID: 3579076600062096018}
-  currState: {fileID: 7251639271291498042}
-  stateWander: {fileID: 7251639271291498042}
-  stateWaiting: {fileID: 7156847913494611106}
-  stateStart: {fileID: 4143823324001286029}
-  stateDeath: {fileID: 540656368319665192}
-  stateKnocked: {fileID: 8225589752207758259}
-  earthWave: 0
-  earthQuake: 0
-  stateMagicWave: {fileID: 7357813823131482986}
-  stateMagicQuake: {fileID: 2797602314039654727}
 --- !u!114 &3491374443437746150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,12 +925,47 @@ MonoBehaviour:
   slider: {fileID: 7251639272396716338}
   cameraMain: {fileID: 0}
   isPooling: 0
+  canHurt: 1
   melee:
   - {fileID: 3205221632402484855}
   - {fileID: 4850359353970465452}
   onceDeath: 0
   attack: 0
   die: 0
+--- !u!114 &3579076600062096016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579076600052681954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ca358e5404bab4ba80ee99134a2e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundBox:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  spawningBox: 0
+  agent: {fileID: 3579076600062096023}
+  player: {fileID: 0}
+  manager: {fileID: 0}
+  poolingManager: {fileID: 0}
+  pathManager: {fileID: 0}
+  sensorManager: {fileID: 0}
+  liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
+  enemyAnim: {fileID: 3579076600062096018}
+  currState: {fileID: 0}
+  stateWander: {fileID: 0}
+  stateWaiting: {fileID: 7156847913494611106}
+  stateStart: {fileID: 4143823324001286029}
+  stateDeath: {fileID: 540656368319665192}
+  stateKnocked: {fileID: 8225589752207758259}
+  earthWave: 0
+  earthQuake: 0
+  stateMagicWave: {fileID: 7357813823131482986}
+  stateMagicQuake: {fileID: 2797602314039654727}
 --- !u!114 &6233634001185735642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3333,6 +3694,51 @@ Transform:
   m_Father: {fileID: 3579076600052482150}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4069533365535885876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2390217649798831078}
+  - component: {fileID: 1672530125507949041}
+  m_Layer: 0
+  m_Name: BoulderSpawnRR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2390217649798831078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069533365535885876}
+  m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0.5, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3810998817510636799}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
+--- !u!135 &1672530125507949041
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069533365535885876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4850359353970465452
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,6 +3852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
+  isEnemy: 1
   canDmg: 0
   otherObject: {fileID: 0}
 --- !u!54 &4955844075275769792
@@ -3522,12 +3929,298 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e608d1f61dcd3546bafc38104ee2826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
+  stateWarrior: {fileID: 2021087330388109871}
   start: 0
+  isBoss: 1
   once: 0
   magicCoolDown: 0
   timer: 0
   coolTime: 0
+--- !u!1 &5314695081225944666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4095106966009198164}
+  - component: {fileID: 6295499396539738154}
+  m_Layer: 0
+  m_Name: StateAttackRangeSpreadF
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4095106966009198164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314695081225944666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6295499396539738154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314695081225944666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e635707435adff74f9b6f457e3ced499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 8489083882165349609}
+  stateRange02: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  rangePos: {x: 0, y: 0, z: 0}
+  ranged: {fileID: 0}
+  projectile: {fileID: 6301398141151204176, guid: 2cc7e8bef63a2b641b8324156ee16cf7, type: 3}
+  projectileSpawn: {fileID: 7911182035086666816}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randomX: 0
+  randomZ: 0
+  rangeDistance: 0
+  playerDistance: 0
+  randNum: 0
+  anim: {fileID: 3579076600062096018}
+  combo: 0
+  isPooling: 0
+  stateWarrior: {fileID: 2021087330388109871}
+  stateWaiting: {fileID: 7156847913494611106}
+  isBoss: 1
+  ranged2: {fileID: 0}
+  ranged3: {fileID: 0}
+  projectileSpawn2: {fileID: 227055888067233012}
+  projectileSpawn3: {fileID: 8965618651147423751}
+  isShootingPooling: 0
+  iSPOnce1: 0
+  iSPOnce2: 0
+  isShootingInstant: 0
+  iSIOnce1: 0
+  iSIOnce2: 0
+  multiShot: 1
+  coolDown: 1
+  coolTime: 1
+  timer: 0
+--- !u!1 &5451393715635829989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277579398372985134}
+  - component: {fileID: 3566339136208351595}
+  m_Layer: 0
+  m_Name: StateAttackMeleeCharge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1277579398372985134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451393715635829989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3566339136208351595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451393715635829989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8c7daf3f76688418c0870b1b90e8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 8489083882165349609}
+  stateWarrior: {fileID: 2021087330388109871}
+  isBoss: 1
+  once1: 0
+  once2: 0
+  playerDistance: 0
+  chargeDistance: 0
+  anim: {fileID: 3579076600062096018}
+  damage: 0
+  pathPoint: {fileID: 0}
+  playerSensorID: 0
+--- !u!1 &5885454926221148054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8089344342975290265}
+  - component: {fileID: 5752673199837123104}
+  m_Layer: 0
+  m_Name: StateAttackRangeSpreadW
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8089344342975290265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885454926221148054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5752673199837123104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885454926221148054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e635707435adff74f9b6f457e3ced499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 8489083882165349609}
+  stateRange02: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  rangePos: {x: 0, y: 0, z: 0}
+  ranged: {fileID: 0}
+  projectile: {fileID: 6301398141151204176, guid: 2cc7e8bef63a2b641b8324156ee16cf7, type: 3}
+  projectileSpawn: {fileID: 7911182035086666816}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randomX: 0
+  randomZ: 0
+  rangeDistance: 0
+  playerDistance: 0
+  randNum: 0
+  anim: {fileID: 3579076600062096018}
+  combo: 0
+  isPooling: 0
+  stateWarrior: {fileID: 2021087330388109871}
+  stateWaiting: {fileID: 7156847913494611106}
+  isBoss: 1
+  ranged2: {fileID: 0}
+  ranged3: {fileID: 0}
+  projectileSpawn2: {fileID: 3251145512036171868}
+  projectileSpawn3: {fileID: 4069533365535885876}
+  isShootingPooling: 0
+  iSPOnce1: 0
+  iSPOnce2: 0
+  isShootingInstant: 0
+  iSIOnce1: 0
+  iSIOnce2: 0
+  multiShot: 1
+  coolDown: 1
+  coolTime: 1
+  timer: 0
+--- !u!1 &6184815667602174788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5047588968457947287}
+  - component: {fileID: 308380874577961046}
+  m_Layer: 0
+  m_Name: StateAttackMagicQuake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5047588968457947287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184815667602174788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7251639272593070510}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &308380874577961046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184815667602174788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4f9cef28974f642a051030c20c262f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 8489083882165349609}
+  stateWaiting: {fileID: 7156847913494611106}
+  stateWarrior: {fileID: 2021087330388109871}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 4100321554669386465, guid: f0951ae1b8d842546b3149e478b352a9, type: 3}
+  spellSpawn: {fileID: 6336153115743787800}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 3579076600062096018}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 1
+  character: {fileID: 3579076600052755578}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  isPooling: 0
+  version2: 0
 --- !u!1 &6336153115743787800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,7 +4251,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3810998817510636799}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5900971417788960070
 BoxCollider:
@@ -3617,12 +4310,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d861a70c7426f443a104139a9332e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
   stateMeleeLight: {fileID: 4224099180244508620}
   stateMeleeHeavy: {fileID: 8512332469694304842}
-  stateRangeBoulder: {fileID: 9007328443739330453}
-  stateMagicQuake: {fileID: 2797602314039654727}
+  stateMeleeCharge: {fileID: 3566339136208351595}
+  stateRangeBoulder: {fileID: 101240047143293645}
+  stateRangeBoulderSpreadFront: {fileID: 6295499396539738154}
+  stateRangeBoulderSpreadWide: {fileID: 5752673199837123104}
+  stateMagicQuake: {fileID: 308380874577961046}
+  stateMagicQuakeV2: {fileID: 2797602314039654727}
   stateMagicWave: {fileID: 7357813823131482986}
+  stateMagicFallRandom: {fileID: 2794007947242568378}
+  stateMagicFallPrecise: {fileID: 4882939011360258449}
+  stateMagicBlast: {fileID: 7220510916685053787}
   playerDistance: 0
   hp: 0
   hpMax: 0
@@ -3637,7 +4337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7251639271291498041}
-  - component: {fileID: 7251639271291498042}
+  - component: {fileID: 5952430861838528941}
   m_Layer: 0
   m_Name: StateWander
   m_TagString: Untagged
@@ -3660,7 +4360,7 @@ Transform:
   m_Father: {fileID: 7251639272593070510}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7251639271291498042
+--- !u!114 &5952430861838528941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3672,7 +4372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f62b60ba9530b4ea341b13a61650a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
   playerDistance: 0
@@ -3689,7 +4389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7251639271889053192}
-  - component: {fileID: 7251639271889053193}
+  - component: {fileID: 8489083882165349609}
   m_Layer: 0
   m_Name: StatePursue
   m_TagString: Untagged
@@ -3712,7 +4412,7 @@ Transform:
   m_Father: {fileID: 7251639272593070510}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7251639271889053193
+--- !u!114 &8489083882165349609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3721,7 +4421,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7251639271889053194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b407da0b5d5f674781d0bb578dc42cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a96bc940c5163a4eb22193ee9cf5513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateMelee: {fileID: 0}
@@ -3731,6 +4431,8 @@ MonoBehaviour:
   stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
+  pathPoint: {fileID: 0}
+  pathDistance: 0
 --- !u!1 &7251639272149403242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4008,9 +4710,16 @@ Transform:
   - {fileID: 7251639271268131537}
   - {fileID: 8203463760639901544}
   - {fileID: 3417620158005020032}
+  - {fileID: 1277579398372985134}
   - {fileID: 7574247402563260913}
+  - {fileID: 4095106966009198164}
+  - {fileID: 8089344342975290265}
+  - {fileID: 2268460049808058594}
   - {fileID: 95227320906098812}
+  - {fileID: 5047588968457947287}
   - {fileID: 4023220076510810342}
+  - {fileID: 4699453268009815361}
+  - {fileID: 948888833716869780}
   - {fileID: 3034261811580574926}
   - {fileID: 2929039741205156475}
   m_Father: {fileID: 3579076600052452694}
@@ -4198,14 +4907,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871a5ad834a87f4449245efdd3955847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
   stateMelee02: {fileID: 8512332469694304842}
+  stateWarrior: {fileID: 2021087330388109871}
+  isBoss: 1
   once1: 0
   once2: 0
   once3: 0
   playerDistance: 0
   anim: {fileID: 3579076600062096018}
   randNum: 0
+  damage: 0
 --- !u!1 &7757443187439207271
 GameObject:
   m_ObjectHideFlags: 0
@@ -4250,16 +4962,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6683b3cdcea1a704d91998d809374865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
+  character: {fileID: 3579076600052755578}
+  dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
+  cutoffValue: 1
+  spawnVFXInstant: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
+  spawnVFX: {fileID: 0}
+  timer: 0
+  once: 0
+  onceI: 0
+  onceP: 0
+  start: 0
   stateWaiting: {fileID: 7156847913494611106}
-  stateWander: {fileID: 7251639271291498042}
-  statePursue: {fileID: 7251639271889053193}
+  stateWander: {fileID: 5952430861838528941}
+  statePursue: {fileID: 8489083882165349609}
   stateKnocked: {fileID: 8225589752207758259}
   stateDeath: {fileID: 540656368319665192}
   stateMeleeLight: {fileID: 4224099180244508620}
   stateMeleeHeavy: {fileID: 8512332469694304842}
-  stateRangeThrow: {fileID: 9007328443739330453}
+  stateMeleeCharge: {fileID: 3566339136208351595}
+  stateRangeThrow: {fileID: 101240047143293645}
+  stateRangeSpreadF: {fileID: 6295499396539738154}
+  stateRangeSpreadW: {fileID: 5752673199837123104}
   stateMagicWave: {fileID: 7357813823131482986}
-  stateMagicQuake: {fileID: 2797602314039654727}
+  stateMagicQuake: {fileID: 308380874577961046}
+  stateMagicQuakeV2: {fileID: 2797602314039654727}
+  stateMagicFallRandom: {fileID: 2794007947242568378}
+  stateMagicFallPrecise: {fileID: 4882939011360258449}
+  stateMagicBlast: {fileID: 7220510916685053787}
 --- !u!1 &7911182035086666816
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,7 +5001,7 @@ GameObject:
   - component: {fileID: 6689316863430778476}
   - component: {fileID: 2968097883257716558}
   m_Layer: 0
-  m_Name: BoulderSpawn
+  m_Name: BoulderSpawnFC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4334,10 +5064,59 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6689316863430778476}
+  - {fileID: 5900045433227531485}
+  - {fileID: 5479898495346780261}
+  - {fileID: 2390217649798831078}
+  - {fileID: 5277384729704034452}
   - {fileID: 7121215308759883735}
   m_Father: {fileID: 3579076600052452694}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8965618651147423751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5900045433227531485}
+  - component: {fileID: 5833879762319948493}
+  m_Layer: 0
+  m_Name: BoulderSpawnFR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5900045433227531485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965618651147423751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3810998817510636799}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5833879762319948493
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965618651147423751}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9186510365119116602
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,9 +5161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432356dbd74042240898ffc42db5467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 7251639271889053193}
+  statePursue: {fileID: 8489083882165349609}
+  stateWarrior: {fileID: 2021087330388109871}
+  isBoss: 1
   once1: 0
   once2: 0
   once3: 0
   playerDistance: 0
   anim: {fileID: 3579076600062096018}
+  damage: 0

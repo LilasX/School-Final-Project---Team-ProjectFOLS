@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class StateAttackMelee02 : EnemyState
 {
-    public StatePursue statePursue;
+    public StatePursue statePursue; 
+    public StateAttack stateWarrior;
+    public bool isBoss = false;
     private Vector3 target;
     public bool once1 = false;
     public bool once2 = false;
     public bool once3 = false;
     public float playerDistance = 0;
     public Animator anim;
+    public float damage;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -76,8 +79,16 @@ public class StateAttackMelee02 : EnemyState
                 once1 = false;
                 once2 = false;
                 once3 = false;
-                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
-                return statePursue;
+
+                if (isBoss)
+                {
+                    return stateWarrior;
+                }
+                else
+                {
+                    enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                    return statePursue;
+                }
             }
         }
 

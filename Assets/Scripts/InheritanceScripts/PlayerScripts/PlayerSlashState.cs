@@ -21,6 +21,7 @@ public class PlayerSlashState : IPlayerBaseState
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.SlashVelocity * playerEntityInstance.slashSpeed * Time.deltaTime);
         playerEntityInstance.Animator.SetBool("Slash", true);
         playerEntityInstance.hasRequestedSlash = true;
+        gameManager.slashHasBeenUsed = true;
     }
 
     public void EnterState()
@@ -36,6 +37,7 @@ public class PlayerSlashState : IPlayerBaseState
         {
             playerEntityInstance.Animator.SetBool("Slash", false);
             playerEntityInstance.slashTimer = 0f;
+            gameManager.slashHasBeenUsed = false;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

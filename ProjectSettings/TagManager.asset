@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Stick
   - Wall
+  - Trap
   layers:
   - Default
   - TransparentFX

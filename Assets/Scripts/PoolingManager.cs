@@ -10,6 +10,7 @@ public class PoolingManager : MonoBehaviour
 
     public bool isPooling = false;
     public GameObject[] waveSpawnerList = new GameObject[2];
+    public GameObject bossSpawner;
 
     //Enemy Character
     public GameObject[] goblinMeleeList = new GameObject[6];
@@ -29,15 +30,20 @@ public class PoolingManager : MonoBehaviour
     public GameObject[] fireBombList = new GameObject[4];
     public GameObject[] fireWallList = new GameObject[4];
     public GameObject[] fireFloorList = new GameObject[4];
-    public GameObject[] fireWaveList = new GameObject[2];
-    public GameObject[] lightningStrikeList = new GameObject[2];
-    public GameObject[] lightningFieldList = new GameObject[2];
-    public GameObject[] lightningWaveList = new GameObject[2];
-    public GameObject[] earthQuakeList = new GameObject[2];
-    public GameObject[] earthQuakeV2List = new GameObject[2];
-    public GameObject[] earthStompList = new GameObject[2];
-    public GameObject[] earthWaveList = new GameObject[2];
-    public GameObject[] boulderThrowList = new GameObject[4];
+    public GameObject[] fireWaveList = new GameObject[3];
+    public GameObject[] lightningStrikeList = new GameObject[3];
+    public GameObject[] lightningFieldList = new GameObject[3];
+    public GameObject[] lightningWaveList = new GameObject[3];
+    public GameObject[] earthQuakeList = new GameObject[3];
+    public GameObject[] earthQuakeV2List = new GameObject[3];
+    public GameObject[] earthStompList = new GameObject[3];
+    public GameObject[] earthWaveList = new GameObject[3];
+    public GameObject[] boulderThrowList = new GameObject[8];
+    public GameObject[] boulderFallList = new GameObject[12];
+    public GameObject[] boulderBlastList = new GameObject[6];
+
+    //Enemy VFX
+    public GameObject[] spawnVFXList = new GameObject[8];
 
     private void Awake()
     {
@@ -369,6 +375,50 @@ public class PoolingManager : MonoBehaviour
         SetIsPooling(boulderThrowList[0]);
         return boulderThrowList[0];
     }
+    public GameObject callBoulderFall()
+    {
+        for (int i = 0; i < boulderFallList.Length; i++)
+        {
+            if (!boulderFallList[i].activeInHierarchy)
+            {
+                SetIsPooling(boulderFallList[i]);
+                return boulderFallList[i];
+            }
+        }
+
+        SetIsPooling(boulderFallList[0]);
+        return boulderFallList[0];
+    }
+
+    public GameObject callBoulderBlast()
+    {
+        for (int i = 0; i < boulderBlastList.Length; i++)
+        {
+            if (!boulderBlastList[i].activeInHierarchy)
+            {
+                SetIsPooling(boulderBlastList[i]);
+                return boulderBlastList[i];
+            }
+        }
+
+        SetIsPooling(boulderBlastList[0]);
+        return boulderBlastList[0];
+    }
+
+    public GameObject callSpawnVFX()
+    {
+        for (int i = 0; i < spawnVFXList.Length; i++)
+        {
+            if (!spawnVFXList[i].activeInHierarchy)
+            {
+                SetIsPooling(spawnVFXList[i]);
+                return spawnVFXList[i];
+            }
+        }
+
+        SetIsPooling(spawnVFXList[0]);
+        return spawnVFXList[0];
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -379,6 +429,7 @@ public class PoolingManager : MonoBehaviour
             {
                 waveSpawnerList[i].GetComponent<WaveSpawner>().isPooling = true;
             }
+            bossSpawner.GetComponent<BossSpawner>().isPooling = true;
         }
     }
 

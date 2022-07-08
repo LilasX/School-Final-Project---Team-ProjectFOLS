@@ -150,6 +150,8 @@ MonoBehaviour:
   spellZone: []
   start: 0
   timer: 0
+  posOrigin: {fileID: 0}
+  isPooling: 0
   burn: {fileID: 6584915788201928906}
 --- !u!54 &4523488495206472016
 Rigidbody:
@@ -313,13 +315,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: 1
   typeRange: 1
+  posOrigin: {fileID: 0}
+  isPooling: 0
   dmg: 0
+  canDmg: 0
   canDmgSphere: 0
   canDmgArrow: 0
   canDmgLance: 0
   canDmgWall: 0
   canDmgFloor: 0
   canDmgWave: 0
+  useRange: 0
+  timer: 0
   timerWall: 0
   timerFloor: 0
   timerWave: 0
@@ -368,7 +375,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 3
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5274,7 +5281,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

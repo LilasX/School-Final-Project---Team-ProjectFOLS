@@ -42,7 +42,7 @@ public class StateAttackRange01 : EnemyState
         }
 
         //Look At Player & Shoot Animation
-        if ((playerDistance >= 7f || rangeDistance <= enemyBehaviour.agent.stoppingDistance) && !once2)
+        if ((playerDistance >= 7f || playerDistance <= 3f || rangeDistance <= enemyBehaviour.agent.stoppingDistance) && !once2)
         {
             target = new Vector3(enemyBehaviour.player.transform.position.x, enemyBehaviour.gameObject.transform.position.y, enemyBehaviour.player.transform.position.z);
             enemyBehaviour.gameObject.transform.LookAt(target);

@@ -7,9 +7,16 @@ public class StateAttackStart_GoblinWarrior : StateAttack
     public StatePursue statePursue;
     public StateAttackMelee01 stateMeleeLight;
     public StateAttackMelee02 stateMeleeHeavy;
+    public StateAttackMeleeCharge stateMeleeCharge;
     public StateAttackRange02 stateRangeBoulder;
+    public StateAttackRange02 stateRangeBoulderSpreadFront;
+    public StateAttackRange02 stateRangeBoulderSpreadWide;
     public StateAttackMagic stateMagicQuake;
+    public StateAttackMagic stateMagicQuakeV2;
     public StateAttackMagic stateMagicWave;
+    public StateAttackMagic stateMagicFallRandom;
+    public StateAttackMagic stateMagicFallPrecise;
+    public StateAttackMagic stateMagicBlast;
     public float playerDistance;
     public int hp;
     public int hpMax;
@@ -27,7 +34,7 @@ public class StateAttackStart_GoblinWarrior : StateAttack
         playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
         hp = enemyBehaviour.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
 
-        if (hp <= 60 /*30% (hpMax *30 /100)*/) //At Low Health
+        if (hp <= 90 /*30% (hpMax *30 /100)*/) //At Low Health
         {
             if (playerDistance <= 3) //Close to Boss
             {
@@ -35,28 +42,60 @@ public class StateAttackStart_GoblinWarrior : StateAttack
                 switch (randNum)
                 {
                     case 0:
-                        return stateMagicQuake;
                     case 1:
+                        return stateMeleeLight;
                     case 2:
                         return stateMeleeHeavy;
+                    case 3:
+                        return stateRangeBoulderSpreadWide;
+                    case 4:
+                        return stateMagicQuakeV2;
                     default:
-                        return stateMeleeLight;
+                        return statePursue;
                 }
             }
-            else //Any Situations
+            else //Far From Boss
             {
-                randNum = Random.Range(0, 6);
-                switch (randNum)
+                if (enemyBehaviour.sensorManager.CheckPlayerDistanceFar()) //Long Range
                 {
-                    case 0:
-                        return stateMagicWave;
-                    case 1:
-                        return stateMeleeHeavy;
-                    case 2:
-                    case 3:
-                        return stateRangeBoulder;
-                    default:
-                        return stateMeleeLight;
+                    randNum = Random.Range(0, 5);
+                    switch (randNum)
+                    {
+                        case 0:
+                        case 1:
+                            return stateMagicFallPrecise;
+                        case 2:
+                            return stateRangeBoulder;
+                        case 3:
+                            return stateRangeBoulderSpreadFront;
+                        case 4:
+                            //return stateMeleeCharge;
+                        default:
+                            return statePursue;
+
+                    }
+                }
+                else //Mid Range
+                {
+                    randNum = Random.Range(0, 8);
+                    switch (randNum)
+                    {
+                        case 0:
+                        case 1:
+                            return stateRangeBoulder;
+                        case 2:
+                            return stateRangeBoulderSpreadFront;
+                        case 3:
+                            return stateRangeBoulderSpreadWide;
+                        case 4:
+                            return stateMagicBlast;
+                        case 5:
+                            return stateMagicWave;
+                        case 6:
+                            return stateMagicFallRandom;
+                        default:
+                            return statePursue;
+                    }
                 }
             }
         } 
@@ -64,27 +103,52 @@ public class StateAttackStart_GoblinWarrior : StateAttack
         {
             if (playerDistance <= 3) //Close to Boss
             {
-                randNum = Random.Range(0, 6);
+                randNum = Random.Range(0, 5);
                 switch (randNum)
                 {
                     case 0:
-                        return stateMeleeHeavy;
-                    default:
+                    case 1:
                         return stateMeleeLight;
+                    case 2:
+                        return stateMeleeHeavy;
+                    case 3:
+                        return stateMagicQuake;
+                    default:
+                        return statePursue;
                 }
             }
-            else //Any Situations
+            else //Far From Boss
             {
-                randNum = Random.Range(0, 6);
-                switch (randNum)
+                if (enemyBehaviour.sensorManager.CheckPlayerDistanceFar()) //Long Range
                 {
-                    case 0:
-                        return stateMeleeHeavy;
-                    case 1:
-                    case 2:
-                        return stateRangeBoulder;
-                    default:
-                        return stateMeleeLight;
+                    randNum = Random.Range(0, 4);
+                    switch (randNum)
+                    {
+                        case 0:
+                        case 1:
+                            return stateMagicFallPrecise;
+                        case 2:
+                            return stateRangeBoulder;
+                        default:
+                            return statePursue;
+
+                    }
+                }
+                else //Mid Range
+                {
+                    randNum = Random.Range(0, 5);
+                    switch (randNum)
+                    {
+                        case 0:
+                        case 1:
+                            return stateRangeBoulder;
+                        case 2:
+                            return stateRangeBoulderSpreadFront;
+                        case 3:
+                            return stateMagicWave;
+                        default:
+                            return statePursue;
+                    }
                 }
             }
         }

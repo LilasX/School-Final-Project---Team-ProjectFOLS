@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
   stateWaiting: {fileID: 7932779427009352171}
+  stateWarrior: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 5489408164426829969, guid: 2e5e8d2e6f2e3aa4287c53c696f7233b, type: 3}
@@ -159,6 +160,7 @@ MonoBehaviour:
   combo: 0
   coolDown: 1
   coolTime: 3
+  isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
@@ -310,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
   stateWaiting: {fileID: 7932779427009352171}
+  stateWarrior: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 5390382022434656551, guid: c471c7d4420d1064eb041be1b8787ab8, type: 3}
@@ -326,6 +329,7 @@ MonoBehaviour:
   combo: 0
   coolDown: 1
   coolTime: 4
+  isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
@@ -472,7 +476,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
+  stateWarrior: {fileID: 0}
   start: 0
+  isBoss: 0
   once: 0
   magicCoolDown: 0
   timer: 0
@@ -574,6 +580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
   stateWaiting: {fileID: 7932779427009352171}
+  stateWarrior: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 3299223172741919301, guid: 1cb179f9569e6994cb0267318f5836da, type: 3}
@@ -589,7 +596,8 @@ MonoBehaviour:
   projectileSpeed: 0
   combo: 0
   coolDown: 1
-  coolTime: 34
+  coolTime: 4
+  isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
@@ -908,6 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
   stateWaiting: {fileID: 7932779427009352171}
+  stateWarrior: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 5072883975102710703, guid: e6bbbcfab1da91d4bac64256da5c5043, type: 3}
@@ -924,6 +933,7 @@ MonoBehaviour:
   combo: 0
   coolDown: 1
   coolTime: 2
+  isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
@@ -1016,6 +1026,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d884d4e9714664f91f0fe4107b745f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: ea24e01b03f54464eadda8d044dc3d2e, type: 2}
+  character: {fileID: 6747795950847166892}
+  dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
+  cutoffValue: 3
+  spawnVFXInstant: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
+  spawnVFX: {fileID: 0}
+  timer: 0
+  once: 0
+  onceI: 0
+  onceP: 0
+  start: 0
   stateWaiting: {fileID: 0}
   stateWander: {fileID: 6734637619124556553}
   statePursue: {fileID: 3342772925535606146}
@@ -1161,6 +1182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
   stateWaiting: {fileID: 7932779427009352171}
+  stateWarrior: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 3831372202422053096, guid: bb6955abb8af41f42b6b49c588bf042e, type: 3}
@@ -1173,10 +1195,11 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 6747795950854689142}
   isProjectile: 1
-  projectileSpeed: 24
+  projectileSpeed: 20
   combo: 0
-  coolDown: 0
-  coolTime: 0
+  coolDown: 1
+  coolTime: 1
+  isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
@@ -1227,6 +1250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 3342772925535606146}
   stateWaiting: {fileID: 7932779427009352171}
+  stateWarrior: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   magic: {fileID: 0}
   spell: {fileID: 4527642962175130996, guid: effd1306c696f244390458e61c4b1ffb, type: 3}
@@ -1243,6 +1267,7 @@ MonoBehaviour:
   combo: 0
   coolDown: 1
   coolTime: 3
+  isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
@@ -3223,7 +3248,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -3250,6 +3275,9 @@ MonoBehaviour:
   agent: {fileID: 6020561587506622432}
   player: {fileID: 0}
   manager: {fileID: 0}
+  poolingManager: {fileID: 0}
+  pathManager: {fileID: 0}
+  sensorManager: {fileID: 0}
   liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   enemyAnim: {fileID: 6747795950854689142}
   currState: {fileID: 0}
@@ -3284,6 +3312,7 @@ MonoBehaviour:
   slider: {fileID: 3912245276124910553}
   cameraMain: {fileID: 0}
   isPooling: 0
+  canHurt: 1
   isGhost: 1
   canAttack: 0
   projectileSpawn: {fileID: 0}

@@ -5,7 +5,9 @@ using UnityEngine;
 public class StateWaiting : EnemyState
 {
     public StatePursue statePursue;
+    public StateAttack stateWarrior;
     public bool start = false;
+    public bool isBoss = false;
     public bool once = false;
     public bool magicCoolDown = false;
     public float timer = 0f;
@@ -37,7 +39,15 @@ public class StateWaiting : EnemyState
         {
             start = false;
             once = false;
-            return statePursue;
+
+            if (isBoss)
+            {
+                return stateWarrior;
+            }
+            else
+            {
+                return statePursue;
+            }
         }
 
         return this;

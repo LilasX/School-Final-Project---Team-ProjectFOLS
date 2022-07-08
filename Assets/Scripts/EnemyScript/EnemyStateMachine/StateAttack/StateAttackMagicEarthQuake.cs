@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StateAttackMagicEarthQuake : StateAttackMagic
 {
+    public bool version2;
+
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
         //Look At Player
@@ -20,7 +22,7 @@ public class StateAttackMagicEarthQuake : StateAttackMagic
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
             anim.SetTrigger("IsThrowing");
-            character.GetComponent<SkinnedMeshRenderer>().material = signMat;
+            //character.GetComponent<SkinnedMeshRenderer>().material = signMat;
             /*spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 spellSign.transform.position = spellSpawn.transform.position;
                 spellSign.transform.rotation = spellSpawn.transform.rotation;
@@ -34,16 +36,23 @@ public class StateAttackMagicEarthQuake : StateAttackMagic
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
                 once4 = false;
-                character.GetComponent<SkinnedMeshRenderer>().material = defaultMat;
+                //character.GetComponent<SkinnedMeshRenderer>().material = defaultMat;
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
                 // Code for launching rocks
                 if (isPooling)
                 {
-                    magic = enemyBehaviour.poolingManager.callEarthQuake();
+                    if (version2)
+                    {
+                        magic = enemyBehaviour.poolingManager.callEarthQuakeV2();
+                    }
+                    else
+                    {
+                        magic = enemyBehaviour.poolingManager.callEarthQuake();
+                    }
 
-                    spell.SetActive(true);
+                    magic.SetActive(true);
                     magic.transform.position = spellSpawn.transform.position;
                     magic.transform.rotation = spellSpawn.transform.rotation;
                     magic.GetComponent<Spell_EarthQuake>().StartSpell();
@@ -80,8 +89,16 @@ public class StateAttackMagicEarthQuake : StateAttackMagic
                 once2 = false;
                 once3 = false;
                 once4 = true;
-                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
-                return statePursue;
+
+                if (isBoss)
+                {
+                    return stateWarrior;
+                }
+                else
+                {
+                    enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                    return statePursue;
+                }
                 /*if (combo)
                 {
                     randNum = Random.Range(0, 3);

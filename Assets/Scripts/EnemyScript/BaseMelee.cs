@@ -98,15 +98,22 @@ public class BaseMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.player.GetComponent<PlayerEntity>().resetMeleeInputTimer >= 0.25f)
+        //if (gameManager.player.GetComponent<PlayerEntity>().resetMeleeInputTimer >= 0.3f)
+        //if (gameManager.player.GetComponent<PlayerEntity>().meleeTime >= 0.3f)
+
+
+        if (gameManager.testTimer >= 0.4f)
         {
+            Debug.Log("STRTED MELEE");
             if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
             {
+                Debug.Log("CLEARING");
                 gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Clear();
             }
         }
 
-        if (gameManager.player.GetComponent<PlayerEntity>().resetSlashInputTimer >= 0.5f)
+        //if (gameManager.player.GetComponent<PlayerEntity>().resetSlashInputTimer >= 0.5f)
+        if (gameManager.testTimer2 >= 0.6f)
         {
             if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
             {

@@ -6,6 +6,8 @@ public class StateAttackMelee01 : EnemyState
 {
     public StatePursue statePursue;
     public StateAttackMelee02 stateMelee02;
+    public StateAttack stateWarrior;
+    public bool isBoss = false;
     private Vector3 target;
     public bool once1 = false;
     public bool once2 = false;
@@ -13,6 +15,7 @@ public class StateAttackMelee01 : EnemyState
     public float playerDistance = 0;
     public Animator anim;
     public int randNum;
+    public float damage;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -78,14 +81,22 @@ public class StateAttackMelee01 : EnemyState
                 once1 = false;
                 once2 = false;
                 once3 = false;
-                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
-                randNum = Random.Range(0, 3);
-                switch (randNum)
+
+                if (isBoss)
                 {
-                    case 2:
-                        return stateMelee02;
-                    default:
-                        return statePursue;
+                    return stateWarrior;
+                }
+                else
+                {
+                    enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                    randNum = Random.Range(0, 3);
+                    switch (randNum)
+                    {
+                        case 2:
+                            return stateMelee02;
+                        default:
+                            return statePursue;
+                    }
                 }
             }
         }

@@ -123,6 +123,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     public bool hasBeenKnocked = false;
     public float resetKnockedInputTimer = 0f;
 
+
     public Material dodgeMaterial;
     public GameObject fxElectricity;
     //public GameObject meleePS;
@@ -131,6 +132,13 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     public int _currentMeleeDamage = 30;
     public int _currentSlashDamage = 10;
     public GameObject[] _possesedWeapons;
+
+    /// <summary>
+    public float knockBackForce;
+    //public float knockTime = 0f;
+    //public bool knockknock = false;
+
+    /// </summary>
 
     #endregion
 
@@ -254,9 +262,24 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         //SetCurrentWeapon();
 
+        //if (knockknock)
+        //{
+        //    knockTime += Time.deltaTime;
+        //    if(knockTime >= 1f)
+        //    {
+        //        Time.timeScale = 1f;
+        //        knockknock = false;
+        //        knockTime = 0f;
+        //    }
+        //}
+
     }
 
-
+    public void KnockBack(Vector3 direction)
+    {
+        move = direction * knockBackForce;
+        myCharacter.Move(move * Time.maximumDeltaTime);
+    }
 
     #region Actions
     public override void OnDeath()

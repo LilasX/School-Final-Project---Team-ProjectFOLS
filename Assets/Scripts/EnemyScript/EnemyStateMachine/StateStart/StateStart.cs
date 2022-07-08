@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class StateStart : EnemyState
 {
+    public Material defaultMat; 
+    public GameObject character;
+    public Material dissolveMat;
+    public float cutoffValue = 3;
+
+    public GameObject spawnVFXInstant;
+    public GameObject spawnVFX;
+    public float timer;
+    public bool once;
+    public bool onceI;
+    public bool onceP;
+    public bool start;
+
     public StateWaiting stateWaiting;
     public StateWander stateWander;
     public StatePursue statePursue;
