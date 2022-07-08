@@ -53,8 +53,9 @@ public class SwingingAxe : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
-            //Play knockback animation
+            Vector3 hitDirection = (other.transform.position - transform.position).normalized * 10f;
 
+            //Play knockback animation
             if (!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
             {
                 if (other.gameObject.GetComponent<PlayerEntity>().isInvincible)
@@ -66,7 +67,7 @@ public class SwingingAxe : MonoBehaviour
                 {
                     other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                     other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-                    //other.gameObject.GetComponent<PlayerEntity>().playerState.ChangeState(other.gameObject.GetComponent<PlayerEntity>().KnockedState);
+                    other.gameObject.GetComponent<PlayerEntity>().KnockBack(hitDirection);
                     other.gameObject.GetComponent<PlayerEntity>().OnHurt(20);
                 }
             }

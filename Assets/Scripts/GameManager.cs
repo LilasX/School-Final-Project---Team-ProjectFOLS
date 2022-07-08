@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
 
     private DataPersistenceManager dataPersistenceManager;
 
+    public float testTimer = 0f;
+    public bool meleeHasBeenUsed = false;
+    public float testTimer2 = 0f;
+    public bool slashHasBeenUsed = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -190,6 +195,24 @@ public class GameManager : MonoBehaviour
                 keyboard.SetActive(false);
                 gamePad.SetActive(true);
                 break;
+        }
+
+        if(meleeHasBeenUsed)
+        {
+            testTimer += Time.deltaTime;
+        }
+        else
+        {
+            testTimer = 0f;
+        }
+
+        if (slashHasBeenUsed)
+        {
+            testTimer2 += Time.deltaTime;
+        }
+        else
+        {
+            testTimer2 = 0f;
         }
     }
 

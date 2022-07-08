@@ -156,7 +156,7 @@ public class PlayerDefaultState : IPlayerBaseState
         if(playerEntityInstance.HasUsedMelee)
         {
             playerEntityInstance.resetMeleeInputTimer += Time.deltaTime;
-            if(playerEntityInstance.resetMeleeInputTimer >= 0.3f)
+            if(playerEntityInstance.resetMeleeInputTimer >= 0.5f)
             {
                 gameManager.inputManager.OnEnable();
                 playerEntityInstance.HasUsedMelee = false;
@@ -225,7 +225,7 @@ public class PlayerDefaultState : IPlayerBaseState
         if (playerEntityInstance.hasRequestedSlash)
         {
             playerEntityInstance.resetSlashInputTimer += Time.deltaTime;
-            if (playerEntityInstance.resetSlashInputTimer >= 0.75f)
+            if (playerEntityInstance.resetSlashInputTimer >= 1f)
             {
                 playerEntityInstance.hasRequestedSlash = false;
                 playerEntityInstance.resetSlashInputTimer = 0f;

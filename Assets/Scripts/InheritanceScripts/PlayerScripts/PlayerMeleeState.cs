@@ -27,6 +27,7 @@ public class PlayerMeleeState : IPlayerBaseState
         playerEntityInstance.MyCharacter.Move(playerEntityInstance.MeleeVelocity * playerEntityInstance.meleeSpeed * Time.deltaTime);
         playerEntityInstance.HasUsedMelee = true;
         playerEntityInstance.Animator.SetBool("Attack", true);
+        gameManager.meleeHasBeenUsed = true;
     }
 
     public void EnterState()
@@ -44,18 +45,21 @@ public class PlayerMeleeState : IPlayerBaseState
             playerEntityInstance.meleeTime = 0f;
             uiManager.SwordImage.SetActive(true);
             //playerEntityInstance.meleePS.SetActive(false);
+            gameManager.meleeHasBeenUsed = false;
+            gameManager.testTimer = 0f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }
 
     public void OnUpdate()
     {
+        ExitState();
+        
         if (playerEntityInstance.isKnocked)
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
         }
 
-        ExitState();
     }
 }
