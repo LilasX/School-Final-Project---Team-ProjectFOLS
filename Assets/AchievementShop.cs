@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AchievementShop : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class AchievementShop : MonoBehaviour
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
     [SerializeField] private GameObject AchievementMenu;
+    public Selectable backBtn;
 
     //private float Timer = 0;
     private bool insideTrigger = false;
@@ -63,6 +65,7 @@ public class AchievementShop : MonoBehaviour
             {
                 Debug.Log("activateMenu");
                 AchievementMenu.SetActive(true);
+                backBtn.Select();
             }
         }
 
@@ -76,5 +79,10 @@ public class AchievementShop : MonoBehaviour
                 _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
                 break;
         }
+    }
+
+    public void Back()
+    {
+        AchievementMenu.SetActive(false);
     }
 }

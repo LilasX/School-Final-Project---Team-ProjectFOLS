@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArmoryShopMenu : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ArmoryShopMenu : MonoBehaviour
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
     [SerializeField] private GameObject ArmoryMenu;
+
+    public Selectable BackBtn;
 
     Inventory inventory;
 
@@ -70,6 +73,7 @@ public class ArmoryShopMenu : MonoBehaviour
             {
                 Debug.Log("ArmoryMenu");
                 ArmoryMenu.SetActive(true);
+                BackBtn.Select();
             }
         }
 
@@ -96,5 +100,10 @@ public class ArmoryShopMenu : MonoBehaviour
     {
         //Player equip weapon
         activeWeaponCheckImg[index].SetActive(true);
+    }
+
+    public void Back()
+    {
+        ArmoryMenu.SetActive(false);
     }
 }

@@ -29,6 +29,8 @@ public class AchievementManager : MonoBehaviour
 
     public TMP_Text textPoints;
 
+    public Selectable backBtn;
+
 
     public int goblinsKilled;
 

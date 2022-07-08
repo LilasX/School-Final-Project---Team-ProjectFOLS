@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     private static UIManager instance;
     public GameObject AchievementMenu;
+    public GameObject ArmoryMenu;
 
     [SerializeField] private Slider hpBar;
     [SerializeField] private GameObject hpText;
@@ -35,6 +37,8 @@ public class UIManager : MonoBehaviour
     public bool isPaused;
 
     public GameObject[] uiObjects = null;
+
+    [SerializeField] private AudioMixer audioM = null;
 
     private void Awake()
     {
@@ -76,6 +80,15 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameManager = GameManager.instance;
+
+        //Deactivate panels
+        panels[0].SetActive(false);
+        panels[1].SetActive(false);
+
+        //Recuperate Audio
+       
+        float v = PlayerPrefs.GetFloat("VolMaster", 0);
+        audioM.SetFloat("VolMaster", v);
     }
 
     // Update is called once per frame
@@ -83,7 +96,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!AchievementMenu.activeInHierarchy)
+            if (!AchievementMenu.activeInHierarchy && !ArmoryMenu.activeInHierarchy)
             {
                 if (isPaused)
                 {
@@ -95,8 +108,16 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-    }
 
+        if (AchievementMenu.activeInHierarchy || ArmoryMenu.activeInHierarchy)
+        {
+            gameManager.player.GetComponent<PlayerEntity>().Speed = 0;
+        }
+        else
+        {
+            gameManager.player.GetComponent<PlayerEntity>().Speed = 6;
+        }
+    }
     public void ResumeGame()
     {
         panels[0].SetActive(false);
