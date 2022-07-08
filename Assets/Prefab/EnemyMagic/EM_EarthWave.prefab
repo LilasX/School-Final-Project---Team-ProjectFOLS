@@ -63748,6 +63748,8 @@ MonoBehaviour:
   - {fileID: 475883298888050200}
   start: 0
   timer: 0
+  posOrigin: {fileID: 0}
+  isPooling: 0
   once1: 0
   once2: 0
   once3: 0

@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
+  isEnemy: 0
   canDmg: 0
   otherObject: {fileID: 0}
 --- !u!54 &523348590344247363
@@ -441,6 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
+  isEnemy: 0
   canDmg: 0
   otherObject: {fileID: 0}
 --- !u!54 &6469974402913446392
@@ -503,6 +505,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b51b8bcfe13794992decb59c07a24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
+  character: {fileID: 6881588284876957842}
+  dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
+  cutoffValue: 3
+  spawnVFXInstant: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
+  spawnVFX: {fileID: 0}
+  timer: 0
+  once: 0
+  onceI: 0
+  onceP: 0
+  start: 0
   stateWaiting: {fileID: 0}
   stateWander: {fileID: 6881588284479463216}
   statePursue: {fileID: 6881588285909992070}
@@ -2508,6 +2521,9 @@ MonoBehaviour:
   agent: {fileID: 6881588284876657015}
   player: {fileID: 0}
   manager: {fileID: 0}
+  poolingManager: {fileID: 0}
+  pathManager: {fileID: 0}
+  sensorManager: {fileID: 0}
   liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   enemyAnim: {fileID: 6881588284867706748}
   currState: {fileID: 6881588284479463216}
@@ -4117,11 +4133,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 6881588285909992070}
+  stateWarrior: {fileID: 0}
+  isBoss: 0
   once1: 0
   once2: 0
   once3: 0
   playerDistance: 0
   anim: {fileID: 6881588284867706748}
+  damage: 0
 --- !u!1 &7519824687836494266
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,9 +4187,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 6881588285909992070}
   stateMelee02: {fileID: 4642344349108319272}
+  stateWarrior: {fileID: 0}
+  isBoss: 0
   once1: 0
   once2: 0
   once3: 0
   playerDistance: 0
   anim: {fileID: 6881588284867706748}
   randNum: 0
+  damage: 0

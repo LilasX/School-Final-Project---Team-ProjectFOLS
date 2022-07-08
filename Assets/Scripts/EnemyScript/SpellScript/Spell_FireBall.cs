@@ -22,6 +22,7 @@ public class Spell_FireBall : BaseSpell
     {
         InitializeSpell();
         start = true;
+        burn.SetActive(true);
         blast.SetActive(false);
         timer = 0f;
     }

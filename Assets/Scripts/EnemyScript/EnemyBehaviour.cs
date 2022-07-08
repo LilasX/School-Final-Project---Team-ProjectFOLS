@@ -18,6 +18,8 @@ public class EnemyBehaviour : MonoBehaviour
     public GameManager manager;
     public PoolingManager poolingManager;
     //private float playerDistance;
+    public BossPathPointManager pathManager;
+    public BossSensorManager sensorManager;
 
     //public bool attack; //Testing Attack Purpose
     //public bool escape; //Testing Escape Purpose

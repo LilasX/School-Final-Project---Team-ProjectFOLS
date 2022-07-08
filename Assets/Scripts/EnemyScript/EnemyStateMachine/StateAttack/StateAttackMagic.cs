@@ -6,6 +6,7 @@ public class StateAttackMagic : EnemyState
 {
     public StatePursue statePursue;
     public StateWaiting stateWaiting;
+    public StateAttack stateWarrior;
     public Vector3 target;
     public GameObject magic;
     public GameObject spell;
@@ -22,6 +23,7 @@ public class StateAttackMagic : EnemyState
     public bool combo;
     public bool coolDown;
     public float coolTime;
+    public bool isBoss = false;
     public GameObject character;
     public Material defaultMat;
     public Material signMat;
@@ -44,10 +46,10 @@ public class StateAttackMagic : EnemyState
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
             anim.SetTrigger("IsThrowing");
-            if (signMat)
+            /*if (signMat)
             {
                 character.GetComponent<SkinnedMeshRenderer>().material = signMat;
-            }
+            }*/
             /*spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 spellSign.transform.position = spellSpawn.transform.position;
                 spellSign.transform.rotation = spellSpawn.transform.rotation;
@@ -61,10 +63,10 @@ public class StateAttackMagic : EnemyState
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
                 once4 = false;
-                if (defaultMat)
+                /*if (defaultMat)
                 {
                     character.GetComponent<SkinnedMeshRenderer>().material = defaultMat;
-                }
+                }*/
                 //enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position); 
                 //enemyBehaviour.GetComponent<EnemyMain>().OnAttack();
 
@@ -130,6 +132,10 @@ public class StateAttackMagic : EnemyState
                     stateWaiting.magicCoolDown = true;
                     stateWaiting.coolTime = coolTime;
                     return stateWaiting;
+                }
+                else if(isBoss)
+                {
+                    return stateWarrior;
                 }
                 else
                 {
@@ -206,6 +212,14 @@ public class StateAttackMagic : EnemyState
         else if (spell.GetComponent<Spell_EarthWave>())
         {
             return enemyBehaviour.poolingManager.callEarthWave();
+        }
+        else if (spell.GetComponent<Spell_BoulderFall>())
+        {
+            return enemyBehaviour.poolingManager.callBoulderFall();
+        }
+        else if (spell.GetComponent<Spell_BoulderBlast>())
+        {
+            //return enemyBehaviour.poolingManager.callBoulderBlast;
         }
 
         return enemyBehaviour.poolingManager.callFireBall();

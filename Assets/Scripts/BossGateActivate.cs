@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class BossGateActivate : MonoBehaviour
 {
-    public GameObject Boss;
+    public GameObject boss_GoblinWarrior;
+    public GameObject boss_GoblinShaman;
+    public GameObject boss_Golem;
+
+    public bool isWarrior;
+    public bool isShaman;
+    public bool isGolem;
+
     public bool once = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!once)
+        if (other.GetComponent<PlayerEntity>())
         {
-            once = true;
-            Boss.GetComponent<EnemyBehaviour>().StartBossAttack();
+            if (!once)
+            {
+                once = true;
+                ContactBoss();
+            }
+        }
+    }
+
+    public void ContactBoss()
+    {
+        if (isWarrior)
+        {
+            boss_GoblinWarrior.GetComponent<EnemyBehaviour>().StartBossAttack();
+        }
+        else if (isShaman)
+        {
+            boss_GoblinShaman.GetComponent<EnemyBehaviour>().StartBossAttack();
+        }
+        else if (isGolem)
+        {
+            boss_Golem.GetComponent<EnemyBehaviour>().StartBossAttack();
         }
     }
 

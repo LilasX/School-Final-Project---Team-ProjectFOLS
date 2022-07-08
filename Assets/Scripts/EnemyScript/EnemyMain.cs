@@ -22,7 +22,7 @@ public abstract class EnemyMain : EnemyEntity
     public GameObject cameraMain;
     public bool isPooling = false;
     //public GameObject drop;
-    //public bool canHurt = true;
+    public bool canHurt = true;
 
     //Don't know if I need those
     /*public int Hp { get => hp; set => hp = value; }
@@ -55,8 +55,8 @@ public abstract class EnemyMain : EnemyEntity
 
     public override void OnHurt(int damage)
     {
-        //if (canHurt)
-        //{
+        if (canHurt)
+        {
             if (damage != 0)
             {
                 //canHurt = false;
@@ -71,6 +71,6 @@ public abstract class EnemyMain : EnemyEntity
                     GetComponent<EnemyBehaviour>().SwitchStateKnocked();
                 }
             }
-        //}
+        }
     }
 }

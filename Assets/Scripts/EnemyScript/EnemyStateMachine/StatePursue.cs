@@ -52,14 +52,6 @@ public class StatePursue : EnemyState
 				return stateRange;
 			}
 		} 
-		else if (enemyBehaviour.gameObject.GetComponent<EnemyBossWarrior>() && stateWarrior)
-        {
-			if (playerDistance <=7f)
-            {
-				once = false;
-				return stateWarrior;
-            }
-        }
 
 		return this; 
 	}
