@@ -25,6 +25,8 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
     {
         Debug.Log(GetType().Name);
         RangedAttack();
+
+  
     }
 
     public void ExitState()
@@ -41,6 +43,11 @@ public class PlayerRangedAttackState : MonoBehaviour, IPlayerBaseState
                     GameObject gameObj = Instantiate(gameManager.fireSpell, new Vector3(playerEntityInstance.transform.position.x, playerEntityInstance.transform.position.y + 1.25f, playerEntityInstance.transform.position.z) + playerEntityInstance.transform.forward * 1.5f, Quaternion.identity); //Instantiation du projectile
                     gameObj.GetComponent<Rigidbody>().AddForce(playerEntityInstance.transform.forward * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur le projectile
                     Destroy(gameObj, 5f); //Destruction du projectile
+
+                    GameObject obj = Instantiate(playerEntityInstance.newvfx, new Vector3(playerEntityInstance.transform.position.x + 3, playerEntityInstance.transform.position.y + 1.25f, playerEntityInstance.transform.position.z) + playerEntityInstance.transform.forward * 1.5f, Quaternion.identity); //Instantiation du projectile
+                    obj.GetComponent<Rigidbody>().AddForce(playerEntityInstance.transform.forward * playerEntityInstance.BulletVelocity, ForceMode.Impulse); //Application de la physique sur l
+                    Destroy(obj, 5f); //Destruction du projectile
+
                 }
                 playerEntityInstance.Timer = 0; //reset du chrono
                 playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);

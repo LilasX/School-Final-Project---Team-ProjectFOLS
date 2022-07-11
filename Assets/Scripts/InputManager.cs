@@ -206,17 +206,17 @@ public class InputManager : MonoBehaviour
     //    gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = context.performed;
     //}
 
-    private void ReturningAttack()
-    {
-        if(returnAttackAction.triggered)
-        {
-            gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = true;
-        }
-        else
-        {
-            gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = false;
-        }
-    }
+    //private void ReturningAttack()
+    //{
+    //    if(returnAttackAction.triggered)
+    //    {
+    //        gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = true;
+    //    }
+    //    else
+    //    {
+    //        gameManager.player.GetComponent<PlayerEntity>().IsReturningAttack = false;
+    //    }
+    //}
 
     //public void OnSlash(InputAction.CallbackContext context)
     //{
@@ -283,7 +283,7 @@ public class InputManager : MonoBehaviour
     {
         //Jump();
         Melee();
-        ReturningAttack();
+        //ReturningAttack();
         Dodge();
         Fire();
         Shield();

@@ -43,7 +43,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     [SerializeField] private float dodgeSpeed;
     private Vector3 dodgeVelocity;
     public bool hasExecutedDodge = false;
-
+    public float resetDodgeInputTimer = 0f;
 
     //  Variables pour l'endurance, points de magie
     [SerializeField] private float currentStamina;
@@ -138,7 +138,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     //public float knockTime = 0f;
     //public bool knockknock = false;
 
-    /// </summary>
+    public GameObject newvfx;
+
+
 
     #endregion
 

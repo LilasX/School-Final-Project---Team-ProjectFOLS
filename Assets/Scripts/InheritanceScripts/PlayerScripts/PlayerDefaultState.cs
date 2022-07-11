@@ -11,11 +11,6 @@ public class PlayerDefaultState : IPlayerBaseState
     private PlayerEntity playerEntityInstance;
     private PlayerStateMachine playerState;
 
-    float resetDodgeInputTimer = 0f;
-
-    //float resetMeleeInputTimer = 0f;
-    //float resetSlashInputTimer = 0f;
-
 
     public PlayerDefaultState(PlayerEntity playerEntity, PlayerStateMachine stateMachine)
     {
@@ -56,46 +51,14 @@ public class PlayerDefaultState : IPlayerBaseState
     }
 
 
-    //private void Run()
-    //{
-
-    //    //  Vitesse du joueur en course
-    //    if (playerEntityInstance.IsRunning && playerEntityInstance.IsMoving)
-    //    {
-    //        playerEntityInstance.Speed = playerEntityInstance.RunningSpeed; //Valeur de la vitesse en mode course
-    //        playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, 1f, 10f * Time.deltaTime); //Vide la barre d'endurance
-    //        playerEntityInstance.Animator.SetFloat("Speed", 1.2f, 25f, Time.time);
-    //        if (playerEntityInstance.GetCurrentStamina == 1)
-    //        {
-    //            playerEntityInstance.IsRunning = false;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        playerEntityInstance.Speed = playerEntityInstance.ResetSpeedValue; //Valeur de la vitesse en mode Walk
-    //        playerEntityInstance.GetCurrentStamina = Mathf.MoveTowards(playerEntityInstance.GetCurrentStamina, playerEntityInstance.GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
-    //    }
-    //}
-
     public void EnterState()
     {
         Debug.Log(GetType().Name);
-        playerEntityInstance.hasExecutedDodge = false;
+        //playerEntityInstance.hasExecutedDodge = false;
     }
 
     public void ExitState()
     {
-        return;
-    }
-
-
-    public void OnUpdate()
-    {
-
-        Move();
-
-        //Run();
-
         //DODGE
         if (playerEntityInstance.IsDodging && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentStamina >= 20f && playerEntityInstance.Move != Vector3.zero) //DONE
         {
@@ -105,32 +68,10 @@ public class PlayerDefaultState : IPlayerBaseState
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DodgeState);
         }
 
-
-        if (playerEntityInstance.hasExecutedDodge)
-        {
-            resetDodgeInputTimer += Time.deltaTime;
-            if (resetDodgeInputTimer >= 0.6f)
-            {
-                gameManager.inputManager.OnEnable();
-                resetDodgeInputTimer = 0f;
-                playerEntityInstance.hasExecutedDodge = false;
-            }
-        }
-
-        if (!playerEntityInstance.hasExecutedDodge)
-        {
-            resetDodgeInputTimer += Time.deltaTime;
-            if (resetDodgeInputTimer >= 0.35f)
-            {
-                gameManager.inputManager.OnEnable();
-                resetDodgeInputTimer = 0f;
-            }
-        }
-
         //SHIELD
         if (playerEntityInstance.IsUsingShield && playerEntityInstance.IsGrounded && playerEntityInstance.shieldTimer >= 5) //DONE
         {
-            if(playerEntityInstance.GetCurrentMana >= 10)
+            if (playerEntityInstance.GetCurrentMana >= 10)
             {
                 playerEntityInstance.OnUsingMana(10);
                 uiManager.ShieldImage.SetActive(false);
@@ -153,73 +94,62 @@ public class PlayerDefaultState : IPlayerBaseState
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.MeleeState);
         }
 
-        if(playerEntityInstance.HasUsedMelee)
-        {
-            playerEntityInstance.resetMeleeInputTimer += Time.deltaTime;
-            if(playerEntityInstance.resetMeleeInputTimer >= 0.5f)
-            {
-                gameManager.inputManager.OnEnable();
-                playerEntityInstance.HasUsedMelee = false;
-                playerEntityInstance.resetMeleeInputTimer = 0f;
-            }
-        }
-
-        //RETURN ATTACK
-        if (playerEntityInstance.IsReturningAttack && playerEntityInstance.IsGrounded) // A REVOIR
-        {
-            gameManager.inputManager.OnDisable();
-            playerEntityInstance.playerState.ChangeState(playerEntityInstance.StealAttackState);
-        }
-
-
-
-        if (playerEntityInstance.hasReturnedAttack)
-        {
-            playerEntityInstance.Animator.SetBool("Spell", false);
-            //playerEntityInstance.hasReturnedAttack = false;
-            playerEntityInstance.changeStateDelay += Time.deltaTime;
-            if (playerEntityInstance.changeStateDelay >= 1f)
-            {
-                playerEntityInstance.ReturnFireIndex = 0;
-                playerEntityInstance.changeStateDelay = 0f;
-                playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
-            }
-        }
-
-        if (playerEntityInstance.hasFired)
-        {
-            playerEntityInstance.Animator.SetBool("Spell", false);
-            playerEntityInstance.hasFired = false;
-        }
-
-        if(playerEntityInstance.hasBlockedAttack)
-        {
-            playerEntityInstance.BlockCoolDown -= Time.deltaTime;
-            if (playerEntityInstance.BlockCoolDown <= 0f)
-            {
-                playerEntityInstance.hasBlockedAttack = false;
-                playerEntityInstance.BlockCoolDown = 10f;
-                playerEntityInstance.shieldTimer = 5f;
-
-                if (playerEntityInstance.BlockCoolDown == 10)
-                {
-                    uiManager.ShieldImage.SetActive(true);
-                }
-            }
-        }
-
-
-        if (playerEntityInstance.GetCurrentHP <= 0)
-        {
-            playerEntityInstance.playerState.ChangeState(playerEntityInstance.DeathState);
-        }
-
         //SLASH
         if (playerEntityInstance.IsSlashing && playerEntityInstance.IsGrounded)
         {
             playerEntityInstance.SlashVelocity = playerEntityInstance.Move;
             gameManager.inputManager.OnDisable();
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.SlashState);
+        }
+
+        //KNOCKED
+        if (playerEntityInstance.isKnocked)
+        {
+            gameManager.inputManager.OnDisable();
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
+        }
+
+        //DEATH
+        if (playerEntityInstance.GetCurrentHP <= 0)
+        {
+            playerEntityInstance.playerState.ChangeState(playerEntityInstance.DeathState);
+        }
+    }
+
+    private void ReEnableinput()
+    {
+        //DODGE
+        if (playerEntityInstance.hasExecutedDodge)
+        {
+            playerEntityInstance.resetDodgeInputTimer += Time.deltaTime;
+            if (playerEntityInstance.resetDodgeInputTimer >= 0.6f)
+            {
+                gameManager.inputManager.OnEnable();
+                playerEntityInstance.resetDodgeInputTimer = 0f;
+                playerEntityInstance.hasExecutedDodge = false;
+            }
+        }
+
+        if (!playerEntityInstance.hasExecutedDodge)
+        {
+            playerEntityInstance.resetDodgeInputTimer += Time.deltaTime;
+            if (playerEntityInstance.resetDodgeInputTimer >= 0.35f)
+            {
+                gameManager.inputManager.OnEnable();
+                playerEntityInstance.resetDodgeInputTimer = 0f;
+            }
+        }
+
+
+        if (playerEntityInstance.HasUsedMelee)
+        {
+            playerEntityInstance.resetMeleeInputTimer += Time.deltaTime;
+            if (playerEntityInstance.resetMeleeInputTimer >= 0.5f)
+            {
+                gameManager.inputManager.OnEnable();
+                playerEntityInstance.HasUsedMelee = false;
+                playerEntityInstance.resetMeleeInputTimer = 0f;
+            }
         }
 
         if (playerEntityInstance.hasRequestedSlash)
@@ -230,14 +160,9 @@ public class PlayerDefaultState : IPlayerBaseState
                 playerEntityInstance.hasRequestedSlash = false;
                 playerEntityInstance.resetSlashInputTimer = 0f;
                 gameManager.inputManager.OnEnable();
-            }   
+            }
         }
 
-        if(playerEntityInstance.isKnocked)
-        {
-            gameManager.inputManager.OnDisable();
-            playerEntityInstance.playerState.ChangeState(playerEntityInstance.KnockedState);
-        }
 
         if (playerEntityInstance.isKnocked)
         {
@@ -254,4 +179,36 @@ public class PlayerDefaultState : IPlayerBaseState
     }
 
 
+    public void OnUpdate()
+    {
+
+        Move();
+
+        ExitState();
+
+        ReEnableinput();
+
+        if (playerEntityInstance.hasFired)
+        {
+            playerEntityInstance.Animator.SetBool("Spell", false);
+            playerEntityInstance.hasFired = false;
+        }
+
+        if (playerEntityInstance.hasBlockedAttack)
+        {
+            playerEntityInstance.BlockCoolDown -= Time.deltaTime;
+            if (playerEntityInstance.BlockCoolDown <= 0f)
+            {
+                playerEntityInstance.hasBlockedAttack = false;
+                playerEntityInstance.BlockCoolDown = 10f;
+                playerEntityInstance.shieldTimer = 5f;
+
+                if (playerEntityInstance.BlockCoolDown == 10)
+                {
+                    uiManager.ShieldImage.SetActive(true);
+                }
+            }
+        }
+
+    }
 }
