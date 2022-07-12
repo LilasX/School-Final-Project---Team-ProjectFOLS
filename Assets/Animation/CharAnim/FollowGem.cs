@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Follow : MonoBehaviour
+public class FollowGem : MonoBehaviour
 {
     public Transform target;
 
@@ -22,7 +22,7 @@ public class Follow : MonoBehaviour
         if (other.gameObject == manager.player)
         {
             //Debug.Log("Pickup");
-            manager.inventoryscript.CoinPickup(); 
+            manager.inventoryscript.GemPickUp();
             Destroy(gameObject);
         }
     }

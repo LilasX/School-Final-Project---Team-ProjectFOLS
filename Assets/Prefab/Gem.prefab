@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6291975024251291796}
   - component: {fileID: 1597006452515937597}
   - component: {fileID: 7661506292511979795}
-  - component: {fileID: 7818564736245755366}
+  - component: {fileID: 7297523089817745565}
   m_Layer: 11
   m_Name: Gem
   m_TagString: Untagged
@@ -250,7 +250,7 @@ MonoBehaviour:
   animatorCoin: {fileID: 118442852236576916}
   coins: {fileID: 8300000, guid: 609a017382252144bb90aa53133abb23, type: 3}
   audioCoin: {fileID: 8179790854871830520, guid: b2b49023c9617164bb7c9eb7c3d3c4e7, type: 3}
---- !u!114 &7818564736245755366
+--- !u!114 &7297523089817745565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 383882173484610777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7204cc75592b7ed48801ece4bb1748d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6372ea6e4f00ab14fa7c5c0d0ee12f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}

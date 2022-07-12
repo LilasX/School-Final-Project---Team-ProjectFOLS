@@ -55,9 +55,14 @@ public class Inventory : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void CommonChest()
+    public void GemPickUp()
     {
         gems += 1;
+    }
+
+    public void CommonChest()
+    {
+        //gems += 1;
         coins += 50;
         keys += 1;
     }
