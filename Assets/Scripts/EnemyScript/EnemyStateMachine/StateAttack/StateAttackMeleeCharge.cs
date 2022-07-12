@@ -102,6 +102,12 @@ public class StateAttackMeleeCharge : EnemyState
             }
         }
 
+        /*if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell")) Need to check how to do it with two anims
+        {
+            enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+            once1 = false;
+        }*/
+
         return this;
     }
 }

@@ -27,6 +27,7 @@ public class StateAttackMagic : EnemyState
     public GameObject character;
     public Material defaultMat;
     public Material signMat;
+    public float timer = 0;
 
     public bool isPooling = false;
 
@@ -44,7 +45,11 @@ public class StateAttackMagic : EnemyState
         {
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
-            once1 = true;
+            once1 = true; 
+            once2 = false;
+            once3 = false;
+            once4 = true;
+            timer = 0;
             anim.SetTrigger("IsThrowing");
             /*if (signMat)
             {
@@ -140,6 +145,7 @@ public class StateAttackMagic : EnemyState
                 else
                 {
                     enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                    //enemyBehaviour.enemyAnim.SetTrigger("IsWalkingTrigger");
                     return statePursue;
                 }
                 /*if (combo)
@@ -161,6 +167,17 @@ public class StateAttackMagic : EnemyState
                 {
                     return statePursue;
                 }*/
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                once1 = false;
             }
         }
 

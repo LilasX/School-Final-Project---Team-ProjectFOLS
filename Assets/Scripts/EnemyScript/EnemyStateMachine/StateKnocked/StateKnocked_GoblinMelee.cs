@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StateKnocked_GoblinMelee : StateKnocked
 {
+    //Add Pursue
     public StateAttackMelee01 stateMelee01;
     public StateAttackMelee02 stateMelee02;
     public StateAttackRange01 stateRange01;
@@ -21,6 +22,10 @@ public class StateKnocked_GoblinMelee : StateKnocked
             //stateAttack.canDmg = false;
             if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())
             {
+                if (statePursue)
+                {
+                    statePursue.once = false;
+                }
                 if (stateMelee01)
                 {
                     stateMelee01.once1 = false; stateMelee01.once2 = false; stateMelee01.once3 = false;
@@ -36,6 +41,8 @@ public class StateKnocked_GoblinMelee : StateKnocked
                 enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage(); //Only Usable if this enemy gameobject has script enemymelee
             }
             once1 = true;
+            once2 = false;
+            timer = 0;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked") && !once2)
@@ -59,7 +66,19 @@ public class StateKnocked_GoblinMelee : StateKnocked
                 once1 = false;
                 once2 = false;
                 anim.SetBool("IsWalking", true);
+                //anim.SetTrigger("IsWalkingTrigger");
                 return statePursue;
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked")) 
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                once1 = false;
             }
         }
 

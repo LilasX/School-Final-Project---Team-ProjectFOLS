@@ -35,12 +35,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     //public bool canSeePlayer;
 
-    //To Test Magic
-    public bool earthWave = false;
-    public bool earthQuake = false;
-    public StateAttackMagic stateMagicWave;
-    public StateAttackMagic stateMagicQuake;
-
     public void SetBoundBox (Bounds spawnBoundBox)
     {
         boundBox.center = spawnBoundBox.center;
@@ -101,19 +95,6 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         RunStateMachine();
-
-        if (earthWave)
-        {
-            earthWave = false;
-            currState = stateMagicWave;
-        }
-
-        if (earthQuake)
-        {
-            earthQuake = false;
-            currState = stateMagicQuake;
-        }
-
     }
 
     //Testing StateMachine

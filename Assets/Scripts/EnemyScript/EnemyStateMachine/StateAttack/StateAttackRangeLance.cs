@@ -21,6 +21,10 @@ public class StateAttackRangeLance : StateAttackRange02
             enemyBehaviour.agent.SetDestination(rangePos);
             enemyBehaviour.agent.isStopped = false;
             once1 = true;
+            once2 = false;
+            once3 = false;
+            once4 = true;
+            timer = 0;
         }
 
         //Shoot Animation
@@ -99,6 +103,18 @@ public class StateAttackRangeLance : StateAttackRange02
                 {
                     return statePursue;
                 }
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && !anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                anim.SetBool("IsWalking", true);
+                once1 = false;
             }
         }
 

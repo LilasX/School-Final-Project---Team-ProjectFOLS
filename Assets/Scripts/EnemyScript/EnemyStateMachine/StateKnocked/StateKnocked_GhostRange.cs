@@ -20,6 +20,10 @@ public class StateKnocked_GhostRange : StateKnocked
     {
         if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
         {
+            if (statePursue)
+            {
+                statePursue.once = false;
+            }
             if (stateMagic01)
             {
                 stateMagic01.once1 = false; stateMagic01.once2 = false; stateMagic01.once3 = false; stateMagic01.once4 = true;
@@ -41,6 +45,7 @@ public class StateKnocked_GhostRange : StateKnocked
                 stateWaiting.timer = 0;
                 stateWaiting.once = false;
                 stateWaiting.magicCoolDown = false;
+                stateWaiting.start = false;
             }
         }
 
@@ -63,6 +68,19 @@ public class StateKnocked_GhostRange : StateKnocked
 
         enemyBehaviour.gameObject.transform.position = escapePos;
         anim.SetBool("IsWalking", true);
+        anim.SetTrigger("IsWalkingTrigger");
+
+        /*if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 2f)
+            {
+                timer = 0;
+                once1 = false;
+            }
+        }*/
+
         return statePursue;
 
         //return this;

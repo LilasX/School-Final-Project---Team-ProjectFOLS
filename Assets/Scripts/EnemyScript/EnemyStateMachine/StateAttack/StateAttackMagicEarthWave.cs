@@ -19,6 +19,10 @@ public class StateAttackMagicEarthWave : StateAttackMagic
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
+            once2 = false;
+            once3 = false;
+            once4 = true;
+            timer = 0;
             anim.SetTrigger("IsThrowing");
             //character.GetComponent<SkinnedMeshRenderer>().material = signMat;
             /*spell.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -109,6 +113,17 @@ public class StateAttackMagicEarthWave : StateAttackMagic
                 {
                     return statePursue;
                 }*/
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                once1 = false;
             }
         }
 

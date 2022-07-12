@@ -25,6 +25,11 @@ public class StateAttackMagicBoulderFall : StateAttackMagic
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
+            once2 = false;
+            once3 = false;
+            once4 = true;
+            timer = 0;
+            count = 0;
             anim.SetTrigger("IsThrowing");
             /*if (signMat)
             {
@@ -132,6 +137,17 @@ public class StateAttackMagicBoulderFall : StateAttackMagic
                 {
                     return statePursue;
                 }*/
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                once1 = false;
             }
         }
 

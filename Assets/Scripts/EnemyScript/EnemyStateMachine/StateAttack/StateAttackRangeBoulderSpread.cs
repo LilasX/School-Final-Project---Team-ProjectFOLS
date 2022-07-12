@@ -25,7 +25,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
     public bool coolDown;
     public float coolTime;
 
-    public float timer = 0;
+    public float timer2 = 0;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -52,6 +52,14 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once2 = true;
+            once3 = false;
+            once4 = true;
+            iSPOnce1 = false;
+            iSPOnce2 = false;
+            iSIOnce1 = false;
+            iSIOnce2 = false;
+            timer = 0;
+            timer2 = 0;
             anim.SetTrigger("IsThrowing");
         }
 
@@ -82,7 +90,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
 
         if(isShootingPooling)
         {
-            timer += Time.deltaTime;
+            timer2 += Time.deltaTime;
 
             if (multiShot)
             {
@@ -98,7 +106,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     iSPOnce1 = true;
                 }
 
-                if (timer >= 0.5f && !iSPOnce2)
+                if (timer2 >= 0.5f && !iSPOnce2)
                 {
                     ranged2 = enemyBehaviour.poolingManager.callBoulderThrow();
                     ranged2.SetActive(true);
@@ -110,7 +118,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     iSPOnce2 = true;
                 }
 
-                if (timer >= 1f)
+                if (timer2 >= 1f)
                 {
                     ranged3 = enemyBehaviour.poolingManager.callBoulderThrow();
                     ranged3.SetActive(true);
@@ -119,7 +127,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     ranged3.GetComponent<BaseProjectile>().dmg = 15;
                     ranged3.GetComponent<BaseProjectile>().useRange = true;
                     ranged3.GetComponent<Rigidbody>().AddForce(projectileSpawn3.transform.forward * 20, ForceMode.Impulse);
-                    timer = 0;
+                    timer2 = 0;
                     iSPOnce1 = false;
                     iSPOnce2 = false;
                     once4 = false;
@@ -142,7 +150,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
 
         if (isShootingInstant)
         {
-            timer += Time.deltaTime;
+            timer2 += Time.deltaTime;
 
             if (multiShot)
             {
@@ -154,7 +162,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     iSIOnce1 = true;
                 }
 
-                if (timer >= 0.5f && !iSIOnce2)
+                if (timer2 >= 0.5f && !iSIOnce2)
                 {
                     ranged2 = Instantiate(projectile, projectileSpawn2.transform.position, projectileSpawn2.transform.rotation);
                     ranged2.GetComponent<BaseProjectile>().dmg = 15;
@@ -162,12 +170,12 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     iSIOnce2 = true;
                 }
 
-                if (timer >= 1f)
+                if (timer2 >= 1f)
                 {
                     ranged3 = Instantiate(projectile, projectileSpawn3.transform.position, projectileSpawn3.transform.rotation);
                     ranged3.GetComponent<BaseProjectile>().dmg = 15;
                     ranged3.GetComponent<Rigidbody>().AddForce(projectileSpawn3.transform.forward * 20, ForceMode.Impulse);
-                    timer = 0;
+                    timer2 = 0;
                     iSIOnce1 = false;
                     iSIOnce2 = false;
                     once4 = false;
@@ -231,6 +239,17 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
             }
             //}
             //}
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                once2 = false;
+            }
         }
 
         return this;

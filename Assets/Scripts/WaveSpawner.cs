@@ -19,6 +19,9 @@ public class WaveSpawner : MonoBehaviour
     private int enemyNumber = 0;
 
     public Transform[] spawnPoints;
+    public bool[] spawnPointsUsed;
+
+    public Transform _sp;
 
     public Transform enemySpawned;
     public Bounds boundBox; //Added. For BoundBox for WanderState and EscapeState to be Precise. Seng
@@ -129,6 +132,11 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(_wave.delay);
         }
 
+        /*for (int i = 0; i < _wave.enemies.Length; i++)
+        {
+            spawnPointsUsed[i] = false;
+        }*/
+
         state = SpawnState.Waiting;
 
         yield break;
@@ -144,9 +152,32 @@ public class WaveSpawner : MonoBehaviour
             Debug.LogError("No spawn points referenced");
         }
 
-        randNum = Random.Range(0, spawnPoints.Length);
-        Transform _sp = spawnPoints[randNum];
+        /*do
+        {
+            randNum = Random.Range(0, spawnPoints.Length);
+            _sp = spawnPoints[randNum];
+        } while (spawnPointsUsed[randNum]);
+
+        spawnPointsUsed[randNum] = true;*/
         
+        for (int i = 0; i < spawnPoints.Length; i++) //Can only work with Number of Enemies Lower than Number of SpawnPoints. Also in Order;
+        {
+            if (spawnPointsUsed[spawnPointsUsed.Length - 1])
+            {
+                for (int j = 0; j < spawnPointsUsed.Length; j++)
+                {
+                    spawnPointsUsed[j] = false;
+                }
+            }
+
+            if(!spawnPointsUsed[i])
+            {
+                _sp = spawnPoints[i];
+                spawnPointsUsed[i] = true;
+                break;
+            }
+        }
+
         if (!isPooling)
         {
             enemySpawned = Instantiate(_enemy, _sp.position, _sp.rotation); 

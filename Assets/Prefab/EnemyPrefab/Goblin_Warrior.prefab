@@ -397,6 +397,7 @@ MonoBehaviour:
   stateMagicFallPrecise: {fileID: 4882939011360258449}
   stateMagicBlast: {fileID: 7220510916685053787}
   stateWarrior: {fileID: 2021087330388109871}
+  stateWaiting: {fileID: 7156847913494611106}
 --- !u!1 &1652879903598190804
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +728,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
-  isEnemy: 1
   canDmg: 0
   otherObject: {fileID: 0}
 --- !u!54 &8677266001250683193
@@ -962,10 +962,6 @@ MonoBehaviour:
   stateStart: {fileID: 4143823324001286029}
   stateDeath: {fileID: 540656368319665192}
   stateKnocked: {fileID: 8225589752207758259}
-  earthWave: 0
-  earthQuake: 0
-  stateMagicWave: {fileID: 7357813823131482986}
-  stateMagicQuake: {fileID: 2797602314039654727}
 --- !u!114 &6233634001185735642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3852,7 +3848,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   striker: 1
-  isEnemy: 1
   canDmg: 0
   otherObject: {fileID: 0}
 --- !u!54 &4955844075275769792

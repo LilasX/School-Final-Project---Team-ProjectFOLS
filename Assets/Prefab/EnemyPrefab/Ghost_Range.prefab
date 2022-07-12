@@ -164,6 +164,7 @@ MonoBehaviour:
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &1319184947057942581
 GameObject:
@@ -333,6 +334,7 @@ MonoBehaviour:
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &1507092144332546043
 GameObject:
@@ -534,6 +536,7 @@ MonoBehaviour:
   stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
+  timer: 0
 --- !u!1 &3658028403483356721
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +604,7 @@ MonoBehaviour:
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &3780362601935029841
 GameObject:
@@ -825,6 +829,7 @@ MonoBehaviour:
   anim: {fileID: 6747795950854689142}
   character: {fileID: 6747795950847166892}
   knockedMat: {fileID: 2100000, guid: 6485d0340d49552408fafd20e5188f72, type: 2}
+  timer: 0
   found: 0
   randomX: 0
   randomZ: 0
@@ -833,7 +838,7 @@ MonoBehaviour:
   stateMagic02: {fileID: 4076468503981610297}
   stateMagic03: {fileID: 5588394385007614578}
   stateMagic04: {fileID: 2806225094827647344}
-  stateWaiting: {fileID: 0}
+  stateWaiting: {fileID: 7932779427009352171}
 --- !u!1 &4442675621654553514
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +942,7 @@ MonoBehaviour:
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &4619609377695055936
 GameObject:
@@ -1195,7 +1201,7 @@ MonoBehaviour:
   randNum: 0
   anim: {fileID: 6747795950854689142}
   isProjectile: 1
-  projectileSpeed: 20
+  projectileSpeed: 16
   combo: 0
   coolDown: 1
   coolTime: 1
@@ -1203,6 +1209,7 @@ MonoBehaviour:
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &5663443299682759163
 GameObject:
@@ -1271,6 +1278,7 @@ MonoBehaviour:
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
   signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &6747795950847134484
 GameObject:
@@ -3286,10 +3294,6 @@ MonoBehaviour:
   stateStart: {fileID: 4321345013317278735}
   stateDeath: {fileID: 2702617853602921663}
   stateKnocked: {fileID: 4329322129047094022}
-  earthWave: 0
-  earthQuake: 0
-  stateMagicWave: {fileID: 0}
-  stateMagicQuake: {fileID: 0}
 --- !u!114 &5812788334318128870
 MonoBehaviour:
   m_ObjectHideFlags: 0

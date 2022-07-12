@@ -87,6 +87,11 @@ public class StateStart_GoblinWarrior : StateStart
 
             statePursue.once = false;
 
+            stateWaiting.timer = 0;
+            stateWaiting.once = false;
+            stateWaiting.magicCoolDown = false;
+            stateWaiting.start = false;
+
             stateKnocked.once1 = false;
             stateKnocked.once2 = false;
 

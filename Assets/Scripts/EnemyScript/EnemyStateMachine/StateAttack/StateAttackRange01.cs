@@ -19,6 +19,7 @@ public class StateAttackRange01 : EnemyState
     public float rangeDistance = 0;
     public float playerDistance = 0;
     public Animator anim;
+    public float timer = 0;
 
     public bool isPooling = false;
 
@@ -39,6 +40,9 @@ public class StateAttackRange01 : EnemyState
             enemyBehaviour.agent.SetDestination(rangePos);
             enemyBehaviour.agent.isStopped = false;
             once1 = true;
+            once2 = false;
+            once3 = false;
+            timer = 0;
         }
 
         //Look At Player & Shoot Animation
@@ -91,7 +95,20 @@ public class StateAttackRange01 : EnemyState
                 once1 = false;
                 once2 = false;
                 once3 = false;
+                enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                 return statePursue;
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && !anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                anim.SetBool("IsWalking", true);
+                once1 = false;
             }
         }
 

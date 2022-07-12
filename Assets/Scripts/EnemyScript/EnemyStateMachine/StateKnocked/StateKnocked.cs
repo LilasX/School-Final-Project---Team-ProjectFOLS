@@ -15,6 +15,7 @@ public class StateKnocked : EnemyState
     public GameObject character;
     //public Material defaultMat;
     public Material knockedMat;
+    public float timer = 0;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {

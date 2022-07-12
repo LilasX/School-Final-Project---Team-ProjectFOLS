@@ -14,6 +14,7 @@ public class StateAttackMelee02 : EnemyState
     public float playerDistance = 0;
     public Animator anim;
     public float damage;
+    public float timer = 0;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -34,6 +35,8 @@ public class StateAttackMelee02 : EnemyState
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
             once2 = true;
+            once3 = false;
+            timer = 0;
             anim.SetTrigger("IsAttacking02");
         }
 
@@ -89,6 +92,19 @@ public class StateAttackMelee02 : EnemyState
                     enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                     return statePursue;
                 }
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Sword And Shield Attack") && !anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                anim.SetBool("IsWalking", true);
+                once1 = false;
+                once2 = false;
             }
         }
 

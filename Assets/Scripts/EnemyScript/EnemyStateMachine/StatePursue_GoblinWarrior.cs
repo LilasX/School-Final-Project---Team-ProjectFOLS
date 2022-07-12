@@ -14,7 +14,9 @@ public class StatePursue_GoblinWarrior : StatePursue
 			enemyBehaviour.agent.speed = 2f;
 			enemyBehaviour.agent.acceleration = 4f;
 			enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+			enemyBehaviour.enemyAnim.SetTrigger("IsWalkingTrigger");
 			once = true;
+			timer = 0;
 			pathPoint = enemyBehaviour.pathManager.CallPathPointMove();
 			enemyBehaviour.agent.SetDestination(pathPoint.transform.position);
 		}
@@ -27,9 +29,21 @@ public class StatePursue_GoblinWarrior : StatePursue
 		{
 			if (playerDistance <= 8f || pathDistance <= enemyBehaviour.agent.stoppingDistance)
 			{
-				enemyBehaviour.agent.SetDestination(transform.position);
+				enemyBehaviour.agent.SetDestination(transform.position); 
+				enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
 				once = false;
 				return stateWarrior;
+			}
+		}
+
+		if (!enemyBehaviour.enemyAnim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
+		{
+			timer += Time.deltaTime;
+
+			if (timer >= 1f)
+			{
+				timer = 0;
+				once = false;
 			}
 		}
 

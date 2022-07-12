@@ -16,6 +16,7 @@ public class StateAttackMelee01 : EnemyState
     public Animator anim;
     public int randNum;
     public float damage;
+    public float timer = 0;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -36,6 +37,8 @@ public class StateAttackMelee01 : EnemyState
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             once1 = true;
             once2 = true;
+            once3 = false;
+            timer = 0;
             anim.SetTrigger("IsAttacking01");
         }
 
@@ -88,16 +91,30 @@ public class StateAttackMelee01 : EnemyState
                 }
                 else
                 {
-                    enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
+                    //enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                     randNum = Random.Range(0, 3);
                     switch (randNum)
                     {
                         case 2:
                             return stateMelee02;
                         default:
+                            enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
                             return statePursue;
                     }
                 }
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("MSword And Shield Slash") && !anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                anim.SetBool("IsWalking", true);
+                once1 = false;
+                once2 = false;
             }
         }
 

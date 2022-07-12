@@ -23,6 +23,7 @@ public class StateAttackRange02 : EnemyState
     public int randNum;
     public Animator anim;
     public bool combo;
+    public float timer = 0;
 
     public bool isPooling = false;
 
@@ -43,6 +44,9 @@ public class StateAttackRange02 : EnemyState
             enemyBehaviour.agent.SetDestination(rangePos);
             enemyBehaviour.agent.isStopped = false;
             once1 = true;
+            once2 = false;
+            once3 = false;
+            once4 = true;
         }
 
         //Shoot Animation
@@ -133,6 +137,18 @@ public class StateAttackRange02 : EnemyState
                 {
                     return statePursue;
                 }
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Spell") && !anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                anim.SetBool("IsWalking", true);
+                once1 = false;
             }
         }
 

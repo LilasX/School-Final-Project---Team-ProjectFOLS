@@ -2437,6 +2437,10 @@ PrefabInstance:
       value: 18.5
       objectReference: {fileID: 0}
     - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
+      propertyPath: spawnPointsUsed.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[0]
       value: 
       objectReference: {fileID: 6881588284876657018, guid: bbfdb81d4f04d0349a188cb72f92ba51, type: 3}
@@ -5767,7 +5771,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3820167, y: 1}
+    m_SensorSize: {x: 1.5148001, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9445,6 +9449,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
       propertyPath: boundBoxCoord.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
+      propertyPath: spawnPointsUsed.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}

@@ -11,6 +11,7 @@ public class StatePursue : EnemyState
 	public StateAttack stateGolem;
 	public float playerDistance;
 	public bool once = false;
+	public float timer = 0;
 
 	public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
 	{
@@ -51,7 +52,18 @@ public class StatePursue : EnemyState
 				//enemyBehaviour.agent.enabled = false;
 				return stateRange;
 			}
-		} 
+		}
+
+		if (!enemyBehaviour.enemyAnim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
+		{
+			timer += Time.deltaTime;
+
+			if (timer >= 1f)
+			{
+				timer = 0;
+				once = false;
+			}
+		}
 
 		return this; 
 	}

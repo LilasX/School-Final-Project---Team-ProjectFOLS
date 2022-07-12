@@ -22,6 +22,10 @@ public class StateKnocked_GoblinRange : StateKnocked
             //stateAttack.canDmg = false;
             if (enemyBehaviour.gameObject.GetComponent<EnemyRange>())
             {
+                if (statePursue)
+                {
+                    statePursue.once = false;
+                }
                 if (stateRange01)
                 {
                     stateRange01.once1 = false; stateRange01.once2 = false; stateRange01.once3 = false; stateRange01.once4 = true;
@@ -36,6 +40,8 @@ public class StateKnocked_GoblinRange : StateKnocked
                 }
             }
             once1 = true;
+            once2 = false;
+            timer = 0;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked") && !once2)
@@ -59,7 +65,19 @@ public class StateKnocked_GoblinRange : StateKnocked
                 once1 = false;
                 once2 = false;
                 anim.SetBool("IsWalking", true);
+                anim.SetTrigger("IsWalkingTrigger");
                 return statePursue;
+            }
+        }
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Knocked"))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer = 0;
+                once1 = false;
             }
         }
 
