@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject bullet;
     public GameObject fireSpell;
     public GameObject fireBurstVfx;
+    public GameObject explosion;
+    public GameObject explosionBlue;
+    public Transform explosionBlueTransform;
     public Inventory inventoryscript;
     public InputManager inputManager;
     public DialogueManager _dialogueManager;
