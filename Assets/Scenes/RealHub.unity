@@ -9713,8 +9713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c6397b5431f2343b0fed57b4f0b73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AchievementMenu: {fileID: 266481072}
-  ArmoryMenu: {fileID: 1046590419}
   hpBar: {fileID: 685089575}
   hpText: {fileID: 432339326}
   manaBar: {fileID: 1463221765}
@@ -9729,7 +9727,6 @@ MonoBehaviour:
   defaultBtn:
   - {fileID: 1461279236}
   - {fileID: 140606036}
-  isPaused: 0
   uiObjects:
   - {fileID: 386364207}
   - {fileID: 1586070155}
@@ -19955,7 +19952,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0051546, y: 1}
+    m_SensorSize: {x: 2.1663516, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -42924,8 +42921,12 @@ MonoBehaviour:
   bullet: {fileID: 6630236338828245609, guid: d9671e5f537104d49889c890c45d6e9b, type: 3}
   fireSpell: {fileID: 545954287311120432, guid: 7cd50cdf1045068408135de165560e8f, type: 3}
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}
+  explosion: {fileID: 0}
+  explosionBlue: {fileID: 0}
+  explosionBlueTransform: {fileID: 0}
   inventoryscript: {fileID: 931509566}
   inputManager: {fileID: 1838032230}
+  inputHub: {fileID: 1838032233}
   _dialogueManager: {fileID: 0}
   defaultController: {fileID: 9100000, guid: 5b3abd06becaee3479e2abf71937377c, type: 2}
   deathController: {fileID: 9100000, guid: 75488827879d5d845994211b21fcdd2a, type: 2}
@@ -42945,6 +42946,11 @@ MonoBehaviour:
   gamePad: {fileID: 621524619}
   levelChanger: {fileID: 0}
   Paused: 0
+  menuOpened: 0
+  testTimer: 0
+  meleeHasBeenUsed: 0
+  testTimer2: 0
+  slashHasBeenUsed: 0
 --- !u!1001 &1138623068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53439,7 +53445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 29.998352, y: 50}
+  m_AnchoredPosition: {x: 29.998535, y: 50}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1394841773
@@ -70068,6 +70074,7 @@ GameObject:
   - component: {fileID: 1838032232}
   - component: {fileID: 1838032231}
   - component: {fileID: 1838032230}
+  - component: {fileID: 1838032233}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -70082,7 +70089,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838032229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edca9c96aee1e37428c5dcfd8ac6a45a, type: 3}
   m_Name: 
@@ -70116,8 +70123,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1838032230}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+      - m_Target: {fileID: 1838032233}
+        m_TargetAssemblyTypeName: InputHub, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -70171,102 +70178,6 @@ MonoBehaviour:
     m_ActionId: 0dd6642d-7572-4f60-829b-e8e8bf04aded
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1838032230}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: acf7cf3d-40b0-48d0-bafb-635750e826f1
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1838032230}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnMelee
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ae3d73b8-6ffd-4c0a-9bce-560036a095fb
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1838032230}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnDodge
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 478cd886-778d-41ce-a370-571dfa6bad85
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1838032230}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnShield
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 728ea334-e8ff-4c39-862d-cc8a4b962440
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1838032230}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnSlash
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 495a3418-0fa1-4745-af01-825e0f6d6bc2
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1838032230}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnReturningAttack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1942692f-2c69-4f2e-bb82-047862230637
-    m_ActionName: Player/ReturnAttack[/Keyboard/m]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 89433bdc-418c-4cfd-a075-fc4872481166
     m_ActionName: Player/New action
@@ -70278,6 +70189,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0eb13db2-5c07-4021-8f62-54ccc7dc4b5e
     m_ActionName: Player/Cancel[/Keyboard/c,/DualSenseGamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 478cd886-778d-41ce-a370-571dfa6bad85
+    m_ActionName: Player/Dodge[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: acf7cf3d-40b0-48d0-bafb-635750e826f1
+    m_ActionName: Player/Fire[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae3d73b8-6ffd-4c0a-9bce-560036a095fb
+    m_ActionName: Player/Melee[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 728ea334-e8ff-4c39-862d-cc8a4b962440
+    m_ActionName: Player/Shield[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 495a3418-0fa1-4745-af01-825e0f6d6bc2
+    m_ActionName: Player/Slash[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1942692f-2c69-4f2e-bb82-047862230637
+    m_ActionName: Player/ReturnAttack[/Keyboard/m]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -70298,6 +70233,19 @@ Transform:
   m_Father: {fileID: 347765495}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838032233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838032229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dc9d4a252771048be6beb8b77fab1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPlayerInput: {fileID: 0}
 --- !u!1001 &1840819539
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -55,6 +55,7 @@ public class BaseMelee : MonoBehaviour
             {
                 if (!gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
                 {
+                    gameManager.slashImpact.Play();
                     gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
                     other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentSlashDamage);
                     gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash = false;

@@ -19,16 +19,18 @@ public class vfxtestscript : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         instatiateOnce = true;
-        if(instatiateOnce)
+        if (instatiateOnce)
         {
-            if(other.gameObject.GetComponent<EnemyMain>())
+            if (other.gameObject.CompareTag("Enemy"))
             {
+                //Debug.Log("isColling");
                 GameObject obj = Instantiate(gameManager.explosionBlue, gameManager.explosionBlueTransform.position, transform.rotation);
                 Destroy(obj, 2);
                 instatiateOnce = false;
             }
-        }
     }
+}
+
 
 
 }

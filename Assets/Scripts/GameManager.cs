@@ -21,9 +21,11 @@ public class GameManager : MonoBehaviour
     public GameObject fireBurstVfx;
     public GameObject explosion;
     public GameObject explosionBlue;
+    public ParticleSystem slashImpact;
     public Transform explosionBlueTransform;
     public Inventory inventoryscript;
     public InputManager inputManager;
+    public InputHub inputHub;
     public DialogueManager _dialogueManager;
     public RuntimeAnimatorController defaultController;
     public RuntimeAnimatorController deathController;
@@ -187,19 +189,37 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-
-        switch (inputManager.GetCurrentScheme())
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
         {
-            case "Keyboard&Mouse":
-                keyboard.SetActive(true);
-                gamePad.SetActive(false);
-                break;
+            switch (inputHub.GetCurrentScheme())
+            {
+                case "Keyboard&Mouse":
+                    keyboard.SetActive(true);
+                    gamePad.SetActive(false);
+                    break;
 
-            case "Gamepad":
-                keyboard.SetActive(false);
-                gamePad.SetActive(true);
-                break;
+                case "Gamepad":
+                    keyboard.SetActive(false);
+                    gamePad.SetActive(true);
+                    break;
+            }
         }
+        else if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(1))
+        {
+            switch (inputManager.GetCurrentScheme())
+            {
+                case "Keyboard&Mouse":
+                    keyboard.SetActive(true);
+                    gamePad.SetActive(false);
+                    break;
+
+                case "Gamepad":
+                    keyboard.SetActive(false);
+                    gamePad.SetActive(true);
+                    break;
+            }
+        }
+
 
         if(meleeHasBeenUsed)
         {

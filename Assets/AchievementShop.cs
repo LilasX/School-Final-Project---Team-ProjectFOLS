@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AchievementShop : MonoBehaviour, IBaseMenu
@@ -70,28 +71,42 @@ public class AchievementShop : MonoBehaviour, IBaseMenu
                 backBtn.Select();
                 MenuON();
 
-                switch (_gameManager.inputManager.GetCurrentScheme())
+                switch (_gameManager.inputHub.GetCurrentScheme())
                 {
                     case "Keyboard&Mouse":
-                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[0].ToDisplayString().ToUpper();
+                        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+                        {
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                        }
+                        else
+                        {
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                        }
                         break;
 
                     case "Gamepad":
-                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[1].ToDisplayString().ToUpper();
+                        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+                        {
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                        }
+                        else
+                        {
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                        }
                         break;
                 }
             }
 
-            switch (_gameManager.inputManager.GetCurrentScheme())
-            {
-                case "Keyboard&Mouse":
-                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
-                    break;
+            //switch (_gameManager.inputManager.GetCurrentScheme())
+            //{
+            //    case "Keyboard&Mouse":
+            //        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+            //        break;
 
-                case "Gamepad":
-                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
-                    break;
-            }
+            //    case "Gamepad":
+            //        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+            //        break;
+            //}
         }
     }
 
