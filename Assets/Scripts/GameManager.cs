@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     public GameObject levelChanger;
 
     public bool Paused = false;
+    public bool menuOpened = false;
 
     private DataPersistenceManager dataPersistenceManager;
 
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour
         if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
         {
             inventoryscript.coins = 0;
-            dataPersistenceManager.SaveGame();
+            //dataPersistenceManager.SaveGame();
         }
     }
 
@@ -217,14 +218,5 @@ public class GameManager : MonoBehaviour
         {
             testTimer2 = 0f;
         }
-    }
-
-    public void PauseGame()
-    {
-        if (Paused == false)
-        {
-            Paused = true;
-        }
-        else Paused = false;
     }
 }

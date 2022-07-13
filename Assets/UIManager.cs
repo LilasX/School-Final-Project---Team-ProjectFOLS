@@ -9,8 +9,8 @@ public class UIManager : MonoBehaviour
     GameManager gameManager;
 
     private static UIManager instance;
-    public GameObject AchievementMenu;
-    public GameObject ArmoryMenu;
+    //public GameObject AchievementMenu;
+    //public GameObject ArmoryMenu;
 
     [SerializeField] private Slider hpBar;
     [SerializeField] private GameObject hpText;
@@ -33,8 +33,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject[] panels = null;
     [SerializeField] private Selectable[] defaultBtn = null;
-
-    public bool isPaused;
 
     public GameObject[] uiObjects = null;
 
@@ -94,43 +92,38 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameManager.menuOpened)
         {
-            if (!AchievementMenu.activeInHierarchy && !ArmoryMenu.activeInHierarchy)
+            if (gameManager.Paused)
             {
-                if (isPaused)
-                {
-                    ResumeGame();
-                }
-                else
-                {
-                    PauseGame();
-                }
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
             }
         }
 
-        if (AchievementMenu.activeInHierarchy || ArmoryMenu.activeInHierarchy)
-        {
-            gameManager.player.GetComponent<PlayerEntity>().Speed = 0;
-        }
-        else
-        {
-            gameManager.player.GetComponent<PlayerEntity>().Speed = 6;
-        }
+        //if (AchievementMenu.activeInHierarchy || ArmoryMenu.activeInHierarchy)
+        //{
+        //    gameManager.player.GetComponent<PlayerEntity>().Speed = 0;
+        //}
+        //else
+        //{
+        //    gameManager.player.GetComponent<PlayerEntity>().Speed = 6;
+        //}
     }
     public void ResumeGame()
     {
         panels[0].SetActive(false);
-        gameManager.PauseGame();
+        gameManager.Paused = false;
         Time.timeScale = 1f;
-        isPaused = false;
     }
 
     public void PauseGame()
     {
         PanelToggle(0);
-        gameManager.PauseGame();
-        //Time.timeScale = 0.1f;
-        isPaused = true;
+        gameManager.Paused = true;
+        Time.timeScale = 0f;
     }
 }

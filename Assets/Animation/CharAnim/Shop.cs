@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Shop : MonoBehaviour
+public class Shop : MonoBehaviour, IBaseMenu
 {
     private Transform container;
     private Transform shopItemTemplate;
@@ -97,16 +97,26 @@ public class Shop : MonoBehaviour
         this.shopCustomer = shopCustomer;
         gameObject.SetActive(true);
         shopB[0].Select();
+        MenuON();
     }
 
     public void HideShop()
     {
         gameObject.SetActive(false);
+        MenuOFF();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MenuON()
     {
-        
+        manager.player.GetComponent<CharacterController>().enabled = false;
+        manager.player.GetComponent<Animator>().enabled = false;
+        manager.menuOpened = true;
+    }
+
+    public void MenuOFF()
+    {
+        manager.player.GetComponent<CharacterController>().enabled = true;
+        manager.player.GetComponent<Animator>().enabled = true;
+        manager.menuOpened = false;
     }
 }

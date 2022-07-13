@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AchievementShop : MonoBehaviour
+public class AchievementShop : MonoBehaviour, IBaseMenu
 {
     private GameManager _gameManager;
 
@@ -13,13 +13,13 @@ public class AchievementShop : MonoBehaviour
     public Selectable backBtn;
 
     //private float Timer = 0;
-    private bool insideTrigger = false;
+    //private bool insideTrigger = false;
 
     // Start is called before the first frame update
     void Start()
     {
         _gameManager = GameManager.Instance;
-        _interactionButtonText.SetActive(false);
+        //_interactionButtonText.SetActive(false);
        // AchievementMenu.SetActive(false);
     }
 
@@ -39,8 +39,9 @@ public class AchievementShop : MonoBehaviour
 
         if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
         {
-            _interactionButtonText.SetActive(false);
+            //_interactionButtonText.SetActive(false);
             AchievementMenu.SetActive(false);
+            MenuOFF();
         }
     }
 
@@ -50,7 +51,8 @@ public class AchievementShop : MonoBehaviour
         {
             _interactionButtonText.SetActive(false);
             AchievementMenu.SetActive(false);
-            insideTrigger = false;
+            //insideTrigger = false;
+            MenuOFF();
         }
     }
 
@@ -58,7 +60,7 @@ public class AchievementShop : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
-            insideTrigger = true;
+            //insideTrigger = true;
             _interactionButtonText.SetActive(true);
 
             if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
@@ -66,23 +68,49 @@ public class AchievementShop : MonoBehaviour
                 Debug.Log("activateMenu");
                 AchievementMenu.SetActive(true);
                 backBtn.Select();
+                MenuON();
+
+                switch (_gameManager.inputManager.GetCurrentScheme())
+                {
+                    case "Keyboard&Mouse":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[0].ToDisplayString().ToUpper();
+                        break;
+
+                    case "Gamepad":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[1].ToDisplayString().ToUpper();
+                        break;
+                }
             }
-        }
 
-        switch (_gameManager.inputManager.GetCurrentScheme())
-        {
-            case "Keyboard&Mouse":
-                _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
-                break;
+            switch (_gameManager.inputManager.GetCurrentScheme())
+            {
+                case "Keyboard&Mouse":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                    break;
 
-            case "Gamepad":
-                _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
-                break;
+                case "Gamepad":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+                    break;
+            }
         }
     }
 
     public void Back()
     {
         AchievementMenu.SetActive(false);
+    }
+
+    public void MenuON()
+    {
+        _gameManager.player.GetComponent<CharacterController>().enabled = false;
+        _gameManager.player.GetComponent<Animator>().enabled = false;
+        _gameManager.menuOpened = true;
+    }
+
+    public void MenuOFF()
+    {
+        _gameManager.player.GetComponent<CharacterController>().enabled = true;
+        _gameManager.player.GetComponent<Animator>().enabled = true;
+        _gameManager.menuOpened = false;
     }
 }

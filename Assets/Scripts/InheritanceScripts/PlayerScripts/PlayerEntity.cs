@@ -250,17 +250,21 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
     // Update is called once per frame
     protected override void Update()
     {
-        if (gameManager.Paused) { return; }
+        if (!gameManager.Paused) 
+        {
+            if (!gameManager.menuOpened)
+            {
+                OnManagingGravity();
+
+                ResetCharacterMaterial();
+
+                playerState.Update(); // Excute the running state update
+            }
+
+            GetCurrentStamina = Mathf.MoveTowards(GetCurrentStamina, GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
+        }
 
         OnManagingSliders();
-
-        OnManagingGravity();
-
-        ResetCharacterMaterial();
-
-        playerState.Update(); // Excute the running state update
-
-        GetCurrentStamina = Mathf.MoveTowards(GetCurrentStamina, GetMaxStamina, 10f * Time.deltaTime); //Remplit la barre d'endurance
 
         //SetCurrentWeapon();
 

@@ -8,14 +8,12 @@ public class ShopTrigger : MonoBehaviour
     private GameManager _gameManager;
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
-    private bool _insideTrigger = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         _gameManager = GameManager.Instance;
-        _insideTrigger = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -39,7 +37,7 @@ public class ShopTrigger : MonoBehaviour
             if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
             {
                 shop.ShowShop(shopCustomer);
-                _gameManager.player.GetComponent<CharacterController>().enabled = false;
+                
                 switch (_gameManager.inputManager.GetCurrentScheme())
                 {
                     case "Keyboard&Mouse":
@@ -74,7 +72,6 @@ public class ShopTrigger : MonoBehaviour
         if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
         {
             shop.HideShop();
-            _gameManager.player.GetComponent<CharacterController>().enabled = true;
         }
     }
 }

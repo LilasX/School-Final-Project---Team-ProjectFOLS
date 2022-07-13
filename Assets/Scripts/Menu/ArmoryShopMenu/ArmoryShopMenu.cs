@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ArmoryShopMenu : MonoBehaviour
+public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
 {
     private GameManager _gameManager;
 
@@ -21,7 +21,7 @@ public class ArmoryShopMenu : MonoBehaviour
     public GameObject[] activeWeaponCheckImg = null;
 
     //private float Timer = 0;
-    private bool insideTrigger = false;
+    //private bool insideTrigger = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +47,9 @@ public class ArmoryShopMenu : MonoBehaviour
 
         if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling)
         {
-            _interactionButtonText.SetActive(false);
+            //_interactionButtonText.SetActive(false);
             ArmoryMenu.SetActive(false);
+            MenuOFF();
         }
     }
 
@@ -58,7 +59,8 @@ public class ArmoryShopMenu : MonoBehaviour
         {
             _interactionButtonText.SetActive(false);
             ArmoryMenu.SetActive(false);
-            insideTrigger = false;
+            MenuOFF();
+            //insideTrigger = false;
         }
     }
 
@@ -66,7 +68,7 @@ public class ArmoryShopMenu : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
-            insideTrigger = true;
+            //insideTrigger = true;
             _interactionButtonText.SetActive(true);
 
             if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
@@ -74,6 +76,18 @@ public class ArmoryShopMenu : MonoBehaviour
                 Debug.Log("ArmoryMenu");
                 ArmoryMenu.SetActive(true);
                 BackBtn.Select();
+                MenuON();
+
+                switch (_gameManager.inputManager.GetCurrentScheme())
+                {
+                    case "Keyboard&Mouse":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[0].ToDisplayString().ToUpper();
+                        break;
+
+                    case "Gamepad":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[1].ToDisplayString().ToUpper();
+                        break;
+                }
             }
         }
 
@@ -105,5 +119,19 @@ public class ArmoryShopMenu : MonoBehaviour
     public void Back()
     {
         ArmoryMenu.SetActive(false);
+    }
+
+    public void MenuON()
+    {
+        _gameManager.player.GetComponent<CharacterController>().enabled = false;
+        _gameManager.player.GetComponent<Animator>().enabled = false;
+        _gameManager.menuOpened = true;
+    }
+
+    public void MenuOFF()
+    {
+        _gameManager.player.GetComponent<CharacterController>().enabled = true;
+        _gameManager.player.GetComponent<Animator>().enabled = true;
+        _gameManager.menuOpened = false;
     }
 }
