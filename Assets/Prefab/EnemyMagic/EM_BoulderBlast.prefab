@@ -131753,7 +131753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432206e342c6a0a4093a284cea567509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooter: 0
+  shooter: 1
   typeRange: 0
   posOrigin: {fileID: 0}
   isPooling: 0
@@ -131802,6 +131802,7 @@ MonoBehaviour:
   - {fileID: 8246082785144165247}
   - {fileID: 3033285425452731415}
   - {fileID: 6806831981727480964}
+  startOnce: 1
   start: 0
   timer: 0
   posOrigin: {fileID: 0}

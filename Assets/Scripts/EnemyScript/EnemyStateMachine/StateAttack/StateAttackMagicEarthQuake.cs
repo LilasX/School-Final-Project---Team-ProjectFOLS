@@ -59,7 +59,8 @@ public class StateAttackMagicEarthQuake : StateAttackMagic
                     magic.SetActive(true);
                     magic.transform.position = spellSpawn.transform.position;
                     magic.transform.rotation = spellSpawn.transform.rotation;
-                    magic.GetComponent<Spell_EarthQuake>().StartSpell();
+                    magic.GetComponent<Spell_EarthQuake>().StartSpell(); 
+                    magic.GetComponent<BaseSpell>().isPooling = true;
                 }
                 else
                 {

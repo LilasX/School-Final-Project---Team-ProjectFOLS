@@ -81,6 +81,7 @@ public class StateStart_GhostRange : StateStart
             spawnVFX.transform.position = enemyBehaviour.gameObject.transform.position;
             spawnVFX.transform.rotation = enemyBehaviour.gameObject.transform.rotation;
             spawnVFX.GetComponent<EnemySpawnScript>().StartVFX();
+            spawnVFX.GetComponent<EnemySpawnScript>().isPooling = true;
             onceP = false;
         }
 

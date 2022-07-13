@@ -171,6 +171,7 @@ public class StateAttackMagicBoulderFall : StateAttackMagic
                 magic.transform.position = pathPointList[count].transform.position;
                 magic.transform.rotation = pathPointList[count].transform.rotation;
                 magic.GetComponent<BaseSpell>().StartSpell();
+                magic.GetComponent<BaseSpell>().isPooling = true;
                 count++;
 
             } while (count < max);
@@ -185,6 +186,7 @@ public class StateAttackMagicBoulderFall : StateAttackMagic
                 magic.transform.position = pathPointList[count].transform.position;
                 magic.transform.rotation = pathPointList[count].transform.rotation;
                 magic.GetComponent<BaseSpell>().StartSpell();
+                magic.GetComponent<BaseSpell>().isPooling = true;
                 count++;
 
             } while (count < max);

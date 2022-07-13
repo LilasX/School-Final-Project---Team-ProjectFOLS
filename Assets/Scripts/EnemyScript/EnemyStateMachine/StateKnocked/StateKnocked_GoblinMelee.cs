@@ -17,7 +17,6 @@ public class StateKnocked_GoblinMelee : StateKnocked
             anim.SetTrigger("IsKnocked");
             //character.GetComponent<SkinnedMeshRenderer>().material = knockedMat;
             //character.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_OutlineWidth", 0f);
-
             //stateAttack.once = false;
             //stateAttack.canDmg = false;
             if (enemyBehaviour.gameObject.GetComponent<EnemyMelee>())

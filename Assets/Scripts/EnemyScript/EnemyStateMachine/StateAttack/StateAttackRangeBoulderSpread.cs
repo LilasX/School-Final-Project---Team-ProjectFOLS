@@ -102,6 +102,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     ranged.transform.rotation = projectileSpawn.transform.rotation;
                     ranged.GetComponent<BaseProjectile>().dmg = 15;
                     ranged.GetComponent<BaseProjectile>().useRange = true;
+                    ranged.GetComponent<BaseProjectile>().isPooling = true;
                     ranged.GetComponent<Rigidbody>().AddForce(projectileSpawn.transform.forward * 20, ForceMode.Impulse);
                     iSPOnce1 = true;
                 }
@@ -114,6 +115,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     ranged2.transform.rotation = projectileSpawn2.transform.rotation;
                     ranged2.GetComponent<BaseProjectile>().dmg = 15;
                     ranged2.GetComponent<BaseProjectile>().useRange = true;
+                    ranged2.GetComponent<BaseProjectile>().isPooling = true;
                     ranged2.GetComponent<Rigidbody>().AddForce(projectileSpawn2.transform.forward * 20, ForceMode.Impulse);
                     iSPOnce2 = true;
                 }
@@ -126,6 +128,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     ranged3.transform.rotation = projectileSpawn3.transform.rotation;
                     ranged3.GetComponent<BaseProjectile>().dmg = 15;
                     ranged3.GetComponent<BaseProjectile>().useRange = true;
+                    ranged3.GetComponent<BaseProjectile>().isPooling = true;
                     ranged3.GetComponent<Rigidbody>().AddForce(projectileSpawn3.transform.forward * 20, ForceMode.Impulse);
                     timer2 = 0;
                     iSPOnce1 = false;
@@ -142,6 +145,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                 ranged.transform.rotation = projectileSpawn.transform.rotation;
                 ranged.GetComponent<BaseProjectile>().dmg = 15;
                 ranged.GetComponent<BaseProjectile>().useRange = true;
+                ranged.GetComponent<BaseProjectile>().isPooling = true;
                 ranged.GetComponent<Rigidbody>().AddForce(projectileSpawn.transform.forward * 20, ForceMode.Impulse);
                 once4 = false;
                 isShootingPooling = false;

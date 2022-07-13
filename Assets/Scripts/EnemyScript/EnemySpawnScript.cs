@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EnemySpawnScript : MonoBehaviour
 {
-    public Transform posOrigin;
+    public Vector3 posOrigin;
     public bool isPooling;
     public bool start = false;
     public float timer = 0f;
-
+    public bool startOnce = true;
 
     private void Awake()
     {
         if (isPooling)
         {
-            posOrigin = this.gameObject.transform;
+            posOrigin = this.gameObject.transform.position;
         }
     }
 
@@ -22,9 +22,9 @@ public class EnemySpawnScript : MonoBehaviour
     {
         if (isPooling)
         {
-            this.gameObject.transform.position = posOrigin.position;
+            gameObject.transform.position = posOrigin;
         }
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void StartVFX()
@@ -35,7 +35,12 @@ public class EnemySpawnScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (startOnce)
+        {
+            posOrigin = gameObject.transform.position;
+            startOnce = false;
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame

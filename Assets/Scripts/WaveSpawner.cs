@@ -207,6 +207,7 @@ public class WaveSpawner : MonoBehaviour
             enemyPooled.transform.rotation = _sp.rotation;
             enemyPooled.GetComponent<EnemyMain>().InitializeEnemy();
             enemyPooled.GetComponent<EnemyMain>().waveSpawnerObject = gameObject;
+            enemyPooled.GetComponent<EnemyMain>().isPooling = true;
             enemyPooled.GetComponent<EnemyBehaviour>().InitializeBehaviour();
             enemyPooled.GetComponent<EnemyBehaviour>().SetBoundBox(boundBox);
             enemyPooled.SetActive(true);

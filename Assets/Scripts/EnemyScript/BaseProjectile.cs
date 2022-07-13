@@ -9,8 +9,9 @@ public class BaseProjectile : MonoBehaviour
     public Shooter shooter;
     public RangeWeapon typeRange;
 
-    public Transform posOrigin;
+    public Vector3 posOrigin;
     public bool isPooling;
+    public bool startOnce = true;
 
     public int dmg = 0;
     public bool canDmg;
@@ -32,7 +33,7 @@ public class BaseProjectile : MonoBehaviour
     {
         if (isPooling)
         {
-            posOrigin = this.gameObject.transform;
+            posOrigin = this.gameObject.transform.position;
         }
     }
 
@@ -167,7 +168,7 @@ public class BaseProjectile : MonoBehaviour
 
     public void SetInactiveRange() //For Pooling, Destroy for Instantiate
     {
-        this.gameObject.transform.position = posOrigin.position; 
+        this.gameObject.transform.position = posOrigin; 
         this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         canDmg = true;
         gameObject.SetActive(false); 
@@ -186,6 +187,13 @@ public class BaseProjectile : MonoBehaviour
         timerWall = 0f;
         timerFloor = 0f;
         timerWave = 0f;
+
+        if (startOnce && shooter == Shooter.enemy)
+        {
+            posOrigin = gameObject.transform.position;
+            startOnce = false;
+            gameObject.SetActive(false);
+        }
 
         //Invoke("SetInactiveRange", 2f);
         /*switch (typeRange) //Can I put them all together?

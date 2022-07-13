@@ -61,6 +61,7 @@ public class StateAttackRangeLance : StateAttackRange02
                     ranged.transform.rotation = projectileSpawn.transform.rotation;
                     ranged.GetComponent<BaseProjectile>().dmg = 30;
                     ranged.GetComponent<BaseProjectile>().useRange = true;
+                    ranged.GetComponent<BaseProjectile>().isPooling = true;
                     ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 12, ForceMode.Impulse);
                 }
                 else

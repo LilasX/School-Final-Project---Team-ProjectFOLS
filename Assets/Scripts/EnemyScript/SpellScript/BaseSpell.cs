@@ -7,17 +7,28 @@ public abstract class BaseSpell : MonoBehaviour
     public GameObject[] warningZone;
     public GameObject[] spellZone;
 
+    public bool startOnce = true;
     public bool start = false;
     public float timer = 0f;
 
-    public Transform posOrigin;
+    public Vector3 posOrigin;
     public bool isPooling;
 
     private void Awake()
     {
         if (isPooling)
         {
-            posOrigin = this.gameObject.transform;
+            posOrigin = gameObject.transform.position;
+        }
+    }
+
+    protected virtual void Start()
+    {
+        if (startOnce)
+        {
+            posOrigin = gameObject.transform.position;
+            startOnce = false;
+            gameObject.SetActive(false);
         }
     }
 
@@ -25,9 +36,9 @@ public abstract class BaseSpell : MonoBehaviour
     {
         if (isPooling)
         {
-            this.gameObject.transform.position = posOrigin.position;
+            gameObject.transform.position = posOrigin;
         }
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public abstract void StartSpell();

@@ -166,6 +166,7 @@ public class EnemyMelee : EnemyMain
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
         InitializeEnemy();
         //waveSpawnerScript = FindObjectOfType<WaveSpawner>();
 

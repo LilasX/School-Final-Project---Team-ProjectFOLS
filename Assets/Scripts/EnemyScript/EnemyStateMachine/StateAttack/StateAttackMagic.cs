@@ -84,6 +84,7 @@ public class StateAttackMagic : EnemyState
                     magic.transform.position = spellSpawn.transform.position;
                     magic.transform.rotation = spellSpawn.transform.rotation;
                     magic.GetComponent<BaseSpell>().StartSpell(); //Doesn't have once in Trigger for Spell, may need it?
+                    magic.GetComponent<BaseSpell>().isPooling = true;
 
                     if (isProjectile)
                     {

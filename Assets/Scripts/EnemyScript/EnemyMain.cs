@@ -11,7 +11,8 @@ public abstract class EnemyMain : EnemyEntity
     //public int hpMax; 
     //public int dmg;
 
-    protected Transform posOrigin;
+    public Vector3 posOrigin;
+    public bool startOnce = true;
 
     //Need ATK, DEF & SPD?
     public GameManager gameManager;
@@ -42,15 +43,25 @@ public abstract class EnemyMain : EnemyEntity
 
     private void Awake()
     {
-        if (isPooling)
+        /*if (isPooling)
         {
-            posOrigin = this.gameObject.transform;
+            posOrigin = this.gameObject.transform.position;
+        }*/
+    }
+
+    protected override void Start()
+    {
+        if (startOnce)
+        {
+            posOrigin = gameObject.transform.position; 
+            startOnce = false;
+            gameObject.SetActive(false);
         }
     }
 
     public void ReturnOrigin()
     {
-        this.gameObject.transform.position = posOrigin.position;
+        gameObject.transform.position = posOrigin;
     }
 
     public override void OnHurt(int damage)

@@ -51,6 +51,7 @@ public class StateAttackMagicEarthWave : StateAttackMagic
                     magic.transform.position = spellSpawn.transform.position;
                     magic.transform.rotation = spellSpawn.transform.rotation;
                     magic.GetComponent<Spell_EarthWave>().StartSpell();
+                    magic.GetComponent<BaseSpell>().isPooling = true;
                 }
                 else
                 {
