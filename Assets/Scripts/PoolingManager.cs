@@ -45,6 +45,9 @@ public class PoolingManager : MonoBehaviour
     //Enemy VFX
     public GameObject[] spawnVFXList = new GameObject[8];
 
+    //TreasureChest
+    public GameObject[] treasureChestList = new GameObject[4];
+
     private void Awake()
     {
         if (instance == null)
@@ -418,6 +421,21 @@ public class PoolingManager : MonoBehaviour
 
         SetIsPooling(spawnVFXList[0]);
         return spawnVFXList[0];
+    }
+
+    public GameObject callTreasureChest()
+    {
+        for (int i = 0; i < spawnVFXList.Length; i++)
+        {
+            if (!treasureChestList[i].activeInHierarchy)
+            {
+                SetIsPooling(treasureChestList[i]);
+                return treasureChestList[i];
+            }
+        }
+
+        SetIsPooling(treasureChestList[0]);
+        return treasureChestList[0];
     }
 
     // Start is called before the first frame update

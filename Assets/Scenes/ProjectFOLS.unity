@@ -3410,6 +3410,11 @@ MonoBehaviour:
   - {fileID: 1395808466}
   - {fileID: 1395808465}
   - {fileID: 1395808464}
+  treasureChestList:
+  - {fileID: 1939224503}
+  - {fileID: 1939224502}
+  - {fileID: 1939224501}
+  - {fileID: 1939224500}
 --- !u!1 &406491600 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5166385727708450940, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
@@ -5768,7 +5773,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3820167, y: 1}
+    m_SensorSize: {x: 3.1156511, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7295,7 +7300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 29.999023, y: 50}
+  m_AnchoredPosition: {x: 29.999146, y: 50}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &942521265
@@ -17611,6 +17616,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4277b7dfb488f614f8e5efff603e78da, type: 3}
+--- !u!1 &1939224500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8208378527722832664, guid: 16eddd04046ee734aba074213322f620, type: 3}
+  m_PrefabInstance: {fileID: 6701293262302333679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1939224501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 873779780461500675, guid: 16eddd04046ee734aba074213322f620, type: 3}
+  m_PrefabInstance: {fileID: 6701293262302333679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1939224502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5857780218823868053, guid: 16eddd04046ee734aba074213322f620, type: 3}
+  m_PrefabInstance: {fileID: 6701293262302333679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1939224503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 606620941911038254, guid: 16eddd04046ee734aba074213322f620, type: 3}
+  m_PrefabInstance: {fileID: 6701293262302333679}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1943421432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22837,6 +22862,10 @@ PrefabInstance:
     - target: {fileID: 9060477204638184920, guid: 1f35ec86035996544a482bb0e9334218, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060477204638184921, guid: 1f35ec86035996544a482bb0e9334218, type: 3}
+      propertyPath: isPooling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9060477204638184921, guid: 1f35ec86035996544a482bb0e9334218, type: 3}
       propertyPath: poolingManager

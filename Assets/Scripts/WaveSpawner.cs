@@ -29,7 +29,9 @@ public class WaveSpawner : MonoBehaviour
     public Transform[] rewardsList;
     
     public Transform[] rewardSpawnPoints;
-    public int randNum; 
+    public int randNum;
+
+    public GameObject tChestPooled;
 
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
@@ -221,12 +223,25 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < rewardsList.Length; i++)
+            if (isPooling) //POOLING SYSTEM for TREASURE CHEST
             {
-                Transform _sp = rewardSpawnPoints[i];
-                Instantiate(rewardsList[i], _sp.position, _sp.rotation);
+                for (int i = 0; i < rewardsList.Length; i++)
+                {
+                    Transform _sp = rewardSpawnPoints[i];
+                    tChestPooled = poolingManager.callTreasureChest();
+                    tChestPooled.SetActive(true);
+                    tChestPooled.transform.position = _sp.position;
+                    tChestPooled.transform.rotation = _sp.rotation;
+                }
             }
-            
+            else
+            {
+                for (int i = 0; i < rewardsList.Length; i++)
+                {
+                    Transform _sp = rewardSpawnPoints[i];
+                    Instantiate(rewardsList[i], _sp.position, _sp.rotation);
+                }
+            }
         }
     }
 
