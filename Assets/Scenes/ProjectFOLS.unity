@@ -5773,7 +5773,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 3.1156511, y: 1}
+    m_SensorSize: {x: 2.0984433, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -16788,9 +16788,11 @@ MonoBehaviour:
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}
   explosion: {fileID: 0}
   explosionBlue: {fileID: 0}
+  slashImpact: {fileID: 0}
   explosionBlueTransform: {fileID: 0}
   inventoryscript: {fileID: 555554497}
   inputManager: {fileID: 231535361}
+  inputHub: {fileID: 0}
   _dialogueManager: {fileID: 0}
   defaultController: {fileID: 9100000, guid: 5b3abd06becaee3479e2abf71937377c, type: 2}
   deathController: {fileID: 9100000, guid: 75488827879d5d845994211b21fcdd2a, type: 2}
@@ -19778,6 +19780,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 832647727223103515, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _buttonNameText
+      value: 
+      objectReference: {fileID: 272708067}
+    - target: {fileID: 832647727223103515, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _interactionButtonText
+      value: 
+      objectReference: {fileID: 1076310374}
     - target: {fileID: 892122169392180077, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -19786,6 +19796,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1136389448252219446, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _buttonNameText
+      value: 
+      objectReference: {fileID: 272708067}
+    - target: {fileID: 1136389448252219446, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _interactionButtonText
+      value: 
+      objectReference: {fileID: 1076310374}
     - target: {fileID: 1211904890258136438, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -20006,6 +20024,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6261523781504108429, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _buttonNameText
+      value: 
+      objectReference: {fileID: 272708067}
+    - target: {fileID: 6261523781504108429, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _interactionButtonText
+      value: 
+      objectReference: {fileID: 1076310374}
     - target: {fileID: 6701293263467383682, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -20178,6 +20204,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8522048961700559360, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _buttonNameText
+      value: 
+      objectReference: {fileID: 272708067}
+    - target: {fileID: 8522048961700559360, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: _interactionButtonText
+      value: 
+      objectReference: {fileID: 1076310374}
     - target: {fileID: 8886205994001621002, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: m_IsActive
       value: 0

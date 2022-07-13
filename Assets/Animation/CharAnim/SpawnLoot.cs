@@ -12,6 +12,10 @@ public class SpawnLoot : MonoBehaviour
     //private bool collected;
     public bool spawned;
 
+    private GameManager _gameManager;
+    [SerializeField] private GameObject _buttonNameText;
+    [SerializeField] private GameObject _interactionButtonText;
+
     private void OnValidate()
     {
         if(minRange > maxRange)
@@ -24,6 +28,7 @@ public class SpawnLoot : MonoBehaviour
     void Start()
     {
         spawnPos = this.gameObject.transform;
+        _gameManager = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -34,6 +39,15 @@ public class SpawnLoot : MonoBehaviour
         {
             spawned = false;
             TakeLoot();
+        }
+
+        if(this.GetComponent<LootBox>() != null)
+        {
+            if (this.GetComponent<LootBox>().isOpen)
+            {
+                _interactionButtonText.SetActive(false);
+            }
+            
         }
     }
 
@@ -67,5 +81,32 @@ public class SpawnLoot : MonoBehaviour
 
         GameObject tempLoot = Instantiate(loot[1]);
         tempLoot.transform.position = this.spawnPos.position;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerEntity>())
+        {
+            switch (_gameManager.inputManager.GetCurrentScheme())
+            {
+                case "Keyboard&Mouse":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                    break;
+
+                case "Gamepad":
+                    _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+                    break;
+            }
+
+            _interactionButtonText.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerEntity>())
+        {
+            _interactionButtonText.SetActive(false);
+        }
     }
 }
