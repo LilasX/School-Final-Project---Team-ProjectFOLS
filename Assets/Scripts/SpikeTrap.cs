@@ -54,7 +54,9 @@ public class SpikeTrap : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
-            Vector3 hitDirection = (other.transform.position - transform.position).normalized;
+            other.gameObject.GetComponent<PlayerEntity>().knockDirection = (other.transform.position - transform.position).normalized;
+            other.gameObject.GetComponent<PlayerEntity>().knockknock = true;
+
 
             //Play knockback animation
             if (!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
@@ -68,7 +70,7 @@ public class SpikeTrap : MonoBehaviour
                 {
                     other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                     other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-                    other.gameObject.GetComponent<PlayerEntity>().KnockBack(hitDirection);
+                    //other.gameObject.GetComponent<PlayerEntity>().KnockBack(hitDirection);
                     other.gameObject.GetComponent<PlayerEntity>().OnHurt(20);
 
                 }

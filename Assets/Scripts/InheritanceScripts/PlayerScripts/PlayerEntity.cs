@@ -135,8 +135,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     /// <summary>
     public float knockBackForce;
-    //public float knockTime = 0f;
-    //public bool knockknock = false;
+    public float knockTime = 0f;
+    public bool knockknock = false;
+    public Vector3 knockDirection;
 
     public GameObject newvfx;
 
@@ -268,19 +269,27 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         //SetCurrentWeapon();
 
-        //if (knockknock)
-        //{
-        //    knockTime += Time.deltaTime;
-        //    if(knockTime >= 1f)
-        //    {
-        //        Time.timeScale = 1f;
-        //        knockknock = false;
-        //        knockTime = 0f;
-        //    }
-        //}
+        
+        
+        if (knockknock)
+        {
+            knockTime += Time.deltaTime;
+            KnockBack();
+            if (knockTime >= 0.1f)
+            {
+                knockknock = false;
+                knockTime = 0f;
+            }
+        }
 
     }
-
+    
+    public void KnockBack()
+    {
+        move = knockDirection * knockBackForce;
+        myCharacter.Move(move * Time.maximumDeltaTime);
+    } 
+    
     public void KnockBack(Vector3 direction)
     {
         move = direction * knockBackForce;
