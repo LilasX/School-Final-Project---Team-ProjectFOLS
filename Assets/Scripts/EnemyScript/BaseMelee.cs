@@ -160,7 +160,7 @@ public class BaseMelee : MonoBehaviour
         //}
 
         
-        if (striker == Striker.player && (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee || gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash))
+        if (striker == Striker.player && (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee || gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash) || gameManager.inventoryscript.keys >= 1)
         {
             this.gameObject.GetComponent<Collider>().enabled = true;
         }
