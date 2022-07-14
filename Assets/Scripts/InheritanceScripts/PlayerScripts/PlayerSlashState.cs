@@ -32,11 +32,18 @@ public class PlayerSlashState : IPlayerBaseState
 
     public void ExitState()
     {
-        playerEntityInstance.slashTimer += Time.deltaTime;
-        if (playerEntityInstance.slashTimer >= 0.75f)
+        //playerEntityInstance.slashTimer += Time.deltaTime;
+        //if (playerEntityInstance.slashTimer >= 0.75f)
+        //{
+        //    playerEntityInstance.Animator.SetBool("Slash", false);
+        //    playerEntityInstance.slashTimer = 0f;
+        //    gameManager.slashHasBeenUsed = false;
+        //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+        //}
+
+        if (gameManager.slashHasBeenUsed)
         {
             playerEntityInstance.Animator.SetBool("Slash", false);
-            playerEntityInstance.slashTimer = 0f;
             gameManager.slashHasBeenUsed = false;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }

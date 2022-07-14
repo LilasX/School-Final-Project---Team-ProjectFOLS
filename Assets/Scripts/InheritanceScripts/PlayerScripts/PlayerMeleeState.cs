@@ -38,15 +38,25 @@ public class PlayerMeleeState : IPlayerBaseState
 
     public void ExitState()
     {
-        playerEntityInstance.meleeTime += Time.deltaTime;
-        if (playerEntityInstance.meleeTime >= 0.4f)
+        //playerEntityInstance.meleeTime += Time.deltaTime;
+        //if (playerEntityInstance.meleeTime >= 0.45f)
+        //{
+        //    playerEntityInstance.Animator.SetBool("Attack", false);
+        //    playerEntityInstance.meleeTime = 0f;
+        //    uiManager.SwordImage.SetActive(true);
+        //    //playerEntityInstance.meleePS.SetActive(false);
+        //    gameManager.meleeHasBeenUsed = false;
+        //    gameManager.testTimer = 0f;
+        //    playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
+        //}
+
+        
+        if (gameManager.meleeHasBeenUsed)
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
-            playerEntityInstance.meleeTime = 0f;
             uiManager.SwordImage.SetActive(true);
             //playerEntityInstance.meleePS.SetActive(false);
             gameManager.meleeHasBeenUsed = false;
-            gameManager.testTimer = 0f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }
