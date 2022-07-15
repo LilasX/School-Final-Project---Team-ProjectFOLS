@@ -33,7 +33,7 @@ public class WaveSpawner : MonoBehaviour
 
     public GameObject tChestPooled;
 
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = 2f;
     public float waveCountdown;
 
     private SpawnState state = SpawnState.Counting;

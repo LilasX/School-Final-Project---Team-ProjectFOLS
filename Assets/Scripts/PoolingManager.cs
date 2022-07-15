@@ -31,9 +31,11 @@ public class PoolingManager : MonoBehaviour
     public GameObject[] fireWallList = new GameObject[4];
     public GameObject[] fireFloorList = new GameObject[4];
     public GameObject[] fireWaveList = new GameObject[3];
+    public GameObject[] fireMeteorList = new GameObject[12];
     public GameObject[] lightningStrikeList = new GameObject[3];
     public GameObject[] lightningFieldList = new GameObject[3];
     public GameObject[] lightningWaveList = new GameObject[3];
+    public GameObject[] lightningStormList = new GameObject[12];
     public GameObject[] earthQuakeList = new GameObject[3];
     public GameObject[] earthQuakeV2List = new GameObject[3];
     public GameObject[] earthStompList = new GameObject[3];
@@ -259,6 +261,21 @@ public class PoolingManager : MonoBehaviour
         return fireWaveList[0];
     }
 
+    public GameObject callFireMeteor()
+    {
+        for (int i = 0; i < fireMeteorList.Length; i++)
+        {
+            if (!fireMeteorList[i].activeInHierarchy)
+            {
+                SetIsPooling(fireMeteorList[i]);
+                return fireMeteorList[i];
+            }
+        }
+
+        SetIsPooling(fireMeteorList[0]);
+        return fireMeteorList[0];
+    }
+
     public GameObject callLightningStrike()
     {
         for (int i = 0; i < lightningStrikeList.Length; i++)
@@ -302,6 +319,21 @@ public class PoolingManager : MonoBehaviour
 
         SetIsPooling(lightningWaveList[0]);
         return lightningWaveList[0];
+    }
+
+    public GameObject callLightningStorm()
+    {
+        for (int i = 0; i < lightningStormList.Length; i++)
+        {
+            if (!lightningStormList[i].activeInHierarchy)
+            {
+                SetIsPooling(lightningStormList[i]);
+                return lightningStormList[i];
+            }
+        }
+
+        SetIsPooling(lightningStormList[0]);
+        return lightningStormList[0];
     }
 
     public GameObject callEarthQuake()

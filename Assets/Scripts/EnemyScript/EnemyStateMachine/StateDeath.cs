@@ -23,7 +23,7 @@ public class StateDeath : EnemyState
             enemyBehaviour.enemyAnim.runtimeAnimatorController = deathAnimator;
             character.GetComponent<Renderer>().material = dissolveMat;
             cutoffValue = -1;
-            //dissolveStart = false;
+            dissolveStart = false;
             once2 = false;
             once3 = false;
             once1 = true;
@@ -34,7 +34,7 @@ public class StateDeath : EnemyState
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5)
             {
                 enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
-                //dissolveStart = true;
+                dissolveStart = true;
                 once2 = true;
             }
         }
@@ -51,9 +51,9 @@ public class StateDeath : EnemyState
             }
         }
 
-        if (/*dissolveStart && */cutoffValue <= 3f)
+        if (dissolveStart && cutoffValue <= 3f)
         {
-            cutoffValue += Time.deltaTime * 1.5f;
+            cutoffValue += Time.deltaTime * 5f;
             character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValue);
         }
 

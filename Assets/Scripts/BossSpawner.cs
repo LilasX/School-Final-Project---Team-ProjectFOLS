@@ -54,7 +54,7 @@ public class BossSpawner : MonoBehaviour
             }
             else if (isShaman)
             {
-                bossPooled = poolingManager.callGoblinWarrior();
+                bossPooled = poolingManager.callGoblinShaman();
             }
             else if (isGolem)
             {

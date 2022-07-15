@@ -229,12 +229,23 @@ MonoBehaviour:
   - {fileID: 7772784816514282717}
   - {fileID: 7772784815471857204}
   - {fileID: 7772784815960675725}
+  spawnPointsUsed: 
+  _sp: {fileID: 0}
+  enemySpawned: {fileID: 0}
+  boundBox:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   rewardsList:
   - {fileID: 3471643304242014600, guid: feb46b78f78e74267836b445901cf537, type: 3}
   rewardSpawnPoints:
   - {fileID: 7772784816169895594}
-  timeBetweenWaves: 5
+  randNum: 0
+  tChestPooled: {fileID: 0}
+  timeBetweenWaves: 2
   waveCountdown: 0
+  isPooling: 0
+  enemyPooled: {fileID: 0}
+  poolingManager: {fileID: 0}
 --- !u!65 &7772784817273596942
 BoxCollider:
   m_ObjectHideFlags: 0

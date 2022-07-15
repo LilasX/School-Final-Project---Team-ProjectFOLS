@@ -16,16 +16,12 @@ public class EnemyMelee : EnemyMain
     public GameObject coin;
     public bool onceDeath = false;
 
-    public bool attack; //Testing Attack Purpose in Inspector
-    public bool die; //Testing OnDeath
-
     private AchievementManager achievementManager;
 
     public override void InitializeEnemy() 
     {
         gameManager = GameManager.instance;
         achievementManager = AchievementManager.Instance;
-        //posOrigin = transform;
         GetCurrentHP = GetMaxHP;
         canAttack = true; 
         timer = 0;
@@ -33,11 +29,10 @@ public class EnemyMelee : EnemyMain
         GetComponent<SpawnLoot>().spawned = false;
         cameraMain = gameManager.cameraMain;
         canvas.gameObject.SetActive(true);
-        //GetComponent<EnemyBehaviour>().InitializeBehaviour();
         RandomWeapon(); 
     }
 
-    public override void RandomWeapon()
+    public void RandomWeapon()
     {
         randNum = Random.Range(0, 2);
         switch (randNum)
@@ -53,27 +48,6 @@ public class EnemyMelee : EnemyMain
         }
     }
 
-    /*public override void OnAttack() //No Longer Used
-    {
-        if (canAttack)
-        {
-            //melee.SetActive(true);
-            //Need Confirmation for Anim
-            //Need public Animator for 
-            //if (meleeAnim) meleeAnim.SetTrigger("Attack"); //For Capsule
-
-            //enemyBehaviour.enemyAnim.SetTrigger("IsAttacking");
-            GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking01"); //For Goblin
-            canAttack = false;
-
-            //if (animState.GetCurrentAnimatorStateInfo(0).IsName("MSword And Shield Slash"))
-            //{
-                Invoke("CanDamage", 0.1f);
-            //}
-
-        }
-    }*/
-
     public void CanDamage()
     {
         melee[randNum].GetComponent<BaseMelee>().canDmg = true;
@@ -84,35 +58,6 @@ public class EnemyMelee : EnemyMain
         melee[randNum].GetComponent<BaseMelee>().canDmg = false;
     }
 
-    /*public override void AttackPlayer()
-    {
-        if (canAttack) 
-        {
-            //melee.SetActive(true);
-            //Need Confirmation for Anim
-            //Need public Animator for 
-            //if (meleeAnim) meleeAnim.SetTrigger("Attack"); //For Capsule
-
-            //enemyBehaviour.enemyAnim.SetTrigger("IsAttacking");
-            GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("IsAttacking"); //For Goblin
-            canAttack = false; 
-        }
-    }*/
-
-    /*public override void IsAttacking() //No Longer Used
-    {
-        if (!canAttack)
-        {
-            timer += Time.deltaTime;
-            if (timer >= 2f) 
-            {
-                canAttack = true; 
-                timer = 0; 
-                //melee.SetActive(false);//Testing Attack
-            }
-        }
-    }*/
-
     public override void OnDeath()
     {
         if (!onceDeath)
@@ -122,40 +67,10 @@ public class EnemyMelee : EnemyMain
             onceDeath = true;
             canvas.gameObject.SetActive(false);
             GetComponent<SpawnLoot>().spawned = true;
-            //CoinDrop();
-            //DropItem();
             waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);
-            GetComponent<EnemyBehaviour>().SwitchStateDeath(); //Don't know if it works
-                                                               //GetComponent<EnemyBehaviour>().enemyAnim.SetTrigger("isDead"); Use State
-                                                               //gameObject.SetActive(false); //Need to to after death anim and dissolve
+            GetComponent<EnemyBehaviour>().SwitchStateDeath(); 
         }
     }
-
-
-    /*public override void VerifyDeath()
-    {
-        if (Hp <= 0)
-        {
-            transform.position = posOrigin.position;
-            DropItem();
-            gameObject.SetActive(false);
-        }
-    }*/
-    /*
-    public override void DropItem() 
-    {
-        drop.transform.position = transform.position; 
-    }
-
-    public void CoinDrop()
-    {
-        //int ranNum = Random.Range(0, 100);
-
-        //if (ranNum <= 24)
-        //{
-            Instantiate(coin, new Vector3(this.transform.position.x,this.transform.position.y +0.5f, this.transform.position.z), this.transform.rotation);
-        //}
-    }*/
 
     public override void DisplayHealthBar() 
     {
@@ -168,26 +83,12 @@ public class EnemyMelee : EnemyMain
     {
         base.Start();
         InitializeEnemy();
-        //waveSpawnerScript = FindObjectOfType<WaveSpawner>();
 
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        //IsAttacking(); 
         DisplayHealthBar(); 
-        //VerifyDeath(); 
-        if (die)
-        {
-            OnDeath();
-            die = false;
-        }
-        if (attack) 
-        {
-            //AttackPlayer(); 
-            OnAttack();
-            attack = false; 
-        }
     }
 }

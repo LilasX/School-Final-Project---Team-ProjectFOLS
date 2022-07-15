@@ -63,6 +63,7 @@ public class Spell_BoulderFall : BaseSpell
         start = true;
         timer = 0;
         once1 = false;
+        once2 = false;
     }
 
     // Start is called before the first frame update

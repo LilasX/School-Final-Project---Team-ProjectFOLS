@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3666820966713207471}
-  - component: {fileID: 4088461040908036667}
+  - component: {fileID: 667266200572774281}
   m_Layer: 0
   m_Name: StateKnocked
   m_TagString: Untagged
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 8
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4088461040908036667
+--- !u!114 &667266200572774281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,173 @@ MonoBehaviour:
   m_GameObject: {fileID: 299740544851005683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22fbab1c7cb92840bb05015c8d31ee6, type: 3}
+  m_Script: {fileID: 11500000, guid: 58d10980769087249a07d54e6e19d41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
+  statePursue: {fileID: 5674896493061607879}
   once1: 0
   once2: 0
-  anim: {fileID: 0}
-  character: {fileID: 0}
-  knockedMat: {fileID: 0}
+  anim: {fileID: 8063936023387003820}
+  character: {fileID: 8063936023394366994}
+  knockedMat: {fileID: 2100000, guid: 1859045c07a1df24dab5c78ac5488fa1, type: 2}
+  timer: 0
+  found: 0
+  randomX: 0
+  randomZ: 0
+  escapePos: {x: 0, y: 0, z: 0}
+  randNum: 0
+  stateMagicFireBall: {fileID: 914089050849692166}
+  stateMagicFireArrow: {fileID: 436499482544221852}
+  stateMagicFireLance: {fileID: 8257012973600353929}
+  stateMagicFireBomb: {fileID: 4453180010956866251}
+  stateMagicFireFloor: {fileID: 417169955040242187}
+  stateMagicFireWall: {fileID: 9135904581694826456}
+  stateMagicFireWave: {fileID: 5222272596324820407}
+  stateMagicFireMeteor: {fileID: 3255915145970143764}
+  stateMagicLightningField: {fileID: 4920662671946624407}
+  stateMagicLightningStrike: {fileID: 2122752880431565179}
+  stateMagicLightningWave: {fileID: 8208609010119919192}
+  stateMagicLightningStorm: {fileID: 6918097541047026486}
+  stateShaman: {fileID: 428125259328093756}
+  stateWaiting: {fileID: 5569204964753209024}
+--- !u!1 &514259858990540160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7782553612556047643}
+  - component: {fileID: 8257012973600353929}
+  m_Layer: 0
+  m_Name: StateAttackMagicFireLance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7782553612556047643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514259858990540160}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8257012973600353929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514259858990540160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 4527642962175130996, guid: effd1306c696f244390458e61c4b1ffb, type: 3}
+  spellSpawn: {fileID: 3277730593341248704}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 1
+  projectileSpeed: 20
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
+  isPooling: 0
+--- !u!1 &572749835678216795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5585266687961670545}
+  - component: {fileID: 5222272596324820407}
+  m_Layer: 0
+  m_Name: StateAttackMagicFireWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5585266687961670545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572749835678216795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5222272596324820407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572749835678216795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 6927240071481397415, guid: 6d316c0e5fb6c734197956109602d3b5, type: 3}
+  spellSpawn: {fileID: 8416302592163478115}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
+  isPooling: 0
 --- !u!1 &660187824949761356
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,9 +217,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5985682750341560626}
-  - component: {fileID: 7189533847825106653}
+  - component: {fileID: 4453180010956866251}
   m_Layer: 0
-  m_Name: StateAttackRange03
+  m_Name: StateAttackMagicFireBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,9 +238,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7189533847825106653
+--- !u!114 &4453180010956866251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,27 +249,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 660187824949761356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
-  stateRange02: {fileID: 0}
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 5489408164426829969, guid: 2e5e8d2e6f2e3aa4287c53c696f7233b, type: 3}
+  spellSpawn: {fileID: 3310367730312271072}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
   once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
   randNum: 0
-  anim: {fileID: 0}
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
   combo: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &1115190012521779134
 GameObject:
@@ -122,9 +286,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6166329307101651135}
-  - component: {fileID: 6633812872766275633}
+  - component: {fileID: 914089050849692166}
   m_Layer: 0
-  m_Name: StateAttackRange01
+  m_Name: StateAttackMagicFireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,9 +307,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6633812872766275633
+--- !u!114 &914089050849692166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,27 +318,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1115190012521779134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
-  stateRange02: {fileID: 0}
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 3831372202422053096, guid: bb6955abb8af41f42b6b49c588bf042e, type: 3}
+  spellSpawn: {fileID: 3277730593341248704}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
   once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
   randNum: 0
-  anim: {fileID: 0}
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 1
+  projectileSpeed: 14
   combo: 0
+  coolDown: 1
+  coolTime: 1
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &1752756847676587327
 GameObject:
@@ -286,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752756847888944542}
-  - component: {fileID: 1752756847888944543}
+  - component: {fileID: 5674896493061607879}
   m_Layer: 0
   m_Name: StatePursue
   m_TagString: Untagged
@@ -307,9 +477,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1752756847888944543
+--- !u!114 &5674896493061607879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,16 +488,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752756847888944528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b407da0b5d5f674781d0bb578dc42cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 03ee6363ab7a70d44adb63ef1763b847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateMelee: {fileID: 0}
   stateRange: {fileID: 0}
   stateWarrior: {fileID: 0}
-  stateShaman: {fileID: 0}
+  stateShaman: {fileID: 428125259328093756}
   stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
+  timer: 0
+  pathPoint: {fileID: 0}
+  pathDistance: 0
+  randNum: 0
 --- !u!1 &1752756847930241975
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752756848810434039}
-  - component: {fileID: 5229486821496977030}
+  - component: {fileID: 428125259328093756}
   m_Layer: 0
   m_Name: StateAttack
   m_TagString: Untagged
@@ -561,9 +735,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5229486821496977030
+--- !u!114 &428125259328093756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -572,16 +746,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752756848810434025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d77ee9b8fb165ab4e931b49f9e111191, type: 3}
+  m_Script: {fileID: 11500000, guid: 9107938aadfbafb4f8e430246c973504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
-  stateRange01: {fileID: 0}
-  stateRange02: {fileID: 0}
+  statePursue: {fileID: 5674896493061607879}
+  stateMagicFireBall: {fileID: 914089050849692166}
+  stateMagicFireArrow: {fileID: 436499482544221852}
+  stateMagicFireLance: {fileID: 8257012973600353929}
+  stateMagicFireBomb: {fileID: 4453180010956866251}
+  stateMagicFireFloor: {fileID: 417169955040242187}
+  stateMagicFireWall: {fileID: 9135904581694826456}
+  stateMagicFireWave: {fileID: 5222272596324820407}
+  stateMagicFireMeteor: {fileID: 3255915145970143764}
+  stateMagicLightningField: {fileID: 4920662671946624407}
+  stateMagicLightningStrike: {fileID: 2122752880431565179}
+  stateMagicLightningWave: {fileID: 8208609010119919192}
+  stateMagicLightningStorm: {fileID: 6918097541047026486}
   playerDistance: 0
+  hp: 0
+  hpMax: 0
   once: 0
-  anim: {fileID: 0}
-  canDmg: 0
   randNum: 0
 --- !u!1 &1752756848856197117
 GameObject:
@@ -613,7 +797,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1752756848856197116
 MonoBehaviour:
@@ -627,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f62b60ba9530b4ea341b13a61650a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 1752756847888944543}
+  statePursue: {fileID: 5674896493061607879}
   wanderPos: {x: 0, y: 0, z: 0}
   wanderDistance: 0
   playerDistance: 0
@@ -663,14 +847,23 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7728359010102394263}
   - {fileID: 1752756848856197115}
+  - {fileID: 3133101969716330746}
   - {fileID: 1752756847888944542}
   - {fileID: 1752756848810434039}
   - {fileID: 6166329307101651135}
   - {fileID: 4591518679170340168}
+  - {fileID: 7782553612556047643}
   - {fileID: 5985682750341560626}
   - {fileID: 1409993311414537342}
   - {fileID: 2100239001376443264}
+  - {fileID: 5585266687961670545}
+  - {fileID: 3519541207214126249}
+  - {fileID: 8435581117189941582}
+  - {fileID: 1121461479790001681}
+  - {fileID: 2026732789694301463}
+  - {fileID: 6941830667069308446}
   - {fileID: 3666820966713207471}
   - {fileID: 3084023724086215212}
   m_Father: {fileID: 8063936023394082166}
@@ -752,6 +945,78 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2856360992764448138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7728359010102394263}
+  - component: {fileID: 5844606001507690278}
+  m_Layer: 0
+  m_Name: StateStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7728359010102394263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856360992764448138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5844606001507690278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856360992764448138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e854cc2d1f74242b250d637e5640f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
+  character: {fileID: 8063936023394366994}
+  dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
+  cutoffValue: 3
+  spawnVFXInstant: {fileID: 0}
+  spawnVFX: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
+  timer: 0
+  once: 0
+  onceI: 0
+  onceP: 0
+  start: 0
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWander: {fileID: 1752756848856197116}
+  statePursue: {fileID: 5674896493061607879}
+  stateKnocked: {fileID: 667266200572774281}
+  stateDeath: {fileID: 4874090190098394228}
+  stateMagicFireBall: {fileID: 914089050849692166}
+  stateMagicFireArrow: {fileID: 436499482544221852}
+  stateMagicFireLance: {fileID: 8257012973600353929}
+  stateMagicFireBomb: {fileID: 4453180010956866251}
+  stateMagicFireFloor: {fileID: 417169955040242187}
+  stateMagicFireWall: {fileID: 9135904581694826456}
+  stateMagicFireWave: {fileID: 5222272596324820407}
+  stateMagicFireMeteor: {fileID: 3255915145970143764}
+  stateMagicLightningField: {fileID: 4920662671946624407}
+  stateMagicLightningStrike: {fileID: 2122752880431565179}
+  stateMagicLightningWave: {fileID: 8208609010119919192}
+  stateMagicLightningStorm: {fileID: 6918097541047026486}
 --- !u!1 &3277730593341248704
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +1114,75 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3285422008453980366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8435581117189941582}
+  - component: {fileID: 4920662671946624407}
+  m_Layer: 0
+  m_Name: StateAttackMagicLightningField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8435581117189941582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285422008453980366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4920662671946624407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285422008453980366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 2859191969668706913, guid: 525b6269e14d2b748a2001eae83379ca, type: 3}
+  spellSpawn: {fileID: 8416302592163478115}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
+  isPooling: 0
 --- !u!1 &3310367730312271072
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +1310,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 9
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4874090190098394228
 MonoBehaviour:
@@ -994,11 +1328,217 @@ MonoBehaviour:
   once2: 0
   once3: 0
   dissolveStart: 0
-  deathAnimator: {fileID: 0}
-  anim: {fileID: 0}
-  character: {fileID: 0}
-  dissolveMat: {fileID: 0}
+  deathAnimator: {fileID: 9100000, guid: 903590d8bf860d24da23d51a52604a67, type: 2}
+  anim: {fileID: 8063936023387003820}
+  character: {fileID: 8063936023394366994}
+  dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
   cutoffValue: 0
+--- !u!1 &4236066605797468111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6941830667069308446}
+  - component: {fileID: 6918097541047026486}
+  m_Layer: 0
+  m_Name: StateAttackMagicLightningStorm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6941830667069308446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236066605797468111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6918097541047026486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236066605797468111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adfaca4dba5ae35438282bb15b717310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 1397523037060605744, guid: dd6ec812fca975f4b8e38932c351c4b0, type: 3}
+  spellSpawn: {fileID: 0}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
+  isPooling: 0
+  pathPointList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  foundPlayerID: 0
+  count: 0
+  isRandom: 0
+--- !u!1 &5284487876498174671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3133101969716330746}
+  - component: {fileID: 5569204964753209024}
+  m_Layer: 0
+  m_Name: StateWaiting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3133101969716330746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284487876498174671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5569204964753209024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284487876498174671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e608d1f61dcd3546bafc38104ee2826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWarrior: {fileID: 428125259328093756}
+  start: 0
+  isBoss: 0
+  once: 0
+  magicCoolDown: 0
+  timer: 0
+  coolTime: 0
+--- !u!1 &5676231026420641666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026732789694301463}
+  - component: {fileID: 8208609010119919192}
+  m_Layer: 0
+  m_Name: StateAttackMagicLightningWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026732789694301463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676231026420641666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8208609010119919192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676231026420641666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 3897389850072954498, guid: 8e8743d0e527e464c83a0b183ec8a8ad, type: 3}
+  spellSpawn: {fileID: 8416302592163478115}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
+  isPooling: 0
 --- !u!1 &6215501839206287347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,9 +1548,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2100239001376443264}
-  - component: {fileID: 3045827782409270253}
+  - component: {fileID: 9135904581694826456}
   m_Layer: 0
-  m_Name: StateAttackRange05
+  m_Name: StateAttackMagicFireWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,9 +1569,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3045827782409270253
+--- !u!114 &9135904581694826456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1040,27 +1580,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 6215501839206287347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
-  stateRange02: {fileID: 0}
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 5390382022434656551, guid: c471c7d4420d1064eb041be1b8787ab8, type: 3}
+  spellSpawn: {fileID: 3310367730312271072}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
   once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
   randNum: 0
-  anim: {fileID: 0}
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
   combo: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &6481251292942350483
 GameObject:
@@ -1071,9 +1617,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1409993311414537342}
-  - component: {fileID: 4667340266329857550}
+  - component: {fileID: 417169955040242187}
   m_Layer: 0
-  m_Name: StateAttackRange04
+  m_Name: StateAttackMagicFireFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,9 +1638,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4667340266329857550
+--- !u!114 &417169955040242187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1103,27 +1649,187 @@ MonoBehaviour:
   m_GameObject: {fileID: 6481251292942350483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
-  stateRange02: {fileID: 0}
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 3299223172741919301, guid: 1cb179f9569e6994cb0267318f5836da, type: 3}
+  spellSpawn: {fileID: 8315239476800483531}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
   once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
   randNum: 0
-  anim: {fileID: 0}
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
   combo: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
+  isPooling: 0
+--- !u!1 &7134865698896675407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3519541207214126249}
+  - component: {fileID: 3255915145970143764}
+  m_Layer: 0
+  m_Name: StateAttackMagicFireMeteor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3519541207214126249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7134865698896675407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3255915145970143764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7134865698896675407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a548ba403d90047a39746b19abc0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 2686567068013866054, guid: f23e746ab5ae96944af19c25de89c711, type: 3}
+  spellSpawn: {fileID: 0}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 3
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
+  isPooling: 0
+  pathPointList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  foundPlayerID: 0
+  count: 0
+  isRandom: 0
+--- !u!1 &7889050597976622515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1121461479790001681}
+  - component: {fileID: 2122752880431565179}
+  m_Layer: 0
+  m_Name: StateAttackMagicLightningStrike
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1121461479790001681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889050597976622515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752756849275480305}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2122752880431565179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889050597976622515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
+  target: {x: 0, y: 0, z: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 5809277198669441507, guid: 91a4f25eae45ebb43bd56a2bdd157e4b, type: 3}
+  spellSpawn: {fileID: 8315239476800483531}
+  spellSign: {fileID: 0}
+  once1: 0
+  once2: 0
+  once3: 0
+  once4: 1
+  randNum: 0
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 0
+  projectileSpeed: 0
+  combo: 0
+  coolDown: 1
+  coolTime: 1
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
   isPooling: 0
 --- !u!1 &8063936023394259322
 GameObject:
@@ -2889,8 +3595,9 @@ GameObject:
   - component: {fileID: 8063936023387003820}
   - component: {fileID: 8063936023394082161}
   - component: {fileID: 8063936023394082163}
+  - component: {fileID: 2732487746280316796}
   - component: {fileID: 8063936023394082164}
-  - component: {fileID: 8063936023394082165}
+  - component: {fileID: 3719554434738923658}
   m_Layer: 0
   m_Name: Goblin_Shaman
   m_TagString: Untagged
@@ -2974,6 +3681,32 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2732487746280316796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063936023394381340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf2afea6aa7a78418dc5d9d14307ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 0
+  maxHP: 160
+  distance: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  startOnce: 1
+  gameManager: {fileID: 0}
+  waveSpawnerObject: {fileID: 0}
+  animState: {fileID: 8063936023387003820}
+  canvas: {fileID: 1752756847676587323}
+  slider: {fileID: 1752756847930241974}
+  cameraMain: {fileID: 0}
+  isPooling: 0
+  canHurt: 1
+  onceDeath: 0
 --- !u!114 &8063936023394082164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2993,19 +3726,18 @@ MonoBehaviour:
   agent: {fileID: 8063936023394082163}
   player: {fileID: 0}
   manager: {fileID: 0}
+  poolingManager: {fileID: 0}
+  pathManager: {fileID: 0}
+  sensorManager: {fileID: 0}
   liveAnimator: {fileID: 9100000, guid: 0e5bc098bd0b3c349ad37037a7d8741a, type: 2}
   enemyAnim: {fileID: 8063936023387003820}
-  currState: {fileID: 1752756848856197116}
+  currState: {fileID: 0}
   stateWander: {fileID: 1752756848856197116}
-  stateWaiting: {fileID: 0}
-  stateStart: {fileID: 0}
-  stateDeath: {fileID: 0}
-  stateKnocked: {fileID: 0}
-  earthWave: 0
-  earthQuake: 0
-  stateMagicWave: {fileID: 0}
-  stateMagicQuake: {fileID: 0}
---- !u!114 &8063936023394082165
+  stateWaiting: {fileID: 5569204964753209024}
+  stateStart: {fileID: 5844606001507690278}
+  stateDeath: {fileID: 4874090190098394228}
+  stateKnocked: {fileID: 667266200572774281}
+--- !u!114 &3719554434738923658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3014,38 +3746,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8063936023394381340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b216036fc3e57c5499986dab986ab909, type: 3}
+  m_Script: {fileID: 11500000, guid: ffe9ef892a41b114d8f9971297a3aaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 60
-  maxHP: 60
-  distance: 0
-  gameManager: {fileID: 0}
-  waveSpawnerObject: {fileID: 0}
-  animState: {fileID: 0}
-  canvas: {fileID: 0}
-  slider: {fileID: 1752756847930241974}
-  cameraMain: {fileID: 0}
-  isPooling: 0
-  isGhost: 0
-  canAttack: 0
-  projectileSpawn: {fileID: 3277730593341248704}
-  floorSpawn: {fileID: 8315239476800483531}
-  wallSpawn: {fileID: 3310367730312271072}
-  waveSpawn: {fileID: 8287858580384400352}
-  range:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  typeRange: 0
-  randNum: 0
-  coin: {fileID: 0}
-  onceDeath: 0
-  attack: 0
-  die: 0
+  loot:
+  - {fileID: 8179790854871830465, guid: b2b49023c9617164bb7c9eb7c3d3c4e7, type: 3}
+  minRange: 5
+  maxRange: 10
+  spawned: 0
+  _buttonNameText: {fileID: 0}
+  _interactionButtonText: {fileID: 0}
 --- !u!1 &8063936023394384266
 GameObject:
   m_ObjectHideFlags: 0
@@ -4197,6 +4907,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8416302592163478115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1594761345564012501}
+  m_Layer: 0
+  m_Name: SelfSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1594761345564012501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416302592163478115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8747186874632209572}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8745807077714737854
 GameObject:
   m_ObjectHideFlags: 0
@@ -4229,6 +4970,7 @@ Transform:
   - {fileID: 6864167976895207010}
   - {fileID: 7556165067655189427}
   - {fileID: 1416129481802860105}
+  - {fileID: 1594761345564012501}
   m_Father: {fileID: 8063936023394082166}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4241,9 +4983,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4591518679170340168}
-  - component: {fileID: 5257473977627730688}
+  - component: {fileID: 436499482544221852}
   m_Layer: 0
-  m_Name: StateAttackRange02
+  m_Name: StateAttackMagicFireArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4262,9 +5004,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752756849275480305}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5257473977627730688
+--- !u!114 &436499482544221852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4273,25 +5015,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 9137371006539737323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183f03fa251841144b04557dc4cc6c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e504d4dd6c1ce04abd6c58f843dd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statePursue: {fileID: 0}
-  stateRange02: {fileID: 0}
+  statePursue: {fileID: 5674896493061607879}
+  stateWaiting: {fileID: 5569204964753209024}
+  stateWarrior: {fileID: 428125259328093756}
   target: {x: 0, y: 0, z: 0}
-  rangePos: {x: 0, y: 0, z: 0}
-  ranged: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  magic: {fileID: 0}
+  spell: {fileID: 5072883975102710703, guid: e6bbbcfab1da91d4bac64256da5c5043, type: 3}
+  spellSpawn: {fileID: 3277730593341248704}
+  spellSign: {fileID: 0}
   once1: 0
   once2: 0
   once3: 0
   once4: 1
-  randomX: 0
-  randomZ: 0
-  rangeDistance: 0
-  playerDistance: 0
   randNum: 0
-  anim: {fileID: 0}
+  anim: {fileID: 8063936023387003820}
+  isProjectile: 1
+  projectileSpeed: 17
   combo: 0
+  coolDown: 1
+  coolTime: 2
+  isBoss: 0
+  character: {fileID: 8063936023394366994}
+  defaultMat: {fileID: 0}
+  signMat: {fileID: 0}
+  timer: 0
   isPooling: 0

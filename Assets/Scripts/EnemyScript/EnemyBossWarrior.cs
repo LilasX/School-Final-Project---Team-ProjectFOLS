@@ -14,9 +14,6 @@ public class EnemyBossWarrior : EnemyMain
     //public GameObject coin;
     public bool onceDeath = false;
 
-    public bool attack; //Testing Attack Purpose in Inspector
-    public bool die; //Testing OnDeath
-
     //private AchievementManager achievementManager;
 
     public override void InitializeEnemy()
@@ -31,11 +28,10 @@ public class EnemyBossWarrior : EnemyMain
         GetComponent<SpawnLoot>().spawned = false;
         cameraMain = gameManager.cameraMain;
         canvas.gameObject.SetActive(true);
-        //GetComponent<EnemyBehaviour>().InitializeBehaviour();
         RandomWeapon();
     }
 
-    public override void RandomWeapon()
+    public void RandomWeapon()
     {
         randNum = Random.Range(0, 2);
         switch (randNum)
@@ -93,19 +89,6 @@ public class EnemyBossWarrior : EnemyMain
     // Update is called once per frame
     protected override void Update()
     {
-        //IsAttacking();
         DisplayHealthBar();
-        //VerifyDeath(); 
-        if (die)
-        {
-            OnDeath();
-            die = false;
-        }
-        if (attack)
-        {
-            //AttackPlayer(); 
-            OnAttack();
-            attack = false;
-        }
     }
 }
