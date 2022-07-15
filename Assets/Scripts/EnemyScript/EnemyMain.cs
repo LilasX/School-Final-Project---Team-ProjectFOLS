@@ -68,11 +68,11 @@ public abstract class EnemyMain : EnemyEntity
     {
         if (canHurt)
         {
-            if (damage != 0)
-            {
+            //if (damage != 0)
+            //{
                 //canHurt = false;
                 GetCurrentHP -= damage;
-
+                canHurt = false;
                 if (GetCurrentHP <= 0)
                 {
                     OnDeath();
@@ -81,7 +81,7 @@ public abstract class EnemyMain : EnemyEntity
                 {
                     GetComponent<EnemyBehaviour>().SwitchStateKnocked();
                 }
-            }
+            //}
         }
     }
 }

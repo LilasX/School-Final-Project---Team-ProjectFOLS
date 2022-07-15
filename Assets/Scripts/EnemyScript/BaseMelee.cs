@@ -35,21 +35,21 @@ public class BaseMelee : MonoBehaviour
             }
         }
 
-        if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
-        {
-            if (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
-            {
-                other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentMeleeDamage);
-                gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
-            }
+        //if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
+        //{
+        //    if (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
+        //    {
+        //        other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentMeleeDamage);
+        //        gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
+        //    }
 
-            if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
-            {
-                gameManager.slashImpact.Play();
-                other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentSlashDamage);
-                gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash = false;
-            }
-        }
+        //    if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
+        //    {
+        //        gameManager.slashImpact.Play();
+        //        other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentSlashDamage);
+        //        gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash = false;
+        //    }
+        //}
 
         //if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
         //{
@@ -160,14 +160,14 @@ public class BaseMelee : MonoBehaviour
         //}
 
         
-        if (striker == Striker.player && (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee || gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash) || gameManager.inventoryscript.keys >= 1)
-        {
-            this.gameObject.GetComponent<Collider>().enabled = true;
-        }
-        else if (striker == Striker.player && !gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee && !gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
-        {
-            this.gameObject.GetComponent<Collider>().enabled = false;
-        }
+        //if (striker == Striker.player && (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee || gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash) || gameManager.inventoryscript.keys >= 1)
+        //{
+        //    this.gameObject.GetComponent<Collider>().enabled = true;
+        //}
+        //else if (striker == Striker.player && !gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee && !gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
+        //{
+        //    this.gameObject.GetComponent<Collider>().enabled = false;
+        //}
 
     }
 
