@@ -652,6 +652,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1355900078093726280, guid: 35b6f12985f329547b786982230d0aac, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35b6f12985f329547b786982230d0aac, type: 3}
 --- !u!224 &649624095 stripped
@@ -702,7 +706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &761768804
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1907,7 +1911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &849427427076995098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,8 +1931,13 @@ MonoBehaviour:
   bullet: {fileID: 6630236338828245609, guid: d9671e5f537104d49889c890c45d6e9b, type: 3}
   fireSpell: {fileID: 545954287311120432, guid: 7cd50cdf1045068408135de165560e8f, type: 3}
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}
+  explosion: {fileID: 0}
+  explosionBlue: {fileID: 0}
+  slashImpact: {fileID: 0}
+  explosionBlueTransform: {fileID: 0}
   inventoryscript: {fileID: 0}
   inputManager: {fileID: 0}
+  inputHub: {fileID: 0}
   _dialogueManager: {fileID: 0}
   defaultController: {fileID: 9100000, guid: 5b3abd06becaee3479e2abf71937377c, type: 2}
   deathController: {fileID: 9100000, guid: 75488827879d5d845994211b21fcdd2a, type: 2}
@@ -1946,7 +1955,13 @@ MonoBehaviour:
   capacity: 0
   keyboard: {fileID: 0}
   gamePad: {fileID: 0}
+  levelChanger: {fileID: 0}
   Paused: 0
+  menuOpened: 0
+  testTimer: 0
+  meleeHasBeenUsed: 0
+  testTimer2: 0
+  slashHasBeenUsed: 0
 --- !u!4 &849427427076995099
 Transform:
   m_ObjectHideFlags: 0
@@ -2111,7 +2126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6716448721071901789, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6716448721071901790, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_Pivot.x
@@ -2365,6 +2380,10 @@ PrefabInstance:
     - target: {fileID: 6736849746070288545, guid: caba122cdc725104b8b75a9385f66562, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736849746070288546, guid: caba122cdc725104b8b75a9385f66562, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6736849746070288547, guid: caba122cdc725104b8b75a9385f66562, type: 3}
       propertyPath: m_RootOrder

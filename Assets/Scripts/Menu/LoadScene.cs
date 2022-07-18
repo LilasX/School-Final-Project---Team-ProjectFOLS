@@ -20,6 +20,8 @@ public class LoadScene : MonoBehaviour
     [SerializeField] private Image progressBar;
     private float target;
 
+    private bool allowScene;
+
     public void BtnLoadScene(int i) //pas de parametres = charge la scene suivante.
     {
         if (async != null) return;
@@ -41,6 +43,7 @@ public class LoadScene : MonoBehaviour
 
         do
         {
+            Time.timeScale = 1; //Make sure it doesn't mess with the pause in other scenes
             await Task.Delay(100);
             progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 6 * Time.deltaTime);
         } while (scene.progress < 0.9f);
@@ -73,9 +76,17 @@ public class LoadScene : MonoBehaviour
         } while (async.progress < 0.9f);
     }
 
+    IEnumerator IELoadSceneStringT(string s)
+    {
+        yield return new WaitForSeconds(1f);
+
+        
+    }
+
     private void Start()
     {
         gameManager = GameManager.instance;
+        //Time.timeScale = 1;
     }
 
     void Update()
