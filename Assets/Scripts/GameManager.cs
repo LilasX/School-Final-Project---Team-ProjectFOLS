@@ -224,6 +224,11 @@ public class GameManager : MonoBehaviour
         if(meleeHasBeenUsed)
         {
             testTimer += Time.deltaTime;
+            //if(testTimer >= 0.4f)
+            //{
+            //    //meleeHasBeenUsed = false;
+            //    testTimer = 0;
+            //}
         }
         else
         {
@@ -233,6 +238,11 @@ public class GameManager : MonoBehaviour
         if (slashHasBeenUsed)
         {
             testTimer2 += Time.deltaTime;
+            //if (testTimer2 >= 0.4f)
+            //{
+            //    meleeHasBeenUsed = false;
+            //    testTimer2 = 0;
+            //}
         }
         else
         {

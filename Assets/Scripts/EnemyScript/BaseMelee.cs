@@ -51,40 +51,38 @@ public class BaseMelee : MonoBehaviour
         //    }
         //}
 
-        //if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
-        //{
+        if (striker == Striker.player && other.gameObject.GetComponent<EnemyMain>())
+        {
+            if (gameManager.meleeHasBeenUsed)
+            {
+                if (!gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
+                {
+                    gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
+                    other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentMeleeDamage);
+                    //gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
+                    //this.gameObject.GetComponent<BoxCollider>().enabled = false;
+                    if (other.gameObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
+                    {
+                        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
+                    }
+                }
+            }
 
-        //    if (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee)
-        //    {
-
-        //        if (!gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
-        //        {
-        //            gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
-        //            other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentMeleeDamage);
-        //            gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee = false;
-        //            this.gameObject.GetComponent<BoxCollider>().enabled = false;
-        //            if (other.gameObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
-        //            {
-        //                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
-        //            }
-        //        }
-        //    }
-
-        //    if (gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash)
-        //    {
-        //        if (!gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
-        //        {
-        //            gameManager.slashImpact.Play();
-        //            gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
-        //            other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentSlashDamage);
-        //            gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash = false;
-        //            if (other.gameObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
-        //            {
-        //                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
-        //            }
-        //        }
-        //    }
-        //}
+            if (gameManager.slashHasBeenUsed)
+            {
+                if (!gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Contains(other.gameObject))
+                {
+                    gameManager.slashImpact.Play();
+                    gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Add(other.gameObject);
+                    other.gameObject.GetComponent<EnemyMain>().OnHurt(gameManager.player.GetComponent<PlayerEntity>()._currentSlashDamage);
+                    gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash = false;
+                    if (other.gameObject.GetComponent<EnemyMain>().GetCurrentHP <= 0)
+                    {
+                        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Remove(other.gameObject);
+                    }
+                }
+            }
+        }
     }
 
     //private void OnTriggerStay(Collider other)
@@ -140,26 +138,26 @@ public class BaseMelee : MonoBehaviour
         //if (gameManager.player.GetComponent<PlayerEntity>().meleeTime >= 0.3f)
 
 
-        //if (gameManager.testTimer >= 0.4f)
-        //{
-        //    Debug.Log("STRTED MELEE");
-        //    if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
-        //    {
-        //        Debug.Log("CLEARING");
-        //        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Clear();
-        //    }
-        //}
+        if (gameManager.testTimer >= 1f)
+        {
+            gameManager.meleeHasBeenUsed = false;
+            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
+            {
+                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Clear();
+            }
+        }
 
-        ////if (gameManager.player.GetComponent<PlayerEntity>().resetSlashInputTimer >= 0.5f)
-        //if (gameManager.testTimer2 >= 0.6f)
-        //{
-        //    if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
-        //    {
-        //        gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Clear();
-        //    }
-        //}
+        //if (gameManager.player.GetComponent<PlayerEntity>().resetSlashInputTimer >= 0.5f)
+        if (gameManager.testTimer2 >= 0.6f)
+        {
+            gameManager.slashHasBeenUsed = false;
+            if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)
+            {
+                gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Clear();
+            }
+        }
 
-        
+
         //if (striker == Striker.player && (gameManager.player.GetComponent<PlayerEntity>().HasUsedMelee || gameManager.player.GetComponent<PlayerEntity>().hasRequestedSlash) || gameManager.inventoryscript.keys >= 1)
         //{
         //    this.gameObject.GetComponent<Collider>().enabled = true;

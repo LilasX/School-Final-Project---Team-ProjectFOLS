@@ -71,7 +71,7 @@ public abstract class EnemyMain : EnemyEntity
             //{
                 //canHurt = false;
                 GetCurrentHP -= damage;
-                canHurt = false;
+                //canHurt = false;
                 if (GetCurrentHP <= 0)
                 {
                     OnDeath();

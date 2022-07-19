@@ -42,12 +42,11 @@ public class PlayerMeleeState : IPlayerBaseState
         if (playerEntityInstance.meleeTime >= 0.45f)
         {
             playerEntityInstance.Animator.SetBool("Attack", false);
-            playerEntityInstance.HasUsedMelee = false;
+            //playerEntityInstance.HasUsedMelee = false;
             playerEntityInstance.meleeTime = 0f;
             uiManager.SwordImage.SetActive(true);
             //playerEntityInstance.meleePS.SetActive(false);
-            gameManager.meleeHasBeenUsed = false;
-            gameManager.testTimer = 0f;
+            //gameManager.testTimer = 0f;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }

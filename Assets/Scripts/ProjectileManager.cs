@@ -44,13 +44,13 @@ public class ProjectileManager : MonoBehaviour
         {
             //Instantiate(gameManager.fireBurstVfx, transform.position, transform.rotation);
             GameObject obj = Instantiate(gameManager.explosion, transform.position, transform.rotation);
-            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, 1.5f, LayerMask.GetMask("Enemy"));
+            //Collider[] hitEnemies = Physics.OverlapSphere(transform.position, 1.5f, LayerMask.GetMask("Enemy"));
             
-            foreach (Collider enemy in hitEnemies)
-            {
-                enemy.gameObject.GetComponent<EnemyMain>().canHurt = true;
-                enemy.gameObject.GetComponent<EnemyMain>().OnHurt(20);
-            }
+            //foreach (Collider enemy in hitEnemies)
+            //{
+            //    enemy.gameObject.GetComponent<EnemyMain>().canHurt = true;
+            //    enemy.gameObject.GetComponent<EnemyMain>().OnHurt(20);
+            //}
             Destroy(obj, 2);
         }
     }    

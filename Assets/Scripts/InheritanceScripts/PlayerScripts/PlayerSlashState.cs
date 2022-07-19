@@ -37,7 +37,7 @@ public class PlayerSlashState : IPlayerBaseState
         {
             playerEntityInstance.Animator.SetBool("Slash", false);
             playerEntityInstance.slashTimer = 0f;
-            gameManager.slashHasBeenUsed = false;
+            //gameManager.slashHasBeenUsed = false;
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.DefaultState);
         }
     }
