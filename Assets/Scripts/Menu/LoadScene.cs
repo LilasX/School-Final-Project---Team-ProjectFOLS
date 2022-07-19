@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -81,6 +82,37 @@ public class LoadScene : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         
+    }
+
+    public void OnLoadGame()
+    {
+        if (File.Exists(Application.persistentDataPath + "/data.game"))
+        {
+            DataPersistenceManager.instance.LoadGame();
+            Debug.Log("Loading Existing Game..." + DataPersistenceManager.instance.GameData.sceneIndex);
+            //DataPersistenceManager.instance.SaveGame();
+
+            DataPersistenceManager.instance.newSceneLoading = false;
+
+            if(DataPersistenceManager.instance.GameData.sceneIndex == 1)
+            {
+                BtnLoadScene("RealHub");
+            }
+            else if (DataPersistenceManager.instance.GameData.sceneIndex == 2)
+            {
+                BtnLoadScene("ProjectFOLS");
+            }
+            else if (DataPersistenceManager.instance.GameData.sceneIndex == 3)
+            {
+                BtnLoadScene("NewLevel");
+            }
+
+        }
+        else if (!File.Exists(Application.persistentDataPath + "/data.game"))
+        {
+            DataPersistenceManager.instance.NewGame();
+            BtnLoadScene("RealHub");
+        }
     }
 
     private void Start()

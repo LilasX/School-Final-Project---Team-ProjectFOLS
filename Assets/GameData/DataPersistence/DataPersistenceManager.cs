@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEditor;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 [CustomEditor(typeof(DataPersistenceManager))]
 class ButtonEditor : Editor
@@ -22,6 +23,9 @@ class ButtonEditor : Editor
 
 public class DataPersistenceManager : MonoBehaviour
 {
+    [Header("Debugging - Starting a New Game Without Going Through MainMenu")]
+    [SerializeField] private bool initializeDataIfNull = false;
+
     [Header("File Storage Config")]
 
     [SerializeField] private string fileName;
@@ -34,55 +38,98 @@ public class DataPersistenceManager : MonoBehaviour
 
     private FileDataHandler dataHandler;
 
+    public bool newSceneLoading;
+
     public static DataPersistenceManager instance { get; private set; }
+    public GameData GameData { get => gameData; set => gameData = value; }
+    public FileDataHandler DataHandler { get => dataHandler; set => dataHandler = value; }
 
     private void Awake()
     {
         if(instance != null)
         {
-            Debug.LogError("Found more than one Data Persistence Manager.");
-            //Destroy(instance);
+            Debug.LogError("Found more than one Data Persistence Manager. Destroying the newest one.");
+            Destroy(this.gameObject);
+            return;
         }
         instance = this;
+
+        DontDestroyOnLoad(this.gameObject);
+        this.DataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded Called...");
+        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        LoadGame();
+    }
+
+    public int LastActiveScene()
+    {
+        return GameData.sceneIndex;
     }
 
     private void Start()
     {
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
         Debug.Log(Application.persistentDataPath);
     }
 
     public void NewGame()
     {
-        this.gameData = new GameData();
+        this.GameData = new GameData();
     }
 
     public void LoadGame()
     {
-        this.gameData = dataHandler.Load();
+        this.GameData = DataHandler.Load();
 
-        if(this.gameData == null)
+        if(this.GameData == null && initializeDataIfNull)
         {
-            Debug.Log("No data found. Initializing data to defaults.");
             NewGame();
         }
 
-        foreach(IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
+        if(this.GameData == null)
         {
-            dataPersistenceObjs.LoadData(gameData);
+            Debug.Log("No data found. A New Game needs to be started before data can be loaded.");
+            NewGame();
         }
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            foreach (IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
+            {
+                dataPersistenceObjs.LoadData(GameData);
+            }
+        }
+        
     }
 
     public void SaveGame()
     {
-        foreach(IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
+        if(this.GameData == null)
         {
-            dataPersistenceObjs.SaveData(gameData);
+            Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
         }
 
-        dataHandler.Save(gameData);
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            foreach (IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
+            {
+                dataPersistenceObjs.SaveData(GameData);
+            }
+        }
+
+        DataHandler.Save(GameData);
     }
 
     //private void OnApplicationQuit()

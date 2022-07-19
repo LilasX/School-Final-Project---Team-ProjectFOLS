@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Objective : MonoBehaviour, IDataPersistence
 {
@@ -89,5 +90,8 @@ public class Objective : MonoBehaviour, IDataPersistence
         data.objectiveTriggered.Add(id, collision);
 
         data.objectiveMission = objectiveText.text;
+
+        data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        
     }
 }

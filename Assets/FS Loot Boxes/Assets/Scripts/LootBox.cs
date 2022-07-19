@@ -181,6 +181,7 @@ public class LootBox : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(5f);
+        DataPersistenceManager.instance.newSceneLoading = true;
         gameManager.levelChanger.GetComponent<LoadScene>().BtnLoadScene("NewLevel");
     }
 

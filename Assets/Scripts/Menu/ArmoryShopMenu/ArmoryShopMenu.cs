@@ -134,6 +134,7 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
     public void Back()
     {
         ArmoryMenu.SetActive(false);
+        MenuOFF();
     }
 
     public void MenuON()

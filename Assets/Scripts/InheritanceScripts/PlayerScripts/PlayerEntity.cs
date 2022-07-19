@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 {
@@ -398,7 +399,11 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.playerPos;
+        if (!DataPersistenceManager.instance.newSceneLoading)
+        {
+            this.transform.position = data.playerPos;
+        }
+       
         this.GetCurrentHP = data.hpData;
         this.GetCurrentMana = data.manaData;
         this.GetCurrentStamina = data.staminaData;
@@ -406,10 +411,14 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.playerPos = this.transform.position;
-        data.hpData = this.GetCurrentHP;
-        data.manaData = this.GetCurrentMana;
-        data.staminaData = this.GetCurrentStamina;
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            data.playerPos = this.transform.position;
+            data.hpData = this.GetCurrentHP;
+            data.manaData = this.GetCurrentMana;
+            data.staminaData = this.GetCurrentStamina;
+        }
+        
     }
 
     public void SetCurrentWeapon(int index)

@@ -25,13 +25,8 @@ public class GameData
     //Doors data
     public SerializableDictionary<string, bool> doorsTriggered;
 
-    //Achievements data
-    //public Achievement achievement;
-    //public string name;
-    //public string description;
-    //public int points;
-    //public int spriteIndex;
-    //public GameObject achievementRef;
+    //Scene data
+    public int sceneIndex;
 
     public GameData()
     {
@@ -49,6 +44,6 @@ public class GameData
 
         doorsTriggered = new SerializableDictionary<string, bool>();
 
-        //achievement = new Achievement(this.name, this.description, this.points, this.spriteIndex, this.achievementRef);
+        this.sceneIndex = 0;
     }
 }

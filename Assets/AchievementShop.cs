@@ -113,6 +113,7 @@ public class AchievementShop : MonoBehaviour, IBaseMenu
     public void Back()
     {
         AchievementMenu.SetActive(false);
+        MenuOFF();
     }
 
     public void MenuON()
