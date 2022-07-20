@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     public GameObject fireBurstVfx;
     public GameObject explosion;
     public GameObject explosionBlue;
-    public ParticleSystem slashImpact;
+    //public ParticleSystem meleeImpact;
+    //public ParticleSystem slashImpact;
     public Transform explosionBlueTransform;
     public Inventory inventoryscript;
     public InputManager inputManager;

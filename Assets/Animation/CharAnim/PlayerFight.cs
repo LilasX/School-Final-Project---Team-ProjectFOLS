@@ -37,7 +37,7 @@ public class PlayerFight : MonoBehaviour
             foreach (Collider enemy in hitEnemies)
             {
                 enemy.gameObject.GetComponent<EnemyMain>().canHurt = true;
-                gameManager.slashImpact.Play();
+                //gameManager.slashImpact.Play();
                 enemy.gameObject.GetComponent<EnemyMain>().OnHurt(this.gameObject.GetComponent<PlayerEntity>()._currentSlashDamage);
                 this.gameObject.GetComponent<PlayerEntity>().hasRequestedSlash = false;
             }

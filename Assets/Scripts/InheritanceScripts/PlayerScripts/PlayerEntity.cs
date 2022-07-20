@@ -131,7 +131,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     //public int _currentWeaponIndex;
     public int _currentMeleeDamage = 30;
-    public int _currentSlashDamage = 10;
+    public int _currentSlashDamage = 15;
     public GameObject[] _possesedWeapons;
 
     /// <summary>
@@ -439,7 +439,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                     }
                 }
                 _currentMeleeDamage = 30;
-                _currentSlashDamage = 10;
+                _currentSlashDamage = 15;
                 break;
 
             case 1:
@@ -456,7 +456,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                     }
                 }
                 _currentMeleeDamage = 40;
-                _currentSlashDamage = 14;
+                _currentSlashDamage = 20;
                 break;
 
             case 2:
@@ -473,7 +473,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                     }
                 }
                 _currentMeleeDamage = 50;
-                _currentSlashDamage = 18;
+                _currentSlashDamage = 25;
                 break;
 
             case 3:
@@ -490,7 +490,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                     }
                 }
                 _currentMeleeDamage = 60;
-                _currentSlashDamage = 22;
+                _currentSlashDamage = 30;
                 break;
 
             case 4:
@@ -507,7 +507,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                     }
                 }
                 _currentMeleeDamage = 70;
-                _currentSlashDamage = 26;
+                _currentSlashDamage = 35;
                 break;
 
         }

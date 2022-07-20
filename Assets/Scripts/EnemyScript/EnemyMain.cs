@@ -25,6 +25,9 @@ public abstract class EnemyMain : EnemyEntity
     //public GameObject drop;
     public bool canHurt = true;
 
+    public ParticleSystem meleeImpact;
+    public ParticleSystem slashImpact;
+
     //Don't know if I need those
     /*public int Hp { get => hp; set => hp = value; }
     public int HpMax { get => hpMax; set => hpMax = value; }
@@ -71,8 +74,18 @@ public abstract class EnemyMain : EnemyEntity
             //{
                 //canHurt = false;
                 GetCurrentHP -= damage;
-                //canHurt = false;
-                if (GetCurrentHP <= 0)
+            //canHurt = false;
+            if (gameManager.slashHasBeenUsed)
+            {
+                slashImpact.Play();
+            }
+
+            else if (gameManager.meleeHasBeenUsed)
+            {
+                meleeImpact.Play();
+            }
+
+            if (GetCurrentHP <= 0)
                 {
                     OnDeath();
                 }
