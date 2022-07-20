@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179957032483077433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: 5}
+  m_LocalPosition: {x: 0, y: 0.15, z: 2}
   m_LocalScale: {x: 3, y: 0.3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -329,7 +329,7 @@ MonoBehaviour:
   projectileSpeed: 0
   combo: 0
   coolDown: 1
-  coolTime: 4
+  coolTime: 3
   isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
@@ -363,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507092144332546043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 5}
+  m_LocalPosition: {x: 0, y: 1, z: 1.35}
   m_LocalScale: {x: 3, y: 2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -599,7 +599,7 @@ MonoBehaviour:
   projectileSpeed: 0
   combo: 0
   coolDown: 1
-  coolTime: 4
+  coolTime: 3
   isBoss: 0
   character: {fileID: 6747795950847166892}
   defaultMat: {fileID: 0}
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMat: {fileID: 2100000, guid: ea24e01b03f54464eadda8d044dc3d2e, type: 2}
   character: {fileID: 6747795950847166892}
-  dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
+  dissolveMat: {fileID: 2100000, guid: d223bc54f70b74242aff3bdfeef967c2, type: 2}
   cutoffValue: 3
   spawnVFXInstant: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
   spawnVFX: {fileID: 0}
@@ -1049,9 +1049,9 @@ MonoBehaviour:
   stateKnocked: {fileID: 4329322129047094022}
   stateDeath: {fileID: 2702617853602921663}
   stateMagic01: {fileID: 8301371948919519904}
-  stateMagic02: {fileID: 4076468503981610297}
-  stateMagic03: {fileID: 5588394385007614578}
-  stateMagic04: {fileID: 2806225094827647344}
+  stateMagic02: {fileID: 2806225094827647344}
+  stateMagic03: {fileID: 4049046503150278975}
+  stateMagic04: {fileID: 4282308331167630137}
 --- !u!1 &5540048320254614466
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3309,8 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 60
   distance: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  startOnce: 1
   gameManager: {fileID: 0}
   waveSpawnerObject: {fileID: 0}
   animState: {fileID: 6747795950854689142}
@@ -3319,23 +3321,9 @@ MonoBehaviour:
   canHurt: 1
   isGhost: 1
   canAttack: 0
-  projectileSpawn: {fileID: 0}
-  floorSpawn: {fileID: 0}
-  wallSpawn: {fileID: 0}
-  waveSpawn: {fileID: 0}
-  range:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  typeRange: 0
   randNum: 0
   coin: {fileID: 0}
   onceDeath: 0
-  attack: 0
-  die: 0
 --- !u!114 &3288598643487433495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3353,6 +3341,8 @@ MonoBehaviour:
   minRange: 5
   maxRange: 10
   spawned: 0
+  _buttonNameText: {fileID: 0}
+  _interactionButtonText: {fileID: 0}
 --- !u!1 &6747795950847367736
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,7 +4743,7 @@ MonoBehaviour:
   deathAnimator: {fileID: 9100000, guid: 903590d8bf860d24da23d51a52604a67, type: 2}
   anim: {fileID: 6747795950854689142}
   character: {fileID: 6747795950847166892}
-  dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
+  dissolveMat: {fileID: 2100000, guid: d223bc54f70b74242aff3bdfeef967c2, type: 2}
   cutoffValue: 0
 --- !u!1 &7580012727303502287
 GameObject:

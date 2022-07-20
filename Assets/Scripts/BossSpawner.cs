@@ -5,13 +5,13 @@ using UnityEngine;
 public class BossSpawner : MonoBehaviour
 {
     public PoolingManager poolingManager;
+    public GameObject bossGate;
 
     public GameObject bossSpawner;
     public GameObject chestSpawner;
 
     public GameObject boss_Warrior;
     public GameObject boss_Shaman;
-    public GameObject boss_Golem;
 
     public GameObject bossInstant;
     public GameObject bossPooled;
@@ -24,7 +24,9 @@ public class BossSpawner : MonoBehaviour
     public bool isPooling = false;
     public bool isWarrior = false;
     public bool isShaman = false;
-    public bool isGolem = false;
+
+    public bool spawnOnce = false;
+    public float timer = 0;
 
 
     public void SpawnBoss()
@@ -39,10 +41,6 @@ public class BossSpawner : MonoBehaviour
             {
                 bossInstant = Instantiate(boss_Shaman, bossSpawner.transform.position, bossSpawner.transform.rotation);
             }
-            else if (isGolem)
-            {
-                //bossInstant = Instantiate(boss_Golem, spawner.transform.position, spawner.transform.rotation);
-            }
             bossInstant.gameObject.GetComponent<EnemyBehaviour>().SetBoundBox(boundBox); 
             bossInstant.gameObject.GetComponent<EnemyMain>().waveSpawnerObject = gameObject; 
         }
@@ -56,17 +54,13 @@ public class BossSpawner : MonoBehaviour
             {
                 bossPooled = poolingManager.callGoblinShaman();
             }
-            else if (isGolem)
-            {
-                //bossPooled = poolingManager.callGolem();
-            }
             bossPooled.transform.position = bossSpawner.transform.position;
             bossPooled.transform.rotation = bossSpawner.transform.rotation;
+            bossPooled.SetActive(true);
             bossPooled.GetComponent<EnemyMain>().InitializeEnemy();
             bossPooled.GetComponent<EnemyMain>().waveSpawnerObject = gameObject;
             bossPooled.GetComponent<EnemyBehaviour>().InitializeBehaviour();
             bossPooled.GetComponent<EnemyBehaviour>().SetBoundBox(boundBox);
-            bossPooled.SetActive(true);
         }
     }
 
@@ -81,13 +75,22 @@ public class BossSpawner : MonoBehaviour
     void Start()
     {
         poolingManager = PoolingManager.instance;
-        SpawnBoss();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!spawnOnce)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 5f)
+            {
+                timer = 0;
+                spawnOnce = true;
+                SpawnBoss();
+            }
+        }
     }
 
     private void OnDrawGizmos()

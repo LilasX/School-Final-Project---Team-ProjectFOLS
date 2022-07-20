@@ -225,7 +225,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4859,8 +4859,11 @@ MonoBehaviour:
   - {fileID: 8045739251682956773}
   spellZone:
   - {fileID: 188033241412519802}
+  startOnce: 1
   start: 0
   timer: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  isPooling: 0
   once1: 0
   once2: 0
 --- !u!1 &8045739251682956773

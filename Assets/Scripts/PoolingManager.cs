@@ -46,6 +46,8 @@ public class PoolingManager : MonoBehaviour
 
     //Enemy VFX
     public GameObject[] spawnVFXList = new GameObject[8];
+    public GameObject[] meleeVFXList = new GameObject[6];
+    public GameObject[] rangeVFXList = new GameObject[6];
 
     //TreasureChest
     public GameObject[] treasureChestList = new GameObject[4];
@@ -453,6 +455,36 @@ public class PoolingManager : MonoBehaviour
 
         SetIsPooling(spawnVFXList[0]);
         return spawnVFXList[0];
+    }
+
+    public GameObject callMeleeVFX()
+    {
+        for (int i = 0; i < meleeVFXList.Length; i++)
+        {
+            if (!meleeVFXList[i].activeInHierarchy)
+            {
+                SetIsPooling(meleeVFXList[i]);
+                return meleeVFXList[i];
+            }
+        }
+
+        SetIsPooling(meleeVFXList[0]);
+        return meleeVFXList[0];
+    }
+
+    public GameObject callRangeVFX()
+    {
+        for (int i = 0; i < rangeVFXList.Length; i++)
+        {
+            if (!rangeVFXList[i].activeInHierarchy)
+            {
+                SetIsPooling(rangeVFXList[i]);
+                return rangeVFXList[i];
+            }
+        }
+
+        SetIsPooling(rangeVFXList[0]);
+        return rangeVFXList[0];
     }
 
     public GameObject callTreasureChest()

@@ -21,6 +21,9 @@ public class WaveSpawner : MonoBehaviour
     public Transform[] spawnPoints;
     public bool[] spawnPointsUsed;
 
+    //For Random Occupied SpawnPoints
+    ArrayList spawnList = new ArrayList();
+
     public Transform _sp;
 
     public Transform enemySpawned;
@@ -50,6 +53,8 @@ public class WaveSpawner : MonoBehaviour
     {
         poolingManager = PoolingManager.instance;
         waveCountdown = timeBetweenWaves;
+
+        ResetSpawnArrayList();
     }
 
     void Update()
@@ -127,6 +132,8 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Spawning Wave: " + _wave.name);
         state = SpawnState.Spawning;
 
+        ResetSpawnArrayList();
+
         for (int i = 0; i < _wave.enemies.Length; i++) 
         {
             SpawnEnemy(_wave.enemies[i]);
@@ -161,8 +168,14 @@ public class WaveSpawner : MonoBehaviour
         } while (spawnPointsUsed[randNum]);
 
         spawnPointsUsed[randNum] = true;*/
-        
-        for (int i = 0; i < spawnPoints.Length; i++) //Can only work with Number of Enemies Lower than Number of SpawnPoints. Also in Order;
+
+        //For Random Enemy Spawn
+        randNum = Random.Range(0, spawnList.Count);
+        _sp = spawnPoints[(int)spawnList[randNum]];
+        spawnList.RemoveAt(randNum);
+        //
+
+        /*for (int i = 0; i < spawnPoints.Length; i++) //Can only work with Number of Enemies Lower than Number of SpawnPoints. Also in Order;
         {
             if (spawnPointsUsed[spawnPointsUsed.Length - 1])
             {
@@ -178,7 +191,7 @@ public class WaveSpawner : MonoBehaviour
                 spawnPointsUsed[i] = true;
                 break;
             }
-        }
+        }*/
 
         if (!isPooling)
         {
@@ -255,5 +268,14 @@ public class WaveSpawner : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireCube(boundBox.center, boundBox.size);
+    }
+
+    public void ResetSpawnArrayList()
+    {
+        spawnList.Clear();
+        spawnList.Add(0);
+        spawnList.Add(1);
+        spawnList.Add(2);
+        spawnList.Add(3);
     }
 }

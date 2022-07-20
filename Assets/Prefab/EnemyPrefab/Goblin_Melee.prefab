@@ -50,6 +50,7 @@ MonoBehaviour:
   anim: {fileID: 6881588284867706748}
   character: {fileID: 6881588284876957842}
   knockedMat: {fileID: 2100000, guid: 6485d0340d49552408fafd20e5188f72, type: 2}
+  timer: 0
   stateMelee01: {fileID: 8727847870739026074}
   stateMelee02: {fileID: 4642344349108319272}
   stateRange01: {fileID: 6525474285438701406}
@@ -197,10 +198,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870b86f979bd94f409a4d41436e0afd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolingManager: {fileID: 0}
   striker: 1
-  isEnemy: 0
   canDmg: 0
   otherObject: {fileID: 0}
+  dmg: 5
+  hitEffect: {fileID: 0}
 --- !u!54 &523348590344247363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -328,6 +331,7 @@ MonoBehaviour:
   rangeDistance: 0
   playerDistance: 0
   anim: {fileID: 6881588284867706748}
+  timer: 0
   isPooling: 0
 --- !u!1 &5655259719716562432
 GameObject:
@@ -441,10 +445,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870b86f979bd94f409a4d41436e0afd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolingManager: {fileID: 0}
   striker: 1
-  isEnemy: 0
   canDmg: 0
   otherObject: {fileID: 0}
+  dmg: 5
+  hitEffect: {fileID: 0}
 --- !u!54 &6469974402913446392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2532,10 +2538,6 @@ MonoBehaviour:
   stateStart: {fileID: 4820868273824233374}
   stateDeath: {fileID: 4902154532596490118}
   stateKnocked: {fileID: 3144496299525706980}
-  earthWave: 0
-  earthQuake: 0
-  stateMagicWave: {fileID: 0}
-  stateMagicQuake: {fileID: 0}
 --- !u!114 &6881588284876657012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2551,6 +2553,8 @@ MonoBehaviour:
   currentHP: 100
   maxHP: 100
   distance: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  startOnce: 1
   gameManager: {fileID: 0}
   waveSpawnerObject: {fileID: 0}
   animState: {fileID: 6881588284867706748}
@@ -2558,6 +2562,7 @@ MonoBehaviour:
   slider: {fileID: 6881588285620541924}
   cameraMain: {fileID: 0}
   isPooling: 1
+  canHurt: 1
   canAttack: 0
   melee:
   - {fileID: 5655259719716562432}
@@ -2566,8 +2571,6 @@ MonoBehaviour:
   typeMelee: 0
   coin: {fileID: 4285866419238496103, guid: 7cd60b401c0e6164aa5749104d4f4d25, type: 3}
   onceDeath: 0
-  attack: 0
-  die: 0
 --- !u!114 &7096346992522854548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2585,6 +2588,8 @@ MonoBehaviour:
   minRange: 5
   maxRange: 10
   spawned: 0
+  _buttonNameText: {fileID: 0}
+  _interactionButtonText: {fileID: 0}
 --- !u!1 &6881588284877145654
 GameObject:
   m_ObjectHideFlags: 0
@@ -3939,6 +3944,7 @@ MonoBehaviour:
   stateGolem: {fileID: 0}
   playerDistance: 0
   once: 0
+  timer: 0
 --- !u!1 &6881588286030556027
 GameObject:
   m_ObjectHideFlags: 0
@@ -4133,6 +4139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statePursue: {fileID: 6881588285909992070}
+  stateRange01: {fileID: 6525474285438701406}
   stateWarrior: {fileID: 0}
   isBoss: 0
   once1: 0
@@ -4141,6 +4148,7 @@ MonoBehaviour:
   playerDistance: 0
   anim: {fileID: 6881588284867706748}
   damage: 0
+  timer: 0
 --- !u!1 &7519824687836494266
 GameObject:
   m_ObjectHideFlags: 0
@@ -4187,6 +4195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statePursue: {fileID: 6881588285909992070}
   stateMelee02: {fileID: 4642344349108319272}
+  stateRange01: {fileID: 6525474285438701406}
   stateWarrior: {fileID: 0}
   isBoss: 0
   once1: 0
@@ -4196,3 +4205,4 @@ MonoBehaviour:
   anim: {fileID: 6881588284867706748}
   randNum: 0
   damage: 0
+  timer: 0

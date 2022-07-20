@@ -7,10 +7,13 @@ public enum Striker { player, enemy }
 public class BaseMelee : MonoBehaviour
 {
     private GameManager gameManager;
+    public PoolingManager poolingManager;
     //private AchievementManager achievementManager;
     public Striker striker;
     public bool canDmg = false;
     public GameObject otherObject;
+    public int dmg;
+    public GameObject hitEffect;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,9 +30,13 @@ public class BaseMelee : MonoBehaviour
                 }
                 else
                 {
-                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(5);
+                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
                     other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                     other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                    hitEffect = poolingManager.callMeleeVFX();
+                    hitEffect.SetActive(true);
+                    hitEffect.transform.position = new Vector3(other.transform.position.x, gameObject.transform.position.y, other.transform.position.z);
+                    hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
                     canDmg = false;
                 }
             }
@@ -127,6 +134,7 @@ public class BaseMelee : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.instance;
+        poolingManager = PoolingManager.instance;
         //achievementManager = AchievementManager.Instance;
         canDmg = false;
     }

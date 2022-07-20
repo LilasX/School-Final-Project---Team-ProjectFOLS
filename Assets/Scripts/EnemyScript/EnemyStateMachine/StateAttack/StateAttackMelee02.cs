@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class StateAttackMelee02 : EnemyState
 {
-    public StatePursue statePursue; 
+    public StatePursue statePursue;
+    public StateAttackRange01 stateRange01;
     public StateAttack stateWarrior;
     public bool isBoss = false;
     private Vector3 target;
@@ -93,6 +94,15 @@ public class StateAttackMelee02 : EnemyState
                     return statePursue;
                 }
             }
+        }
+
+        if (playerDistance >= 7 && !isBoss)
+        {
+            enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage();
+            once1 = false;
+            once2 = false;
+            once3 = false;
+            return stateRange01;
         }
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Sword And Shield Attack") && !anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))

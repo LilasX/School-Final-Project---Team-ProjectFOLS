@@ -8,6 +8,8 @@ public enum RangeWeapon { Sphere, Arrow, Lance }
 
 public class BaseProjectile : MonoBehaviour
 {
+    public PoolingManager poolingManager;
+
     public Shooter shooter;
     public RangeWeapon typeRange;
 
@@ -24,6 +26,7 @@ public class BaseProjectile : MonoBehaviour
     public bool useRange = false;
     public float timer;
 
+    public GameObject hitEffect;
 
     private void Awake()
     {
@@ -50,11 +53,6 @@ public class BaseProjectile : MonoBehaviour
                     switch (typeRange)
                     {
                         case RangeWeapon.Sphere:
-                            if (other.gameObject.GetComponent<MockTest>() && canDmgSphere) //ForTestingGrounds
-                            {
-                                other.gameObject.GetComponent<MockTest>().hp -= 20;
-                                canDmgSphere = false;
-                            }
                             if (other.gameObject.GetComponent<PlayerEntity>() && canDmgSphere)
                             {
                                 //Direct Damage
@@ -64,6 +62,12 @@ public class BaseProjectile : MonoBehaviour
                                 other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
                                 other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                                 other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+
+                                hitEffect = poolingManager.callRangeVFX();
+                                hitEffect.SetActive(true);
+                                hitEffect.transform.position = gameObject.transform.position;
+                                hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
+
                                 canDmg = false;
 
                                 if (isPooling)
@@ -78,32 +82,35 @@ public class BaseProjectile : MonoBehaviour
                             Invoke("SetInactiveRange", 1f);
                             break;
                         case RangeWeapon.Arrow:
-                            if (other.gameObject.GetComponent<MockTest>() && canDmgArrow) //ForTestingGrounds
-                            {
-                                other.gameObject.GetComponent<MockTest>().hp -= 20;
-                                canDmgArrow = false;
-                            }
                             if (other.gameObject.GetComponent<PlayerEntity>() && canDmgArrow)
                             {
                                 //other.gameObject.GetComponent<Player>().Hp -= 30;
                                 other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
                                 other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
                                 other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+
+                                hitEffect = poolingManager.callRangeVFX();
+                                hitEffect.SetActive(true);
+                                hitEffect.transform.position = gameObject.transform.position;
+                                hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
+
                                 canDmg = false;
                             }
                             Invoke("SetInactiveRange", 1f);
                             break;
                         case RangeWeapon.Lance:
-                            if (other.gameObject.GetComponent<MockTest>() && canDmgLance) //ForTestingGrounds
-                            {
-                                other.gameObject.GetComponent<MockTest>().hp -= 40;
-                                canDmgLance = false;
-                            }
                             if (other.gameObject.GetComponent<PlayerEntity>() && canDmgLance)
                             {
                                 //other.gameObject.GetComponent<Player>().Hp -= 40;
-                                //other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
-                                //other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                                other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+
+                                hitEffect = poolingManager.callRangeVFX();
+                                hitEffect.SetActive(true);
+                                hitEffect.transform.position = gameObject.transform.position;
+                                hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
+
                                 canDmg = false;
                             }
                             Invoke("SetInactiveRange", 1f);
@@ -131,6 +138,8 @@ public class BaseProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        poolingManager = PoolingManager.instance; 
+
         canDmg = true;
         canDmgSphere = true;
         canDmgArrow = true;

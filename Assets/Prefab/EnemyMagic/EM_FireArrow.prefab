@@ -148,9 +148,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warningZone: []
   spellZone: []
+  startOnce: 1
   start: 0
   timer: 0
-  posOrigin: {fileID: 0}
+  posOrigin: {x: 0, y: 0, z: 0}
   isPooling: 0
   burn: {fileID: 6584915788201928906}
 --- !u!54 &4523488495206472016
@@ -313,23 +314,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432206e342c6a0a4093a284cea567509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolingManager: {fileID: 0}
   shooter: 1
   typeRange: 1
-  posOrigin: {fileID: 0}
+  posOrigin: {x: 0, y: 0, z: 0}
   isPooling: 0
+  startOnce: 1
   dmg: 0
   canDmg: 0
   canDmgSphere: 0
   canDmgArrow: 0
   canDmgLance: 0
-  canDmgWall: 0
-  canDmgFloor: 0
-  canDmgWave: 0
   useRange: 0
   timer: 0
-  timerWall: 0
-  timerFloor: 0
-  timerWave: 0
+  hitEffect: {fileID: 0}
 --- !u!1 &6584915788201928906
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +553,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5461,7 +5459,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

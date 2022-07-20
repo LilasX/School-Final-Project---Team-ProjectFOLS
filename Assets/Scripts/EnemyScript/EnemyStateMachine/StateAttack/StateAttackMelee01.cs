@@ -6,6 +6,7 @@ public class StateAttackMelee01 : EnemyState
 {
     public StatePursue statePursue;
     public StateAttackMelee02 stateMelee02;
+    public StateAttackRange01 stateRange01;
     public StateAttack stateWarrior;
     public bool isBoss = false;
     private Vector3 target;
@@ -103,6 +104,16 @@ public class StateAttackMelee01 : EnemyState
                     }
                 }
             }
+        }
+
+        if (playerDistance >= 7 && !isBoss)
+        {
+            enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage();
+            once1 = false;
+            once2 = false;
+            once3 = false;
+
+            return stateRange01;
         }
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("MSword And Shield Slash") && !anim.GetCurrentAnimatorStateInfo(0).IsName("MWalking"))
