@@ -72,37 +72,61 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
             //insideTrigger = true;
             _interactionButtonText.SetActive(true);
 
+            switch (_gameManager.inputHub.GetCurrentScheme())
+            {
+                case "Keyboard&Mouse":
+                    if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+                    {
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                    }
+                    else
+                    {
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                    }
+                    break;
+
+                case "Gamepad":
+                    if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+                    {
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+                    }
+                    else
+                    {
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+                    }
+                    break;
+            }
+
             if (_gameManager.player.GetComponent<PlayerEntity>().isInteracting)
             {
-                Debug.Log("ArmoryMenu");
-                ArmoryMenu.SetActive(true);
-                BackBtn.Select();
-                MenuON();
-
                 switch (_gameManager.inputHub.GetCurrentScheme())
                 {
                     case "Keyboard&Mouse":
                         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
                         {
-                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Cancel.bindings[0].ToDisplayString().ToUpper();
                         }
                         else
                         {
-                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[0].ToDisplayString().ToUpper();
                         }
                         break;
 
                     case "Gamepad":
                         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
                         {
-                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputHub.myInputAction.Player.Cancel.bindings[1].ToDisplayString().ToUpper();
                         }
                         else
                         {
-                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                            _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[1].ToDisplayString().ToUpper();
                         }
                         break;
                 }
+                Debug.Log("ArmoryMenu");
+                ArmoryMenu.SetActive(true);
+                BackBtn.Select();
+                MenuON();
             }
         }
 
@@ -120,15 +144,24 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
 
     public void Buy(int index)
     {
-        buyButtons[index].SetActive(false);
-        GemsImg[index].SetActive(false);
-        _gameManager.inventoryscript.gems -= ((index+1)*2);
+        if(_gameManager.inventoryscript.gems < ((index + 1) * 2)) 
+        {
+            buyButtons[index].SetActive(false);
+            GemsImg[index].SetActive(false);
+            _gameManager.inventoryscript.gems -= ((index + 1) * 2); 
+        }
     }
 
     public void Equip(int index)
     {
+        
         //Player equip weapon
         activeWeaponCheckImg[index].SetActive(true);
+        //if(lastIndex != index )
+        //{
+        //    activeWeaponCheckImg[lastIndex].SetActive(false);
+        //}
+        int lastIndex = index;
     }
 
     public void Back()
