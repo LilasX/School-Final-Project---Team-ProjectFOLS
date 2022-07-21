@@ -66,19 +66,31 @@ public class Objective : MonoBehaviour, IDataPersistence
     {
         yield return new WaitForSeconds(5f);
         objUI.SetActive(false);
-        this.gameObject.SetActive(false);
+        if(SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void LoadData(GameData data)
     {
-        data.objectiveTriggered.TryGetValue(id, out collision);
-        if (collision)
+        if (!DataPersistenceManager.instance.newSceneLoading)
         {
-            StartCoroutine(HideObjective());
-            //this.gameObject.SetActive(false);
-        }
+            data.objectiveTriggered.TryGetValue(id, out collision);
+            if (collision)
+            {
+                if (SceneManager.GetActiveScene().buildIndex == 1)
+                {
+                    collision = false;
+                }
 
-        objectiveText.text = data.objectiveMission;
+                StartCoroutine(HideObjective());
+                //this.gameObject.SetActive(false);
+            }
+
+            objectiveText.text = data.objectiveMission;
+        }
+        
     }
 
     public void SaveData(GameData data)

@@ -90,10 +90,12 @@ public class GameManager : MonoBehaviour
 
         dataPersistenceManager = DataPersistenceManager.instance;
 
-        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
         {
             inventoryscript.coins = 0;
-            //dataPersistenceManager.SaveGame();
+            player.GetComponent<PlayerEntity>().GetCurrentHP = player.GetComponent<PlayerEntity>().GetMaxHP;
+            player.GetComponent<PlayerEntity>().GetCurrentMana = player.GetComponent<PlayerEntity>().GetMaxMana;
+            player.GetComponent<PlayerEntity>().GetCurrentStamina = player.GetComponent<PlayerEntity>().GetMaxStamina;
         }
     }
 

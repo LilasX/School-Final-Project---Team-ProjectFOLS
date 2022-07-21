@@ -23,12 +23,12 @@ public class LoadScene : MonoBehaviour
 
     private bool allowScene;
 
-    public void BtnLoadScene(int i) //pas de parametres = charge la scene suivante.
-    {
-        if (async != null) return;
-        animator.SetTrigger("FadeOut");
-        StartCoroutine(IELoadSceneInt(i));
-    }
+    //public void BtnLoadScene(int i) //pas de parametres = charge la scene suivante.
+    //{
+    //    if (async != null) return;
+    //    animator.SetTrigger("FadeOut");
+    //    StartCoroutine(IELoadSceneInt(i));
+    //}
 
     public async void BtnLoadScene(string s) // s = nom de la scene
     {
@@ -37,6 +37,7 @@ public class LoadScene : MonoBehaviour
         if (async != null) return;
         animator.SetTrigger("FadeOut");
 
+        Debug.Log("It's ASYNC...");
         var scene = SceneManager.LoadSceneAsync(s);
         scene.allowSceneActivation = false;
 
@@ -56,61 +57,71 @@ public class LoadScene : MonoBehaviour
         //StartCoroutine(IELoadSceneString(s));
     }
 
-    IEnumerator IELoadSceneInt(int i)
+    public async void BtnLoadSceneI(int indexs) 
     {
-        yield return new WaitForSeconds(1f);
-        Debug.Log("Play");
-        async = SceneManager.LoadSceneAsync(i);
-    }
+        progressBar.fillAmount = 0;
 
-    IEnumerator IELoadSceneString(string s)
-    {
-        yield return new WaitForSeconds(1f);
-        
-        async = SceneManager.LoadSceneAsync(s);
-        async.allowSceneActivation = false;
+        Debug.Log("It's BtnLoadSceneI calling...");
+
+        if (async != null) return;
+        animator.SetTrigger("FadeOut");
+
+        Debug.Log("It's ASYNC I...");
+
+        var scene = SceneManager.LoadSceneAsync(indexs);
+        scene.allowSceneActivation = false;
+
         loaderCanvas.SetActive(true);
 
         do
         {
-            
-        } while (async.progress < 0.9f);
+            Time.timeScale = 1; //Make sure it doesn't mess with the pause in other scenes
+            await Task.Delay(100);
+            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 6 * Time.deltaTime);
+        } while (scene.progress < 0.9f);
+
+        await Task.Delay(1000);
+
+        scene.allowSceneActivation = true;
+        loaderCanvas.SetActive(false);
+        //StartCoroutine(IELoadSceneString(s));
     }
 
-    IEnumerator IELoadSceneStringT(string s)
-    {
-        yield return new WaitForSeconds(1f);
+    //IEnumerator IELoadSceneInt(int i)
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    Debug.Log("Play");
+    //    async = SceneManager.LoadSceneAsync(i);
+    //}
 
+    //IEnumerator IELoadSceneString(string s)
+    //{
+    //    yield return new WaitForSeconds(1f);
         
-    }
+    //    async = SceneManager.LoadSceneAsync(s);
+    //    async.allowSceneActivation = false;
+    //    loaderCanvas.SetActive(true);
+
+    //    do
+    //    {
+            
+    //    } while (async.progress < 0.9f);
+    //}
 
     public void OnLoadGame()
     {
         if (File.Exists(Application.persistentDataPath + "/data.game"))
         {
             DataPersistenceManager.instance.LoadGame();
-            Debug.Log("Loading Existing Game..." + DataPersistenceManager.instance.GameData.sceneIndex);
+            Debug.Log("Loading Existing Game..." + DataPersistenceManager.instance.GameData.sceneIndex); //In the MainMenu, the data doesn't exist yet
+
+            //Find methods that loads next scene from another scene except MainMenu
             //DataPersistenceManager.instance.SaveGame();
-
             DataPersistenceManager.instance.newSceneLoading = false;
-
-            if(DataPersistenceManager.instance.GameData.sceneIndex == 1)
-            {
-                BtnLoadScene("RealHub");
-            }
-            else if (DataPersistenceManager.instance.GameData.sceneIndex == 2)
-            {
-                BtnLoadScene("ProjectFOLS");
-            }
-            else if (DataPersistenceManager.instance.GameData.sceneIndex == 3)
-            {
-                BtnLoadScene("NewLevel");
-            }
-
+            BtnLoadSceneI(DataPersistenceManager.instance.GameData.sceneIndex);
         }
         else if (!File.Exists(Application.persistentDataPath + "/data.game"))
         {
-            DataPersistenceManager.instance.NewGame();
             BtnLoadScene("RealHub");
         }
     }
@@ -131,6 +142,7 @@ public class LoadScene : MonoBehaviour
         
         if(other.gameObject == gameManager.player)
         {
+            DataPersistenceManager.instance.newSceneLoading = true;
             BtnLoadScene(sceneName);
         }
     }

@@ -38,11 +38,11 @@ public class DataPersistenceManager : MonoBehaviour
 
     private FileDataHandler dataHandler;
 
-    public bool newSceneLoading;
-
     public static DataPersistenceManager instance { get; private set; }
     public GameData GameData { get => gameData; set => gameData = value; }
     public FileDataHandler DataHandler { get => dataHandler; set => dataHandler = value; }
+
+    public bool newSceneLoading;
 
     private void Awake()
     {
@@ -75,11 +75,6 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
-    public int LastActiveScene()
-    {
-        return GameData.sceneIndex;
-    }
-
     private void Start()
     {
         Debug.Log(Application.persistentDataPath);
@@ -104,14 +99,14 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.Log("No data found. A New Game needs to be started before data can be loaded.");
             NewGame();
         }
-        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+
+        if(SceneManager.GetActiveScene().buildIndex != 0)
         {
             foreach (IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
             {
                 dataPersistenceObjs.LoadData(GameData);
             }
         }
-        
     }
 
     public void SaveGame()
@@ -121,15 +116,13 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
         }
 
-        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        foreach (IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
         {
-            foreach (IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
-            {
-                dataPersistenceObjs.SaveData(GameData);
-            }
+            dataPersistenceObjs.SaveData(GameData);
         }
 
         DataHandler.Save(GameData);
+        Debug.Log("Game Saved...");
     }
 
     //private void OnApplicationQuit()
@@ -142,6 +135,11 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistenceObjects);
+    }
+
+    public bool HasGameData()
+    {
+        return gameData != null;
     }
 
     public void DeleteFile()

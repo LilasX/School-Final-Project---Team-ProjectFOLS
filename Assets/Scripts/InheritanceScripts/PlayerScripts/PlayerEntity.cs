@@ -403,7 +403,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
         {
             this.transform.position = data.playerPos;
         }
-       
+        //this.transform.position = data.playerPos;
         this.GetCurrentHP = data.hpData;
         this.GetCurrentMana = data.manaData;
         this.GetCurrentStamina = data.staminaData;
@@ -411,14 +411,10 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
-        {
-            data.playerPos = this.transform.position;
-            data.hpData = this.GetCurrentHP;
-            data.manaData = this.GetCurrentMana;
-            data.staminaData = this.GetCurrentStamina;
-        }
-        
+        data.playerPos = this.transform.position;
+        data.hpData = this.GetCurrentHP;
+        data.manaData = this.GetCurrentMana;
+        data.staminaData = this.GetCurrentStamina;
     }
 
     public void SetCurrentWeapon(int index)

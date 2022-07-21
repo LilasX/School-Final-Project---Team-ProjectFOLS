@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IDataPersistence
+public class Door : MonoBehaviour//, IDataPersistence
 {
     public Animator animator;
 
@@ -41,21 +41,21 @@ public class Door : MonoBehaviour, IDataPersistence
         else return;
     }
 
-    public void LoadData(GameData data)
-    {
-        data.doorsTriggered.TryGetValue(id, out hasOpened);
-        if (hasOpened)
-        {
-            animator.SetBool("IsOpen", true);
-        }
-    }
+    //public void LoadData(GameData data)
+    //{
+    //    data.doorsTriggered.TryGetValue(id, out hasOpened);
+    //    if (hasOpened)
+    //    {
+    //        animator.SetBool("IsOpen", true);
+    //    }
+    //}
 
-    public void SaveData(GameData data)
-    {
-        if (data.doorsTriggered.ContainsKey(id))
-        {
-            data.doorsTriggered.Remove(id);
-        }
-        data.doorsTriggered.Add(id, hasOpened);
-    }
+    //public void SaveData(GameData data)
+    //{
+    //    if (data.doorsTriggered.ContainsKey(id))
+    //    {
+    //        data.doorsTriggered.Remove(id);
+    //    }
+    //    data.doorsTriggered.Add(id, hasOpened);
+    //}
 }

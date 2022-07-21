@@ -23,7 +23,7 @@ public class GameData
     public string objectiveMission;
 
     //Doors data
-    public SerializableDictionary<string, bool> doorsTriggered;
+    //public SerializableDictionary<string, bool> doorsTriggered;
 
     //Scene data
     public int sceneIndex;
@@ -42,7 +42,7 @@ public class GameData
         objectiveTriggered = new SerializableDictionary<string, bool>();
         this.objectiveMission = null;
 
-        doorsTriggered = new SerializableDictionary<string, bool>();
+        //doorsTriggered = new SerializableDictionary<string, bool>();
 
         this.sceneIndex = 0;
     }
