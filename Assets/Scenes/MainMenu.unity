@@ -1998,7 +1998,6 @@ MonoBehaviour:
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}
   explosion: {fileID: 0}
   explosionBlue: {fileID: 0}
-  slashImpact: {fileID: 0}
   explosionBlueTransform: {fileID: 0}
   inventoryscript: {fileID: 0}
   inputManager: {fileID: 0}
@@ -2191,7 +2190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6716448721071901789, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6716448721071901790, guid: 44bb7b11f5dfd654c8f3f95ad32ba0f4, type: 3}
       propertyPath: m_Pivot.x

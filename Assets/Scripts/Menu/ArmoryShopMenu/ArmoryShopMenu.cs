@@ -17,9 +17,12 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
     Inventory inventory;
 
     public GameObject[] buyButtons = null;
-    //public GameObject[] equipButtons = null;
+    public Selectable[] equipButtons = null;
     public GameObject[] GemsImg = null;
     public GameObject[] activeWeaponCheckImg = null;
+
+    private int currentWeapon;
+    private int lastIndex;
 
     //private float Timer = 0;
     //private bool insideTrigger = false;
@@ -52,6 +55,9 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
             ArmoryMenu.SetActive(false);
             MenuOFF();
         }
+          
+        //activeWeaponCheckImg[currentWeapon].SetActive(true);
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -144,24 +150,26 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
 
     public void Buy(int index)
     {
-        if(_gameManager.inventoryscript.gems < ((index + 1) * 2)) 
-        {
+        //if(_gameManager.inventoryscript.gems >= ((index + 1) * 2)) 
+        //{
             buyButtons[index].SetActive(false);
+            equipButtons[index].gameObject.SetActive(true);
+            equipButtons[index].Select();
             GemsImg[index].SetActive(false);
             _gameManager.inventoryscript.gems -= ((index + 1) * 2); 
-        }
+        //}
     }
 
     public void Equip(int index)
     {
-        
-        //Player equip weapon
+        currentWeapon = index;
+        _gameManager.player.GetComponent<PlayerEntity>().SetCurrentWeapon(index);
         activeWeaponCheckImg[index].SetActive(true);
-        //if(lastIndex != index )
-        //{
-        //    activeWeaponCheckImg[lastIndex].SetActive(false);
-        //}
-        int lastIndex = index;
+        if(currentWeapon != lastIndex)
+        {
+            activeWeaponCheckImg[lastIndex].SetActive(false);
+        }
+        lastIndex = index;
     }
 
     public void Back()
