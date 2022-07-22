@@ -2649,6 +2649,10 @@ PrefabInstance:
       value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
+      propertyPath: id
+      value: 55f9a83f-e593-4d6e-9969-23fe6766939e
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
       propertyPath: isPooling
       value: 0
       objectReference: {fileID: 0}
@@ -2979,7 +2983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344117930}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.8, y: -0.8, z: 279.43}
+  m_LocalPosition: {x: 3.8, y: -0.8, z: 278.42}
   m_LocalScale: {x: 15, y: 1, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7200,6 +7204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c034b691edf2dcd43b8effba73625e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: efcb6060-b218-4d03-9dc1-76d3e6b4d0d1
   spawnPointPlayer: {fileID: 1998331462}
 --- !u!1 &707647524 stripped
 GameObject:
@@ -7452,7 +7457,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4980392, y: 1}
+    m_SensorSize: {x: 1.9741849, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7557,6 +7562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c034b691edf2dcd43b8effba73625e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0883543c-b7c7-43cd-b297-95a0f680f68c
   spawnPointPlayer: {fileID: 351438483}
 --- !u!1 &786630460 stripped
 GameObject:
@@ -21516,6 +21522,10 @@ PrefabInstance:
       value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
+      propertyPath: id
+      value: df62c242-613c-4217-b9e4-3249fdd2105f
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772784817273596940, guid: 78b08cefe010dc74a881aa17263fdd66, type: 3}
       propertyPath: isPooling
       value: 0
       objectReference: {fileID: 0}
@@ -24615,7 +24625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5166385727376874849, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 141.6
+      value: 139.78001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166385727376874849, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 119.84999
       objectReference: {fileID: 0}
     - target: {fileID: 5166385727377201443, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_Layer
@@ -25187,7 +25201,11 @@ PrefabInstance:
       objectReference: {fileID: 1636192940}
     - target: {fileID: 5166385727632429585, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 141.5
+      value: 139.68001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166385727632429585, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 133.08
       objectReference: {fileID: 0}
     - target: {fileID: 5166385727647182421, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -25311,7 +25329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5166385727800359744, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 141.14
+      value: 139.32
       objectReference: {fileID: 0}
     - target: {fileID: 5166385727800688386, guid: 65ba2c1c810040042bee18de0e008951, type: 3}
       propertyPath: m_Layer
@@ -29646,6 +29664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c034b691edf2dcd43b8effba73625e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: b85f817e-2d12-4368-9758-7d62ed41d4c0
   spawnPointPlayer: {fileID: 1121616007}
 --- !u!65 &1834597751
 BoxCollider:

@@ -43,10 +43,10 @@ public class Objective : MonoBehaviour, IDataPersistence
             
             objectiveText.text = mission;
 
-            foreach(CloseFightingArea c in FindObjectsOfType<CloseFightingArea>())
-            {
-                c.GetComponent<Collider>().isTrigger = true;
-            }
+            //foreach(CloseFightingArea c in FindObjectsOfType<CloseFightingArea>())
+            //{
+            //    c.GetComponent<Collider>().isTrigger = true;
+            //}
 
             StartCoroutine(HideObjective());
             dpManager.SaveGame();

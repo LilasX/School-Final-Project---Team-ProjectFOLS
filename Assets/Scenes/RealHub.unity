@@ -24998,7 +24998,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4904214, y: 1}
+    m_SensorSize: {x: 2.0369158, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -54554,7 +54554,7 @@ MonoBehaviour:
   capacity: 0
   keyboard: {fileID: 1258158361}
   gamePad: {fileID: 621524619}
-  levelChanger: {fileID: 0}
+  levelChanger: {fileID: 386364207}
   Paused: 0
   menuOpened: 0
   testTimer: 0

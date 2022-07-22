@@ -16,6 +16,8 @@ public class SpawnLoot : MonoBehaviour
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
 
+    private bool chestOpened;
+
     private void OnValidate()
     {
         if(minRange > maxRange)
@@ -40,15 +42,6 @@ public class SpawnLoot : MonoBehaviour
             spawned = false;
             TakeLoot();
         }
-
-        if(this.GetComponent<LootBox>() != null)
-        {
-            if (this.GetComponent<LootBox>().isOpen)
-            {
-                _interactionButtonText.SetActive(false);
-            }
-            
-        }
     }
 
     public void TakeLoot()
@@ -58,6 +51,7 @@ public class SpawnLoot : MonoBehaviour
         StartCoroutine(LootSpawning(num));
         if(this.GetComponent<LootBox>() != null)
         {
+            chestOpened = true;
             StartCoroutine(GemSpawning());
         }
     }
@@ -81,11 +75,13 @@ public class SpawnLoot : MonoBehaviour
 
         GameObject tempLoot = Instantiate(loot[1]);
         tempLoot.transform.position = this.spawnPos.position;
+        _interactionButtonText.SetActive(false);
+        chestOpened = true;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerEntity>())
+        if (other.gameObject.GetComponent<PlayerEntity>() && !chestOpened)
         {
             switch (_gameManager.inputManager.GetCurrentScheme())
             {

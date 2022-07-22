@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseFightingArea : MonoBehaviour
+public class CloseFightingArea : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] private string id;
+    [ContextMenu("Generate Guid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
 
     private GameManager manager;
 
@@ -38,5 +44,27 @@ public class CloseFightingArea : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (!DataPersistenceManager.instance.newSceneLoading)
+        {
+            data.collidersFight.TryGetValue(id, out triggered);
+            if (triggered)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+
+    }
+
+    public void SaveData(GameData data)
+    {
+        if (data.collidersFight.ContainsKey(id))
+        {
+            data.collidersFight.Remove(id);
+        }
+        data.collidersFight.Add(id, triggered);
     }
 }

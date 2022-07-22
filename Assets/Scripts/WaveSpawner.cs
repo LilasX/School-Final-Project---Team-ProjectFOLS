@@ -1,8 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour
+public class WaveSpawner : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] private string id;
+    [ContextMenu("Generate Guid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
+
     public enum SpawnState { Spawning, Waiting, Counting, Reward}
         
     [System.Serializable]
@@ -277,5 +284,27 @@ public class WaveSpawner : MonoBehaviour
         spawnList.Add(1);
         spawnList.Add(2);
         spawnList.Add(3);
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (!DataPersistenceManager.instance.newSceneLoading)
+        {
+            data.wavesSpawner.TryGetValue(id, out beginWaves);
+            if (beginWaves)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+
+    }
+
+    public void SaveData(GameData data)
+    {
+        if (data.wavesSpawner.ContainsKey(id))
+        {
+            data.wavesSpawner.Remove(id);
+        }
+        data.wavesSpawner.Add(id, beginWaves);
     }
 }

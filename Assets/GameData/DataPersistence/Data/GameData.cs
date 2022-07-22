@@ -23,10 +23,19 @@ public class GameData
     public string objectiveMission;
 
     //Doors data
-    //public SerializableDictionary<string, bool> doorsTriggered;
+    public SerializableDictionary<string, bool> doorsTriggered;
 
     //Scene data
     public int sceneIndex;
+
+    //Waves Spawners data
+    public SerializableDictionary<string, bool> wavesSpawner;
+
+    //Pentagrams data
+    public SerializableDictionary<string, bool> pentagramActivated;
+
+    //Colliders Enclosing Fight data
+    public SerializableDictionary<string, bool> collidersFight;
 
     public GameData()
     {
@@ -42,8 +51,14 @@ public class GameData
         objectiveTriggered = new SerializableDictionary<string, bool>();
         this.objectiveMission = null;
 
-        //doorsTriggered = new SerializableDictionary<string, bool>();
+        doorsTriggered = new SerializableDictionary<string, bool>();
 
         this.sceneIndex = 0;
+
+        wavesSpawner = new SerializableDictionary<string, bool>();
+
+        pentagramActivated = new SerializableDictionary<string, bool>();
+
+        collidersFight = new SerializableDictionary<string, bool>();
     }
 }

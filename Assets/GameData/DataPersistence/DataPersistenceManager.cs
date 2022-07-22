@@ -23,9 +23,6 @@ class ButtonEditor : Editor
 
 public class DataPersistenceManager : MonoBehaviour
 {
-    [Header("Debugging - Starting a New Game Without Going Through MainMenu")]
-    [SerializeField] private bool initializeDataIfNull = false;
-
     [Header("File Storage Config")]
 
     [SerializeField] private string fileName;
@@ -88,11 +85,6 @@ public class DataPersistenceManager : MonoBehaviour
     public void LoadGame()
     {
         this.GameData = DataHandler.Load();
-
-        if(this.GameData == null && initializeDataIfNull)
-        {
-            NewGame();
-        }
 
         if(this.GameData == null)
         {

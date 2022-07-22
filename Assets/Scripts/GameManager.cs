@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
         {
             inventoryscript.coins = 0;
+            inventoryscript.keys = 0;
             player.GetComponent<PlayerEntity>().GetCurrentHP = player.GetComponent<PlayerEntity>().GetMaxHP;
             player.GetComponent<PlayerEntity>().GetCurrentMana = player.GetComponent<PlayerEntity>().GetMaxMana;
             player.GetComponent<PlayerEntity>().GetCurrentStamina = player.GetComponent<PlayerEntity>().GetMaxStamina;
@@ -104,6 +105,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (pentagramActivatedindex >= 3)
         {
             elevatorPlateform.GetComponent<Animator>().enabled = true;
@@ -209,7 +212,7 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
-        else if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(1))
+        else if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(1) && SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
         {
             switch (inputManager.GetCurrentScheme())
             {
