@@ -20,14 +20,14 @@ public class AchievementButton : MonoBehaviour
 
     public void Click()
     {
-        if(sprite.sprite == neutral)
+        if(sprite.sprite == highlight)
         {
-            sprite.sprite = highlight;
+            sprite.sprite = neutral;
             achievementList.SetActive(true);
         }
         else
         {
-            sprite.sprite = neutral;
+            sprite.sprite = highlight;
             achievementList.SetActive(false);
         }
     }

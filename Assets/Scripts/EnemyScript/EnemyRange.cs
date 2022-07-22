@@ -11,9 +11,12 @@ public class EnemyRange : EnemyMain
     public GameObject coin;
     public bool onceDeath = false;
 
+    private AchievementManager achievementManager;
+
     public override void InitializeEnemy() 
     {
         gameManager = GameManager.instance;
+        achievementManager = AchievementManager.Instance;
         //posOrigin = transform;
         GetCurrentHP = GetMaxHP;
         canAttack = true; 
@@ -30,6 +33,7 @@ public class EnemyRange : EnemyMain
         if(!onceDeath)
         {
             onceDeath = true;
+            achievementManager.GoblinRangedKilled();
             canvas.gameObject.SetActive(false);
             GetComponent<SpawnLoot>().spawned = true;
             waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);

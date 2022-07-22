@@ -142,6 +142,7 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
     public GameObject newvfx;
 
+    public int weaponIndex;
 
 
     #endregion
@@ -247,6 +248,8 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         playerState = new PlayerStateMachine(DefaultState);
 
+        weaponIndex = PlayerPrefs.GetInt("WeaponIndex");
+        SetCurrentWeapon(weaponIndex);
     }
 
     // Update is called once per frame

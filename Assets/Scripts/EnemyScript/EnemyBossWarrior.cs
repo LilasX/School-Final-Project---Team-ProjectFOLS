@@ -69,6 +69,7 @@ public class EnemyBossWarrior : EnemyMain
             //AchievementManager.Instance.goblinsKilled += 1;
             //transform.position = posOrigin.position;
             onceDeath = true;
+            AchievementManager.Instance.EarnAchievement("Too easy!");
             canvas.gameObject.SetActive(false);
             GetComponent<SpawnLoot>().spawned = true;
             //waveSpawnerObject.GetComponent<WaveSpawner>().EnemyCount(-1);

@@ -11,7 +11,8 @@ public class AchievementShop : MonoBehaviour, IBaseMenu
     [SerializeField] private GameObject _buttonNameText;
     [SerializeField] private GameObject _interactionButtonText;
     [SerializeField] private GameObject AchievementMenu;
-    public Selectable backBtn;
+    public Selectable DefaultButton;
+    public GameObject defaultList;
 
     //private float Timer = 0;
     //private bool insideTrigger = false;
@@ -93,7 +94,8 @@ public class AchievementShop : MonoBehaviour, IBaseMenu
             {
                 Debug.Log("activateMenu");
                 AchievementMenu.SetActive(true);
-                backBtn.Select();
+                DefaultButton.Select();
+                defaultList.SetActive(true);
                 MenuON();
 
                 switch (_gameManager.inputHub.GetCurrentScheme())

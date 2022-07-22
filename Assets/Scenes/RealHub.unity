@@ -22541,12 +22541,15 @@ MonoBehaviour:
   - {fileID: 1756973533}
   - {fileID: 374096286}
   AchievementMenu: {fileID: 266481072}
+  defaultBtn: {fileID: 7623155228486248442}
   scrollRect: {fileID: 416172166}
   visualAchievement: {fileID: 4211586436627368598, guid: 2695ed88dc74ee046b2db5e48eaf6f25, type: 3}
   unlockedSprite: {fileID: 21300000, guid: e76b1e4d184593f41a4c2a4995c6b7b0, type: 3}
   textPoints: {fileID: 1637026826}
   backBtn: {fileID: 0}
-  goblinsKilled: 0
+  meleeGoblinsKilled: 0
+  rangedGoblinsKilled: 0
+  bossKilled: 0
 --- !u!114 &455360810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22562,7 +22565,8 @@ MonoBehaviour:
   _buttonNameText: {fileID: 1814748863}
   _interactionButtonText: {fileID: 1658366571}
   AchievementMenu: {fileID: 266481072}
-  backBtn: {fileID: 891282920}
+  DefaultButton: {fileID: 7623155228486248442}
+  defaultList: {fileID: 1756973533}
 --- !u!1001 &456038130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24998,7 +25002,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0369158, y: 1}
+    m_SensorSize: {x: 1.7642753, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -26150,7 +26154,7 @@ PrefabInstance:
       objectReference: {fileID: 513467486}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: maxHP
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: newvfx
@@ -26162,11 +26166,11 @@ PrefabInstance:
       objectReference: {fileID: 1063300122}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: currentHP
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: maxStamina
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: dodgeMaterial
@@ -26178,7 +26182,7 @@ PrefabInstance:
       objectReference: {fileID: 1611876503}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: currentStamina
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: damageMaterial
@@ -40233,7 +40237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &891282919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -97850,6 +97854,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7623155230082217122, guid: 8d04f6400f5a5a543977a9ab5034e859, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4b752b73c3154e64e8bfee397111f2e7, type: 3}
+    - target: {fileID: 7623155230082217122, guid: 8d04f6400f5a5a543977a9ab5034e859, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 455360806}
@@ -97869,6 +97877,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -56.35
       objectReference: {fileID: 0}
+    - target: {fileID: 7623155230145540257, guid: 8d04f6400f5a5a543977a9ab5034e859, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4b752b73c3154e64e8bfee397111f2e7, type: 3}
     - target: {fileID: 7623155230145540257, guid: 8d04f6400f5a5a543977a9ab5034e859, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -97895,6 +97907,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d04f6400f5a5a543977a9ab5034e859, type: 3}
+--- !u!114 &7623155228486248442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7623155230082217122, guid: 8d04f6400f5a5a543977a9ab5034e859, type: 3}
+  m_PrefabInstance: {fileID: 7623155228486248441}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8356059512658186954
 Transform:
   m_ObjectHideFlags: 0

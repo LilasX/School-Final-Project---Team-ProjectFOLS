@@ -17,7 +17,8 @@ public class AchievementManager : MonoBehaviour
     public GameObject AchievementMenu;
    
     private AchievementButton activeButton;
-    
+    private GameObject activeList;
+    public Selectable defaultBtn;
 
     public ScrollRect scrollRect;
 
@@ -31,8 +32,9 @@ public class AchievementManager : MonoBehaviour
 
     public Selectable backBtn;
 
-
-    public int goblinsKilled;
+    public int meleeGoblinsKilled;
+    public int rangedGoblinsKilled;
+    public int bossKilled;
 
    
 
@@ -51,7 +53,6 @@ public class AchievementManager : MonoBehaviour
         }   
     }
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -61,18 +62,24 @@ public class AchievementManager : MonoBehaviour
 
         activeButton = GameObject.Find("GeneralBtn").GetComponent<AchievementButton>();
 
-        CreateAchievement("GeneralCategory", "Die Goblins!", "Kill 5 Goblins", 10, 0);
-        CreateAchievement("GeneralCategory", "Die Goblins! 2", "Kill 10 Goblins", 20, 0);
+        CreateAchievement("GeneralCategory", "Die Goblins!", "Kill 5 Melee Goblins", 10, 0);
+        CreateAchievement("GeneralCategory", "Die Goblins! 2", "Kill 10 Melee Goblins", 20, 0);
 
+        CreateAchievement("GeneralCategory", "Legolas? Die!", "Kill 5 Ranged Goblins", 10, 0);
+        CreateAchievement("GeneralCategory", "Legolas? Die! 2", "Kill 10 Ranged Goblins", 20, 0);
+
+        CreateAchievement("Other", "Too easy!", "Kill Boss Warrior", 30, 0);
 
         foreach (GameObject achievementList in CategoryList)
         {
             Debug.Log(achievementList);
             achievementList.SetActive(false);
-
         }
 
-        activeButton.Click();
+        //activeButton.GetComponent<Image>().sprite = sprites[3];
+        //defaultBtn.Select();
+        activeList = activeButton.achievementList;
+        activeList.SetActive(true);
 
         AchievementMenu.SetActive(false);
        
@@ -81,18 +88,32 @@ public class AchievementManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        meleeGoblinsKilled = PlayerPrefs.GetInt("MeleeGoblinsKilled");
+        rangedGoblinsKilled = PlayerPrefs.GetInt("RangedGoblinsKilled");
+        //PlayerPrefs.SetInt("GoblinsKilled", goblinsKilled);
+        //goblinsKilled = PlayerPrefs.GetInt("GoblinsKilled");
+        //activeList.SetActive(true);
+
         if (Input.GetKeyDown(KeyCode.I))
         {
             AchievementMenu.SetActive(!AchievementMenu.activeSelf);
         }
-        if (goblinsKilled == 5)
+        if (meleeGoblinsKilled == 5)
         {
             EarnAchievement("Die Goblins!");
         }
-        if (goblinsKilled == 10)
+        if (meleeGoblinsKilled == 10)
         {
             EarnAchievement("Die Goblins! 2");
         }
+        if(rangedGoblinsKilled == 5)
+        {
+            EarnAchievement("Legolas? Die!");
+        }
+        if (rangedGoblinsKilled == 10)
+        {
+            EarnAchievement("Legolas? Die! 2");
+        }       
     }
 
     public void EarnAchievement(string title)
@@ -137,11 +158,40 @@ public class AchievementManager : MonoBehaviour
     public void ChangeCategory(GameObject button)
     {
         AchievementButton achievementButton = button.GetComponent<AchievementButton>();
-
         scrollRect.content = achievementButton.achievementList.GetComponent<RectTransform>();
+        activeList.SetActive(false);
+        activeList = achievementButton.achievementList;
+        activeList.SetActive(true);
 
-        achievementButton.Click();
-        activeButton.Click();
-        activeButton = achievementButton;
+        //achievementButton.Click();
+        //activeButton.Click();
+        //activeButton = achievementButton;
+    }
+
+    public void Diselect(GameObject btn)
+    {
+        btn.GetComponent<Image>().sprite = sprites[2];
+    }
+
+    public void OnSelect(GameObject btn)
+    {
+        Debug.Log("Onselecccct");
+        btn.GetComponent<Image>().sprite = sprites[3];
+    }
+
+    public void GoblinMeleeKilled()
+    {
+        meleeGoblinsKilled += 1;
+        PlayerPrefs.SetInt("MeleeGoblinsKilled", meleeGoblinsKilled);
+        meleeGoblinsKilled = PlayerPrefs.GetInt("MeleeGoblinsKilled");
+        PlayerPrefs.Save();
+    }
+
+    public void GoblinRangedKilled()
+    {
+        rangedGoblinsKilled += 1;
+        PlayerPrefs.SetInt("RangedGoblinsKilled", rangedGoblinsKilled);
+        rangedGoblinsKilled = PlayerPrefs.GetInt("RangedGoblinsKilled");
+        PlayerPrefs.Save();
     }
 }

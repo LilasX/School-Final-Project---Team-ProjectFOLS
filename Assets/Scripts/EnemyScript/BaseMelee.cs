@@ -146,7 +146,7 @@ public class BaseMelee : MonoBehaviour
         //if (gameManager.player.GetComponent<PlayerEntity>().meleeTime >= 0.3f)
 
 
-        if (gameManager.testTimer >= 1f)
+        if (gameManager.testTimer >= 0.6f)
         {
             gameManager.meleeHasBeenUsed = false;
             if (gameManager.player.GetComponent<PlayerEntity>().damagedEnemiesList.Count > 0)

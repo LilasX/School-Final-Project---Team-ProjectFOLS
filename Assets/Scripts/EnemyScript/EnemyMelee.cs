@@ -67,7 +67,7 @@ public class EnemyMelee : EnemyMain
     {
         if (!onceDeath)
         {
-            AchievementManager.Instance.goblinsKilled += 1;
+            AchievementManager.Instance.GoblinMeleeKilled();
             //transform.position = posOrigin.position;
             onceDeath = true;
             canvas.gameObject.SetActive(false);

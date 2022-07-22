@@ -165,6 +165,8 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
         currentWeapon = index;
         _gameManager.player.GetComponent<PlayerEntity>().SetCurrentWeapon(index);
         activeWeaponCheckImg[index].SetActive(true);
+        PlayerPrefs.SetInt("WeaponIndex", index);
+        PlayerPrefs.Save();
         if(currentWeapon != lastIndex)
         {
             activeWeaponCheckImg[lastIndex].SetActive(false);

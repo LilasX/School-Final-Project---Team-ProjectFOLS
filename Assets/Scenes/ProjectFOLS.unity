@@ -4553,7 +4553,7 @@ PrefabInstance:
       objectReference: {fileID: 779685948}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: maxHP
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: newvfx
@@ -4565,11 +4565,11 @@ PrefabInstance:
       objectReference: {fileID: 998742255}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: currentHP
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: maxStamina
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: dodgeMaterial
@@ -4581,7 +4581,7 @@ PrefabInstance:
       objectReference: {fileID: 1020838945}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: currentStamina
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: damageMaterial
@@ -4602,19 +4602,19 @@ PrefabInstance:
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: _possesedWeapons.Array.data[0]
       value: 
-      objectReference: {fileID: 787605324}
+      objectReference: {fileID: 1128663137}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: _possesedWeapons.Array.data[1]
       value: 
-      objectReference: {fileID: 1677324624}
+      objectReference: {fileID: 1815415563}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: _possesedWeapons.Array.data[2]
       value: 
-      objectReference: {fileID: 1128663137}
+      objectReference: {fileID: 1677324624}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: _possesedWeapons.Array.data[3]
       value: 
-      objectReference: {fileID: 1815415563}
+      objectReference: {fileID: 787605324}
     - target: {fileID: 2524187585728608000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
       propertyPath: _possesedWeapons.Array.data[4]
       value: 
@@ -7457,7 +7457,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2920985, y: 1}
+    m_SensorSize: {x: 1.7642753, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13652,7 +13652,7 @@ ParticleSystem:
     radiusScale: 0.0001
     collidesWith:
       serializedVersion: 2
-      m_Bits: 2147483647
+      m_Bits: 0
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -19736,12 +19736,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2c0d37b6bff6e46868d284c41228439c, type: 3}
   CategoryList: []
   AchievementMenu: {fileID: 356206619}
+  defaultBtn: {fileID: 1638447741}
   scrollRect: {fileID: 356206617}
   visualAchievement: {fileID: 4211586436627368598, guid: 2695ed88dc74ee046b2db5e48eaf6f25, type: 3}
   unlockedSprite: {fileID: 21300000, guid: e76b1e4d184593f41a4c2a4995c6b7b0, type: 3}
   textPoints: {fileID: 356206618}
   backBtn: {fileID: 0}
-  goblinsKilled: 0
+  meleeGoblinsKilled: 0
+  rangedGoblinsKilled: 0
+  bossKilled: 0
 --- !u!4 &1074650682
 Transform:
   m_ObjectHideFlags: 0
@@ -26373,6 +26376,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1638447741 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7623155230082217122, guid: 8d04f6400f5a5a543977a9ab5034e859, type: 3}
+  m_PrefabInstance: {fileID: 356206615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1652908110
 GameObject:
   m_ObjectHideFlags: 0
