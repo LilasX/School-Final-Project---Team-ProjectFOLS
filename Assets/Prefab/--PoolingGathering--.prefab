@@ -5252,6 +5252,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2732487746280316796, guid: c7d9b61f8e64df344aef1d5e9b089e3d, type: 3}
+      propertyPath: isPooling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8063936023394082165, guid: c7d9b61f8e64df344aef1d5e9b089e3d, type: 3}
       propertyPath: isPooling
       value: 1

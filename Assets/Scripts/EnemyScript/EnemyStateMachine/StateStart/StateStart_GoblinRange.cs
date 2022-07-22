@@ -55,7 +55,7 @@ public class StateStart_GoblinRange : StateStart
                 stateRange03.isPooling = true;
                 //stateRange04.isPooling = true;
                 //stateRange05.isPooling = true;
-                onceI = true;
+                onceP = true;
             }
             else
             {
@@ -64,7 +64,7 @@ public class StateStart_GoblinRange : StateStart
                 stateRange03.isPooling = false;
                 //stateRange04.isPooling = false;
                 //stateRange05.isPooling = false;
-                onceP = true;
+                onceI = true;
             }
             
             enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;

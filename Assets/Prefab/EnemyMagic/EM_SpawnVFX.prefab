@@ -9509,10 +9509,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319ec41c4a713b54da73ebbdd16a2d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posOrigin: {fileID: 0}
-  isPooling: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  isPooling: 1
   start: 0
   timer: 0
+  startOnce: 1
 --- !u!1 &5591325028862263024
 GameObject:
   m_ObjectHideFlags: 0

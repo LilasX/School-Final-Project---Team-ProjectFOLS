@@ -7457,7 +7457,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7642753, y: 1}
+    m_SensorSize: {x: 1.803542, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -37511,7 +37511,7 @@ PrefabInstance:
       objectReference: {fileID: 1412405997}
     - target: {fileID: 252085726821990458, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: isPooling
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 252085726821990458, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: meleeImpact
@@ -37547,7 +37547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 252085727238890274, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: isPooling
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 252085727238890274, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: meleeImpact
@@ -37579,7 +37579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 252085728154721155, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: isPooling
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 252085728154721155, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: meleeImpact
@@ -37615,7 +37615,7 @@ PrefabInstance:
       objectReference: {fileID: 1412405997}
     - target: {fileID: 252085728326091003, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: isPooling
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 252085728326091003, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: meleeImpact
@@ -37643,7 +37643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 252085728436390868, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: isPooling
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 252085728436390868, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: meleeImpact
@@ -37679,7 +37679,7 @@ PrefabInstance:
       objectReference: {fileID: 1412405997}
     - target: {fileID: 252085728649902462, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: isPooling
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 252085728649902462, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: meleeImpact

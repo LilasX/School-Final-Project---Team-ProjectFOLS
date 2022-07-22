@@ -106,6 +106,7 @@ public class StateStart_GoblinWarrior : StateStart
                 stateRangeSpreadW.isPooling = true;
                 stateMagicWave.isPooling = true;
                 stateMagicQuake.isPooling = true;
+                stateMagicQuakeV2.isPooling = true;
                 stateMagicFallRandom.isPooling = true;
                 stateMagicFallPrecise.isPooling = true;
                 stateMagicBlast.isPooling = true;
@@ -118,6 +119,7 @@ public class StateStart_GoblinWarrior : StateStart
                 stateRangeSpreadW.isPooling = false;
                 stateMagicWave.isPooling = false;
                 stateMagicQuake.isPooling = false;
+                stateMagicQuakeV2.isPooling = false;
                 stateMagicFallRandom.isPooling = false;
                 stateMagicFallPrecise.isPooling = false;
                 stateMagicBlast.isPooling = false;

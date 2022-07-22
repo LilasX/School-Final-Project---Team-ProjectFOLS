@@ -17,7 +17,7 @@ public class BaseProjectile : MonoBehaviour
     public bool isPooling;
     public bool startOnce = true;
 
-    public int dmg = 0;
+    public int dmg = 5;
     public bool canDmg;
     public bool canDmgSphere;
     public bool canDmgArrow;

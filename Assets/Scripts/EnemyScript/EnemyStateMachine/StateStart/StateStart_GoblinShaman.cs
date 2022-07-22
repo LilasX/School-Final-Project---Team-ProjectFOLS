@@ -97,13 +97,33 @@ public class StateStart_GoblinShaman : StateStart
 
             if (enemyBehaviour.GetComponent<EnemyMain>().isPooling)
             {
+                stateMagicFireBall.isPooling = true;
+                stateMagicFireArrow.isPooling = true;
+                stateMagicFireLance.isPooling = true;
+                stateMagicFireBomb.isPooling = true;
+                stateMagicFireFloor.isPooling = true;
+                stateMagicFireWall.isPooling = true;
+                stateMagicFireWave.isPooling = true;
                 stateMagicFireMeteor.isPooling = true;
+                stateMagicLightningField.isPooling = true;
+                stateMagicLightningStrike.isPooling = true;
+                stateMagicLightningWave.isPooling = true;
                 stateMagicLightningStorm.isPooling = true;
                 onceP = true;
             }
             else
             {
+                stateMagicFireBall.isPooling = false;
+                stateMagicFireArrow.isPooling = false;
+                stateMagicFireLance.isPooling = false;
+                stateMagicFireBomb.isPooling = false;
+                stateMagicFireFloor.isPooling = false;
+                stateMagicFireWall.isPooling = false;
+                stateMagicFireWave.isPooling = false;
                 stateMagicFireMeteor.isPooling = false;
+                stateMagicLightningField.isPooling = false;
+                stateMagicLightningStrike.isPooling = false;
+                stateMagicLightningWave.isPooling = false;
                 stateMagicLightningStorm.isPooling = false;
                 onceI = true;
             }
