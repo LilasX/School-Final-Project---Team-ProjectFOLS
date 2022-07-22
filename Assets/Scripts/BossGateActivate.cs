@@ -6,13 +6,13 @@ public class BossGateActivate : MonoBehaviour
 {
     public GameObject boss_GoblinWarrior;
     public GameObject boss_GoblinShaman;
-    public GameObject boss_Golem;
 
     public bool isWarrior;
     public bool isShaman;
-    public bool isGolem;
 
     public bool once = false;
+
+    public bool start = false; //Test
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,10 +36,6 @@ public class BossGateActivate : MonoBehaviour
         {
             boss_GoblinShaman.GetComponent<EnemyBehaviour>().StartBossAttack();
         }
-        else if (isGolem)
-        {
-            boss_Golem.GetComponent<EnemyBehaviour>().StartBossAttack();
-        }
     }
 
     // Start is called before the first frame update
@@ -51,6 +47,10 @@ public class BossGateActivate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (start)
+        {
+            start = false;
+            ContactBoss();
+        }
     }
 }

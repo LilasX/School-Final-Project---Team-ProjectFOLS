@@ -48,18 +48,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432206e342c6a0a4093a284cea567509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolingManager: {fileID: 0}
   shooter: 1
   typeRange: 2
+  posOrigin: {x: 0, y: 0, z: 0}
+  isPooling: 0
+  startOnce: 1
   dmg: 0
+  canDmg: 0
   canDmgSphere: 0
   canDmgArrow: 0
   canDmgLance: 0
-  canDmgWall: 0
-  canDmgFloor: 0
-  canDmgWave: 0
-  timerWall: 0
-  timerFloor: 0
-  timerWave: 0
+  useRange: 0
+  timer: 0
+  hitEffect: {fileID: 0}
 --- !u!54 &6048026842624155085
 Rigidbody:
   m_ObjectHideFlags: 0

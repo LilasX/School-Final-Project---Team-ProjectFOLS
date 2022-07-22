@@ -6,8 +6,16 @@ public class StateStart : EnemyState
 {
     public Material defaultMat; 
     public GameObject character;
+    public GameObject weapon;
+    public GameObject itemSmall;
+    public GameObject itemLarge;
+    public GameObject itemMask;
     public Material dissolveMat;
-    public float cutoffValue = 3;
+    public float cutoffValueChar = 0;
+    public float cutoffValueWep = 0;
+    public float cutoffValueSmall = 0;
+    public float cutoffValueLarge = 0;
+    public float cutoffValueMask = 0;
 
     public GameObject spawnVFXInstant;
     public GameObject spawnVFX;

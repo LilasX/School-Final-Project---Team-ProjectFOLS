@@ -18,6 +18,7 @@ public class BossSpawner : MonoBehaviour
 
     public GameObject treasureChest;
     public GameObject chestInstant;
+    public GameObject chestPooled;
 
     public Bounds boundBox;
 
@@ -66,9 +67,19 @@ public class BossSpawner : MonoBehaviour
 
     public void SpawnTreasureChest()
     {
-        chestInstant = Instantiate(treasureChest, chestSpawner.transform.position, chestSpawner.transform.rotation);
-        chestInstant.GetComponent<LootBox>().Boss1Defeated = true;
-        //Want to Introduce PoolingSystem to TreasureChest
+        if (isPooling)
+        {
+            chestPooled = poolingManager.callTreasureChest();
+            chestPooled.SetActive(true);
+            chestPooled.transform.position = chestSpawner.transform.position;
+            chestPooled.transform.rotation = chestSpawner.transform.rotation;
+            chestPooled.GetComponent<LootBox>().Boss1Defeated = true;
+        }
+        else
+        {
+            chestInstant = Instantiate(treasureChest, chestSpawner.transform.position, chestSpawner.transform.rotation);
+            chestInstant.GetComponent<LootBox>().Boss1Defeated = true;
+        }
     }
 
     // Start is called before the first frame update

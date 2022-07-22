@@ -110,8 +110,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMat: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
   character: {fileID: 1481591107202898759}
+  weapon: {fileID: 0}
+  itemSmall: {fileID: 1481591106964635040}
+  itemLarge: {fileID: 1481591108419561529}
+  itemMask: {fileID: 0}
   dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
-  cutoffValue: 3
+  cutoffValueChar: 0
+  cutoffValueWep: 0
+  cutoffValueSmall: 0
+  cutoffValueLarge: 0
+  cutoffValueMask: 0
   spawnVFXInstant: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
   spawnVFX: {fileID: 0}
   timer: 0
@@ -587,7 +595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1481591106964635043
 Transform:
   m_ObjectHideFlags: 0
@@ -2054,7 +2062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1481591107778715823
 Transform:
   m_ObjectHideFlags: 0
@@ -2659,7 +2667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1481591108308482963
 Transform:
   m_ObjectHideFlags: 0
@@ -2840,7 +2848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1481591108419561528
 Transform:
   m_ObjectHideFlags: 0
@@ -3713,8 +3721,17 @@ MonoBehaviour:
   deathAnimator: {fileID: 9100000, guid: 903590d8bf860d24da23d51a52604a67, type: 2}
   anim: {fileID: 1481591108628897015}
   character: {fileID: 1481591107202898759}
+  weapon: {fileID: 0}
+  itemSmall: {fileID: 1481591106964635040}
+  itemLarge: {fileID: 1481591108419561529}
+  itemMask: {fileID: 0}
   dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
-  cutoffValue: 0
+  cutoffValueChar: 0
+  cutoffValueWep: 0
+  cutoffValueSmall: 0
+  cutoffValueLarge: 0
+  cutoffValueMask: 0
+  timer: 0
 --- !u!1 &2253444556119512534
 GameObject:
   m_ObjectHideFlags: 0

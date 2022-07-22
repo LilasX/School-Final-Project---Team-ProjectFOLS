@@ -86,13 +86,13 @@ public abstract class EnemyMain : EnemyEntity
             }
 
             if (GetCurrentHP <= 0)
-                {
-                    OnDeath();
-                }
-                else
-                {
-                    GetComponent<EnemyBehaviour>().SwitchStateKnocked();
-                }
+            {
+                OnDeath();
+            }
+            else
+            {
+                GetComponent<EnemyBehaviour>().SwitchStateKnocked();
+            }
             //}
         }
     }

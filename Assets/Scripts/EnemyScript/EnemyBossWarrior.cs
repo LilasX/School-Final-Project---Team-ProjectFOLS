@@ -13,7 +13,7 @@ public class EnemyBossWarrior : EnemyMain
     private int randNum;
     //public GameObject coin;
     public bool onceDeath = false;
-
+    public bool die = false;
     //private AchievementManager achievementManager;
 
     public override void InitializeEnemy()
@@ -45,6 +45,11 @@ public class EnemyBossWarrior : EnemyMain
                 melee[1].SetActive(true);
                 break;
         }
+    }
+
+    public GameObject SendWeaponUsed()
+    {
+        return melee[randNum];
     }
 
     public void CanDamage()
@@ -90,5 +95,12 @@ public class EnemyBossWarrior : EnemyMain
     protected override void Update()
     {
         DisplayHealthBar();
+
+        if (die)
+        {
+            die = false;
+            GetCurrentHP = 0;
+            OnDeath();
+        }
     }
 }

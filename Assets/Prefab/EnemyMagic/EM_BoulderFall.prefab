@@ -4901,7 +4901,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
+  - {fileID: 2100000, guid: 46f7666259fa8314298fcbaea96e0f82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9923,9 +9923,10 @@ MonoBehaviour:
   - {fileID: 1232796898388090407}
   spellZone:
   - {fileID: 377732304102011910}
+  startOnce: 1
   start: 0
   timer: 0
-  posOrigin: {fileID: 0}
+  posOrigin: {x: 0, y: 0, z: 0}
   isPooling: 0
   boulderProjectile: {fileID: 456792570520285685}
   boulderSpawn: {fileID: 5090427297197918155}

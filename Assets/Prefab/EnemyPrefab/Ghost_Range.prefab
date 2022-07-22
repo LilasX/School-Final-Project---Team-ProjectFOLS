@@ -1034,6 +1034,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMat: {fileID: 2100000, guid: ea24e01b03f54464eadda8d044dc3d2e, type: 2}
   character: {fileID: 6747795950847166892}
+  weapon: {fileID: 0}
+  item01: {fileID: 0}
+  item02: {fileID: 0}
   dissolveMat: {fileID: 2100000, guid: d223bc54f70b74242aff3bdfeef967c2, type: 2}
   cutoffValue: 3
   spawnVFXInstant: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
@@ -4747,6 +4750,9 @@ MonoBehaviour:
   deathAnimator: {fileID: 9100000, guid: 903590d8bf860d24da23d51a52604a67, type: 2}
   anim: {fileID: 6747795950854689142}
   character: {fileID: 6747795950847166892}
+  weapon: {fileID: 0}
+  item01: {fileID: 0}
+  item02: {fileID: 0}
   dissolveMat: {fileID: 2100000, guid: d223bc54f70b74242aff3bdfeef967c2, type: 2}
   cutoffValue: 0
 --- !u!1 &7580012727303502287

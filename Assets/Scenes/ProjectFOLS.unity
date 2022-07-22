@@ -7457,7 +7457,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9741849, y: 1}
+    m_SensorSize: {x: 2.2920985, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -26450,6 +26450,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652908110}
   m_CullTransparentMesh: 1
+--- !u!1 &1669525816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1353455441662568746, guid: 870c9050791514148ba77f72d2e6e08e, type: 3}
+  m_PrefabInstance: {fileID: 1353455442019350850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1676030565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37684,7 +37689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 606620941911038254, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 832275939324707229, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: m_IsActive
@@ -37926,6 +37931,14 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 1412405997}
+    - target: {fileID: 3681443798622075371, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: pathManager
+      value: 
+      objectReference: {fileID: 1127351038}
+    - target: {fileID: 3681443798622075371, guid: 16eddd04046ee734aba074213322f620, type: 3}
+      propertyPath: sensorManager
+      value: 
+      objectReference: {fileID: 956115777}
     - target: {fileID: 3869309207122255477, guid: 16eddd04046ee734aba074213322f620, type: 3}
       propertyPath: startOnce
       value: 1
@@ -41332,6 +41345,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9060477204638184921, guid: 1f35ec86035996544a482bb0e9334218, type: 3}
+      propertyPath: bossGate
+      value: 
+      objectReference: {fileID: 1669525816}
     - target: {fileID: 9060477204638184921, guid: 1f35ec86035996544a482bb0e9334218, type: 3}
       propertyPath: isPooling
       value: 1

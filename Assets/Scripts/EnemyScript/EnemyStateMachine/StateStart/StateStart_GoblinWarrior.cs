@@ -126,8 +126,22 @@ public class StateStart_GoblinWarrior : StateStart
 
             enemyBehaviour.gameObject.GetComponent<EnemyBossWarrior>().CannotDamage();
             enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;
+
             character.GetComponent<Renderer>().material = dissolveMat;
-            cutoffValue = 3;
+            weapon = enemyBehaviour.gameObject.GetComponent<EnemyBossWarrior>().SendWeaponUsed();
+            weapon.GetComponent<Renderer>().material = dissolveMat;
+            itemLarge.GetComponent<Renderer>().material = dissolveMat;
+            itemMask.GetComponent<Renderer>().material = dissolveMat;
+
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 3f);
+            weapon.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 2f);
+            itemLarge.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 3f);
+            itemMask.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 180f);
+
+            cutoffValueChar = 3f;
+            cutoffValueWep = 2f;
+            cutoffValueLarge = 3f;
+            cutoffValueMask = 180f;
 
             once = true;
         }
@@ -156,15 +170,40 @@ public class StateStart_GoblinWarrior : StateStart
         {
             once = false;
             timer = 0;
+
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", -1f);
+            weapon.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", -1f);
+            itemLarge.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", -16f);
+            itemMask.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 157f);
+
+            stateDeath.cutoffValueChar = -1f;
+            stateDeath.cutoffValueWep = -1f;
+            stateDeath.cutoffValueLarge = -16f;
+            stateDeath.cutoffValueMask = 157f;
+
             character.GetComponent<Renderer>().material = defaultMat;
+            weapon = enemyBehaviour.gameObject.GetComponent<EnemyBossWarrior>().SendWeaponUsed();
+            weapon.GetComponent<Renderer>().material = defaultMat;
+            itemLarge.GetComponent<Renderer>().material = defaultMat;
+            itemMask.GetComponent<Renderer>().material = defaultMat;
+
             enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
             return stateWaiting;
         }
         else
         {
             timer += Time.deltaTime;
-            cutoffValue -= Time.deltaTime;
-            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValue);
+
+            cutoffValueChar -= Time.deltaTime;
+            cutoffValueWep -= Time.deltaTime;
+            cutoffValueLarge -= Time.deltaTime * 5;
+            cutoffValueMask -= Time.deltaTime * 8;
+            
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueChar);
+            weapon.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueWep);
+            itemLarge.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueLarge);
+            itemMask.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueMask);
+
             return this;
         }
     }

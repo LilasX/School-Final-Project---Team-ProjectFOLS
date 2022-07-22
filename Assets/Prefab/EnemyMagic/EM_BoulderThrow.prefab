@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
+  - {fileID: 2100000, guid: 46f7666259fa8314298fcbaea96e0f82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,23 +146,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432206e342c6a0a4093a284cea567509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolingManager: {fileID: 0}
   shooter: 1
   typeRange: 0
-  posOrigin: {fileID: 0}
+  posOrigin: {x: 0, y: 0, z: 0}
   isPooling: 0
+  startOnce: 1
   dmg: 0
   canDmg: 0
   canDmgSphere: 0
   canDmgArrow: 0
   canDmgLance: 0
-  canDmgWall: 0
-  canDmgFloor: 0
-  canDmgWave: 0
   useRange: 0
   timer: 0
-  timerWall: 0
-  timerFloor: 0
-  timerWave: 0
+  hitEffect: {fileID: 0}
 --- !u!135 &5150920588010252222
 SphereCollider:
   m_ObjectHideFlags: 0

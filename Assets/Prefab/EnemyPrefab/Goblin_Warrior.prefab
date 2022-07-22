@@ -335,8 +335,17 @@ MonoBehaviour:
   deathAnimator: {fileID: 9100000, guid: 903590d8bf860d24da23d51a52604a67, type: 2}
   anim: {fileID: 3579076600062096018}
   character: {fileID: 3579076600052755578}
+  weapon: {fileID: 0}
+  itemSmall: {fileID: 0}
+  itemLarge: {fileID: 3579076600052726870}
+  itemMask: {fileID: 3579076600052697486}
   dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
-  cutoffValue: 0
+  cutoffValueChar: 0
+  cutoffValueWep: 0
+  cutoffValueSmall: 0
+  cutoffValueLarge: 0
+  cutoffValueMask: 0
+  timer: 0
 --- !u!1 &1540421736056557225
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3205221632402015133
 Transform:
   m_ObjectHideFlags: 0
@@ -946,6 +955,7 @@ MonoBehaviour:
   - {fileID: 3205221632402484855}
   - {fileID: 4850359353970465452}
   onceDeath: 0
+  die: 0
 --- !u!114 &3579076600062096016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1383,7 +1393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3579076600052529022
 Transform:
   m_ObjectHideFlags: 0
@@ -3772,7 +3782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4850359353970196058
 Transform:
   m_ObjectHideFlags: 0
@@ -4984,8 +4994,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMat: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
   character: {fileID: 3579076600052755578}
+  weapon: {fileID: 0}
+  itemSmall: {fileID: 0}
+  itemLarge: {fileID: 3579076600052726870}
+  itemMask: {fileID: 3579076600052697486}
   dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
-  cutoffValue: 1
+  cutoffValueChar: 0
+  cutoffValueWep: 0
+  cutoffValueSmall: 0
+  cutoffValueLarge: 0
+  cutoffValueMask: 0
   spawnVFXInstant: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
   spawnVFX: {fileID: 0}
   timer: 0

@@ -109,8 +109,20 @@ public class StateStart_GoblinShaman : StateStart
             }
 
             enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;
+
             character.GetComponent<Renderer>().material = dissolveMat;
-            cutoffValue = 3;
+            itemLarge.GetComponent<Renderer>().material = dissolveMat;
+            itemMask.GetComponent<Renderer>().material = dissolveMat;
+
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 3f);
+            itemLarge.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 11f);
+            itemMask.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 197f);
+
+            cutoffValueChar = 3f;
+            cutoffValueLarge = 11f;
+            cutoffValueMask = 197f;
+
+            cutoffValueChar = 3;
 
             once = true;
         }
@@ -139,15 +151,34 @@ public class StateStart_GoblinShaman : StateStart
         {
             once = false;
             timer = 0;
+
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", -1f);
+            itemLarge.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", -16f);
+            itemMask.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 157f);
+
+            stateDeath.cutoffValueChar = -1f;
+            stateDeath.cutoffValueLarge = -16f;
+            stateDeath.cutoffValueMask = 157f;
+
             character.GetComponent<Renderer>().material = defaultMat;
+            itemLarge.GetComponent<Renderer>().material = defaultMat;
+            itemMask.GetComponent<Renderer>().material = defaultMat;
+
             enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
             return stateWaiting;
         }
         else
         {
             timer += Time.deltaTime;
-            cutoffValue -= Time.deltaTime;
-            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValue);
+
+            cutoffValueChar -= Time.deltaTime;
+            cutoffValueLarge -= Time.deltaTime * 7;
+            cutoffValueMask -= Time.deltaTime * 10;
+
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueChar);
+            itemLarge.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueLarge);
+            itemMask.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueMask);
+
             return this;
         }
     }

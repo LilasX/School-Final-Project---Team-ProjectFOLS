@@ -62,7 +62,8 @@ public class StateStart_GhostRange : StateStart
             enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = false;
 
             character.GetComponent<Renderer>().material = dissolveMat;
-            cutoffValue = 3;
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", 3f);
+            cutoffValueChar = 3;
 
             once = true;
         }
@@ -90,16 +91,22 @@ public class StateStart_GhostRange : StateStart
         if (timer >= 6f)
         {
             once = false;
-            timer = 0;
+            timer = 0; 
+
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", -1f);
+            stateDeath.cutoffValueChar = -1f;
             character.GetComponent<Renderer>().material = defaultMat;
+
             enemyBehaviour.gameObject.GetComponent<EnemyMain>().canHurt = true;
             return stateWander;
         }
         else
         {
             timer += Time.deltaTime;
-            cutoffValue -= Time.deltaTime;
-            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValue);
+
+            cutoffValueChar -= Time.deltaTime;
+            character.GetComponent<Renderer>().material.SetFloat("_CutoffHeight", cutoffValueChar);
+
             return this;
         }
     }

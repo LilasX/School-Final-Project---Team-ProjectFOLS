@@ -48,6 +48,11 @@ public class EnemyMelee : EnemyMain
         }
     }
 
+    public GameObject SendWeaponUsed()
+    {
+        return melee[randNum];
+    }
+
     public void CanDamage()
     {
         melee[randNum].GetComponent<BaseMelee>().canDmg = true;

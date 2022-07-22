@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBossShaman : EnemyMain
 {
     public bool onceDeath = false;
-
+    public bool die = false;
     //private AchievementManager achievementManager;
 
     public override void InitializeEnemy()
@@ -53,6 +53,13 @@ public class EnemyBossShaman : EnemyMain
     protected override void Update()
     {
         DisplayHealthBar();
+
+        if (die)
+        {
+            die = false;
+            GetCurrentHP = 0;
+            OnDeath();
+        }
     }
 
 }

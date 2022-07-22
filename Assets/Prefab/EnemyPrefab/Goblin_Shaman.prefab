@@ -991,8 +991,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMat: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
   character: {fileID: 8063936023394366994}
+  weapon: {fileID: 0}
+  itemSmall: {fileID: 0}
+  itemLarge: {fileID: 8063936023394326914}
+  itemMask: {fileID: 8063936023394369538}
   dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
-  cutoffValue: 3
+  cutoffValueChar: 0
+  cutoffValueWep: 0
+  cutoffValueSmall: 0
+  cutoffValueLarge: 0
+  cutoffValueMask: 0
   spawnVFXInstant: {fileID: 0}
   spawnVFX: {fileID: 5417546619188569073, guid: c353e2711c2846e4689ff5c2dd71421a, type: 3}
   timer: 0
@@ -1331,8 +1339,17 @@ MonoBehaviour:
   deathAnimator: {fileID: 9100000, guid: 903590d8bf860d24da23d51a52604a67, type: 2}
   anim: {fileID: 8063936023387003820}
   character: {fileID: 8063936023394366994}
+  weapon: {fileID: 0}
+  itemSmall: {fileID: 0}
+  itemLarge: {fileID: 8063936023394326914}
+  itemMask: {fileID: 8063936023394369538}
   dissolveMat: {fileID: 2100000, guid: 7f209d9730b09dd49a2952353069ba0c, type: 2}
-  cutoffValue: 0
+  cutoffValueChar: 0
+  cutoffValueWep: 0
+  cutoffValueSmall: 0
+  cutoffValueLarge: 0
+  cutoffValueMask: 0
+  timer: 0
 --- !u!1 &4236066605797468111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,7 +3630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8063936023394381340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.27, y: 1, z: 0}
+  m_LocalPosition: {x: 5.27, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3711,6 +3728,7 @@ MonoBehaviour:
   meleeImpact: {fileID: 0}
   slashImpact: {fileID: 0}
   onceDeath: 0
+  die: 0
 --- !u!114 &8063936023394082164
 MonoBehaviour:
   m_ObjectHideFlags: 0
