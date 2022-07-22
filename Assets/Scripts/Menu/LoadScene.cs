@@ -35,7 +35,7 @@ public class LoadScene : MonoBehaviour
         progressBar.fillAmount = 0;
 
         if (async != null) return;
-        animator.SetTrigger("FadeOut");
+       // animator.SetTrigger("FadeOut");
 
         Debug.Log("It's ASYNC...");
         var scene = SceneManager.LoadSceneAsync(s);
@@ -49,8 +49,8 @@ public class LoadScene : MonoBehaviour
             await Task.Delay(100);
             progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 6 * Time.deltaTime);
         } while (scene.progress < 0.9f);
-
-        await Task.Delay(1000);
+        animator.SetTrigger("FadeOut");
+        await Task.Delay(1500);
 
         scene.allowSceneActivation = true;
         loaderCanvas.SetActive(false);

@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(instance);
         }
+
+        levelChanger.SetActive(true);
     }
    
     // Start is called before the first frame update
