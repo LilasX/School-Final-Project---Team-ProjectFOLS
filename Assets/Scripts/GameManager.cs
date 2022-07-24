@@ -99,6 +99,11 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerEntity>().GetCurrentHP = player.GetComponent<PlayerEntity>().GetMaxHP;
             player.GetComponent<PlayerEntity>().GetCurrentMana = player.GetComponent<PlayerEntity>().GetMaxMana;
             player.GetComponent<PlayerEntity>().GetCurrentStamina = player.GetComponent<PlayerEntity>().GetMaxStamina;
+
+            if (dataPersistenceManager.unlockedLevel)
+            {
+                GameObject.Find("Portal2").GetComponent<BoxCollider>().isTrigger = true;
+            }
         }
     }
 

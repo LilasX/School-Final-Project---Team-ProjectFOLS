@@ -802,7 +802,6 @@ GameObject:
   - component: {fileID: 90662124}
   - component: {fileID: 90662123}
   - component: {fileID: 90662122}
-  - component: {fileID: 90662121}
   - component: {fileID: 90662120}
   m_Layer: 9
   m_Name: Cube
@@ -844,19 +843,6 @@ MonoBehaviour:
   otherObject: {fileID: 0}
   dmg: 0
   hitEffect: {fileID: 0}
---- !u!114 &90662121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90662118}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbcc94284b14f54586034278f7201a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
 --- !u!65 &90662122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5403,8 +5389,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 642476585484173988, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94507d6e8171b0d4191e9ae63f5a700b, type: 3}
 --- !u!1 &544590405
 GameObject:
@@ -6343,7 +6328,6 @@ GameObject:
   - component: {fileID: 624437592}
   - component: {fileID: 624437591}
   - component: {fileID: 624437590}
-  - component: {fileID: 624437589}
   - component: {fileID: 624437588}
   m_Layer: 9
   m_Name: Cube
@@ -6385,19 +6369,6 @@ MonoBehaviour:
   otherObject: {fileID: 0}
   dmg: 0
   hitEffect: {fileID: 0}
---- !u!114 &624437589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624437586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbcc94284b14f54586034278f7201a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
 --- !u!65 &624437590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6751,7 +6722,6 @@ GameObject:
   - component: {fileID: 659606504}
   - component: {fileID: 659606503}
   - component: {fileID: 659606502}
-  - component: {fileID: 659606501}
   - component: {fileID: 659606500}
   m_Layer: 9
   m_Name: Cube
@@ -6793,19 +6763,6 @@ MonoBehaviour:
   otherObject: {fileID: 0}
   dmg: 0
   hitEffect: {fileID: 0}
---- !u!114 &659606501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659606498}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbcc94284b14f54586034278f7201a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
 --- !u!65 &659606502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7457,7 +7414,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.803542, y: 1}
+    m_SensorSize: {x: 1.9741849, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -36863,7 +36820,6 @@ GameObject:
   - component: {fileID: 2138229048}
   - component: {fileID: 2138229047}
   - component: {fileID: 2138229046}
-  - component: {fileID: 2138229045}
   - component: {fileID: 2138229044}
   m_Layer: 9
   m_Name: Cube
@@ -36905,19 +36861,6 @@ MonoBehaviour:
   otherObject: {fileID: 0}
   dmg: 0
   hitEffect: {fileID: 0}
---- !u!114 &2138229045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138229042}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbcc94284b14f54586034278f7201a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
 --- !u!65 &2138229046
 BoxCollider:
   m_ObjectHideFlags: 0

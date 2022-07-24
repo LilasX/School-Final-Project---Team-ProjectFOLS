@@ -37,6 +37,9 @@ public class GameData
     //Colliders Enclosing Fight data
     public SerializableDictionary<string, bool> collidersFight;
 
+    //Portal data
+    public bool unlockedNewLevel;
+
     public GameData()
     {
         this.coinsCount = 0;
@@ -60,5 +63,7 @@ public class GameData
         pentagramActivated = new SerializableDictionary<string, bool>();
 
         collidersFight = new SerializableDictionary<string, bool>();
+
+        unlockedNewLevel = false;
     }
 }

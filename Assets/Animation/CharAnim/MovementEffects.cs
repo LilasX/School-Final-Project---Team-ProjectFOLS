@@ -20,7 +20,7 @@ public class MovementEffects : MonoBehaviour
     public AudioClip swordSlash;
     public AudioSource audioSword;
 
-    public GameObject fireTrail;
+    //public GameObject fireTrail;
     public AudioClip fireExploding;
     public AudioSource audioSpell;
 

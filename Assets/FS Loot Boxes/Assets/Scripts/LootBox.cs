@@ -182,9 +182,10 @@ public class LootBox : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         inventoryScript.keys = 0;
+        DataPersistenceManager.instance.unlockedLevel = true;
         DataPersistenceManager.instance.SaveGame();
         DataPersistenceManager.instance.newSceneLoading = true;
-        gameManager.levelChanger.GetComponent<LoadScene>().BtnLoadScene("NewLevel");
+        gameManager.levelChanger.GetComponent<LoadScene>().BtnLoadScene("RealHub");
     }
 
     /// <summary>

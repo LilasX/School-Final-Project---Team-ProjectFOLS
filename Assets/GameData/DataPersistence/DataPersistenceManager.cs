@@ -40,6 +40,7 @@ public class DataPersistenceManager : MonoBehaviour
     public FileDataHandler DataHandler { get => dataHandler; set => dataHandler = value; }
 
     public bool newSceneLoading;
+    public bool unlockedLevel;
 
     private void Awake()
     {
@@ -94,6 +95,8 @@ public class DataPersistenceManager : MonoBehaviour
 
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
+            unlockedLevel = this.GameData.unlockedNewLevel;
+            
             foreach (IDataPersistence dataPersistenceObjs in dataPersistenceObjects)
             {
                 dataPersistenceObjs.LoadData(GameData);
@@ -113,6 +116,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObjs.SaveData(GameData);
         }
 
+        this.GameData.unlockedNewLevel = unlockedLevel;
         DataHandler.Save(GameData);
         Debug.Log("Game Saved...");
     }

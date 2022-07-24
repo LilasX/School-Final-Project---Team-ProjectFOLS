@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 642476585484173991}
   - component: {fileID: 642476585484173990}
   - component: {fileID: 642476585484173989}
-  - component: {fileID: 642476585484173988}
   - component: {fileID: 642476585484174008}
   m_Layer: 9
   m_Name: Cube
@@ -196,19 +195,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &642476585484173988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642476585484173986}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbcc94284b14f54586034278f7201a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
 --- !u!114 &642476585484174008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,9 +207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870b86f979bd94f409a4d41436e0afd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolingManager: {fileID: 0}
   striker: 0
   canDmg: 0
   otherObject: {fileID: 0}
+  dmg: 0
+  hitEffect: {fileID: 0}
 --- !u!1 &642919866890455851
 GameObject:
   m_ObjectHideFlags: 0
@@ -7546,6 +7535,7 @@ MonoBehaviour:
   dodgeTime: 0
   dodgeSpeed: 20
   hasExecutedDodge: 0
+  resetDodgeInputTimer: 0
   currentStamina: 200
   maxStamina: 200
   currentMana: 200
@@ -7584,7 +7574,15 @@ MonoBehaviour:
   resetKnockedInputTimer: 0
   dodgeMaterial: {fileID: 2100000, guid: acd8f714506fd6540a36a074eb7f1491, type: 2}
   fxElectricity: {fileID: 1179552385594127154, guid: 73cf276ff55f8df44b70847f143822f7, type: 3}
-  meleePS: {fileID: 6378020034983088162, guid: 6c7818a6d940c934b9beaaaf0df0dd4d, type: 3}
+  _currentMeleeDamage: 30
+  _currentSlashDamage: 15
+  _possesedWeapons: []
+  knockBackForce: 0
+  knockTime: 0
+  knockknock: 0
+  knockDirection: {x: 0, y: 0, z: 0}
+  newvfx: {fileID: 0}
+  weaponIndex: 0
 --- !u!114 &642476585726724914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7604,6 +7602,8 @@ MonoBehaviour:
   footstepRight: {fileID: 8300000, guid: 9e83421eb89116349987589c408c6fe7, type: 3}
   diving: {fileID: 8300000, guid: 99884b4c87d71d44cae8453d6e0c6ab6, type: 3}
   audioMove: {fileID: 642476584974882541}
+  meleeParticle: {fileID: 0}
+  meleevfx: {fileID: 0}
   swordMelee: {fileID: 8300000, guid: ce6b0fa0f3e551449a22244cc893ca70, type: 3}
   swordSlash: {fileID: 8300000, guid: 0e28d895342e9b044a4c461a06104bea, type: 3}
   audioSword: {fileID: 642476584355604200}
