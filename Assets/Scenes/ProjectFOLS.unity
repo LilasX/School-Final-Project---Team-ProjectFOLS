@@ -7520,7 +7520,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9741849, y: 1}
+    m_SensorSize: {x: 2.035524, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -28920,7 +28920,7 @@ MonoBehaviour:
   cam: {fileID: 779685948}
   cameraMain: {fileID: 256266648}
   bullet: {fileID: 6630236338828245609, guid: d9671e5f537104d49889c890c45d6e9b, type: 3}
-  fireSpell: {fileID: 545954287311120432, guid: 7cd50cdf1045068408135de165560e8f, type: 3}
+  fireSpell: {fileID: 6148031901741532043, guid: 16c8e0c3c2ef3ae468f636f9c29b044e, type: 3}
   fireBurstVfx: {fileID: 545954287311120432, guid: 82fb271b2e86d8c4b8d8d1c2d2818e88, type: 3}
   explosion: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
   explosionBlue: {fileID: 1984205696795266812, guid: 2b0a057b93de3934aa150270ff2ea557, type: 3}
