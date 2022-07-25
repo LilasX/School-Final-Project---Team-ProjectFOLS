@@ -1482,7 +1482,7 @@ MonoBehaviour:
   statePursue: {fileID: 5674896493061607879}
   stateWarrior: {fileID: 428125259328093756}
   start: 0
-  isBoss: 0
+  isBoss: 1
   once: 0
   magicCoolDown: 0
   timer: 0
