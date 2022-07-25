@@ -15,6 +15,7 @@ public class InputHub : MonoBehaviour
     private InputAction moveAction;
     private InputAction interactAction;
     private InputAction cancelAction;
+    private InputAction pauseAction;
 
     public static InputHub Instance { get => instance; set => instance = value; }
 
@@ -36,7 +37,7 @@ public class InputHub : MonoBehaviour
 
         interactAction = myInputAction.Player.Interact;
         cancelAction = myInputAction.Player.Cancel;
-
+        pauseAction = myInputAction.Player.Pause;
     }
 
     private void Start()
@@ -93,6 +94,18 @@ public class InputHub : MonoBehaviour
         }
     }
 
+    private void PauseGame()
+    {
+        if (pauseAction.triggered)
+        {
+            gameManager.isPausingGame = true;
+        }
+        else
+        {
+            gameManager.isPausingGame = false;
+        }
+    }
+
     public string GetCurrentScheme()
     {
         string currentScheme = myPlayerInput.currentControlScheme;
@@ -106,6 +119,7 @@ public class InputHub : MonoBehaviour
     {
         Interact();
         Cancel();
+        PauseGame();
 
         GetCurrentScheme();
     }
