@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     private InputAction fireAction;
     private InputAction shieldAction;
     private InputAction slashAction;
+    private InputAction pauseAction;
 
     private InputAction UISubmit;
     public bool UISubmitPressed = false;
@@ -51,6 +52,7 @@ public class InputManager : MonoBehaviour
         interactAction = myInputAction.Player.Interact;
         cancelAction = myInputAction.Player.Cancel;
         slashAction = myInputAction.Player.Slash;
+        pauseAction = myInputAction.Player.Pause;
         UISubmit = myInputAction.UI.Submit;
     }
 
@@ -261,6 +263,18 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void PauseGame()
+    {
+        if (pauseAction.triggered)
+        {
+            gameManager.isPausingGame = true;
+        }
+        else
+        {
+            gameManager.isPausingGame = false;
+        }
+    }
+
     private void Submit()
     {
         if (UISubmit.triggered)
@@ -291,6 +305,7 @@ public class InputManager : MonoBehaviour
         Slash();
         Interact();
         Cancel();
+        PauseGame();
         Submit();
 
         GetCurrentScheme();

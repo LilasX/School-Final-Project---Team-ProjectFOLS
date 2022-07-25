@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject levelChanger;
 
+
+    public bool isPausingGame = false;
     public bool Paused = false;
     public bool menuOpened = false;
 
