@@ -7520,7 +7520,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.035524, y: 1}
+    m_SensorSize: {x: 1.8600545, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7792,7 +7792,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!1 &814534097 stripped
 GameObject:
@@ -28946,6 +28946,7 @@ MonoBehaviour:
   keyboard: {fileID: 1040528465}
   gamePad: {fileID: 662363363}
   levelChanger: {fileID: 1727614478}
+  isPausingGame: 0
   Paused: 0
   menuOpened: 0
   testTimer: 0
