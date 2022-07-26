@@ -7278,7 +7278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: efcb6060-b218-4d03-9dc1-76d3e6b4d0d1
   spawnPointPlayer: {fileID: 1998331462}
-  triggered: 0
 --- !u!1 &707647524 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 832275939324707229, guid: 16eddd04046ee734aba074213322f620, type: 3}
@@ -7530,7 +7529,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0105264, y: 1}
+    m_SensorSize: {x: 1.8600545, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7637,7 +7636,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0883543c-b7c7-43cd-b297-95a0f680f68c
   spawnPointPlayer: {fileID: 351438483}
-  triggered: 0
 --- !u!1 &786630460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5253284676980348629, guid: 16eddd04046ee734aba074213322f620, type: 3}
@@ -9269,7 +9267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 29.998535, y: 50}
+  m_AnchoredPosition: {x: 29.998474, y: 50}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &942521265
@@ -29380,7 +29378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: b85f817e-2d12-4368-9758-7d62ed41d4c0
   spawnPointPlayer: {fileID: 1121616007}
-  triggered: 0
 --- !u!65 &1834597751
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36827,18 +36824,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1814622671}
     m_Modifications:
-    - target: {fileID: 1209807485553204710, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807485575996041, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807486369296825, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 1209807486529679422, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
       propertyPath: m_Name
       value: BossSensor
@@ -36886,30 +36871,6 @@ PrefabInstance:
     - target: {fileID: 1209807486529679425, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807486841712364, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807486983131299, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807487063496298, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807487151263852, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807487192506755, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1209807487275535096, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
-      propertyPath: m_Layer
-      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
