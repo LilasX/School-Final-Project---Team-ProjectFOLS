@@ -937,7 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 200
+  maxHP: 300
   distance: 0
   posOrigin: {x: 0, y: 0, z: 0}
   startOnce: 1

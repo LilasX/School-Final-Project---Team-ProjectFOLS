@@ -34,7 +34,7 @@ public class StateAttackStart_GoblinWarrior : StateAttack
         playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
         hp = enemyBehaviour.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
 
-        if (hp <= 90 /*30% (hpMax *30 /100)*/) //At Low Health
+        if (hp <= 100 /*30% (hpMax *30 /100)*/) //At Low Health
         {
             if (playerDistance <= 3) //Close to Boss
             {

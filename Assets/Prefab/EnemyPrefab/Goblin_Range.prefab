@@ -134,7 +134,9 @@ MonoBehaviour:
   stateDeath: {fileID: 3252248948259355375}
   stateRange01: {fileID: 7087950966768344220}
   stateRange02: {fileID: 7069950617516766822}
-  stateRange03: {fileID: 1054964430330277387}
+  stateRange03: {fileID: 4168320675622112005}
+  stateRangeArrow: {fileID: 1054964430330277387}
+  stateRangeLance: {fileID: 3760914039931878697}
 --- !u!1 &1481591106679788515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3981,7 +3983,9 @@ MonoBehaviour:
   timer: 0
   stateRange01: {fileID: 7087950966768344220}
   stateRange02: {fileID: 7069950617516766822}
-  stateRange03: {fileID: 1054964430330277387}
+  stateRange03: {fileID: 4168320675622112005}
+  stateRangeArrow: {fileID: 1054964430330277387}
+  stateRangeLance: {fileID: 3760914039931878697}
 --- !u!1 &6234596969303453004
 GameObject:
   m_ObjectHideFlags: 0

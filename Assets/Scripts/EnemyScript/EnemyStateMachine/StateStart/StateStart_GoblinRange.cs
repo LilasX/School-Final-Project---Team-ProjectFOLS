@@ -7,8 +7,8 @@ public class StateStart_GoblinRange : StateStart
     public StateAttackRange02 stateRange01;
     public StateAttackRange02 stateRange02;
     public StateAttackRange02 stateRange03;
-    //public StateAttackRange02 stateRange04;
-    //public StateAttackRange02 stateRange05;
+    public StateAttackRange02 stateRangeArrow;
+    public StateAttackRange02 stateRangeLance;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -28,17 +28,17 @@ public class StateStart_GoblinRange : StateStart
             stateRange03.once2 = false;
             stateRange03.once3 = false;
             stateRange03.once4 = true;
-            /*
-            stateRange04.once1 = false;
-            stateRange04.once2 = false;
-            stateRange04.once3 = false;
-            stateRange04.once4 = true;
+            
+            stateRangeArrow.once1 = false;
+            stateRangeArrow.once2 = false;
+            stateRangeArrow.once3 = false;
+            stateRangeArrow.once4 = true;
 
-            stateRange05.once1 = false;
-            stateRange05.once2 = false;
-            stateRange05.once3 = false;
-            stateRange05.once4 = true;
-            */
+            stateRangeLance.once1 = false;
+            stateRangeLance.once2 = false;
+            stateRangeLance.once3 = false;
+            stateRangeLance.once4 = true;
+            
             statePursue.once = false;
 
             stateKnocked.once1 = false;
@@ -53,8 +53,8 @@ public class StateStart_GoblinRange : StateStart
                 stateRange01.isPooling = true;
                 stateRange02.isPooling = true;
                 stateRange03.isPooling = true;
-                //stateRange04.isPooling = true;
-                //stateRange05.isPooling = true;
+                stateRangeArrow.isPooling = true;
+                stateRangeLance.isPooling = true;
                 onceP = true;
             }
             else
@@ -62,8 +62,8 @@ public class StateStart_GoblinRange : StateStart
                 stateRange01.isPooling = false;
                 stateRange02.isPooling = false;
                 stateRange03.isPooling = false;
-                //stateRange04.isPooling = false;
-                //stateRange05.isPooling = false;
+                stateRangeArrow.isPooling = false;
+                stateRangeLance.isPooling = false;
                 onceI = true;
             }
             

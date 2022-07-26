@@ -36,7 +36,7 @@ public class StateAttackStart_GoblinShaman : StateAttack
         playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
         hp = enemyBehaviour.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
 
-        if (hp <= 80) //At Low Health
+        if (hp <= 100) //At Low Health
         {
             if (playerDistance <= 7) //Close to Boss
             {

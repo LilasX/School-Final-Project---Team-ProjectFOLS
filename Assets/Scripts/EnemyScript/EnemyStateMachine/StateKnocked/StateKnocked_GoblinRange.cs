@@ -7,6 +7,8 @@ public class StateKnocked_GoblinRange : StateKnocked
     public StateAttackRange02 stateRange01;
     public StateAttackRange02 stateRange02;
     public StateAttackRange02 stateRange03;
+    public StateAttackRange02 stateRangeArrow;
+    public StateAttackRange02 stateRangeLance;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
@@ -37,6 +39,14 @@ public class StateKnocked_GoblinRange : StateKnocked
                 if (stateRange03)
                 {
                     stateRange03.once1 = false; stateRange03.once2 = false; stateRange03.once3 = false; stateRange03.once4 = true;
+                }
+                if (stateRangeArrow)
+                {
+                    stateRangeArrow.once1 = false; stateRangeArrow.once2 = false; stateRangeArrow.once3 = false; stateRangeArrow.once4 = true;
+                }
+                if (stateRangeLance)
+                {
+                    stateRangeLance.once1 = false; stateRangeLance.once2 = false; stateRangeLance.once3 = false; stateRangeLance.once4 = true;
                 }
             }
             once1 = true;
