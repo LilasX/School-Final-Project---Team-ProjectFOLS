@@ -273,6 +273,19 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
 
         //SetCurrentWeapon();
 
+        //if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
+        //{
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(this.gameObject.transform.position, Vector3.down, out hit, 10))
+        //    {
+        //        if(hit.collider == FindObjectOfType<ColliderFall>().gameObject)
+        //        {
+        //            this.gameObject.transform.position = FindObjectOfType<ColliderFall>().spawnPointPlayer.transform.position;
+        //            //this.gameObject.transform.SetParent(FindObjectOfType<Elevation>().transform);
+        //            OnHurt(10);
+        //        }
+        //    }
+        //}
         
         
         if (knockknock)

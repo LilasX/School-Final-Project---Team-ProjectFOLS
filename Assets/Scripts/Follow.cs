@@ -21,7 +21,6 @@ public class Follow : MonoBehaviour
     {
         if (other.gameObject == manager.player)
         {
-            //Debug.Log("Pickup");
             manager.inventoryscript.CoinPickup(); 
             Destroy(gameObject);
         }

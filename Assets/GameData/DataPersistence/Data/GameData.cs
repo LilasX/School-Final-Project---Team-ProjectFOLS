@@ -40,6 +40,9 @@ public class GameData
     //Portal data
     public bool unlockedNewLevel;
 
+    //NewLevel Boss Gate data
+    public bool bossOpen;
+
     public GameData()
     {
         this.coinsCount = 0;
@@ -65,5 +68,7 @@ public class GameData
         collidersFight = new SerializableDictionary<string, bool>();
 
         unlockedNewLevel = false;
+
+        bossOpen = false;
     }
 }

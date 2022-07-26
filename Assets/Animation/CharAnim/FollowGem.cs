@@ -21,7 +21,6 @@ public class FollowGem : MonoBehaviour
     {
         if (other.gameObject == manager.player)
         {
-            //Debug.Log("Pickup");
             manager.inventoryscript.GemPickUp();
             Destroy(gameObject);
         }

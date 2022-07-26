@@ -6,8 +6,6 @@ public class Door : MonoBehaviour, IDataPersistence
 {
     public Animator animator;
 
-    private Inventory hasKeys;
-
     [SerializeField] private string id;
     [ContextMenu("Generate Guid for id")]
     private void GenerateGuid()
@@ -20,7 +18,7 @@ public class Door : MonoBehaviour, IDataPersistence
     // Start is called before the first frame update
     void Start()
     {
-        hasKeys = FindObjectOfType<Inventory>();    
+          
     }
 
     // Update is called once per frame
@@ -32,10 +30,10 @@ public class Door : MonoBehaviour, IDataPersistence
     private void OnTriggerEnter(Collider other)
     
     {
-        if (hasKeys.keys >= 1)
+        if (GameManager.instance.inventoryscript.keys >= 1)
         {
             animator.SetBool("IsOpen", true);
-            hasKeys.DoorOpened();
+            GameManager.instance.inventoryscript.DoorOpened();
             hasOpened = true;
         }
         else return;

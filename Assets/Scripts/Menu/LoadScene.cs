@@ -32,6 +32,14 @@ public class LoadScene : MonoBehaviour
 
     public async void BtnLoadScene(string s) // s = nom de la scene
     {
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            if (gameManager.Paused)
+            {
+                this.transform.parent.gameObject.SetActive(false);
+            }
+        }
+
         progressBar.fillAmount = 0;
 
         if (async != null) return;

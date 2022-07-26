@@ -41,6 +41,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public bool newSceneLoading;
     public bool unlockedLevel;
+    public bool gateOpened;
 
     private void Awake()
     {
@@ -102,6 +103,11 @@ public class DataPersistenceManager : MonoBehaviour
                 dataPersistenceObjs.LoadData(GameData);
             }
         }
+
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            gateOpened = this.GameData.bossOpen;
+        }
     }
 
     public void SaveGame()
@@ -117,6 +123,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         this.GameData.unlockedNewLevel = unlockedLevel;
+        this.GameData.bossOpen = gateOpened;
         DataHandler.Save(GameData);
         Debug.Log("Game Saved...");
     }

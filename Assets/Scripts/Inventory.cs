@@ -18,6 +18,9 @@ public class Inventory : MonoBehaviour, IDataPersistence
     public GameObject keysO;
     private TMPro.TextMeshProUGUI keysText;
 
+    private bool opened;
+    public int lootCollected;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,15 @@ public class Inventory : MonoBehaviour, IDataPersistence
         coinsText.text = coins.ToString();
         gemsText.text = gems.ToString();
         keysText.text = keys.ToString();
+
+        if (opened)
+        {
+            if(lootCollected == 0)
+            {
+                opened = false;
+                StartCoroutine(GetKey());
+            }
+        }
     }
 
     public void CoinPickup()
@@ -53,18 +65,35 @@ public class Inventory : MonoBehaviour, IDataPersistence
         {
             coins += 20;
         }
+
+        lootCollected -= 1;
     }
 
     public void GemPickUp()
     {
         gems += 1;
+        lootCollected -= 1;
     }
 
     public void CommonChest()
     {
+        StartCoroutine(StartCounting());
         //gems += 1;
         coins += 50;
+        //keys += 1;
+        //StartCoroutine(GetKey());
+    }
+
+    IEnumerator GetKey()
+    {
+        yield return new WaitForSeconds(1f);
         keys += 1;
+    }
+
+    IEnumerator StartCounting()
+    {
+        yield return new WaitForSeconds(1f);
+        opened = true;
     }
 
     public void DoorOpened()

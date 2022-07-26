@@ -44,7 +44,7 @@ public class ActivatePentagram : MonoBehaviour, IDataPersistence
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerEntity>())
+        if (other.gameObject.GetComponent<PlayerEntity>() && _gameManager.inventoryscript.keys >= 1)
         {
             _activationProgressBar.gameObject.SetActive(true);
             _interactionButtonText.SetActive(true);
@@ -54,7 +54,7 @@ public class ActivatePentagram : MonoBehaviour, IDataPersistence
                 _spiralVfx.gameObject.SetActive(true);
                 _interactionButtonText.SetActive(false);
 
-                _activationProgressBar.value = Mathf.MoveTowards(_activationProgressBar.value, _activationProgressBar.maxValue, 5f * Time.deltaTime);
+                _activationProgressBar.value = Mathf.MoveTowards(_activationProgressBar.value, _activationProgressBar.maxValue, 30f * Time.deltaTime);
 
                 if (_activationProgressBar.value == _activationProgressBar.maxValue && !pentagramTriggered)
                 {
@@ -65,6 +65,7 @@ public class ActivatePentagram : MonoBehaviour, IDataPersistence
                     _activationProgressBar.gameObject.SetActive(false);
                     _spiralVfx.gameObject.SetActive(false);
                     Destroy(pentagram.GetComponent<SphereCollider>());
+                    _gameManager.inventoryscript.DoorOpened();
 
                     foreach (CloseFightingArea c in FindObjectsOfType<CloseFightingArea>())
                     {

@@ -8,14 +8,16 @@ public class CloseFightingArea : MonoBehaviour, IDataPersistence
     [ContextMenu("Generate Guid for id")]
     private void GenerateGuid()
     {
-        id = System.Guid.NewGuid().ToString();
+        Id = System.Guid.NewGuid().ToString();
     }
 
     private GameManager manager;
 
     public GameObject spawnPointPlayer;
 
-    private bool triggered;
+    public bool triggered;
+
+    public string Id { get => id; set => id = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,14 @@ public class CloseFightingArea : MonoBehaviour, IDataPersistence
     IEnumerator ColliderOn()
     {
         yield return new WaitForSeconds(0.5f);
+        foreach (CloseFightingArea c in FindObjectsOfType<CloseFightingArea>())
+        {
+            if(c.Id.ToString() == this.Id.ToString())
+            {
+                c.gameObject.GetComponent<Collider>().isTrigger = false;
+                c.triggered = true;
+            }
+        }
         this.gameObject.GetComponent<Collider>().isTrigger = false;
         manager.player.transform.position = spawnPointPlayer.transform.position;
         triggered = true;
@@ -50,7 +60,7 @@ public class CloseFightingArea : MonoBehaviour, IDataPersistence
     {
         if (!DataPersistenceManager.instance.newSceneLoading)
         {
-            data.collidersFight.TryGetValue(id, out triggered);
+            data.collidersFight.TryGetValue(Id, out triggered);
             if (triggered)
             {
                 this.gameObject.SetActive(false);
@@ -61,10 +71,10 @@ public class CloseFightingArea : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        if (data.collidersFight.ContainsKey(id))
+        if (data.collidersFight.ContainsKey(Id))
         {
-            data.collidersFight.Remove(id);
+            data.collidersFight.Remove(Id);
         }
-        data.collidersFight.Add(id, triggered);
+        data.collidersFight.Add(Id, triggered);
     }
 }

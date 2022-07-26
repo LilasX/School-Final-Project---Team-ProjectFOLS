@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
         {
+            menuOpened = false;
             inventoryscript.coins = 0;
             inventoryscript.keys = 0;
             player.GetComponent<PlayerEntity>().GetCurrentHP = player.GetComponent<PlayerEntity>().GetMaxHP;
@@ -105,6 +106,15 @@ public class GameManager : MonoBehaviour
             if (dataPersistenceManager.unlockedLevel)
             {
                 GameObject.Find("Portal2").GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
+        {
+            if (dataPersistenceManager.gateOpened)
+            {
+                gate.GetComponent<Animator>().enabled = true;
+                PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().SpawnBoss();
             }
         }
     }
@@ -121,11 +131,12 @@ public class GameManager : MonoBehaviour
 
         capacity = runesList.Count;
 
-        if (runesList.Count >= 2 && runesListIndex.IndexOf(rune2) == 0 && runesListIndex.IndexOf(rune1) == 1 && runesListIndex.IndexOf(rune3) == 2 && runesListIndex.IndexOf(rune4) == 3 && runesListIndex.IndexOf(rune5) == 4)
+        if (runesList.Count >= 2 && runesListIndex.IndexOf(rune2) == 0 && runesListIndex.IndexOf(rune1) == 1 && runesListIndex.IndexOf(rune3) == 2 && runesListIndex.IndexOf(rune4) == 3 && runesListIndex.IndexOf(rune5) == 4 && !PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().spawnOnce)
         {
             gate.GetComponent<Animator>().enabled = true;
+            dataPersistenceManager.gateOpened = true;
+            PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().SpawnBoss();
         }
-
 
         foreach (GameObject rune in runesListIndex)
         {

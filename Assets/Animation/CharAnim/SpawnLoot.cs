@@ -63,6 +63,7 @@ public class SpawnLoot : MonoBehaviour
         for(int i = 0; i< number; i++)
         {
             GameObject tempLoot = Instantiate(loot[0]);
+            _gameManager.inventoryscript.lootCollected += 1;
             tempLoot.transform.position = this.spawnPos.position;
             yield return new WaitForSeconds(0.1f);
         }
@@ -74,6 +75,7 @@ public class SpawnLoot : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         GameObject tempLoot = Instantiate(loot[1]);
+        _gameManager.inventoryscript.lootCollected += 1;
         tempLoot.transform.position = this.spawnPos.position;
         _interactionButtonText.SetActive(false);
         chestOpened = true;

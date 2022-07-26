@@ -38,6 +38,7 @@ public class PlayerDeathState : MonoBehaviour, IPlayerBaseState
         if(timer > 3f)
         {
             DataPersistenceManager.instance.newSceneLoading = true;
+            DataPersistenceManager.instance.gateOpened = false;
             gameManager.levelChanger.GetComponent<LoadScene>().BtnLoadScene("RealHub");
             timer = 0f;
         }

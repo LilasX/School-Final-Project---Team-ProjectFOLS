@@ -26,12 +26,13 @@ public class BossSpawner : MonoBehaviour
     public bool isWarrior = false;
     public bool isShaman = false;
 
-    public bool spawnOnce = false;
+    public bool spawnOnce = false; //used in GameManager for NewLevel
     public float timer = 0;
 
 
     public void SpawnBoss()
     {
+        spawnOnce = true;
         if (!isPooling)
         {
             if (isWarrior)
@@ -91,17 +92,17 @@ public class BossSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spawnOnce)
-        {
-            timer += Time.deltaTime;
+        //if (!spawnOnce)
+        //{
+        //    timer += Time.deltaTime;
 
-            if (timer >= 5f)
-            {
-                timer = 0;
-                spawnOnce = true;
-                SpawnBoss();
-            }
-        }
+        //    if (timer >= 5f)
+        //    {
+        //        timer = 0;
+        //        spawnOnce = true;
+        //        SpawnBoss();
+        //    }
+        //}
     }
 
     private void OnDrawGizmos()

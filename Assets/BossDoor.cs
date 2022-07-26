@@ -21,6 +21,7 @@ public class BossDoor : MonoBehaviour
         {
             Debug.Log("open");
             animator.GetComponent<Animator>().enabled = true;
+            PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().SpawnBoss();
         }
     }
 
