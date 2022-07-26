@@ -32,6 +32,8 @@ public class NpcTrigger : MonoBehaviour
     Quaternion lookRot;
     Quaternion _newRot;
 
+    public GameObject mainCam;
+
 
     private void Start()
     {
@@ -46,7 +48,9 @@ public class NpcTrigger : MonoBehaviour
         _camPos.y += 200;
         _camPos.x -= 80;
         _chatBackGround.transform.position = _camPos;
-        _signUI.transform.position = new Vector3 (_camPos.x + 80, _camPos.y - 70, _camPos.z);
+        //_signUI.transform.position = new Vector3 (_camPos.x + 80, _camPos.y - 70, _camPos.z);
+
+        //_signUI.transform.LookAt(mainCam.transform.forward);
 
         if (_dialogueBoxUI.activeInHierarchy && !_insideTrigger)
         {
