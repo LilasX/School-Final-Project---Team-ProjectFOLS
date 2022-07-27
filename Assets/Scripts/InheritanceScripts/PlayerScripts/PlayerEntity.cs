@@ -249,7 +249,12 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
         playerState = new PlayerStateMachine(DefaultState);
 
         weaponIndex = PlayerPrefs.GetInt("WeaponIndex");
-        SetCurrentWeapon(weaponIndex);
+        int weaponBought = PlayerPrefs.GetInt("Weapon0");
+        if (weaponIndex == 0 && weaponBought == 0)
+        {
+            SetCurrentWeapon(3);
+        }
+        else { SetCurrentWeapon(weaponIndex); } 
     }
 
     // Update is called once per frame
