@@ -80,7 +80,7 @@ public class PlayerDefaultState : IPlayerBaseState
         }
 
         //FIRE
-        if (playerEntityInstance.IsFiring && playerEntityInstance.IsGrounded) //DONE
+        if (playerEntityInstance.IsFiring && playerEntityInstance.IsGrounded && playerEntityInstance.GetCurrentMana >= 10f) //DONE
         {
             playerEntityInstance.playerState.ChangeState(playerEntityInstance.RangedAttackState);
         }

@@ -7530,7 +7530,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9743706, y: 1}
+    m_SensorSize: {x: 1.6952662, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -36827,9 +36827,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1814622671}
     m_Modifications:
+    - target: {fileID: 1209807485553204710, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807485575996041, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807486369296825, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1209807486529679422, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
       propertyPath: m_Name
       value: BossSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807486529679422, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1209807486529679425, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
       propertyPath: m_RootOrder
@@ -36874,6 +36890,30 @@ PrefabInstance:
     - target: {fileID: 1209807486529679425, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807486841712364, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807486983131299, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807487063496298, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807487151263852, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807487192506755, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209807487275535096, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46e525d3be2b346478f8bf33afdb5a09, type: 3}
