@@ -43,7 +43,10 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
             }
         }
         int currentweapon = PlayerPrefs.GetInt("WeaponIndex");
-        activeWeaponCheckImg[currentweapon].SetActive(true);
+        int weaponBought = PlayerPrefs.GetInt("Weapon0");
+        if (currentWeapon == 0 && weaponBought == 0) { return; }
+        else {
+            activeWeaponCheckImg[currentweapon].SetActive(true); }
         // AchievementMenu.SetActive(false);
     }
 
