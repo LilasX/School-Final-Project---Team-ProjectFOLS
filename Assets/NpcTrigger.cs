@@ -32,6 +32,9 @@ public class NpcTrigger : MonoBehaviour
     Quaternion lookRot;
     Quaternion _newRot;
 
+    public Canvas signUI;
+    public Canvas chatBoxUI;
+
 
     private void Start()
     {
@@ -42,11 +45,11 @@ public class NpcTrigger : MonoBehaviour
 
     void Update()
     {
-        _camPos = Camera.main.WorldToScreenPoint(_npc.position);
-        _camPos.y += 200;
-        _camPos.x -= 80;
-        _chatBackGround.transform.position = _camPos;
-        _signUI.transform.position = new Vector3 (_camPos.x + 80, _camPos.y - 70, _camPos.z);
+        //_camPos = Camera.main.WorldToScreenPoint(_npc.position);
+        //_camPos.y += 200;
+        //_camPos.x -= 80;
+        //_chatBackGround.transform.position = _camPos;
+        //_signUI.transform.position = new Vector3 (_camPos.x + 80, _camPos.y - 70, _camPos.z);
 
         if (_dialogueBoxUI.activeInHierarchy && !_insideTrigger)
         {
@@ -63,17 +66,19 @@ public class NpcTrigger : MonoBehaviour
         {
             _interactionButtonText.SetActive(true);
             _animator.SetBool("Talking", true);
-            this.transform.LookAt(_gameManager.player.transform);
-            _newPos = (_gameManager.player.transform.position - _npc.transform.position).normalized;
-            lookRot = Quaternion.LookRotation(_newPos);
-            _newRot = Quaternion.Lerp(this.transform.rotation, lookRot, 0.3f * Time.deltaTime);
+            //this.transform.LookAt(_gameManager.player.transform);
+            //_newPos = (_gameManager.player.transform.position - _npc.transform.position).normalized;
+            //lookRot = Quaternion.LookRotation(_newPos);
+            //_newRot = Quaternion.Lerp(this.transform.rotation, lookRot, 0.3f * Time.deltaTime);
         }
 
-        if(_isTalking && _isInRange)
-        {
-            _interactionButtonText.SetActive(false);
-        }
+        //if(_isTalking && _isInRange)
+        //{
+        //    _interactionButtonText.SetActive(false);
+        //}
 
+        signUI.transform.LookAt(_gameManager.cameraMain.transform);
+        chatBoxUI.transform.LookAt(_gameManager.cameraMain.transform);
     }
 
     public void TriggerDialogue()
@@ -86,9 +91,24 @@ public class NpcTrigger : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerEntity>())
         {
+            if (!_isTalking)
+            {
+                switch (_gameManager.inputManager.GetCurrentScheme())
+                {
+                    case "Keyboard&Mouse":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
+                        break;
+
+                    case "Gamepad":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
+                        break;
+                }
+            }
+                
+
             _isInRange = true;
             _insideTrigger = true;
-            //_interactionButtonText.SetActive(true);
+            _interactionButtonText.SetActive(true);
             _nameText.GetComponent<TMPro.TextMeshProUGUI>().text = _npcName[0];
 
 
@@ -97,6 +117,17 @@ public class NpcTrigger : MonoBehaviour
                 _signUI.SetActive(false);
                 _isTalking = true;
                 TriggerDialogue();
+
+                switch (_gameManager.inputManager.GetCurrentScheme())
+                {
+                    case "Keyboard&Mouse":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[0].ToDisplayString().ToUpper();
+                        break;
+
+                    case "Gamepad":
+                        _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Cancel.bindings[1].ToDisplayString().ToUpper();
+                        break;
+                }
             }
 
             if (_gameManager.player.GetComponent<PlayerEntity>().isCanceling && _dialogueBoxUI.activeInHierarchy)
@@ -109,19 +140,11 @@ public class NpcTrigger : MonoBehaviour
                 _dialogueBoxUI.SetActive(false);
                 _gameManager._dialogueManager.ResetConversation();
                 _isTalking = false;
+                _signUI.SetActive(true);
             }
         }
 
-        switch (_gameManager.inputManager.GetCurrentScheme())
-        {
-            case "Keyboard&Mouse":
-                _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[1].ToDisplayString().ToUpper();
-                break;
-
-            case "Gamepad":
-                _buttonNameText.GetComponent<TMPro.TextMeshProUGUI>().text = _gameManager.inputManager.myInputAction.Player.Interact.bindings[0].ToDisplayString().ToUpper();
-                break;
-        }
+        
     }
 
     private void OnTriggerExit(Collider other)
