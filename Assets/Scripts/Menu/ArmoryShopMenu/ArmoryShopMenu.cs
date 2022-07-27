@@ -189,7 +189,9 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
 
     public void Equip(int index)
     {
-        if(buyButtons[index].activeInHierarchy == true)
+        PlayerPrefs.SetInt("Equipped", 1);
+        PlayerPrefs.Save();
+        if (buyButtons[index].activeInHierarchy == true)
         {
             return;
         }

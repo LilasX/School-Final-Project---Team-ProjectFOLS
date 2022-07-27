@@ -249,8 +249,8 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
         playerState = new PlayerStateMachine(DefaultState);
 
         weaponIndex = PlayerPrefs.GetInt("WeaponIndex");
-        int weaponBought = PlayerPrefs.GetInt("Weapon0");
-        if (weaponIndex == 0 && weaponBought == 0)
+        int equipped = PlayerPrefs.GetInt("Equipped");
+        if (equipped == 0)
         {
             SetCurrentWeapon(3);
         }
