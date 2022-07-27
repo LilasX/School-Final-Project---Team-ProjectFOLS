@@ -455,8 +455,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                         obj.SetActive(false);
                     }
                 }
-                _currentMeleeDamage = 30;
-                _currentSlashDamage = 15;
+
+                _currentMeleeDamage = 40;
+                _currentSlashDamage = 20;
                 break;
 
             case 1:
@@ -472,8 +473,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                         obj.SetActive(false);
                     }
                 }
-                _currentMeleeDamage = 40;
-                _currentSlashDamage = 20;
+               
+                _currentMeleeDamage = 50;
+                _currentSlashDamage = 25;
                 break;
 
             case 2:
@@ -489,8 +491,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                         obj.SetActive(false);
                     }
                 }
-                _currentMeleeDamage = 50;
-                _currentSlashDamage = 25;
+                
+                _currentMeleeDamage = 60;
+                _currentSlashDamage = 30;
                 break;
 
             case 3:
@@ -506,8 +509,9 @@ public class PlayerEntity : PhysicalEntity, IShopCustomer, IDataPersistence
                         obj.SetActive(false);
                     }
                 }
-                _currentMeleeDamage = 60;
-                _currentSlashDamage = 30;
+               
+                _currentMeleeDamage = 30;
+                _currentSlashDamage = 15;
                 break;
 
             case 4:
