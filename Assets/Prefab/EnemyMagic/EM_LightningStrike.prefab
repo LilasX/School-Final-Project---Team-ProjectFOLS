@@ -4917,5 +4917,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 0
-  dmg: 40
+  dmg: 70
   canDmg: 0

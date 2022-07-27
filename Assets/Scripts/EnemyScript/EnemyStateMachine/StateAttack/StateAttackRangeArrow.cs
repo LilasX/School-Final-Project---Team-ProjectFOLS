@@ -59,7 +59,7 @@ public class StateAttackRangeArrow : StateAttackRange02
                     ranged.SetActive(true);
                     ranged.transform.position = projectileSpawn.transform.position;
                     ranged.transform.rotation = projectileSpawn.transform.rotation;
-                    ranged.GetComponent<BaseProjectile>().dmg = 20;
+                    ranged.GetComponent<BaseProjectile>().dmg = 30;
                     ranged.GetComponent<BaseProjectile>().useRange = true;
                     ranged.GetComponent<BaseProjectile>().isPooling = true;
                     ranged.GetComponent<Rigidbody>().AddForce(transform.forward * 24, ForceMode.Impulse);

@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 50
+  dmg: 90
   canDmg: 0
 --- !u!199 &8133642533516560345
 ParticleSystemRenderer:

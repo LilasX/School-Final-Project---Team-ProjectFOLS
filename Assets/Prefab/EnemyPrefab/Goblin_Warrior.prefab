@@ -747,7 +747,7 @@ MonoBehaviour:
   striker: 1
   canDmg: 0
   otherObject: {fileID: 0}
-  dmg: 20
+  dmg: 30
   hitEffect: {fileID: 0}
 --- !u!54 &8677266001250683193
 Rigidbody:
@@ -3877,7 +3877,7 @@ MonoBehaviour:
   striker: 1
   canDmg: 0
   otherObject: {fileID: 0}
-  dmg: 20
+  dmg: 30
   hitEffect: {fileID: 0}
 --- !u!54 &4955844075275769792
 Rigidbody:
