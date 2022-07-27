@@ -100,7 +100,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     ranged.SetActive(true);
                     ranged.transform.position = projectileSpawn.transform.position;
                     ranged.transform.rotation = projectileSpawn.transform.rotation;
-                    ranged.GetComponent<BaseProjectile>().dmg = 15;
+                    //ranged.GetComponent<BaseProjectile>().dmg = 15;
                     ranged.GetComponent<BaseProjectile>().useRange = true;
                     ranged.GetComponent<BaseProjectile>().isPooling = true;
                     ranged.GetComponent<Rigidbody>().AddForce(projectileSpawn.transform.forward * 20, ForceMode.Impulse);
@@ -113,7 +113,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     ranged2.SetActive(true);
                     ranged2.transform.position = projectileSpawn2.transform.position;
                     ranged2.transform.rotation = projectileSpawn2.transform.rotation;
-                    ranged2.GetComponent<BaseProjectile>().dmg = 15;
+                    //ranged2.GetComponent<BaseProjectile>().dmg = 15;
                     ranged2.GetComponent<BaseProjectile>().useRange = true;
                     ranged2.GetComponent<BaseProjectile>().isPooling = true;
                     ranged2.GetComponent<Rigidbody>().AddForce(projectileSpawn2.transform.forward * 20, ForceMode.Impulse);
@@ -126,7 +126,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                     ranged3.SetActive(true);
                     ranged3.transform.position = projectileSpawn3.transform.position;
                     ranged3.transform.rotation = projectileSpawn3.transform.rotation;
-                    ranged3.GetComponent<BaseProjectile>().dmg = 15;
+                    //ranged3.GetComponent<BaseProjectile>().dmg = 15;
                     ranged3.GetComponent<BaseProjectile>().useRange = true;
                     ranged3.GetComponent<BaseProjectile>().isPooling = true;
                     ranged3.GetComponent<Rigidbody>().AddForce(projectileSpawn3.transform.forward * 20, ForceMode.Impulse);
@@ -143,7 +143,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                 ranged.SetActive(true);
                 ranged.transform.position = projectileSpawn.transform.position;
                 ranged.transform.rotation = projectileSpawn.transform.rotation;
-                ranged.GetComponent<BaseProjectile>().dmg = 15;
+                //ranged.GetComponent<BaseProjectile>().dmg = 15;
                 ranged.GetComponent<BaseProjectile>().useRange = true;
                 ranged.GetComponent<BaseProjectile>().isPooling = true;
                 ranged.GetComponent<Rigidbody>().AddForce(projectileSpawn.transform.forward * 20, ForceMode.Impulse);
@@ -161,7 +161,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                 if (!iSIOnce1)
                 {
                     ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                    ranged.GetComponent<BaseProjectile>().dmg = 15;
+                    //ranged.GetComponent<BaseProjectile>().dmg = 15;
                     ranged.GetComponent<Rigidbody>().AddForce(projectileSpawn.transform.forward * 20, ForceMode.Impulse);
                     iSIOnce1 = true;
                 }
@@ -169,7 +169,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                 if (timer2 >= 0.5f && !iSIOnce2)
                 {
                     ranged2 = Instantiate(projectile, projectileSpawn2.transform.position, projectileSpawn2.transform.rotation);
-                    ranged2.GetComponent<BaseProjectile>().dmg = 15;
+                    //ranged2.GetComponent<BaseProjectile>().dmg = 15;
                     ranged2.GetComponent<Rigidbody>().AddForce(projectileSpawn2.transform.forward * 20, ForceMode.Impulse);
                     iSIOnce2 = true;
                 }
@@ -177,7 +177,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
                 if (timer2 >= 1f)
                 {
                     ranged3 = Instantiate(projectile, projectileSpawn3.transform.position, projectileSpawn3.transform.rotation);
-                    ranged3.GetComponent<BaseProjectile>().dmg = 15;
+                    //ranged3.GetComponent<BaseProjectile>().dmg = 15;
                     ranged3.GetComponent<Rigidbody>().AddForce(projectileSpawn3.transform.forward * 20, ForceMode.Impulse);
                     timer2 = 0;
                     iSIOnce1 = false;
@@ -189,7 +189,7 @@ public class StateAttackRangeBoulderSpread : StateAttackRange02
             else //SingleShot
             {
                 ranged = Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
-                ranged.GetComponent<BaseProjectile>().dmg = 15;
+                //ranged.GetComponent<BaseProjectile>().dmg = 15;
                 ranged.GetComponent<Rigidbody>().AddForce(projectileSpawn.transform.forward * 20, ForceMode.Impulse);
                 once4 = false;
                 isShootingInstant = false;
