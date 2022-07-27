@@ -12,9 +12,18 @@ public class ColliderFall : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject == GameManager.instance.player)
+        if(other.gameObject == GameManager.instance.player)
+        {
+            GameManager.instance.player.transform.position = spawnPointPlayer.transform.position;
+            GameManager.instance.player.GetComponent<PlayerEntity>().OnHurt(Random.Range(5, 10));
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject == GameManager.instance.player)
         {
             GameManager.instance.player.transform.position = spawnPointPlayer.transform.position;
         }
