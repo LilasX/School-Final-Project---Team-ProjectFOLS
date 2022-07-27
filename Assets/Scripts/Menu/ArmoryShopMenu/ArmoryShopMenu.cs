@@ -12,7 +12,7 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
     [SerializeField] private GameObject _interactionButtonText;
     [SerializeField] private GameObject ArmoryMenu;
 
-    public Selectable BackBtn;
+    public Selectable defaultBtn;
 
     Inventory inventory;
 
@@ -32,6 +32,18 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
     {
         _gameManager = GameManager.Instance;
         _interactionButtonText.SetActive(false);
+        for(int i=0; i < 3; i++)
+        {
+            string Weapon = "Weapon" + i;
+            int weaponbought = PlayerPrefs.GetInt(Weapon);
+            if(weaponbought == 1)
+            {
+                buyButtons[i].SetActive(false);
+                GemsImg[i].SetActive(false);
+            }
+        }
+        int currentweapon = PlayerPrefs.GetInt("WeaponIndex");
+        activeWeaponCheckImg[currentweapon].SetActive(true);
         // AchievementMenu.SetActive(false);
     }
 
@@ -131,7 +143,15 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
                 }
                 Debug.Log("ArmoryMenu");
                 ArmoryMenu.SetActive(true);
-                BackBtn.Select();
+                if (defaultBtn.IsActive())
+                {
+                    defaultBtn.Select();
+                }
+                else if (equipButtons[0].gameObject.activeInHierarchy)
+                {
+                    equipButtons[0].Select();
+                } 
+         
                 MenuON();
             }
         }
@@ -150,28 +170,45 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
 
     public void Buy(int index)
     {
-        //if(_gameManager.inventoryscript.gems >= ((index + 1) * 2)) 
-        //{
+        if (_gameManager.inventoryscript.gems >= ((index + 1) * 2))
+        {
             buyButtons[index].SetActive(false);
+            string Weapon = "Weapon" + index;
+            Debug.Log(Weapon);
+            PlayerPrefs.SetInt(Weapon, 1);
+            PlayerPrefs.Save();
             equipButtons[index].gameObject.SetActive(true);
             equipButtons[index].Select();
             GemsImg[index].SetActive(false);
-            _gameManager.inventoryscript.gems -= ((index + 1) * 2); 
-        //}
+            _gameManager.inventoryscript.gems -= ((index + 1) * 2);
+        }
     }
 
     public void Equip(int index)
     {
+        if(buyButtons[index].activeInHierarchy == true)
+        {
+            return;
+        }
         currentWeapon = index;
         _gameManager.player.GetComponent<PlayerEntity>().SetCurrentWeapon(index);
         activeWeaponCheckImg[index].SetActive(true);
         PlayerPrefs.SetInt("WeaponIndex", index);
         PlayerPrefs.Save();
-        if(currentWeapon != lastIndex)
+        //if(currentWeapon != lastIndex)
+        //{
+        //    activeWeaponCheckImg[lastIndex].SetActive(false);
+        //}
+        //lastIndex = index;
+
+        for(int i = 0; i < 3; i++)
         {
-            activeWeaponCheckImg[lastIndex].SetActive(false);
+            activeWeaponCheckImg[i].SetActive(false);
+            if (i == index)
+            {
+                activeWeaponCheckImg[i].SetActive(true);
+            }
         }
-        lastIndex = index;
     }
 
     public void Back()
