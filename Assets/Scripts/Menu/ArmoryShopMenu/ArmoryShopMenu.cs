@@ -44,7 +44,9 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
         }
         int currentweapon = PlayerPrefs.GetInt("WeaponIndex");
         int weaponBought = PlayerPrefs.GetInt("Weapon0");
+        int equipped = PlayerPrefs.GetInt("Equipped");
         if (currentWeapon == 0 && weaponBought == 0) { return; }
+        else if(equipped == 0) { return; }
         else {
             activeWeaponCheckImg[currentweapon].SetActive(true); }
         // AchievementMenu.SetActive(false);
