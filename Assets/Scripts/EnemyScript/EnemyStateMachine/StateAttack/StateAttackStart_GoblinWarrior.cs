@@ -34,7 +34,7 @@ public class StateAttackStart_GoblinWarrior : StateAttack
         playerDistance = Vector3.Distance(transform.position, enemyBehaviour.player.transform.position);
         hp = enemyBehaviour.gameObject.GetComponent<EnemyMain>().GetCurrentHP;
 
-        if (hp <= 100 /*30% (hpMax *30 /100)*/) //At Low Health
+        if (hp <= 200 /*30% (hpMax *30 /100)*/) //At Low Health
         {
             if (playerDistance <= 3) //Close to Boss
             {
@@ -68,7 +68,7 @@ public class StateAttackStart_GoblinWarrior : StateAttack
                             return stateRangeBoulder;
                         case 3:
                             return stateRangeBoulderSpreadFront;
-                        case 4:
+                        //case 4:
                             //return stateMeleeCharge;
                         default:
                             return statePursue;
@@ -77,7 +77,7 @@ public class StateAttackStart_GoblinWarrior : StateAttack
                 }
                 else //Mid Range
                 {
-                    randNum = Random.Range(0, 8);
+                    randNum = Random.Range(0, 7);
                     switch (randNum)
                     {
                         case 0:
@@ -88,10 +88,9 @@ public class StateAttackStart_GoblinWarrior : StateAttack
                         case 3:
                             return stateRangeBoulderSpreadWide;
                         case 4:
-                            return stateMagicBlast;
-                        case 5:
+                            //return stateMagicBlast;
                             return stateMagicWave;
-                        case 6:
+                        case 5:
                             return stateMagicFallRandom;
                         default:
                             return statePursue;

@@ -106,6 +106,15 @@ public class StateAttackMelee01 : EnemyState
             }
         }
 
+        if (playerDistance >= 7 && isBoss)
+        {
+            enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage();
+            once1 = false;
+            once2 = false;
+            once3 = false;
+            return stateWarrior;
+        }
+
         if (playerDistance >= 7 && !isBoss)
         {
             enemyBehaviour.gameObject.GetComponent<EnemyMelee>().CannotDamage();

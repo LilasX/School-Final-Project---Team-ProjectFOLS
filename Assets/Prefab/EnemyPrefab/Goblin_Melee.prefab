@@ -202,7 +202,7 @@ MonoBehaviour:
   striker: 1
   canDmg: 0
   otherObject: {fileID: 0}
-  dmg: 5
+  dmg: 10
   hitEffect: {fileID: 0}
 --- !u!54 &523348590344247363
 Rigidbody:
@@ -458,7 +458,7 @@ MonoBehaviour:
   striker: 1
   canDmg: 0
   otherObject: {fileID: 0}
-  dmg: 5
+  dmg: 10
   hitEffect: {fileID: 0}
 --- !u!54 &6469974402913446392
 Rigidbody:
@@ -700,6 +700,9 @@ MonoBehaviour:
   found: 0
   randomX: 0
   randomZ: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6881588284876917918
 GameObject:
   m_ObjectHideFlags: 0

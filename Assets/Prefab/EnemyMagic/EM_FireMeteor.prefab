@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 20
+  dmg: 50
   canDmg: 0
 --- !u!199 &8133642533516560345
 ParticleSystemRenderer:
@@ -9906,7 +9906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &5266648710147203698
 GameObject:
@@ -14760,5 +14760,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 20
   canDmg: 0

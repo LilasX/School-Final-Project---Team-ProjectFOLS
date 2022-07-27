@@ -473,7 +473,7 @@ MonoBehaviour:
   projectileSpeed: 0
   combo: 0
   coolDown: 1
-  coolTime: 3
+  coolTime: 2
   isBoss: 1
   character: {fileID: 3579076600052755578}
   defaultMat: {fileID: 0}
@@ -747,7 +747,7 @@ MonoBehaviour:
   striker: 1
   canDmg: 0
   otherObject: {fileID: 0}
-  dmg: 10
+  dmg: 20
   hitEffect: {fileID: 0}
 --- !u!54 &8677266001250683193
 Rigidbody:
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 300
+  maxHP: 500
   distance: 0
   posOrigin: {x: 0, y: 0, z: 0}
   startOnce: 1
@@ -3877,7 +3877,7 @@ MonoBehaviour:
   striker: 1
   canDmg: 0
   otherObject: {fileID: 0}
-  dmg: 10
+  dmg: 20
   hitEffect: {fileID: 0}
 --- !u!54 &4955844075275769792
 Rigidbody:
@@ -4407,6 +4407,9 @@ MonoBehaviour:
   found: 0
   randomX: 0
   randomZ: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7251639271889053194
 GameObject:
   m_ObjectHideFlags: 0

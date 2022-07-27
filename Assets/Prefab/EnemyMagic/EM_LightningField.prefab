@@ -4762,7 +4762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &479050047290572642
 GameObject:
@@ -9624,7 +9624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &799936816927637100
 GameObject:
@@ -14454,7 +14454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &2319035561823886488
 GameObject:
@@ -19316,7 +19316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &2859191969668706913
 GameObject:
@@ -19388,8 +19388,11 @@ MonoBehaviour:
   - {fileID: 2407842636489736135}
   - {fileID: 595480953075821270}
   - {fileID: 7769314871631379646}
+  startOnce: 1
   start: 0
   timer: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  isPooling: 0
   once1: 0
   once2: 0
 --- !u!1 &3023271063700628026
@@ -24187,7 +24190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &3496844682646265891
 GameObject:
@@ -29180,7 +29183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &5165696247792304544
 GameObject:
@@ -33944,7 +33947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &6009854550313523930
 GameObject:
@@ -39133,7 +39136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &8295542434620740905
 GameObject:

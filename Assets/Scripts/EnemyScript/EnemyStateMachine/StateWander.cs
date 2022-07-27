@@ -13,11 +13,13 @@ public class StateWander : EnemyState
     public bool found = false;
     public float randomX;
     public float randomZ;
+    public LayerMask mask;
 
     public override EnemyState RunState(EnemyBehaviour enemyBehaviour)
     {
         if (!once)
         {
+            mask = LayerMask.GetMask("Ground");
             enemyBehaviour.agent.speed = 1f;
             enemyBehaviour.agent.acceleration = 2f;
             enemyBehaviour.enemyAnim.SetBool("IsWalking", true);
@@ -38,8 +40,11 @@ public class StateWander : EnemyState
                 NavMeshHit hit;
                 if (NavMesh.SamplePosition(wanderPos, out hit, 1f, NavMesh.AllAreas))
                 {
-                    wanderPos = hit.position;
-                    found = true;
+                    if (Physics.Raycast(wanderPos, -transform.up, 2f, mask))
+                    {
+                        wanderPos = hit.position;
+                        found = true;
+                    }
                 }
             } while (!found);
 

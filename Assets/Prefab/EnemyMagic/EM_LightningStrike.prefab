@@ -148,8 +148,11 @@ MonoBehaviour:
   - {fileID: 5568067346876913402}
   spellZone:
   - {fileID: 6236058724333026177}
+  startOnce: 1
   start: 0
   timer: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  isPooling: 0
   once1: 0
   once2: 0
 --- !u!1 &6236058724333026177
@@ -4914,5 +4917,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 0
-  dmg: 0
+  dmg: 40
   canDmg: 0

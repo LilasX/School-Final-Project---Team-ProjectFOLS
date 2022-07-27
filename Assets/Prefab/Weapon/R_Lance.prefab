@@ -54,7 +54,7 @@ MonoBehaviour:
   posOrigin: {x: 0, y: 0, z: 0}
   isPooling: 0
   startOnce: 1
-  dmg: 20
+  dmg: 30
   canDmg: 0
   canDmgSphere: 0
   canDmgArrow: 0

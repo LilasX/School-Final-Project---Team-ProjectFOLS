@@ -4807,7 +4807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &286348000949516289
 GameObject:
@@ -9616,7 +9616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &614904006889097688
 GameObject:
@@ -14755,7 +14755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &1482682548437386860
 GameObject:
@@ -19564,7 +19564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &1588928646167373131
 GameObject:
@@ -24471,7 +24471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &3014342687725586157
 GameObject:
@@ -29641,7 +29641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &6454811142544329163
 GameObject:
@@ -34920,7 +34920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &8278138597963414787
 GameObject:
@@ -39729,7 +39729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
 --- !u!1 &8512357098509886075
 GameObject:
@@ -44636,5 +44636,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0

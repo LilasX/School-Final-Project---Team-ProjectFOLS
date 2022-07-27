@@ -9757,7 +9757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 5
   canDmg: 0
 --- !u!1 &4527642962175130996
 GameObject:
@@ -9883,7 +9883,7 @@ MonoBehaviour:
   posOrigin: {x: 0, y: 0, z: 0}
   isPooling: 0
   startOnce: 1
-  dmg: 0
+  dmg: 30
   canDmg: 0
   canDmgSphere: 0
   canDmgArrow: 0

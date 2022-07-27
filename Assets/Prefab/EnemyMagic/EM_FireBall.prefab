@@ -4808,7 +4808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 5
   canDmg: 0
 --- !u!1 &2227937826192054582
 GameObject:
@@ -9675,7 +9675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 10
   canDmg: 0
 --- !u!1 &3831372202422053096
 GameObject:

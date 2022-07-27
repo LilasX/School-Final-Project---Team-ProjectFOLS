@@ -4999,7 +4999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &1276242682485650160
 GameObject:
@@ -14677,7 +14677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &1919633593936421403
 GameObject:
@@ -19547,7 +19547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &2177286908309614268
 GameObject:
@@ -29647,7 +29647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &3304895024314351951
 GameObject:
@@ -39323,7 +39323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &3816499102986183501
 GameObject:
@@ -48966,7 +48966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &4109033217101592345
 GameObject:
@@ -58642,7 +58642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &4168785878924442234
 GameObject:
@@ -58719,8 +58719,11 @@ MonoBehaviour:
   - {fileID: 3848091590349979866}
   - {fileID: 3180329301213145608}
   - {fileID: 3636309748333614213}
+  startOnce: 1
   start: 0
   timer: 0
+  posOrigin: {x: 0, y: 0, z: 0}
+  isPooling: 0
   once1: 0
   once2: 0
   once3: 0
@@ -68366,7 +68369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &4628138777347454110
 GameObject:
@@ -82985,7 +82988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &5312735242643323651
 GameObject:
@@ -93184,7 +93187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &6807224648536206268
 GameObject:
@@ -103122,7 +103125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &7986461498507353592
 GameObject:
@@ -112765,7 +112768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &8176576237855238966
 GameObject:
@@ -117602,7 +117605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: 1
-  dmg: 0
+  dmg: 40
   canDmg: 0
 --- !u!1 &8527315080654389355
 GameObject:

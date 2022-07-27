@@ -819,6 +819,9 @@ MonoBehaviour:
   found: 0
   randomX: 0
   randomZ: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1752756849275480306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3713,7 +3716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 300
+  maxHP: 500
   distance: 0
   posOrigin: {x: 0, y: 0, z: 0}
   startOnce: 1
