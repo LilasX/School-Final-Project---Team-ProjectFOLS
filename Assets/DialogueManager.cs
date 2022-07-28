@@ -85,7 +85,7 @@ public class DialogueManager : MonoBehaviour
     public IEnumerator ResetConversation()
     {
         _conversationIsOver = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
     }
 
 
