@@ -7538,7 +7538,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4494876, y: 1}
+    m_SensorSize: {x: 2.130187, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -22239,6 +22239,10 @@ PrefabInstance:
     - target: {fileID: 7498602161969981637, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
       propertyPath: Loop
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7498602161969981637, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7498602161969981637, guid: e51ecdf0f9b07af4ca4cab8baa9ab437, type: 3}
       propertyPath: m_PlayOnAwake

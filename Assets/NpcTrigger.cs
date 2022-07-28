@@ -56,7 +56,7 @@ public class NpcTrigger : MonoBehaviour
             _tipTimer += Time.deltaTime;
         }
 
-        if (_tipTimer >= 2f && !_insideTrigger)
+        if (_tipTimer >= 1f && !_insideTrigger)
         {
             _dialogueBoxUI.SetActive(false);
             _tipTimer = 0;
