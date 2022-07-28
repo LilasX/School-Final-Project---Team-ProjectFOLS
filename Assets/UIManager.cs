@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
             panels[i].SetActive(position == i);
             if (position == i)
             {
-                StartCoroutine(Wait(0.1f, i));
+                StartCoroutine(Wait(0, i));
             }
         }
     }
