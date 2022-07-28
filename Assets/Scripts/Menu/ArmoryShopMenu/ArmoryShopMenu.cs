@@ -191,12 +191,12 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
 
     public void Equip(int index)
     {
-        PlayerPrefs.SetInt("Equipped", 1);
-        PlayerPrefs.Save();
         if (buyButtons[index].activeInHierarchy == true)
         {
             return;
         }
+        PlayerPrefs.SetInt("Equipped", 1);
+        PlayerPrefs.Save();
         currentWeapon = index;
         _gameManager.player.GetComponent<PlayerEntity>().SetCurrentWeapon(index);
         activeWeaponCheckImg[index].SetActive(true);
