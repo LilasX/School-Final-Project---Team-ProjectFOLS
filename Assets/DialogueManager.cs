@@ -72,7 +72,7 @@ public class DialogueManager : MonoBehaviour
         foreach(char _letter in sentence.ToCharArray())
         {
             _dialogueText.GetComponent<TMPro.TextMeshProUGUI>().text += _letter;
-            yield return null;
+            yield return new WaitForSeconds(0);
         }
     }
 
