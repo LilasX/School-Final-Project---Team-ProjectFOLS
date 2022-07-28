@@ -6,20 +6,20 @@ using UnityEditor;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-[CustomEditor(typeof(DataPersistenceManager))]
-class ButtonEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+//[CustomEditor(typeof(DataPersistenceManager))]
+//class ButtonEditor : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
 
-        DataPersistenceManager dataPersistenceManager = (DataPersistenceManager)target;
-        if (GUILayout.Button("Delete Save File"))
-        {
-            dataPersistenceManager.DeleteFile();
-        }
-    }
-}
+//        DataPersistenceManager dataPersistenceManager = (DataPersistenceManager)target;
+//        if (GUILayout.Button("Delete Save File"))
+//        {
+//            dataPersistenceManager.DeleteFile();
+//        }
+//    }
+//}
 
 public class DataPersistenceManager : MonoBehaviour
 {
