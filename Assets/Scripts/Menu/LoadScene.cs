@@ -40,7 +40,7 @@ public class LoadScene : MonoBehaviour
             }
         }
 
-        progressBar.fillAmount = 0;
+       // progressBar.fillAmount = 0;
 
         if (async != null) return;
        // animator.SetTrigger("FadeOut");
@@ -50,24 +50,30 @@ public class LoadScene : MonoBehaviour
         scene.allowSceneActivation = false;
 
         loaderCanvas.SetActive(true);
-
+        progressBar.fillAmount = 0;
         do
         {
             Time.timeScale = 1; //Make sure it doesn't mess with the pause in other scenes
             await Task.Delay(100);
-            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 6 * Time.deltaTime);
-        } while (scene.progress < 0.9f);
+            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 2f * Time.deltaTime);
+        } while (progressBar.fillAmount != 1f);
         animator.SetTrigger("FadeOut");
         await Task.Delay(1500);
 
-        scene.allowSceneActivation = true;
-        loaderCanvas.SetActive(false);
+        if (progressBar.fillAmount == 1f)
+        {
+            //animator.SetTrigger("FadeOut");
+            scene.allowSceneActivation = true;
+            loaderCanvas.SetActive(false);
+        }
+        //scene.allowSceneActivation = true;
+        //loaderCanvas.SetActive(false);
         //StartCoroutine(IELoadSceneString(s));
     }
 
     public async void BtnLoadSceneI(int indexs) 
     {
-        progressBar.fillAmount = 0;
+        //progressBar.fillAmount = 0;
 
         Debug.Log("It's BtnLoadSceneI calling...");
 
@@ -80,18 +86,24 @@ public class LoadScene : MonoBehaviour
         scene.allowSceneActivation = false;
 
         loaderCanvas.SetActive(true);
-
+        progressBar.fillAmount = 0;
         do
         {
             Time.timeScale = 1; //Make sure it doesn't mess with the pause in other scenes
             await Task.Delay(100);
-            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 6 * Time.deltaTime);
-        } while (scene.progress < 0.9f);
+            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 2f * Time.deltaTime);
+        } while (progressBar.fillAmount != 1f); //scene.progress < 0.9f && 
         animator.SetTrigger("FadeOut");
         await Task.Delay(1500);
 
-        scene.allowSceneActivation = true;
-        loaderCanvas.SetActive(false);
+        if(progressBar.fillAmount == 1f)
+        {
+            //animator.SetTrigger("FadeOut");
+            scene.allowSceneActivation = true;
+            loaderCanvas.SetActive(false);
+        }
+        //scene.allowSceneActivation = true;
+        //loaderCanvas.SetActive(false);
         //StartCoroutine(IELoadSceneString(s));
     }
 
