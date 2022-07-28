@@ -81,7 +81,7 @@ public class Spell_EarthWave : BaseSpell
 
         if (list == spellZone)
         {
-            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(20);
+            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(50);
         }
     }
 

@@ -46,73 +46,76 @@ public class BaseProjectile : MonoBehaviour
         {
             if (other.gameObject.GetComponent<PlayerEntity>())
             {
-                if(!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield && !other.gameObject.GetComponent<PlayerEntity>().isInvincible)
+                if (other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP > 0)
                 {
-                    switch (typeRange)
+                    if (!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield && !other.gameObject.GetComponent<PlayerEntity>().isInvincible)
                     {
-                        case RangeWeapon.Sphere:
-                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgSphere)
-                            {
-                                //Direct Damage
-                                //other.gameObject.GetComponent<Player>().Hp -= 20;
-                                //Indirect Damage - Player near Explosion from Sphere
-                                //other.gameObject.GetComponent<Player>().Hp -= 10;
-                                other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
-                                other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
-                                other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-
-                                hitEffect = poolingManager.callRangeVFX();
-                                hitEffect.SetActive(true);
-                                hitEffect.transform.position = gameObject.transform.position;
-                                hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
-
-                                canDmg = false;
-
-                                if (isPooling)
+                        switch (typeRange)
+                        {
+                            case RangeWeapon.Sphere:
+                                if (other.gameObject.GetComponent<PlayerEntity>() && canDmgSphere)
                                 {
-                                    SetInactiveRange();
+                                    //Direct Damage
+                                    //other.gameObject.GetComponent<Player>().Hp -= 20;
+                                    //Indirect Damage - Player near Explosion from Sphere
+                                    //other.gameObject.GetComponent<Player>().Hp -= 10;
+                                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                                    other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+
+                                    hitEffect = poolingManager.callRangeVFX();
+                                    hitEffect.SetActive(true);
+                                    hitEffect.transform.position = gameObject.transform.position;
+                                    hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
+
+                                    canDmg = false;
+
+                                    if (isPooling)
+                                    {
+                                        SetInactiveRange();
+                                    }
+                                    else
+                                    {
+                                        Destroy(gameObject);
+                                    }
                                 }
-                                else
+                                Invoke("SetInactiveRange", 1f);
+                                break;
+                            case RangeWeapon.Arrow:
+                                if (other.gameObject.GetComponent<PlayerEntity>() && canDmgArrow)
                                 {
-                                    Destroy(gameObject);
+                                    //other.gameObject.GetComponent<Player>().Hp -= 30;
+                                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                                    other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+
+                                    hitEffect = poolingManager.callRangeVFX();
+                                    hitEffect.SetActive(true);
+                                    hitEffect.transform.position = gameObject.transform.position;
+                                    hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
+
+                                    canDmg = false;
                                 }
-                            }
-                            Invoke("SetInactiveRange", 1f);
-                            break;
-                        case RangeWeapon.Arrow:
-                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgArrow)
-                            {
-                                //other.gameObject.GetComponent<Player>().Hp -= 30;
-                                other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
-                                other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
-                                other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                                Invoke("SetInactiveRange", 1f);
+                                break;
+                            case RangeWeapon.Lance:
+                                if (other.gameObject.GetComponent<PlayerEntity>() && canDmgLance)
+                                {
+                                    //other.gameObject.GetComponent<Player>().Hp -= 40;
+                                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                                    other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
 
-                                hitEffect = poolingManager.callRangeVFX();
-                                hitEffect.SetActive(true);
-                                hitEffect.transform.position = gameObject.transform.position;
-                                hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
+                                    hitEffect = poolingManager.callRangeVFX();
+                                    hitEffect.SetActive(true);
+                                    hitEffect.transform.position = gameObject.transform.position;
+                                    hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
 
-                                canDmg = false;
-                            }
-                            Invoke("SetInactiveRange", 1f);
-                            break;
-                        case RangeWeapon.Lance:
-                            if (other.gameObject.GetComponent<PlayerEntity>() && canDmgLance)
-                            {
-                                //other.gameObject.GetComponent<Player>().Hp -= 40;
-                                other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
-                                other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
-                                other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-
-                                hitEffect = poolingManager.callRangeVFX();
-                                hitEffect.SetActive(true);
-                                hitEffect.transform.position = gameObject.transform.position;
-                                hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
-
-                                canDmg = false;
-                            }
-                            Invoke("SetInactiveRange", 1f);
-                            break;
+                                    canDmg = false;
+                                }
+                                Invoke("SetInactiveRange", 1f);
+                                break;
+                        }
                     }
                 }
             }

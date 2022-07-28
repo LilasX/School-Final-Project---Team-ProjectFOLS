@@ -4826,7 +4826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caster: 0
+  caster: 1
   dmg: 30
   canDmg: 0
 --- !u!1 &3057367896977912032
@@ -9688,7 +9688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caster: 0
+  caster: 1
   dmg: 90
   canDmg: 0
 --- !u!1 &5465224516234141181
@@ -14452,7 +14452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caster: 0
+  caster: 1
   dmg: 10
   canDmg: 0
 --- !u!1 &9085413429875618381
@@ -19216,6 +19216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caster: 0
+  caster: 1
   dmg: 20
   canDmg: 0

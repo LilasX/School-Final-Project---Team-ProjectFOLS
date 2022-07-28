@@ -19,25 +19,27 @@ public class BaseMelee : MonoBehaviour
     {
         if (striker == Striker.enemy && other.gameObject.GetComponent<PlayerEntity>() && canDmg)
         {
-
-            if (!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
+            if (other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP > 0)
             {
-                if (gameManager.player.GetComponent<PlayerEntity>().isInvincible)
+                if (!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield)
                 {
-                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", false);
-                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(0);
-                    canDmg = false;
-                }
-                else
-                {
-                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
-                    other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
-                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-                    hitEffect = poolingManager.callMeleeVFX();
-                    hitEffect.SetActive(true);
-                    hitEffect.transform.position = new Vector3(other.transform.position.x, gameObject.transform.position.y, other.transform.position.z);
-                    hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
-                    canDmg = false;
+                    if (gameManager.player.GetComponent<PlayerEntity>().isInvincible)
+                    {
+                        other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", false);
+                        other.gameObject.GetComponent<PlayerEntity>().OnHurt(0);
+                        canDmg = false;
+                    }
+                    else
+                    {
+                        other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                        other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                        other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                        hitEffect = poolingManager.callMeleeVFX();
+                        hitEffect.SetActive(true);
+                        hitEffect.transform.position = new Vector3(other.transform.position.x, gameObject.transform.position.y, other.transform.position.z);
+                        hitEffect.GetComponent<EnemyHitVFX>().StartVFX();
+                        canDmg = false;
+                    }
                 }
             }
         }

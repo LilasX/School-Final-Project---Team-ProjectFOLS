@@ -24,14 +24,17 @@ public class SpellDamageManager : MonoBehaviour
         }
         else if (caster == Caster.enemy && other.gameObject.GetComponent<PlayerEntity>())
         {
-            if (!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield && !other.gameObject.GetComponent<PlayerEntity>().isInvincible)
+            if (other.gameObject.GetComponent<PlayerEntity>().GetCurrentHP > 0)
             {
-                if (canDmg)
+                if (!other.gameObject.GetComponent<PlayerEntity>().IsUsingShield && !other.gameObject.GetComponent<PlayerEntity>().isInvincible)
                 {
-                    other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
-                    other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
-                    other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
-                    canDmg = false;
+                    if (canDmg)
+                    {
+                        other.gameObject.GetComponent<PlayerEntity>().OnHurt(dmg);
+                        other.gameObject.GetComponent<PlayerEntity>().isKnocked = true;
+                        other.gameObject.GetComponent<PlayerEntity>().Animator.SetBool("Knocked", true);
+                        canDmg = false;
+                    }
                 }
             }
         }

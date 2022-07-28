@@ -44,7 +44,7 @@ public class Spell_FireFloor : BaseSpell
 
         if (list == spellZone)
         {
-            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(25);
+            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(70);
         }
     }
 

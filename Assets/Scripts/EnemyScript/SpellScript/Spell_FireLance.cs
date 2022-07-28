@@ -8,7 +8,7 @@ public class Spell_FireLance : BaseSpell
 
     public override void InitializeSpell()
     {
-        burn.GetComponent<SpellDamageManager>().InitializeSpellEffect(25);
+        burn.GetComponent<SpellDamageManager>().InitializeSpellEffect(50);
     }
 
     public override void ShowSpellEffect(GameObject[] list, GameObject zone)

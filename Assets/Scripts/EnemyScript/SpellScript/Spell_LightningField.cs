@@ -59,7 +59,7 @@ public class Spell_LightningField : BaseSpell
 
         if (list == spellZone)
         {
-            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(25);
+            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(50);
         }
     }
 

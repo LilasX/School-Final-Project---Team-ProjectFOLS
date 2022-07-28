@@ -49,7 +49,7 @@ public class Spell_LightningStorm : BaseSpell
 
         if (list == spellZone)
         {
-            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(20);
+            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(90);
         }
     }
 

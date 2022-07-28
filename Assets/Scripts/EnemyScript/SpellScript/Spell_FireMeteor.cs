@@ -17,7 +17,7 @@ public class Spell_FireMeteor : BaseSpell
         meteorProjectile.SetActive(true);
         meteorProjectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
         meteorProjectile.transform.position = meteorSpawn.transform.position;
-        meteorProjectile.GetComponent<SpellDamageManager>().InitializeSpellEffect(30);
+        meteorProjectile.GetComponent<SpellDamageManager>().InitializeSpellEffect(90);
     }
 
     public void HideMeteorFall()
@@ -58,6 +58,8 @@ public class Spell_FireMeteor : BaseSpell
         {
             spellZone[i].SetActive(false);
         }
+
+        HideExplosion();
     }
 
     public override void ShowSpellEffect(GameObject[] list, GameObject zone)
@@ -66,7 +68,7 @@ public class Spell_FireMeteor : BaseSpell
 
         if (list == spellZone)
         {
-            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(30);
+            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(20);
         }
     }
 

@@ -4916,6 +4916,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6b4d503aa695b4e84df57032501644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caster: 0
+  caster: 1
   dmg: 70
   canDmg: 0

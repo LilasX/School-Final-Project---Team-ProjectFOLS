@@ -83,7 +83,7 @@ public class Spell_BoulderBlast : BaseSpell
     public override void StartSpell()
     {
         InitializeSpell();
-        boulderProjectile.GetComponent<SpellDamageManager>().InitializeSpellEffect(20);
+        boulderProjectile.GetComponent<SpellDamageManager>().InitializeSpellEffect(50);
         start = true;
         timer = 0;
         once1 = false;

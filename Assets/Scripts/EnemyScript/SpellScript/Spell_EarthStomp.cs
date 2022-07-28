@@ -84,7 +84,7 @@ public class Spell_EarthStomp : BaseSpell
 
         if (list == spellZone)
         {
-            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(30);
+            zone.GetComponent<SpellDamageManager>().InitializeSpellEffect(70);
         }
     }
 
