@@ -109,14 +109,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
-        {
-            if (dataPersistenceManager.gateOpened)
-            {
-                gate.GetComponent<Animator>().enabled = true;
-                PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().SpawnBoss();
-            }
-        }
+        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
+        //{
+        //    if (dataPersistenceManager.gateOpened)
+        //    {
+        //        gate.GetComponent<Animator>().enabled = true;
+        //        PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().SpawnBoss();
+        //    }
+        //}
     }
 
     // Update is called once per frame
@@ -130,6 +130,15 @@ public class GameManager : MonoBehaviour
         }
 
         capacity = runesList.Count;
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
+        {
+            if (dataPersistenceManager.gateOpened && !PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().spawnOnce)
+            {
+                gate.GetComponent<Animator>().enabled = true;
+                PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().SpawnBoss();
+            }
+        }
 
         if (runesList.Count >= 2 && runesListIndex.IndexOf(rune2) == 0 && runesListIndex.IndexOf(rune1) == 1 && runesListIndex.IndexOf(rune3) == 2 && runesListIndex.IndexOf(rune4) == 3 && runesListIndex.IndexOf(rune5) == 4 && !PoolingManager.instance.bossSpawner.GetComponent<BossSpawner>().spawnOnce)
         {
