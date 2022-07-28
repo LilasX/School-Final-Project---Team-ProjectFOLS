@@ -55,7 +55,7 @@ public class LoadScene : MonoBehaviour
         {
             Time.timeScale = 1; //Make sure it doesn't mess with the pause in other scenes
             await Task.Delay(100);
-            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 2f * Time.deltaTime);
+            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 7f * Time.deltaTime);
         } while (progressBar.fillAmount != 1f);
         animator.SetTrigger("FadeOut");
         await Task.Delay(1500);
@@ -91,7 +91,7 @@ public class LoadScene : MonoBehaviour
         {
             Time.timeScale = 1; //Make sure it doesn't mess with the pause in other scenes
             await Task.Delay(100);
-            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 2f * Time.deltaTime);
+            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 1f, 5f * Time.deltaTime);
         } while (progressBar.fillAmount != 1f); //scene.progress < 0.9f && 
         animator.SetTrigger("FadeOut");
         await Task.Delay(1500);
