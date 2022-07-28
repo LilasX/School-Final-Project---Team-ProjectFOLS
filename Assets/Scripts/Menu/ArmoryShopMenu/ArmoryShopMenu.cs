@@ -187,6 +187,8 @@ public class ArmoryShopMenu : MonoBehaviour, IBaseMenu
             GemsImg[index].SetActive(false);
             _gameManager.inventoryscript.gems -= ((index + 1) * 2);
         }
+
+        DataPersistenceManager.instance.SaveGame();
     }
 
     public void Equip(int index)
