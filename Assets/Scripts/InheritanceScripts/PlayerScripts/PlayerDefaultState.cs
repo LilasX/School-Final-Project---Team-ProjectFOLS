@@ -136,7 +136,7 @@ public class PlayerDefaultState : IPlayerBaseState
             if (playerEntityInstance.resetDodgeInputTimer >= 0.35f)
             {
                 gameManager.inputManager.OnEnable();
-                playerEntityInstance.resetDodgeInputTimer = 0f;
+                //playerEntityInstance.resetDodgeInputTimer = 0f;
             }
         }
 
