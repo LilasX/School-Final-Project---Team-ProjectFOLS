@@ -60,12 +60,15 @@ public class LoadScene : MonoBehaviour
         animator.SetTrigger("FadeOut");
         await Task.Delay(1500);
 
-        if (progressBar.fillAmount == 1f)
-        {
-            //animator.SetTrigger("FadeOut");
-            scene.allowSceneActivation = true;
-            loaderCanvas.SetActive(false);
-        }
+        loaderCanvas.SetActive(false);
+        scene.allowSceneActivation = true;
+        //if (progressBar.fillAmount == 1f)
+        //{
+        //    //animator.SetTrigger("FadeOut");
+        //    loaderCanvas.SetActive(false);
+        //    scene.allowSceneActivation = true;
+
+        //}
         //scene.allowSceneActivation = true;
         //loaderCanvas.SetActive(false);
         //StartCoroutine(IELoadSceneString(s));
@@ -96,12 +99,15 @@ public class LoadScene : MonoBehaviour
         animator.SetTrigger("FadeOut");
         await Task.Delay(1500);
 
-        if(progressBar.fillAmount == 1f)
-        {
-            //animator.SetTrigger("FadeOut");
-            scene.allowSceneActivation = true;
-            loaderCanvas.SetActive(false);
-        }
+        loaderCanvas.SetActive(false);
+        scene.allowSceneActivation = true;
+        //if(progressBar.fillAmount == 1f)
+        //{
+        //    //animator.SetTrigger("FadeOut");
+        //    loaderCanvas.SetActive(false);
+        //    scene.allowSceneActivation = true;
+
+        //}
         //scene.allowSceneActivation = true;
         //loaderCanvas.SetActive(false);
         //StartCoroutine(IELoadSceneString(s));
