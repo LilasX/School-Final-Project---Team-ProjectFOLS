@@ -9,6 +9,7 @@ public class StateKnocked_GhostRange : StateKnocked
     public float randomX;
     public float randomZ;
     public Vector3 escapePos;
+    public LayerMask mask;
 
     public StateAttackMagic stateMagic01;
     public StateAttackMagic stateMagic02;
@@ -23,6 +24,7 @@ public class StateKnocked_GhostRange : StateKnocked
             once1 = true;
             once2 = false;
             timer = 0;
+            mask = LayerMask.GetMask("Ground");
             enemyBehaviour.agent.SetDestination(enemyBehaviour.gameObject.transform.position);
             enemyBehaviour.enemyAnim.SetBool("IsWalking", false);
             anim.SetTrigger("IsKnocked");
@@ -77,8 +79,11 @@ public class StateKnocked_GhostRange : StateKnocked
                     NavMeshHit hit;
                     if (NavMesh.SamplePosition(escapePos, out hit, 1f, NavMesh.AllAreas))
                     {
-                        escapePos = hit.position;
-                        found = true;
+                        if (Physics.Raycast(escapePos, -transform.up, 2f, mask))
+                        {
+                            escapePos = hit.position;
+                            found = true;
+                        }
                     }
                 } while (!found);
 
